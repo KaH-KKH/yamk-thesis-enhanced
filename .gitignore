@@ -1,0 +1,36 @@
+# Virtual Environment
+yamk_env/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment
+.env
+
+# Data and Models
+models/checkpoints/
+data/cache/
+*.bin
+*.safetensors
+
+# Logs and Results
+logs/
+results/temp/
+wandb/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

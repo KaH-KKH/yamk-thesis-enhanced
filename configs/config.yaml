@@ -1,0 +1,32 @@
+# Configuration for YAMK Thesis Project
+project:
+  name: "YAMK Thesis - LLM Evaluation"
+  version: "0.2.0"
+  description: "Multi-agent system for LLM evaluation"
+
+compute:
+  device: "auto"  # auto-detect GPU/CPU
+  mixed_precision: true
+  compile_model: false  # Set to true for PyTorch 2.0 compilation
+  
+models:
+  cache_dir: "./models/checkpoints"
+  available:
+    - name: "mistral"
+      model_id: "mistralai/Mistral-7B-Instruct-v0.2"
+      quantization: "4bit"
+    - name: "gemma_7b_it_4bit"
+      model_id: "google/gemma-7b-it"
+      quantization: "4bit"
+
+evaluation:
+  batch_size: 8
+  metrics:
+    - bleu
+    - rouge
+    - bertscore
+    - semantic_similarity
+
+logging:
+  level: "INFO"
+  file: "logs/yamk_thesis.log"

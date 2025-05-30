@@ -1,0 +1,6 @@
+# Additional GPU-specific packages
+# Install these only if you have CUDA available
+triton>=2.1.0
+apex @ git+https://github.com/NVIDIA/apex.git
+flash-attn>=2.3.0
+xformers>=0.0.23
