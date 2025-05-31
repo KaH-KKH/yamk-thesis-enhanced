@@ -8,6 +8,16 @@ compute:
   device: "auto"  # auto-detect GPU/CPU
   mixed_precision: true
   compile_model: false  # Set to true for PyTorch 2.0 compilation
+
+agents:
+  uc_agent:
+    system_prompt: |
+      You are a specialized AI agent for generating use cases from requirements.
+      Follow these rules:
+      1. Generate clear, structured use cases
+      2. Include actors, preconditions, main flow, and postconditions
+      3. Focus on testability and clarity
+      4. Use standard use case format
   
 models:
   cache_dir: "./models/checkpoints"

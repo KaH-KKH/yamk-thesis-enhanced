@@ -83,11 +83,14 @@ NOTES:
         formatted_main_flow = "\n".join([f"{i+1}. {step}" for i, step in enumerate(use_case_data.get('main_flow', []))])
         formatted_postconditions = "\n".join([f"{i+1}. {pc}" for i, pc in enumerate(use_case_data.get('postconditions', []))])
         
-        # Format alternative flows
+        # Format alternative flows - KORJATTU
         alt_flows = []
-        for flow in use_case_data.get('alternative_flows', []):
-            alt_flows.append(f"\n{flow.get('name', 'Alternative')}:")
-            alt_flows.extend([f"  {i+1}. {step}" for i, step in enumerate(flow.get('steps', []))])
+        alternative_flows = use_case_data.get('alternative_flows', [])
+        if alternative_flows and alternative_flows is not None:  # Tarkista että ei ole None
+            for flow in alternative_flows:
+                if isinstance(flow, dict):  # Varmista että on dict
+                    alt_flows.append(f"\n{flow.get('name', 'Alternative')}:")
+                    alt_flows.extend([f"  {i+1}. {step}" for i, step in enumerate(flow.get('steps', []))])
         formatted_alt_flows = "\n".join(alt_flows) if alt_flows else "None"
         
         return template.format(

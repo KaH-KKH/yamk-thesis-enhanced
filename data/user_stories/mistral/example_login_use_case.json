@@ -1,0 +1,32 @@
+{
+  "id": "UC-001",
+  "title": "** User logs into the system with valid credentials",
+  "actors": [
+    "system",
+    "users",
+    "user"
+  ],
+  "preconditions": [
+    "The user is at the login page: https://the-internet.herokuapp.com/login",
+    "The user has access to a web browser"
+  ],
+  "main_flow": [
+    "User enters valid username \"tomsmith\"",
+    "User enters valid password \"SuperSecretPassword!\"",
+    "User clicks on the \"Login\" button",
+    "4. System verifies the entered credentials against the database",
+    "5. If the credentials are valid, the system displays a success message: \"Success! Welcome to the site.\"",
+    "6. User is redirected to the secure area of the site",
+    "**Alternative flows:**",
+    "If the entered username or password is incorrect, the system displays an error message: \"Invalid username or password.\"",
+    "If the user enters incorrect credentials multiple times, the system locks the user account for a certain period"
+  ],
+  "alternative_flows": null,
+  "postconditions": [
+    "The user is logged into the system",
+    "The user is in the secure area of the site",
+    "The user can access secure features and functionalities",
+    "4. The user can logout from the secure area at any time."
+  ],
+  "notes": null
+}

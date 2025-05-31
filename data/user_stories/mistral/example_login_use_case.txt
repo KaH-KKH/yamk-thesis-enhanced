@@ -1,0 +1,35 @@
+
+USE CASE: ** User logs into the system with valid credentials
+ID: UC-001
+
+ACTORS:
+- system
+- users
+- user
+
+PRECONDITIONS:
+1. The user is at the login page: https://the-internet.herokuapp.com/login
+2. The user has access to a web browser
+
+MAIN FLOW:
+1. User enters valid username "tomsmith"
+2. User enters valid password "SuperSecretPassword!"
+3. User clicks on the "Login" button
+4. 4. System verifies the entered credentials against the database
+5. 5. If the credentials are valid, the system displays a success message: "Success! Welcome to the site."
+6. 6. User is redirected to the secure area of the site
+7. **Alternative flows:**
+8. If the entered username or password is incorrect, the system displays an error message: "Invalid username or password."
+9. If the user enters incorrect credentials multiple times, the system locks the user account for a certain period
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+1. The user is logged into the system
+2. The user is in the secure area of the site
+3. The user can access secure features and functionalities
+4. 4. The user can logout from the secure area at any time.
+
+NOTES:
+None

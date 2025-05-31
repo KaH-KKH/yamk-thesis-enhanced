@@ -175,7 +175,8 @@ class ModelLoader:
         
         return info
     
-    def list_available_models(self) -> List[str]:
+    #def list_available_models(self) -> List[str]:
+    def list_available_models(self) -> list[str]:
         """List all available models"""
         return list(self.models_config.keys())
     

@@ -1,5 +1,5 @@
 """
-UC Agent - Generates use cases from requirements and user stories
+UC Agent - Generates use cases from requirements
 """
 
 import asyncio
@@ -9,8 +9,6 @@ from datetime import datetime
 import json
 
 from pydantic import BaseModel, Field
-from pydantic_ai import Agent, RunContext
-from pydantic_ai.models.huggingface import HuggingFaceModel
 from loguru import logger
 
 from ..models.model_loader import ModelLoader
@@ -20,23 +18,14 @@ from ..utils.file_handler import FileHandler
 
 class UseCase(BaseModel):
     """Use case structure"""
-    id: str = Field(description="Unique identifier")
-    title: str = Field(description="Use case title")
-    actors: List[str] = Field(description="Actors involved")
-    preconditions: List[str] = Field(description="Preconditions")
-    main_flow: List[str] = Field(description="Main flow steps")
-    alternative_flows: Optional[List[Dict[str, List[str]]]] = Field(
-        default=None, description="Alternative flows"
-    )
-    postconditions: List[str] = Field(description="Postconditions")
+    id: str = Field(default="UC001", description="Unique identifier")
+    title: str = Field(default="Use Case", description="Use case title")
+    actors: List[str] = Field(default_factory=list, description="Actors involved")
+    preconditions: List[str] = Field(default_factory=list, description="Preconditions")
+    main_flow: List[str] = Field(default_factory=list, description="Main flow steps")
+    alternative_flows: Optional[List[Dict[str, List[str]]]] = Field(default=None)
+    postconditions: List[str] = Field(default_factory=list, description="Postconditions")
     notes: Optional[str] = Field(default=None, description="Additional notes")
-
-
-class UCAgentContext(BaseModel):
-    """Context for UC Agent"""
-    requirement_text: str
-    model_name: str
-    timestamp: datetime = Field(default_factory=datetime.now)
 
 
 class UCAgent:
@@ -46,76 +35,103 @@ class UCAgent:
         self.model_name = model_name
         self.config = FileHandler.load_yaml(config_path)
         self.model_loader = ModelLoader(config_path)
+        self.text_processor = TextProcessor()
         
         # Load model
+        logger.info(f"Loading model: {model_name}")
         self.model = self.model_loader.load_model(model_name)
         
         # Get system prompt from config
         self.system_prompt = self.config["agents"]["uc_agent"]["system_prompt"]
         
-        # Initialize Pydantic AI agent
-        self.agent = Agent(
-            model=HuggingFaceModel(
-                model=self.model,
-                tokenizer=self.model_loader.tokenizer
-            ),
-            result_type=UseCase,
-            system_prompt=self.system_prompt,
-            deps_type=UCAgentContext,
-        )
-        
-        # Add tools
-        self._register_tools()
-        
         logger.info(f"UC Agent initialized with model: {model_name}")
-    
-    def _register_tools(self):
-        """Register tools for the agent"""
-        
-        @self.agent.tool
-        async def extract_actors(ctx: RunContext[UCAgentContext]) -> List[str]:
-            """Extract actors from requirement text"""
-            text = ctx.deps.requirement_text
-            processor = TextProcessor()
-            return processor.extract_actors(text)
-        
-        @self.agent.tool
-        async def identify_actions(ctx: RunContext[UCAgentContext]) -> List[str]:
-            """Identify key actions from requirement text"""
-            text = ctx.deps.requirement_text
-            processor = TextProcessor()
-            return processor.extract_actions(text)
-        
-        @self.agent.tool
-        async def format_use_case(ctx: RunContext[UCAgentContext], use_case_data: dict) -> str:
-            """Format use case in standard template"""
-            processor = TextProcessor()
-            return processor.format_use_case(use_case_data)
     
     async def generate_use_case(self, requirement_file: str) -> UseCase:
         """Generate use case from requirement file"""
         # Read requirement
         requirement_text = FileHandler.read_text_file(requirement_file)
         
-        # Create context
-        context = UCAgentContext(
-            requirement_text=requirement_text,
-            model_name=self.model_name
-        )
-        
-        # Generate use case
+        # Create prompt
+        prompt = f"""{self.system_prompt}
+
+Requirement:
+{requirement_text}
+
+Generate a detailed use case with:
+- ID (e.g., UC-LOGIN-001)
+- Title
+- Actors
+- Preconditions
+- Main flow (numbered steps)
+- Alternative flows (if any)
+- Postconditions
+
+Format the response as a structured use case."""
+
+        # Generate response using model
         logger.info(f"Generating use case for: {requirement_file}")
         start_time = datetime.now()
         
-        result = await self.agent.run(
-            f"Generate a detailed use case from the following requirement:\n\n{requirement_text}",
-            deps=context
+        response = self.model_loader.generate(
+            self.model_name, 
+            prompt,
+            max_new_tokens=1024,
+            temperature=0.7
         )
         
         generation_time = (datetime.now() - start_time).total_seconds()
         logger.info(f"Use case generated in {generation_time:.2f} seconds")
         
-        return result.data
+        # Parse response into UseCase object
+        use_case = self._parse_response_to_use_case(response, requirement_text)
+        
+        return use_case
+    
+    def _parse_response_to_use_case(self, response: str, requirement_text: str) -> UseCase:
+        """Parse LLM response into UseCase object"""
+        # Extract actors using text processor
+        actors = self.text_processor.extract_actors(requirement_text)
+        
+        # Simple parsing logic
+        use_case_data = {
+            "id": "UC-001",
+            "title": "Generated Use Case",
+            "actors": actors,
+            "preconditions": [],
+            "main_flow": [],
+            "postconditions": []
+        }
+        
+        # Parse response sections
+        lines = response.split('\n')
+        current_section = None
+        
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            
+            # Detect sections
+            if any(marker in line.upper() for marker in ["ID:", "IDENTIFIER:"]):
+                use_case_data["id"] = line.split(":", 1)[-1].strip()
+            elif "TITLE:" in line.upper():
+                use_case_data["title"] = line.split(":", 1)[-1].strip()
+            elif "ACTORS:" in line.upper():
+                current_section = "actors"
+            elif "PRECONDITIONS:" in line.upper():
+                current_section = "preconditions"
+            elif "MAIN FLOW:" in line.upper():
+                current_section = "main_flow"
+            elif "POSTCONDITIONS:" in line.upper():
+                current_section = "postconditions"
+            elif current_section and line:
+                # Add to current section
+                if line.startswith(("- ", "• ", "* ", "1.", "2.", "3.")):
+                    line = line.lstrip("- •*123456789. ")
+                if current_section in use_case_data:
+                    use_case_data[current_section].append(line)
+        
+        return UseCase(**use_case_data)
     
     async def batch_generate(self, requirement_dir: str, output_dir: str):
         """Generate use cases for all requirements in directory"""
@@ -158,56 +174,11 @@ class UCAgent:
                     "error": str(e)
                 })
         
-        # Save generation report
-        report = {
-            "model": self.model_name,
-            "timestamp": datetime.now().isoformat(),
-            "total_files": len(requirement_files),
-            "successful": sum(1 for r in results if r["status"] == "success"),
-            "failed": sum(1 for r in results if r["status"] == "failed"),
-            "results": results
-        }
-        
-        report_file = output_path / "generation_report.json"
-        FileHandler.save_json(report, str(report_file))
-        
-        return report
+        return results
     
     def _format_use_case_text(self, use_case: UseCase) -> str:
         """Format use case as readable text"""
-        lines = [
-            f"USE CASE: {use_case.title}",
-            f"ID: {use_case.id}",
-            "",
-            "ACTORS:",
-            *[f"  - {actor}" for actor in use_case.actors],
-            "",
-            "PRECONDITIONS:",
-            *[f"  {i+1}. {pc}" for i, pc in enumerate(use_case.preconditions)],
-            "",
-            "MAIN FLOW:",
-            *[f"  {i+1}. {step}" for i, step in enumerate(use_case.main_flow)],
-            ""
-        ]
-        
-        if use_case.alternative_flows:
-            lines.extend([
-                "ALTERNATIVE FLOWS:",
-                *[f"  {flow['name']}:" for flow in use_case.alternative_flows],
-                *[f"    {i+1}. {step}" for flow in use_case.alternative_flows 
-                  for i, step in enumerate(flow.get('steps', []))],
-                ""
-            ])
-        
-        lines.extend([
-            "POSTCONDITIONS:",
-            *[f"  {i+1}. {pc}" for i, pc in enumerate(use_case.postconditions)]
-        ])
-        
-        if use_case.notes:
-            lines.extend(["", "NOTES:", use_case.notes])
-        
-        return "\n".join(lines)
+        return self.text_processor.format_use_case(use_case.model_dump())
 
 
 async def main():
@@ -215,10 +186,10 @@ async def main():
     import argparse
     
     parser = argparse.ArgumentParser(description="UC Agent - Generate use cases")
-    parser.add_argument("--model", required=True, help="Model name (mistral, gemma_7b_it_4bit)")
-    parser.add_argument("--input", required=True, help="Input requirement file or directory")
+    parser.add_argument("--model", required=True, help="Model name")
+    parser.add_argument("--input", required=True, help="Input file or directory")
     parser.add_argument("--output", default="data/user_stories", help="Output directory")
-    parser.add_argument("--batch", action="store_true", help="Process directory of files")
+    parser.add_argument("--batch", action="store_true", help="Batch processing")
     
     args = parser.parse_args()
     
@@ -227,10 +198,10 @@ async def main():
     
     if args.batch:
         # Batch processing
-        report = await agent.batch_generate(args.input, args.output)
+        results = await agent.batch_generate(args.input, args.output)
         print(f"\nGeneration complete!")
-        print(f"Successful: {report['successful']}")
-        print(f"Failed: {report['failed']}")
+        print(f"Successful: {sum(1 for r in results if r['status'] == 'success')}")
+        print(f"Failed: {sum(1 for r in results if r['status'] == 'failed')}")
     else:
         # Single file processing
         use_case = await agent.generate_use_case(args.input)
