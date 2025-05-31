@@ -9,16 +9,6 @@ compute:
   mixed_precision: true
   compile_model: false  # Set to true for PyTorch 2.0 compilation
 
-agents:
-  uc_agent:
-    system_prompt: |
-      You are a specialized AI agent for generating use cases from requirements.
-      Follow these rules:
-      1. Generate clear, structured use cases
-      2. Include actors, preconditions, main flow, and postconditions
-      3. Focus on testability and clarity
-      4. Use standard use case format
-  
 models:
   cache_dir: "./models/checkpoints"
   available:
@@ -29,6 +19,33 @@ models:
       model_id: "google/gemma-7b-it"
       quantization: "4bit"
 
+agents:
+  uc_agent:
+    name: "UC Agent"
+    description: "Generates use cases from requirements and user stories"
+    system_prompt: |
+      You are a specialized AI agent for generating use cases from requirements and user stories.
+      Follow these rules:
+      1. Generate clear, structured use cases
+      2. Include actors, preconditions, main flow, and postconditions
+      3. Focus on testability and clarity
+      4. Use standard use case format
+    
+  rf_agent:
+    name: "RF Agent"
+    description: "Converts use cases to Robot Framework test cases"
+    system_prompt: |
+      You are a specialized AI agent for converting use cases to Robot Framework test cases.
+      Follow these rules:
+      1. Use Browser library keywords
+      2. Target the-internet.herokuapp.com for testing
+      3. Create executable test cases
+      4. Include proper test setup and teardown
+      5. Use descriptive test and keyword names
+      6. Use appropriate selectors (id, css, xpath, text)
+      7. Include waits for dynamic elements
+      8. Add verification steps
+
 evaluation:
   batch_size: 8
   metrics:
@@ -36,6 +53,13 @@ evaluation:
     - rouge
     - bertscore
     - semantic_similarity
+
+paths:
+  base_url: "https://the-internet.herokuapp.com"
+  requirements_dir: "data/requirements"
+  user_stories_dir: "data/user_stories"
+  test_cases_dir: "data/test_cases"
+  results_dir: "results"
 
 logging:
   level: "INFO"
