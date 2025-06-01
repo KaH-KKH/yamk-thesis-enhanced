@@ -43,6 +43,19 @@ gpustat>=1.1.0
 nvidia-ml-py>=12.535.0
 memory-profiler>=0.61.0
 
+# Metrics dependencies
+textstat>=0.7.3
+pyRAPL>=0.2.3  # Energy monitoring (optional)
+pynvml>=11.5.0  # Advanced GPU monitoring (optional)
+
+# A/B Testing
+scipy
+statsmodels-0.14.4
+
+# Realtime Monitor  
+streamlit  
+rich
+
 # Data processing
 pandas>=2.1.0
 numpy>=1.24.0

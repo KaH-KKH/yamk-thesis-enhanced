@@ -54,6 +54,38 @@ evaluation:
     - bertscore
     - semantic_similarity
 
+extended_metrics:
+  enabled: true
+  
+  quality:
+    - bleu
+    - rouge
+    - bertscore
+    - perplexity
+    - diversity
+    - coherence
+    
+  performance:
+    - inference_time
+    - tokens_per_second
+    - memory_usage
+    - gpu_utilization
+    - energy_consumption
+    - thermal_metrics
+    
+  rf_specific:
+    - keyword_reuse
+    - documentation_coverage
+    - error_handling
+    - data_driven_usage
+    - explicit_waits
+    - selector_quality
+
+monitoring:
+  wandb:
+    enabled: true
+    project: "yamk-thesis-evaluation"
+
 paths:
   base_url: "https://the-internet.herokuapp.com"
   requirements_dir: "data/requirements"
