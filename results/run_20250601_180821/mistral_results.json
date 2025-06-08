@@ -1,0 +1,30 @@
+{
+  "model": "mistral",
+  "timestamp": "2025-06-01T18:08:23.598426",
+  "use_case_generation": {
+    "generation_report": {
+      "total_files": 1,
+      "successful": 1,
+      "failed": 0,
+      "results": [
+        {
+          "requirement": "example_login.txt",
+          "use_case": "example_login_use_case.json",
+          "status": "success"
+        }
+      ]
+    },
+    "performance": {
+      "total_time": 69.9280424118042,
+      "memory_used": 3137.3125,
+      "avg_time_per_file": 69.9280424118042
+    }
+  },
+  "test_case_generation": {},
+  "metrics": {
+    "standard": {},
+    "extended": {}
+  },
+  "performance": {},
+  "error": "Tensor.item() cannot be called on meta tensors"
+}

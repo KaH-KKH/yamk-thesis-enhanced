@@ -5,10 +5,21 @@ File handling utilities
 
 import json
 import yaml
+import numpy as np
 from pathlib import Path
 from typing import Any, Dict, List
 
-
+# LISÄÄ TÄMÄ LUOKKA TÄHÄN:
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super().default(obj)
+    
 class FileHandler:
     """Handle file operations"""
     
@@ -36,7 +47,7 @@ class FileHandler:
         """Save JSON file"""
         Path(filepath).parent.mkdir(parents=True, exist_ok=True)
         with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
+            json.dump(data, f, indent=2, ensure_ascii=False, cls=NumpyEncoder) # LISÄÄ: cls=NumpyEncoder
     
     @staticmethod
     def load_yaml(filepath: str) -> Dict[str, Any]:

@@ -1,0 +1,19 @@
+{
+  "model": "gemma_7b_it_4bit",
+  "timestamp": "2025-06-07T14:18:08.972143",
+  "total_files": 2,
+  "successful": 2,
+  "failed": 0,
+  "results": [
+    {
+      "use_case": "example_login_use_case.txt",
+      "test_case": "example_login_use_case.robot",
+      "status": "success"
+    },
+    {
+      "use_case": "example_login_use_case.json",
+      "test_case": "example_login_use_case.robot",
+      "status": "success"
+    }
+  ]
+}

@@ -53,6 +53,19 @@ class PerformanceMetrics:
         self.start_time = None
         self.end_time = None
         
+        # Yritä RAPL-asetusta, mutta käsittele virheet elegantisti
+        try:
+            import pyRAPL
+            pyRAPL.setup()
+            self.energy_monitoring = True
+            logger.info("Energy monitoring enabled with pyRAPL")
+        except Exception as e:
+            self.energy_monitoring = False
+            if "No RAPL" in str(e) or "virtualized" in str(e).lower():
+                logger.info("Energy monitoring disabled: Running in virtual environment")
+            else:
+                logger.info(f"Energy monitoring disabled: {str(e)}")
+
         # Initialize NVIDIA monitoring if available
         if PYNVML_AVAILABLE:
             try:
@@ -291,46 +304,84 @@ class PerformanceMetrics:
         return result, metrics
     
     def get_system_info(self) -> Dict[str, Any]:
-        """Get static system information"""
-        info = {
-            "cpu": {
+        """Get system information with correct data types for wandb"""
+        try:
+            # CPU-info numeroarvoina
+            cpu_info = {
                 "physical_cores": psutil.cpu_count(logical=False),
                 "logical_cores": psutil.cpu_count(logical=True),
-                "max_frequency": psutil.cpu_freq().max if psutil.cpu_freq() else None,
-                "cpu_model": self._get_cpu_model()
-            },
-            "memory": {
-                "total_gb": psutil.virtual_memory().total / (1024**3),
-                "available_gb": psutil.virtual_memory().available / (1024**3)
-            },
-            "gpu": []
-        }
-        
-        # GPU info
-        for gpu in GPUtil.getGPUs():
-            gpu_info = {
-                "name": gpu.name,
-                "memory_total_mb": gpu.memoryTotal,
-                "driver_version": gpu.driver
+                "max_frequency": psutil.cpu_freq().max if psutil.cpu_freq() else 0.0,
+                "cpu_model": self._get_cpu_model()  # String-arvo
             }
             
-            # Additional info from pynvml
-            if self.nvml_available:
-                try:
-                    gpu_info["compute_capability"] = pynvml.nvmlDeviceGetCudaComputeCapability(self.gpu_handle)
-                    gpu_info["pcie_link_width"] = pynvml.nvmlDeviceGetCurrPcieLinkWidth(self.gpu_handle)
-                    gpu_info["pcie_link_gen"] = pynvml.nvmlDeviceGetCurrPcieLinkGeneration(self.gpu_handle)
-                except:
-                    pass
+            # Muisti-info numeroarvoina GB
+            memory = psutil.virtual_memory()
+            memory_info = {
+                "total_gb": memory.total / (1024**3),
+                "available_gb": memory.available / (1024**3),
+                "used_gb": memory.used / (1024**3),
+                "percent": memory.percent
+            }
             
-            info["gpu"].append(gpu_info)
-        
-        return info
+            # GPU-info numeroarvoina
+            gpu_info = []
+            try:
+                gpus = GPUtil.getGPUs()
+                for gpu in gpus:
+                    gpu_data = {
+                        "id": gpu.id,
+                        "name": gpu.name,
+                        "utilization": gpu.load * 100,  # Numeroarvo
+                        "memory_used": gpu.memoryUsed,   # Numeroarvo MB
+                        "memory_total": gpu.memoryTotal, # Numeroarvo MB
+                        "temperature": gpu.temperature,  # Numeroarvo
+                        "driver_version": gpu.driver
+                    }
+                    
+                    # Additional info from pynvml
+                    if self.nvml_available:
+                        try:
+                            gpu_data["compute_capability"] = str(pynvml.nvmlDeviceGetCudaComputeCapability(self.gpu_handle))
+                            gpu_data["pcie_link_width"] = pynvml.nvmlDeviceGetCurrPcieLinkWidth(self.gpu_handle)
+                            gpu_data["pcie_link_gen"] = pynvml.nvmlDeviceGetCurrPcieLinkGeneration(self.gpu_handle)
+                        except Exception as e:
+                            logger.debug(f"Error getting advanced GPU info: {e}")
+                    
+                    gpu_info.append(gpu_data)
+            except Exception as e:
+                logger.warning(f"Could not get GPU info: {e}")
+                # Fallback GPU data
+                gpu_info = [{"utilization": 0, "memory_used": 0, "memory_total": 0, "temperature": 0}]
+            
+            return {
+                "cpu": cpu_info,
+                "memory": memory_info,
+                "gpu": gpu_info
+            }
+        except Exception as e:
+            logger.warning(f"Could not get system info: {e}")
+            return {
+                "cpu": {"physical_cores": 0, "logical_cores": 0, "max_frequency": 0.0, "cpu_model": "Unknown"},
+                "memory": {"total_gb": 0.0, "available_gb": 0.0, "used_gb": 0.0},
+                "gpu": [{"utilization": 0, "memory_used": 0, "memory_total": 0}]
+            }
     
     def _get_cpu_model(self) -> str:
         """Get CPU model name"""
         try:
-            import platform
-            return platform.processor()
+            # Yritä ensin /proc/cpuinfo (Linux)
+            with open('/proc/cpuinfo', 'r') as f:
+                for line in f:
+                    if 'model name' in line:
+                        return line.split(':')[1].strip()
         except:
-            return "Unknown"
+            pass
+        
+        try:
+            # Fallback platform.processor()
+            import platform
+            model = platform.processor()
+            return model if model else "Unknown CPU"
+        except:
+            return "Unknown CPU"
+

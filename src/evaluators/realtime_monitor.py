@@ -458,24 +458,49 @@ class RealtimeMonitor:
         logger.info(f"W&B logging started: {self.wandb_run.url}")
     
     def log_to_wandb(self, metrics: Dict[str, Any]):
-        """Log metrics to W&B"""
+        """Log metrics to W&B with correct data types"""
         if not WANDB_AVAILABLE or not self.wandb_run:
             return
         
-        # Flatten metrics for W&B
         wandb_metrics = {}
         
-        # System metrics
-        for key, value in metrics.get("system", {}).items():
-            wandb_metrics[f"system/{key}"] = value
+        # System metrics - käsittele oikea rakenne
+        system_data = metrics.get("system", {})
         
-        # Model metrics
+        # Logita system-metriikat suoraan numeroarvoina
+        for key, value in system_data.items():
+            if isinstance(value, (int, float)):
+                wandb_metrics[f"system/{key}"] = value
+            elif isinstance(value, str):
+                # Logita stringit ilman _text suffiksia
+                wandb_metrics[f"system/{key}"] = value
+            elif isinstance(value, dict):
+                # Käsittele nested dictionaries (cpu, memory, gpu)
+                for subkey, subvalue in value.items():
+                    if isinstance(subvalue, (int, float)):
+                        wandb_metrics[f"system/{key}_{subkey}"] = subvalue
+                    elif isinstance(subvalue, str):
+                        wandb_metrics[f"system/{key}_{subkey}"] = subvalue
+            elif isinstance(value, list) and len(value) > 0:
+                # GPU data - ota ensimmäinen GPU
+                if key == "gpu" and isinstance(value[0], dict):
+                    gpu = value[0]
+                    for gpu_key, gpu_value in gpu.items():
+                        if isinstance(gpu_value, (int, float)):
+                            wandb_metrics[f"system/gpu_{gpu_key}"] = gpu_value
+        
+        # Model metrics - poista _text suffiks
         for model, model_metrics in metrics.get("models", {}).items():
             for key, value in model_metrics.items():
                 if isinstance(value, (int, float)):
                     wandb_metrics[f"{model}/{key}"] = value
+                elif isinstance(value, str) and key != "error":
+                    # Logita stringit suoraan ilman suffiksia
+                    wandb_metrics[f"{model}/{key}"] = value
         
-        wandb.log(wandb_metrics)
+        # Logita vain jos on dataa
+        if wandb_metrics:
+            wandb.log(wandb_metrics)
     
     def create_cli_monitor(self):
         """Create CLI-based monitoring (alternative to Streamlit)"""

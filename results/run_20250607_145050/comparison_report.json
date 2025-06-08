@@ -1,0 +1,456 @@
+{
+  "timestamp": "2025-06-07T15:33:04.209412",
+  "models": [
+    "mistral"
+  ],
+  "summary": {
+    "best_scores": {
+      "quality_perplexity": {
+        "model": "mistral",
+        "value": 12.974204063415527
+      }
+    }
+  },
+  "detailed_metrics": {
+    "standard": {
+      "use_case_metrics": {
+        "mistral": {
+          "custom": {
+            "completeness": 1.0,
+            "avg_length": 200.0,
+            "avg_steps": 18.0
+          }
+        }
+      },
+      "test_case_metrics": {
+        "mistral": {
+          "syntax_validity": {
+            "valid_count": 1,
+            "total_count": 1,
+            "validity_rate": 1.0
+          },
+          "keyword_coverage": {
+            "keyword_counts": {
+              "New Browser": 2,
+              "New Page": 1,
+              "Go To": 1,
+              "Click": 2,
+              "Type Text": 4,
+              "Get Text": 0,
+              "Wait For Elements State": 2,
+              "Take Screenshot": 2
+            },
+            "total_keywords": 14,
+            "unique_keywords_used": 7,
+            "coverage_rate": 0.875
+          }
+        }
+      }
+    },
+    "extended": {
+      "quality": {
+        "mistral": {
+          "perplexity": {
+            "mean_perplexity": 12.974204063415527,
+            "min_perplexity": 12.974204063415527,
+            "max_perplexity": 12.974204063415527,
+            "std_perplexity": 0.0
+          },
+          "diversity": {
+            "self_bleu": 0.0,
+            "distinct_1": 0.3553113553113553,
+            "distinct_2": 0.6617647058823529,
+            "distinct_3": 0.7859778597785978,
+            "vocabulary_size": 97,
+            "token_type_ratio": 0.3553113553113553
+          },
+          "coherence": {
+            "mean_coherence": 0.17317689955234528,
+            "min_coherence": 0.17317689955234528,
+            "max_coherence": 0.17317689955234528,
+            "std_coherence": 0.0
+          }
+        }
+      },
+      "user_experience": {
+        "mistral": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 52.066101398601404,
+              "interpretation": "Fairly Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 8.199125874125876,
+              "interpretation": "Grade level: 8.2"
+            },
+            "gunning_fog": {
+              "score": 9.083916083916085,
+              "interpretation": "Years of education needed: 9.1"
+            },
+            "smog_index": {
+              "score": 9.457814108942454,
+              "interpretation": "Score: 9.46"
+            },
+            "automated_readability_index": {
+              "score": 8.482918181818185,
+              "interpretation": "Score: 8.48"
+            },
+            "coleman_liau_index": {
+              "score": 9.741538461538465,
+              "interpretation": "Score: 9.74"
+            },
+            "linsear_write_formula": {
+              "score": 4.636363636363637,
+              "interpretation": "Score: 4.64"
+            },
+            "dale_chall_readability_score": {
+              "score": 13.550136363636364,
+              "interpretation": "Score: 13.55"
+            },
+            "avg_sentence_length": 9.0,
+            "avg_word_length": 3.7916666666666665,
+            "syllables_per_word": 1.1666666666666667,
+            "overall_readability": "Moderate - Requires some effort"
+          },
+          "clarity": {
+            "specificity_score": 0.0,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.018315018315018316,
+            "ambiguity_score": 0.2360402960526316,
+            "overall_clarity": 0.0
+          },
+          "actionability": {
+            "action_verb_density": 0.02564102564102564,
+            "step_clarity": 0.6875,
+            "executable_steps": 0.75,
+            "overall_actionability": 0.4877136752136752
+          },
+          "completeness": {
+            "completeness_score": 1.0,
+            "missing_elements": []
+          },
+          "usability": {
+            "navigation_ease": 1.0,
+            "information_findability": 0.44560185185185186,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.6255798368298368
+          },
+          "accessibility": {
+            "plain_language_score": 0.8754578754578755,
+            "technical_jargon_ratio": 0.007326007326007326,
+            "international_friendly": 1.0
+          }
+        }
+      },
+      "robot_framework": {
+        "mistral": {
+          "overall_quality": {
+            "total_tests": 4,
+            "documentation_coverage": 0.25,
+            "tag_coverage": 0.25,
+            "verification_coverage": 0.5
+          },
+          "keyword_analysis": {
+            "total_keywords_used": 17,
+            "unique_keywords": 8,
+            "custom_keywords_defined": 3,
+            "keyword_reuse_ratio": 0.375,
+            "browser_keyword_usage": {
+              "interaction": 2
+            },
+            "most_used_keywords": {
+              "New": 4,
+              "Type": 4,
+              "Click": 2,
+              "Wait": 2,
+              "Take": 2,
+              "Set": 1,
+              "Close": 1,
+              "Go": 1
+            }
+          },
+          "structure_analysis": {
+            "avg_test_length": 5.0,
+            "max_test_length": 9,
+            "min_test_length": 2,
+            "avg_complexity": 1.0,
+            "max_complexity": 1
+          },
+          "best_practices": {
+            "selector_usage": {
+              "id": 4,
+              "css": 3,
+              "xpath": 0,
+              "text": 1,
+              "data_test": 0,
+              "aria": 0
+            },
+            "best_selector_ratio": 0.5,
+            "explicit_wait_usage": 2,
+            "implicit_wait_usage": 0,
+            "wait_strategy_score": 1.0,
+            "error_handling_present": false,
+            "screenshot_usage": 2,
+            "data_driven_testing": false,
+            "template_usage": 0,
+            "loop_usage": 0
+          },
+          "individual_files": {
+            "example_login_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 46,
+              "non_empty_lines": 39
+            }
+          }
+        }
+      },
+      "test_case_ux": {
+        "mistral": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 4.234046511627923,
+              "interpretation": "Very Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 19.0782015503876,
+              "interpretation": "Grade level: 19.1"
+            },
+            "gunning_fog": {
+              "score": 19.312248062015506,
+              "interpretation": "Years of education needed: 19.3"
+            },
+            "smog_index": {
+              "score": 17.58133193835471,
+              "interpretation": "Score: 17.58"
+            },
+            "automated_readability_index": {
+              "score": 26.709051094890512,
+              "interpretation": "Score: 26.71"
+            },
+            "coleman_liau_index": {
+              "score": 23.697674418604652,
+              "interpretation": "Score: 23.70"
+            },
+            "linsear_write_formula": {
+              "score": 18.0,
+              "interpretation": "Score: 18.00"
+            },
+            "dale_chall_readability_score": {
+              "score": 15.687652868217056,
+              "interpretation": "Score: 15.69"
+            },
+            "avg_sentence_length": 77.33333333333333,
+            "avg_word_length": 4.418103448275862,
+            "syllables_per_word": 1.1594827586206897,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.0,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.0,
+            "ambiguity_score": 0.38000000000000006,
+            "overall_clarity": 0.0
+          },
+          "actionability": {
+            "action_verb_density": 0.034482758620689655,
+            "instruction_quality": 0.75,
+            "overall_actionability": 0.3922413793103448
+          },
+          "completeness": {
+            "completeness_score": 0.8,
+            "missing_elements": [
+              "error handling"
+            ]
+          },
+          "usability": {
+            "navigation_ease": 0.3333333333333333,
+            "information_findability": 0.11350574712643678,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.48444444444444446
+          },
+          "accessibility": {
+            "plain_language_score": 0.7931034482758621,
+            "technical_jargon_ratio": 0.01293103448275862,
+            "international_friendly": 1.0
+          }
+        }
+      },
+      "system_info": {
+        "mistral": {
+          "cpu": {
+            "physical_cores": 12,
+            "logical_cores": 24,
+            "max_frequency": 0.0,
+            "cpu_model": "x86_64"
+          },
+          "memory": {
+            "total_gb": 15.460460662841797,
+            "available_gb": 9.810489654541016
+          },
+          "gpu": [
+            {
+              "name": "NVIDIA RTX 2000 Ada Generation Laptop GPU",
+              "memory_total_mb": 8188.0,
+              "driver_version": "538.92",
+              "compute_capability": [
+                8,
+                9
+              ],
+              "pcie_link_width": 8,
+              "pcie_link_gen": 4
+            }
+          ]
+        }
+      }
+    }
+  },
+  "performance_comparison": {
+    "mistral": {
+      "use_case_generation_detailed": {
+        "total_time": 354.8204731941223,
+        "cpu": {
+          "mean_percent": 4.205908096280088,
+          "max_percent": 9.9,
+          "min_percent": 0.0,
+          "std_percent": 1.240856314880787
+        },
+        "memory": {
+          "mean_mb": 5200.599015317287,
+          "max_mb": 5549.08984375,
+          "min_mb": 5110.40625,
+          "peak_mb": 438.68359375
+        },
+        "gpu": {
+          "mean_percent": 67.09628008752735,
+          "max_percent": 100,
+          "mean_memory_mb": 7518.070021881838,
+          "max_memory_mb": 7765.0,
+          "peak_memory_mb": 5063.0,
+          "mean_temperature": 56.37855579868709,
+          "max_temperature": 60.0,
+          "mean_power_watts": 25.43161487964989,
+          "max_power_watts": 31.956,
+          "total_energy_joules": 9023.657625688056
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.79409190371992,
+          "memory_efficiency": 67.15033214953203,
+          "gpu_efficiency": 32.90371991247265,
+          "performance_per_watt": 39.32113649614085
+        }
+      },
+      "test_case_generation_detailed": {
+        "total_time": 766.2556693553925,
+        "cpu": {
+          "mean_percent": 4.240637450199204,
+          "max_percent": 25.0,
+          "min_percent": 0.0,
+          "std_percent": 0.9768240634974966
+        },
+        "memory": {
+          "mean_mb": 5347.940523063994,
+          "max_mb": 5453.96875,
+          "min_mb": 5228.484375,
+          "peak_mb": 225.484375
+        },
+        "gpu": {
+          "mean_percent": 75.32669322709164,
+          "max_percent": 100,
+          "mean_memory_mb": 7456.552788844621,
+          "max_memory_mb": 7765.0,
+          "peak_memory_mb": 5231.0,
+          "mean_temperature": 57.288844621513945,
+          "max_temperature": 61.0,
+          "mean_power_watts": 27.862187250996016,
+          "max_power_watts": 33.214,
+          "total_energy_joules": 21349.558941717234
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.7593625498008,
+          "memory_efficiency": 66.21964713116955,
+          "gpu_efficiency": 24.67330677290836,
+          "performance_per_watt": 35.89093673771976
+        }
+      },
+      "use_case_generation": {
+        "total_time": 349.2199647426605,
+        "memory_used": -454.9921875,
+        "avg_time_per_file": 349.2199647426605
+      },
+      "test_case_generation": {
+        "total_time": 761.9446671009064,
+        "memory_used": 59.5
+      },
+      "total_time": 1111.164631843567,
+      "total_memory": -395.4921875,
+      "files_per_second": 0.0028635247149655318
+    }
+  },
+  "recommendations": [
+    "Overall recommendation: **mistral** (best in 1 metrics)",
+    "\n**Extended Metrics Insights:**"
+  ],
+  "extended_analysis": {
+    "consistency": {},
+    "trade_offs": {
+      "mistral": {
+        "quality_score": 0,
+        "speed_quality_ratio": 0.0,
+        "memory_quality_ratio": 0.0,
+        "efficiency_score": 0.0
+      }
+    },
+    "scalability": {
+      "mistral": {
+        "files_per_second": 0.0028635247149655318,
+        "memory_efficiency": 1000.0,
+        "time_complexity": "O(n²) - Quadratic"
+      }
+    },
+    "robustness": {
+      "mistral": {
+        "error_rate": 0.0,
+        "success_rate": 1.0,
+        "graceful_failure": false,
+        "reliability_score": 100.0
+      }
+    },
+    "statistical_significance": {},
+    "ranking": [
+      {
+        "model": "mistral",
+        "composite_score": 0.2502249891625737,
+        "scores": {
+          "completeness": 0.0,
+          "validity": 0.0,
+          "speed": 0.000899956650294808,
+          "memory": 1.0
+        },
+        "rank": 1
+      }
+    ],
+    "recommendations": [
+      "Recommended model: mistral (highest composite score)",
+      "mistral excels at: memory",
+      "mistral needs improvement in: completeness, validity, speed",
+      "Best quality/performance balance: mistral"
+    ]
+  }
+}

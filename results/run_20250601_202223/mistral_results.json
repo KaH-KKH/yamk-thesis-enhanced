@@ -1,0 +1,110 @@
+{
+  "model": "mistral",
+  "timestamp": "2025-06-01T20:45:08.671978",
+  "use_case_generation": {
+    "generation_report": {
+      "total_files": 1,
+      "successful": 1,
+      "failed": 0,
+      "results": [
+        {
+          "requirement": "example_login.txt",
+          "use_case": "example_login_use_case.json",
+          "status": "success"
+        }
+      ]
+    },
+    "performance": {
+      "total_time": 247.3705291748047,
+      "memory_used": -756.234375,
+      "avg_time_per_file": 247.3705291748047
+    }
+  },
+  "test_case_generation": {
+    "generation_report": {
+      "model": "mistral",
+      "timestamp": "2025-06-01T21:06:08.263401",
+      "total_files": 2,
+      "successful": 2,
+      "failed": 0,
+      "results": [
+        {
+          "use_case": "example_login_use_case.txt",
+          "test_case": "example_login_use_case.robot",
+          "status": "success"
+        },
+        {
+          "use_case": "example_login_use_case.json",
+          "test_case": "example_login_use_case.robot",
+          "status": "success"
+        }
+      ]
+    },
+    "test_validation": {
+      "executable": 0,
+      "failed": 1,
+      "errors": [
+        {
+          "file": "example_login_use_case.robot",
+          "error": ""
+        }
+      ],
+      "executability_rate": 0.0
+    },
+    "performance": {
+      "total_time": 1010.2748067378998,
+      "memory_used": -3.4765625
+    }
+  },
+  "metrics": {
+    "standard": {
+      "use_case_metrics": {
+        "custom": {
+          "completeness": 1.0,
+          "avg_length": 207.0,
+          "avg_steps": 23.0
+        }
+      },
+      "test_case_metrics": {
+        "syntax_validity": {
+          "valid_count": 1,
+          "total_count": 1,
+          "validity_rate": 1.0
+        },
+        "keyword_coverage": {
+          "keyword_counts": {
+            "New Browser": 2,
+            "New Page": 1,
+            "Go To": 1,
+            "Click": 2,
+            "Type Text": 4,
+            "Get Text": 0,
+            "Wait For Elements State": 2,
+            "Take Screenshot": 2
+          },
+          "total_keywords": 14,
+          "unique_keywords_used": 7,
+          "coverage_rate": 0.875
+        }
+      }
+    },
+    "extended": {}
+  },
+  "performance": {
+    "use_case_generation_detailed": {
+      "total_time": 250.92583441734314,
+      "cpu": {
+        "mean_percent": 4.244000000000001,
+        "max_percent": 12.2,
+        "min_percent": 0.0,
+        "std_percent": 1.711559355842335
+      },
+      "memory": {
+        "mean_mb": 5054.325011160714,
+        "max_mb": 5937.12109375,
+        "min_mb": 4950.09765625,
+        "peak_mb": 987.0234375
+      },
+      "gpu": {
+        "mean_percent": 57.29714285714286,
+        "max_percent": 

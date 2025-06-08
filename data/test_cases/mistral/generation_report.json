@@ -1,0 +1,19 @@
+{
+  "model": "mistral",
+  "timestamp": "2025-06-07T18:42:11.609499",
+  "total_files": 2,
+  "successful": 2,
+  "failed": 0,
+  "results": [
+    {
+      "use_case": "example_login_use_case.txt",
+      "test_case": "example_login_use_case.robot",
+      "status": "success"
+    },
+    {
+      "use_case": "example_login_use_case.json",
+      "test_case": "example_login_use_case.robot",
+      "status": "success"
+    }
+  ]
+}

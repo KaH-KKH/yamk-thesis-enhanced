@@ -1,32 +1,40 @@
 {
-  "id": "UC-001",
-  "title": "** User logs into the system with valid credentials",
+  "id": "** UC-LOGIN-001",
+  "title": "** Login Functionality",
   "actors": [
     "system",
     "users",
-    "user"
+    "user",
+    "User",
+    "System"
   ],
   "preconditions": [
-    "The user is at the login page: https://the-internet.herokuapp.com/login",
-    "The user has access to a web browser"
+    "User is on the login page at https://the-internet.herokuapp.com/login",
+    "User has a valid username and password"
   ],
   "main_flow": [
-    "User enters valid username \"tomsmith\"",
-    "User enters valid password \"SuperSecretPassword!\"",
-    "User clicks on the \"Login\" button",
-    "4. System verifies the entered credentials against the database",
-    "5. If the credentials are valid, the system displays a success message: \"Success! Welcome to the site.\"",
-    "6. User is redirected to the secure area of the site",
+    "User enters valid username (tomsmith) in the input field.",
+    "User enters valid password (SuperSecretPassword!) in the input field.",
+    "User clicks on the 'Login' button.",
+    "4. System receives the entered credentials.",
+    "5. System verifies the entered credentials against the database.",
+    "6. System finds the matching user account (tomsmith).",
+    "7. System grants access to the secure area and displays the success message.",
     "**Alternative flows:**",
-    "If the entered username or password is incorrect, the system displays an error message: \"Invalid username or password.\"",
-    "If the user enters incorrect credentials multiple times, the system locks the user account for a certain period"
+    "Invalid credentials:**",
+    "a. User enters an incorrect username or password.",
+    "b. System does not find a matching user account.",
+    "c. System displays an error message \"Invalid credentials. Please try again.\"",
+    "Empty fields:**",
+    "a. User leaves the username or password field empty.",
+    "b. System displays an error message \"Username and password are required fields.\""
   ],
   "alternative_flows": null,
   "postconditions": [
-    "The user is logged into the system",
-    "The user is in the secure area of the site",
-    "The user can access secure features and functionalities",
-    "4. The user can logout from the secure area at any time."
+    "User is logged in to the secure area.",
+    "System displays the success message \"You are now logged in.\"",
+    "User can navigate to other pages within the secure area.",
+    "4. User can logout from the secure area when desired."
   ],
   "notes": null
 }

@@ -14,14 +14,17 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from loguru import logger
 import textstat
+import warnings
 
 # Download required NLTK data
 try:
     nltk.download('punkt', quiet=True)
     nltk.download('stopwords', quiet=True)
+    nltk.download('averaged_perceptron_tagger_eng', quiet=True)
+    nltk.download('averaged_perceptron_tagger', quiet=True) 
+    nltk.download('punkt_tab', quiet=True)
 except:
-    pass
-
+    warnings.warn("NLTK resources could not be downloaded")
 
 class QualityMetrics:
     """Calculate quality metrics for generated texts"""

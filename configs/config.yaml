@@ -14,10 +14,12 @@ models:
   available:
     - name: "mistral"
       model_id: "mistralai/Mistral-7B-Instruct-v0.2"
-      quantization: "4bit"
+      #quantization: "4bit"
+      quantization: "8bit"
     - name: "gemma_7b_it_4bit"
       model_id: "google/gemma-7b-it"
-      quantization: "4bit"
+      #quantization: "4bit"
+      quantization: "8bit"
 
 agents:
   uc_agent:

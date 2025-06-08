@@ -3,6 +3,7 @@ UC Agent - Generates use cases from requirements
 """
 
 import asyncio
+import torch
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 from datetime import datetime
@@ -40,6 +41,10 @@ class UCAgent:
         # Load model
         logger.info(f"Loading model: {model_name}")
         self.model = self.model_loader.load_model(model_name)
+
+        # Tyhjennä muisti mallin latauksen jälkeen
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
         
         # Get system prompt from config
         self.system_prompt = self.config["agents"]["uc_agent"]["system_prompt"]
@@ -179,6 +184,17 @@ Format the response as a structured use case."""
     def _format_use_case_text(self, use_case: UseCase) -> str:
         """Format use case as readable text"""
         return self.text_processor.format_use_case(use_case.model_dump())
+    
+    def __del__(self):
+        """Cleanup when agent is destroyed"""
+        # Käytä model_loaderin unload_model metodia
+        if hasattr(self, 'model_loader') and hasattr(self, 'model_name'):
+            self.model_loader.unload_model(self.model_name)
+        
+        # Varmista että muisti tyhjennetään
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            logger.info(f"GPU memory cleared for model: {self.model_name}")
 
 
 async def main():

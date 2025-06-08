@@ -1,6 +1,6 @@
 # src/evaluators/metrics/ux_metrics.py
 """
-User Experience metrics for evaluating generated content quality
+User Experience metrics for evaluating generated content
 """
 
 import re
@@ -8,339 +8,528 @@ import textstat
 import numpy as np
 from typing import List, Dict, Any, Tuple
 from collections import Counter
-from loguru import logger
 import nltk
+from loguru import logger
 
 # Download required NLTK data
 try:
     nltk.download('punkt', quiet=True)
+    nltk.download('stopwords', quiet=True)
     nltk.download('averaged_perceptron_tagger', quiet=True)
 except:
     pass
 
 
 class UserExperienceMetrics:
-    """Calculate UX-focused metrics for generated content"""
+    """Calculate user experience related metrics"""
     
     def __init__(self):
-        # Action verbs that indicate clear instructions
         self.action_verbs = {
-            'click', 'enter', 'type', 'select', 'navigate', 'verify', 'check',
-            'submit', 'login', 'logout', 'upload', 'download', 'create',
-            'update', 'delete', 'search', 'filter', 'sort', 'view'
+            'click', 'enter', 'select', 'submit', 'navigate', 'login', 'logout',
+            'verify', 'check', 'validate', 'create', 'update', 'delete', 'upload',
+            'download', 'search', 'filter', 'sort', 'view', 'display', 'open'
         }
         
-        # Clarity indicators
-        self.clarity_markers = {
-            'specific': ['must', 'shall', 'should', 'will', 'exactly', 'specifically'],
-            'vague': ['maybe', 'perhaps', 'might', 'could', 'possibly', 'sometime'],
-            'sequential': ['first', 'then', 'next', 'after', 'finally', 'before'],
-            'conditional': ['if', 'when', 'unless', 'otherwise', 'else']
+        self.clarity_indicators = {
+            'specific': ['must', 'shall', 'should', 'will'],
+            'vague': ['might', 'could', 'possibly', 'maybe', 'perhaps'],
+            'structured': ['first', 'then', 'next', 'finally', 'after'],
+            'conditional': ['if', 'when', 'unless', 'until']
         }
     
     def calculate_all_metrics(self, texts: List[str], text_type: str = "use_case") -> Dict[str, Any]:
-        """Calculate all UX metrics"""
-        metrics = {
-            'readability': self._calculate_readability(texts),
-            'clarity': self._calculate_clarity(texts),
-            'actionability': self._calculate_actionability(texts, text_type),
-            'completeness': self._calculate_completeness(texts, text_type),
-            'usability': self._calculate_usability(texts, text_type)
-        }
+        """Calculate all UX metrics for given texts"""
         
-        # Overall UX score
-        metrics['overall_ux_score'] = self._calculate_overall_ux_score(metrics)
+        metrics = {
+            "readability": self._calculate_readability(texts),
+            "clarity": self._calculate_clarity(texts),
+            "actionability": self._calculate_actionability(texts, text_type),
+            "completeness": self._calculate_completeness(texts, text_type),
+            "usability": self._calculate_usability(texts, text_type),
+            "accessibility": self._calculate_accessibility(texts)
+        }
         
         return metrics
     
-    def _calculate_readability(self, texts: List[str]) -> Dict[str, float]:
-        """Calculate readability metrics"""
-        scores = {
-            'flesch_reading_ease': [],
-            'flesch_kincaid_grade': [],
-            'gunning_fog': [],
-            'smog_index': [],
-            'automated_readability_index': [],
-            'coleman_liau_index': [],
-            'linsear_write_formula': [],
-            'dale_chall_readability_score': []
+    def _calculate_readability(self, texts: List[str]) -> Dict[str, Any]:
+        """Calculate various readability metrics"""
+        readability_scores = {
+            "flesch_reading_ease": [],
+            "flesch_kincaid_grade": [],
+            "gunning_fog": [],
+            "smog_index": [],
+            "automated_readability_index": [],
+            "coleman_liau_index": [],
+            "linsear_write_formula": [],
+            "dale_chall_readability_score": []
         }
         
-        sentence_lengths = []
-        word_lengths = []
+        sentence_metrics = {
+            "avg_sentence_length": [],
+            "avg_word_length": [],
+            "syllables_per_word": []
+        }
         
         for text in texts:
-            try:
-                # Standard readability metrics
-                scores['flesch_reading_ease'].append(textstat.flesch_reading_ease(text))
-                scores['flesch_kincaid_grade'].append(textstat.flesch_kincaid_grade(text))
-                scores['gunning_fog'].append(textstat.gunning_fog(text))
-                scores['smog_index'].append(textstat.smog_index(text))
-                scores['automated_readability_index'].append(textstat.automated_readability_index(text))
-                scores['coleman_liau_index'].append(textstat.coleman_liau_index(text))
-                scores['linsear_write_formula'].append(textstat.linsear_write_formula(text))
-                scores['dale_chall_readability_score'].append(textstat.dale_chall_readability_score(text))
+            if not text.strip():
+                continue
                 
-                # Sentence and word analysis
+            try:
+                # Readability scores
+                readability_scores["flesch_reading_ease"].append(textstat.flesch_reading_ease(text))
+                readability_scores["flesch_kincaid_grade"].append(textstat.flesch_kincaid_grade(text))
+                readability_scores["gunning_fog"].append(textstat.gunning_fog(text))
+                readability_scores["smog_index"].append(textstat.smog_index(text))
+                readability_scores["automated_readability_index"].append(textstat.automated_readability_index(text))
+                readability_scores["coleman_liau_index"].append(textstat.coleman_liau_index(text))
+                readability_scores["linsear_write_formula"].append(textstat.linsear_write_formula(text))
+                readability_scores["dale_chall_readability_score"].append(textstat.dale_chall_readability_score(text))
+                
+                # Sentence metrics
                 sentences = nltk.sent_tokenize(text)
-                for sentence in sentences:
-                    words = nltk.word_tokenize(sentence)
-                    sentence_lengths.append(len(words))
-                    word_lengths.extend([len(w) for w in words if w.isalpha()])
+                words = nltk.word_tokenize(text)
+                
+                if sentences and words:
+                    sentence_metrics["avg_sentence_length"].append(len(words) / len(sentences))
+                    sentence_metrics["avg_word_length"].append(np.mean([len(w) for w in words]))
+                    sentence_metrics["syllables_per_word"].append(textstat.syllable_count(text) / len(words))
                     
             except Exception as e:
                 logger.warning(f"Error calculating readability: {e}")
         
-        # Calculate averages
-        result = {}
-        for metric, values in scores.items():
-            if values:
-                result[metric] = {
-                    'mean': np.mean(values),
-                    'std': np.std(values),
-                    'min': np.min(values),
-                    'max': np.max(values)
+        # Calculate averages and interpretations
+        results = {}
+        
+        for metric_name, scores in readability_scores.items():
+            if scores:
+                avg_score = np.mean(scores)
+                results[metric_name] = {
+                    "score": avg_score,
+                    "interpretation": self._interpret_readability_score(metric_name, avg_score)
                 }
         
-        # Add sentence and word metrics
-        if sentence_lengths:
-            result['avg_sentence_length'] = np.mean(sentence_lengths)
-            result['sentence_length_variance'] = np.var(sentence_lengths)
+        for metric_name, values in sentence_metrics.items():
+            if values:
+                results[metric_name] = np.mean(values)
         
-        if word_lengths:
-            result['avg_word_length'] = np.mean(word_lengths)
-            result['complex_words_ratio'] = len([w for w in word_lengths if w > 6]) / len(word_lengths)
+        # Overall readability assessment
+        if readability_scores["flesch_reading_ease"]:
+            avg_flesch = np.mean(readability_scores["flesch_reading_ease"])
+            results["overall_readability"] = self._get_overall_readability(avg_flesch)
         
-        # Overall readability score (normalized 0-100)
-        if 'flesch_reading_ease' in result:
-            result['overall_readability'] = result['flesch_reading_ease']['mean']
-        
-        return result
+        return results
     
-    def _calculate_clarity(self, texts: List[str]) -> Dict[str, float]:
+    def _interpret_readability_score(self, metric: str, score: float) -> str:
+        """Interpret readability scores"""
+        if metric == "flesch_reading_ease":
+            if score >= 90:
+                return "Very Easy"
+            elif score >= 80:
+                return "Easy"
+            elif score >= 70:
+                return "Fairly Easy"
+            elif score >= 60:
+                return "Standard"
+            elif score >= 50:
+                return "Fairly Difficult"
+            elif score >= 30:
+                return "Difficult"
+            else:
+                return "Very Difficult"
+                
+        elif metric == "flesch_kincaid_grade":
+            return f"Grade level: {score:.1f}"
+            
+        elif metric == "gunning_fog":
+            return f"Years of education needed: {score:.1f}"
+            
+        return f"Score: {score:.2f}"
+    
+    def _get_overall_readability(self, flesch_score: float) -> str:
+        """Get overall readability assessment"""
+        if flesch_score >= 70:
+            return "Good - Easy to understand"
+        elif flesch_score >= 50:
+            return "Moderate - Requires some effort"
+        else:
+            return "Poor - Difficult to understand"
+    
+    def _calculate_clarity(self, texts: List[str]) -> Dict[str, Any]:
         """Calculate clarity metrics"""
-        clarity_scores = []
-        specificity_scores = []
-        
-        for text in texts:
-            text_lower = text.lower()
-            
-            # Count clarity markers
-            specific_count = sum(text_lower.count(marker) for marker in self.clarity_markers['specific'])
-            vague_count = sum(text_lower.count(marker) for marker in self.clarity_markers['vague'])
-            sequential_count = sum(text_lower.count(marker) for marker in self.clarity_markers['sequential'])
-            conditional_count = sum(text_lower.count(marker) for marker in self.clarity_markers['conditional'])
-            
-            # Calculate clarity score
-            total_markers = specific_count + vague_count + sequential_count + conditional_count
-            if total_markers > 0:
-                clarity_score = (specific_count + sequential_count - vague_count) / total_markers
-                clarity_scores.append(max(0, min(1, clarity_score)))
-            
-            # Specificity score (ratio of specific terms)
-            words = nltk.word_tokenize(text_lower)
-            if words:
-                specificity = specific_count / len(words)
-                specificity_scores.append(specificity)
-            
-        return {
-            'clarity_score': np.mean(clarity_scores) if clarity_scores else 0,
-            'specificity_score': np.mean(specificity_scores) if specificity_scores else 0,
-            'avg_specific_markers': np.mean([sum(t.lower().count(m) for m in self.clarity_markers['specific']) for t in texts]),
-            'avg_vague_markers': np.mean([sum(t.lower().count(m) for m in self.clarity_markers['vague']) for t in texts]),
-            'sequential_flow_score': np.mean([sum(t.lower().count(m) for m in self.clarity_markers['sequential']) for t in texts])
+        clarity_metrics = {
+            "specificity_score": [],
+            "vagueness_score": [],
+            "structure_score": [],
+            "conditional_clarity": [],
+            "ambiguity_score": []
         }
-    
-    def _calculate_actionability(self, texts: List[str], text_type: str) -> Dict[str, float]:
-        """Calculate how actionable the content is"""
-        actionability_scores = []
-        action_densities = []
         
         for text in texts:
-            # Tokenize and POS tag
+            words = nltk.word_tokenize(text.lower())
+            
+            # Count clarity indicators
+            specific_count = sum(1 for word in words if word in self.clarity_indicators['specific'])
+            vague_count = sum(1 for word in words if word in self.clarity_indicators['vague'])
+            structured_count = sum(1 for word in words if word in self.clarity_indicators['structured'])
+            conditional_count = sum(1 for word in words if word in self.clarity_indicators['conditional'])
+            
+            total_words = len(words)
+            
+            if total_words > 0:
+                clarity_metrics["specificity_score"].append(specific_count / total_words)
+                clarity_metrics["vagueness_score"].append(vague_count / total_words)
+                clarity_metrics["structure_score"].append(structured_count / total_words)
+                clarity_metrics["conditional_clarity"].append(conditional_count / total_words)
+                
+                # Ambiguity score (based on passive voice and complex sentences)
+                ambiguity = self._calculate_ambiguity(text)
+                clarity_metrics["ambiguity_score"].append(ambiguity)
+        
+        # Calculate final scores
+        results = {}
+        for metric, scores in clarity_metrics.items():
+            if scores:
+                results[metric] = np.mean(scores)
+        
+        # Overall clarity score
+        if all(metric in results for metric in ["specificity_score", "vagueness_score", "structure_score"]):
+            results["overall_clarity"] = (
+                results["specificity_score"] * 0.4 +
+                results["structure_score"] * 0.4 -
+                results["vagueness_score"] * 0.2
+            )
+        
+        return results
+    
+    def _calculate_ambiguity(self, text: str) -> float:
+        """Calculate ambiguity score based on various factors"""
+        sentences = nltk.sent_tokenize(text)
+        ambiguity_factors = []
+        
+        for sentence in sentences:
+            words = nltk.word_tokenize(sentence)
+            pos_tags = nltk.pos_tag(words)
+            
+            # Check for passive voice (simplified)
+            passive_indicators = ['been', 'was', 'were', 'being', 'is', 'are', 'be']
+            has_passive = any(word in passive_indicators for word, _ in pos_tags)
+            
+            # Check for complex sentence structure
+            complexity = len(words) / 20  # Normalized by typical sentence length
+            
+            # Check for pronouns without clear antecedents
+            pronouns = sum(1 for _, tag in pos_tags if tag in ['PRP', 'PRP$', 'WP', 'WP$'])
+            pronoun_ratio = pronouns / len(words) if words else 0
+            
+            ambiguity_factors.append(
+                (0.3 * has_passive) + (0.4 * min(complexity, 1)) + (0.3 * pronoun_ratio)
+            )
+        
+        return np.mean(ambiguity_factors) if ambiguity_factors else 0
+    
+    def _calculate_actionability(self, texts: List[str], text_type: str) -> Dict[str, Any]:
+        """Calculate how actionable the content is"""
+        actionability_metrics = {
+            "action_verb_density": [],
+            "step_clarity": [],
+            "instruction_quality": [],
+            "executable_steps": []
+        }
+        
+        for text in texts:
+            # Tokenize and tag
             words = nltk.word_tokenize(text.lower())
             pos_tags = nltk.pos_tag(words)
             
-            # Count verbs (action words)
-            verbs = [word for word, pos in pos_tags if pos.startswith('VB')]
-            action_verbs_found = [v for v in verbs if v in self.action_verbs]
+            # Count action verbs
+            action_count = sum(1 for word in words if word in self.action_verbs)
+            verb_count = sum(1 for _, tag in pos_tags if tag.startswith('VB'))
             
-            # Calculate metrics
-            if words:
-                action_density = len(action_verbs_found) / len(words)
-                action_densities.append(action_density)
+            if len(words) > 0:
+                actionability_metrics["action_verb_density"].append(action_count / len(words))
             
-            # For use cases, check for numbered steps
+            # Analyze steps
             if text_type == "use_case":
-                numbered_steps = len(re.findall(r'\d+\.', text))
-                has_clear_flow = numbered_steps > 3
-                actionability_scores.append(1.0 if has_clear_flow else 0.5)
-            
-            # For test cases, check for keywords
+                step_quality = self._analyze_use_case_steps(text)
+                actionability_metrics["step_clarity"].append(step_quality["clarity"])
+                actionability_metrics["executable_steps"].append(step_quality["executable_ratio"])
             elif text_type == "test_case":
-                rf_keywords = len(re.findall(r'(Click|Type Text|Go To|Wait For|Should)', text))
-                actionability_scores.append(min(1.0, rf_keywords / 10))
+                instruction_quality = self._analyze_test_instructions(text)
+                actionability_metrics["instruction_quality"].append(instruction_quality)
+        
+        # Calculate results
+        results = {}
+        for metric, scores in actionability_metrics.items():
+            if scores:
+                results[metric] = np.mean(scores)
+        
+        # Overall actionability score
+        if results:
+            results["overall_actionability"] = np.mean(list(results.values()))
+        
+        return results
+    
+    def _analyze_use_case_steps(self, text: str) -> Dict[str, float]:
+        """Analyze quality of use case steps"""
+        # Extract steps (numbered items)
+        step_pattern = r'\d+\.\s*(.+?)(?=\d+\.|$)'
+        steps = re.findall(step_pattern, text, re.DOTALL)
+        
+        if not steps:
+            return {"clarity": 0, "executable_ratio": 0}
+        
+        clear_steps = 0
+        executable_steps = 0
+        
+        for step in steps:
+            # Check clarity (has actor and action)
+            has_actor = any(actor in step.lower() for actor in ['user', 'system', 'admin'])
+            has_action = any(verb in step.lower() for verb in self.action_verbs)
+            
+            if has_actor and has_action:
+                clear_steps += 1
+            
+            # Check executability (specific and measurable)
+            if has_action and len(step.split()) > 3:  # More than just "User clicks button"
+                executable_steps += 1
         
         return {
-            'actionability_score': np.mean(actionability_scores) if actionability_scores else 0,
-            'action_density': np.mean(action_densities) if action_densities else 0,
-            'avg_actions_per_text': np.mean([len([v for v in nltk.word_tokenize(t.lower()) if v in self.action_verbs]) for t in texts]),
-            'texts_with_clear_actions': sum(1 for t in texts if any(av in t.lower() for av in self.action_verbs)) / len(texts) if texts else 0
+            "clarity": clear_steps / len(steps),
+            "executable_ratio": executable_steps / len(steps)
         }
     
-    def _calculate_completeness(self, texts: List[str], text_type: str) -> Dict[str, float]:
+    def _analyze_test_instructions(self, text: str) -> float:
+        """Analyze quality of test instructions"""
+        # For Robot Framework tests, check for proper keywords and arguments
+        quality_indicators = [
+            r'Click\s+.+',  # Has selector
+            r'Type Text\s+.+\s+.+',  # Has selector and text
+            r'Wait For.*State\s+.+',  # Has wait condition
+            r'Should\s+.+',  # Has assertion
+        ]
+        
+        matches = sum(1 for pattern in quality_indicators if re.search(pattern, text))
+        return matches / len(quality_indicators)
+    
+    def _calculate_completeness(self, texts: List[str], text_type: str) -> Dict[str, Any]:
         """Calculate completeness of content"""
-        if text_type == "use_case":
-            return self._calculate_use_case_completeness(texts)
-        elif text_type == "test_case":
-            return self._calculate_test_case_completeness(texts)
-        else:
-            return {'completeness_score': 0.5}
-    
-    def _calculate_use_case_completeness(self, texts: List[str]) -> Dict[str, float]:
-        """Calculate use case completeness"""
-        required_sections = {
-            'actors': ['actor', 'user', 'system'],
-            'preconditions': ['precondition', 'prerequisite', 'require'],
-            'main_flow': ['main flow', 'steps', 'flow'],
-            'postconditions': ['postcondition', 'result', 'outcome'],
-            'alternative_flow': ['alternative', 'exception', 'error']
-        }
-        
         completeness_scores = []
-        section_coverage = {section: 0 for section in required_sections}
         
         for text in texts:
-            text_lower = text.lower()
-            score = 0
-            
-            for section, keywords in required_sections.items():
-                if any(keyword in text_lower for keyword in keywords):
-                    score += 1
-                    section_coverage[section] += 1
-            
-            # Bonus for having numbered steps
-            if re.findall(r'\d+\.', text):
-                score += 0.5
-            
-            completeness_scores.append(score / (len(required_sections) + 0.5))
-        
-        # Calculate coverage percentages
-        if texts:
-            for section in section_coverage:
-                section_coverage[section] = section_coverage[section] / len(texts)
-        
-        return {
-            'completeness_score': np.mean(completeness_scores) if completeness_scores else 0,
-            'section_coverage': section_coverage,
-            'avg_sections_present': np.mean([sum(1 for k in required_sections if any(kw in t.lower() for kw in required_sections[k])) for t in texts])
-        }
-    
-    def _calculate_test_case_completeness(self, texts: List[str]) -> Dict[str, float]:
-        """Calculate test case completeness"""
-        required_elements = {
-            'setup': ['setup', 'new browser', 'new page'],
-            'actions': ['click', 'type', 'go to', 'select'],
-            'verification': ['should', 'wait for', 'get text', 'element state'],
-            'teardown': ['teardown', 'close browser', 'close']
-        }
-        
-        completeness_scores = []
-        element_coverage = {element: 0 for element in required_elements}
-        
-        for text in texts:
-            text_lower = text.lower()
-            score = 0
-            
-            for element, keywords in required_elements.items():
-                if any(keyword in text_lower for keyword in keywords):
-                    score += 1
-                    element_coverage[element] += 1
-            
-            completeness_scores.append(score / len(required_elements))
-        
-        # Calculate coverage percentages
-        if texts:
-            for element in element_coverage:
-                element_coverage[element] = element_coverage[element] / len(texts)
-        
-        return {
-            'completeness_score': np.mean(completeness_scores) if completeness_scores else 0,
-            'element_coverage': element_coverage,
-            'avg_elements_present': np.mean([sum(1 for e in required_elements if any(kw in t.lower() for kw in required_elements[e])) for t in texts])
-        }
-    
-    def _calculate_usability(self, texts: List[str], text_type: str) -> Dict[str, float]:
-        """Calculate overall usability metrics"""
-        usability_factors = {
-            'length_appropriate': [],
-            'structure_clear': [],
-            'language_consistent': [],
-            'examples_present': []
-        }
-        
-        for text in texts:
-            # Length appropriateness
-            word_count = len(nltk.word_tokenize(text))
             if text_type == "use_case":
-                # Use cases should be 100-500 words
-                length_score = 1.0 if 100 <= word_count <= 500 else 0.5
+                score = self._check_use_case_completeness(text)
+            elif text_type == "test_case":
+                score = self._check_test_case_completeness(text)
             else:
-                # Test cases can be longer
-                length_score = 1.0 if 50 <= word_count <= 1000 else 0.5
-            usability_factors['length_appropriate'].append(length_score)
+                score = 0
             
-            # Structure clarity (presence of sections/formatting)
-            has_sections = bool(re.findall(r'[A-Z]{2,}:|^\d+\.|^-|^\*', text, re.MULTILINE))
-            usability_factors['structure_clear'].append(1.0 if has_sections else 0.5)
-            
-            # Language consistency (vocabulary repetition for key terms)
-            words = nltk.word_tokenize(text.lower())
-            word_freq = Counter(words)
-            # Check if key terms are used consistently
-            consistency_score = 1.0 if any(freq > 2 for word, freq in word_freq.items() if len(word) > 4) else 0.5
-            usability_factors['language_consistent'].append(consistency_score)
-            
-            # Examples present
-            has_examples = bool(re.findall(r'(example|e\.g\.|for instance|such as)', text, re.IGNORECASE))
-            usability_factors['examples_present'].append(1.0 if has_examples else 0.0)
-        
-        # Calculate overall usability
-        usability_score = np.mean([
-            np.mean(scores) for scores in usability_factors.values() if scores
-        ])
+            completeness_scores.append(score)
         
         return {
-            'usability_score': usability_score,
-            'length_appropriateness': np.mean(usability_factors['length_appropriate']) if usability_factors['length_appropriate'] else 0,
-            'structure_clarity': np.mean(usability_factors['structure_clear']) if usability_factors['structure_clear'] else 0,
-            'language_consistency': np.mean(usability_factors['language_consistent']) if usability_factors['language_consistent'] else 0,
-            'examples_present': np.mean(usability_factors['examples_present']) if usability_factors['examples_present'] else 0
+            "completeness_score": np.mean(completeness_scores) if completeness_scores else 0,
+            "missing_elements": self._identify_missing_elements(texts, text_type)
         }
     
-    def _calculate_overall_ux_score(self, metrics: Dict[str, Any]) -> float:
-        """Calculate overall UX score from all metrics"""
+    def _check_use_case_completeness(self, text: str) -> float:
+        """Check completeness of use case"""
+        required_elements = {
+            'actors': ['actor', 'user', 'system'],
+            'preconditions': ['precondition', 'prerequisite'],
+            'main_flow': ['main flow', 'steps', 'flow'],
+            'postconditions': ['postcondition', 'result'],
+            'id': ['uc-', 'id:', 'identifier']
+        }
+        
+        found_elements = 0
+        for element, keywords in required_elements.items():
+            if any(keyword in text.lower() for keyword in keywords):
+                found_elements += 1
+        
+        return found_elements / len(required_elements)
+    
+    def _check_test_case_completeness(self, text: str) -> float:
+        """Check completeness of test case"""
+        required_patterns = [
+            r'\*\*\* Settings \*\*\*',
+            r'\*\*\* Test Cases \*\*\*',
+            r'Documentation',
+            r'Setup|Teardown',
+            r'Should|Verify|Check'  # Assertions
+        ]
+        
+        found_patterns = sum(1 for pattern in required_patterns if re.search(pattern, text))
+        return found_patterns / len(required_patterns)
+    
+    def _identify_missing_elements(self, texts: List[str], text_type: str) -> List[str]:
+        """Identify commonly missing elements"""
+        missing_elements = []
+        
+        if text_type == "use_case":
+            # Check what's commonly missing across all texts
+            elements = ['actors', 'preconditions', 'postconditions', 'alternative flows']
+            for element in elements:
+                if sum(1 for text in texts if element in text.lower()) < len(texts) * 0.5:
+                    missing_elements.append(element)
+                    
+        elif text_type == "test_case":
+            elements = ['documentation', 'tags', 'teardown', 'error handling']
+            for element in elements:
+                if sum(1 for text in texts if element in text.lower()) < len(texts) * 0.5:
+                    missing_elements.append(element)
+        
+        return missing_elements
+    
+    def _calculate_usability(self, texts: List[str], text_type: str) -> Dict[str, Any]:
+        """Calculate usability metrics"""
+        return {
+            "navigation_ease": self._calculate_navigation_ease(texts),
+            "information_findability": self._calculate_findability(texts),
+            "consistency_score": self._calculate_consistency(texts),
+            "user_friendliness": self._calculate_user_friendliness(texts, text_type)
+        }
+    
+    def _calculate_navigation_ease(self, texts: List[str]) -> float:
+        """How easy is it to navigate through the content"""
+        navigation_scores = []
+        
+        for text in texts:
+            # Check for clear structure markers
+            has_headers = bool(re.findall(r'^[A-Z\s]+:$', text, re.MULTILINE))
+            has_numbering = bool(re.findall(r'^\d+\.', text, re.MULTILINE))
+            has_sections = text.count('\n\n') > 2  # Multiple sections
+            
+            score = (has_headers + has_numbering + has_sections) / 3
+            navigation_scores.append(score)
+        
+        return np.mean(navigation_scores) if navigation_scores else 0
+    
+    def _calculate_findability(self, texts: List[str]) -> float:
+        """How easy is it to find specific information"""
+        findability_scores = []
+        
+        for text in texts:
+            # Check for searchable elements
+            has_ids = bool(re.findall(r'ID:|UC-|TC-', text))
+            has_keywords = len(set(nltk.word_tokenize(text.lower()))) / len(nltk.word_tokenize(text))
+            has_clear_labels = bool(re.findall(r'[A-Z][a-z]+:', text))
+            
+            score = (has_ids + has_keywords + has_clear_labels) / 3
+            findability_scores.append(score)
+        
+        return np.mean(findability_scores) if findability_scores else 0
+    
+    def _calculate_consistency(self, texts: List[str]) -> float:
+        """Check consistency across texts"""
+        if len(texts) < 2:
+            return 1.0
+        
+        # Check structural consistency
+        structures = []
+        for text in texts:
+            structure = []
+            if 'actors' in text.lower():
+                structure.append('actors')
+            if 'preconditions' in text.lower():
+                structure.append('preconditions')
+            if 'main flow' in text.lower():
+                structure.append('main_flow')
+            structures.append(tuple(structure))
+        
+        # Calculate how many texts have the same structure
+        most_common = Counter(structures).most_common(1)[0][1]
+        return most_common / len(texts)
+    
+    def _calculate_user_friendliness(self, texts: List[str], text_type: str) -> float:
+        """Overall user friendliness score"""
         scores = []
         
-        # Weight different aspects
-        weights = {
-            'readability': 0.25,
-            'clarity': 0.25,
-            'actionability': 0.20,
-            'completeness': 0.20,
-            'usability': 0.10
+        for text in texts:
+            # Factors that contribute to user friendliness
+            factors = []
+            
+            # Clear language (low complexity)
+            complexity = textstat.flesch_kincaid_grade(text)
+            factors.append(1 - min(complexity / 12, 1))  # Normalize to 0-1
+            
+            # Good formatting
+            has_formatting = bool(re.findall(r'[-•*]|\d+\.', text))
+            factors.append(float(has_formatting))
+            
+            # Appropriate length
+            word_count = len(nltk.word_tokenize(text))
+            if text_type == "use_case":
+                ideal_length = 200  # words
+            else:
+                ideal_length = 150
+            
+            length_score = 1 - abs(word_count - ideal_length) / ideal_length
+            factors.append(max(0, length_score))
+            
+            scores.append(np.mean(factors))
+        
+        return np.mean(scores) if scores else 0
+    
+    def _calculate_accessibility(self, texts: List[str]) -> Dict[str, Any]:
+        """Calculate accessibility metrics"""
+        return {
+            "plain_language_score": self._calculate_plain_language(texts),
+            "technical_jargon_ratio": self._calculate_jargon_ratio(texts),
+            "international_friendly": self._calculate_international_friendliness(texts)
+        }
+    
+    def _calculate_plain_language(self, texts: List[str]) -> float:
+        """Calculate how much plain language is used"""
+        scores = []
+        
+        for text in texts:
+            # Simple words (common 1000 words would be ideal)
+            words = nltk.word_tokenize(text.lower())
+            simple_words = sum(1 for w in words if len(w) <= 7)  # Simplified metric
+            
+            if words:
+                scores.append(simple_words / len(words))
+        
+        return np.mean(scores) if scores else 0
+    
+    def _calculate_jargon_ratio(self, texts: List[str]) -> float:
+        """Calculate ratio of technical jargon"""
+        # Common technical terms in software
+        jargon = {
+            'api', 'backend', 'frontend', 'database', 'query', 'endpoint',
+            'authentication', 'authorization', 'token', 'session', 'cache',
+            'framework', 'library', 'dependency', 'deployment', 'integration'
         }
         
-        for aspect, weight in weights.items():
-            if aspect in metrics:
-                if aspect == 'readability' and 'overall_readability' in metrics[aspect]:
-                    # Normalize readability (0-100 to 0-1)
-                    score = min(1.0, metrics[aspect]['overall_readability'] / 100)
-                elif f'{aspect}_score' in metrics[aspect]:
-                    score = metrics[aspect][f'{aspect}_score']
-                else:
-                    continue
-                
-                scores.append(score * weight)
+        ratios = []
+        for text in texts:
+            words = nltk.word_tokenize(text.lower())
+            jargon_count = sum(1 for word in words if word in jargon)
+            
+            if words:
+                ratios.append(jargon_count / len(words))
         
-        return sum(scores) / sum(weights.values()) if scores else 0
+        return np.mean(ratios) if ratios else 0
+    
+    def _calculate_international_friendliness(self, texts: List[str]) -> float:
+        """Check if content is friendly for international users"""
+        scores = []
+        
+        for text in texts:
+            factors = []
+            
+            # Avoid idioms and cultural references
+            idiom_patterns = ['piece of cake', 'hit the ground running', 'ball is in']
+            has_idioms = any(idiom in text.lower() for idiom in idiom_patterns)
+            factors.append(1 - float(has_idioms))
+            
+            # Use of dates/times in standard format
+            has_standard_dates = bool(re.findall(r'\d{4}-\d{2}-\d{2}', text))
+            factors.append(float(has_standard_dates) if re.search(r'\d+/\d+/\d+', text) else 1)
+            
+            # Avoid complex contractions
+            contractions = len(re.findall(r"\w+'d|\w+'ll|\w+'ve", text))
+            factors.append(1 - min(contractions / 10, 1))
+            
+            scores.append(np.mean(factors))
+        
+        return np.mean(scores) if scores else 0

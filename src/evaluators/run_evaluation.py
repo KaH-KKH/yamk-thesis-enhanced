@@ -93,6 +93,10 @@ class EnhancedEvaluationRunner:
     async def evaluate_model(self, model_name: str) -> Dict[str, Any]:
         """Evaluate a single model with all metrics"""
         logger.info(f"Starting enhanced evaluation for model: {model_name}")
+
+        # Tyhjennä muisti ennen evaluointia
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
         
         results = {
             "model": model_name,
@@ -113,6 +117,10 @@ class EnhancedEvaluationRunner:
             
             uc_results = await self._evaluate_use_case_generation(model_name)
             results["use_case_generation"] = uc_results
+
+            # Tyhjennä muisti vaiheiden välillä
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
             
             if self.enable_extended_metrics:
                 perf_data = self.performance_metrics.stop_monitoring()
@@ -124,6 +132,10 @@ class EnhancedEvaluationRunner:
                 
             rf_results = await self._evaluate_test_case_generation(model_name)
             results["test_case_generation"] = rf_results
+
+            # Tyhjennä muisti vaiheiden välillä
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
             
             if self.enable_extended_metrics:
                 perf_data = self.performance_metrics.stop_monitoring()
@@ -353,7 +365,35 @@ class EnhancedEvaluationRunner:
         
         # Evaluate each model
         for model in self.models:
+            # Tyhjennä muisti ennen uutta mallia
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+                logger.info(f"GPU memory cleared before evaluating: {model}")
+
             logger.info(f"Evaluating model: {model}")
+
+            try:
+                results = await self.evaluate_model(model)
+                all_results[model] = results
+                
+                # Save individual model results
+                model_file = self.run_dir / f"{model}_results.json"
+                FileHandler.save_json(results, str(model_file))
+                
+                # Tyhjennä muisti mallin jälkeen
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+                    logger.info(f"GPU memory cleared after evaluating: {model}")
+            
+            except Exception as e:
+                logger.error(f"Error evaluating model {model}: {str(e)}")
+                all_results[model] = {"error": str(e)}
+                
+                # Tyhjennä muisti virheen jälkeenkin
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+                    logger.info(f"GPU memory cleared after error in: {model}")
+
             results = await self.evaluate_model(model)
             all_results[model] = results
             
@@ -956,17 +996,21 @@ class EnhancedEvaluationRunner:
         if not self.enable_monitoring:
             return
         
+        # Hae system info performance_metrics:stä
+        system_info = self.performance_metrics.get_system_info() if self.enable_extended_metrics else {}
+        
         # Prepare metrics for monitoring
         monitor_metrics = {
+            "timestamp": datetime.now(),
             "models": {
                 model_name: {
                     "status": "completed",
                     "timestamp": datetime.now()
                 }
             },
-            "system": self.performance_metrics.get_system_info() if self.enable_extended_metrics else {}
+            "system": system_info  # Lisää tämä
         }
-        
+       
         # Add key metrics
         if "metrics" in results:
             standard = results["metrics"].get("standard", {})

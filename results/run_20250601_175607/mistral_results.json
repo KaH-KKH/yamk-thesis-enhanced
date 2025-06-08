@@ -1,0 +1,12 @@
+{
+  "model": "mistral",
+  "timestamp": "2025-06-01T17:56:13.228494",
+  "use_case_generation": {},
+  "test_case_generation": {},
+  "metrics": {
+    "standard": {},
+    "extended": {}
+  },
+  "performance": {},
+  "error": "MistralForCausalLM.__init__() got an unexpected keyword argument 'llm_int8_enable_fp32_cpu_offload'"
+}

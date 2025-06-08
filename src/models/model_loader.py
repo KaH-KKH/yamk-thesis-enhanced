@@ -1,5 +1,5 @@
 """
-Model loader for open-source LLMs with 4-bit quantization
+Model loader for open-source LLMs with 8-bit (4-bit) quantization
 """
 
 import torch
@@ -31,16 +31,27 @@ class ModelLoader:
         self.tokenizers = {}
         
         # Setup quantization config for 4-bit
+        # self.quantization_config = BitsAndBytesConfig(
+        #    load_in_4bit=True,
+        #    bnb_4bit_quant_type="nf4",
+        #    bnb_4bit_use_double_quant=True,
+        #    bnb_4bit_compute_dtype=torch.bfloat16,
+        #    llm_int8_enable_fp32_cpu_offload=True  # LISÄÄ TÄMÄ TÄNNE
+        # )
+
+        # Setup quantization config for 8-bit (vähemmän ongelmia)
         self.quantization_config = BitsAndBytesConfig(
-            load_in_4bit=True,
-            bnb_4bit_quant_type="nf4",
-            bnb_4bit_use_double_quant=True,
-            bnb_4bit_compute_dtype=torch.bfloat16
+            load_in_8bit=True,  # Muuta 4bit -> 8bit
+            llm_int8_enable_fp32_cpu_offload=True,
+            llm_int8_threshold=6.0,
         )
         
         logger.info("Model loader initialized")
     
     def load_model(self, model_name: str):
+        # Tyhjennä muisti ennen uuden mallin lataamista
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
         """Load a model by name"""
         if model_name in self.loaded_models:
             logger.info(f"Model {model_name} already loaded")
@@ -66,12 +77,24 @@ class ModelLoader:
                 tokenizer.pad_token = tokenizer.eos_token
             
             # Load model with 4-bit quantization
+            # model = AutoModelForCausalLM.from_pretrained(
+            #    model_id,
+            #    quantization_config=self.quantization_config,
+            #    device_map="auto",
+            #    trust_remote_code=True,
+            #    torch_dtype=torch.bfloat16,
+            # )
+
+            # Load model with 8-bit quantization
             model = AutoModelForCausalLM.from_pretrained(
                 model_id,
                 quantization_config=self.quantization_config,
-                device_map="auto",
+                device_map={"": 0},  # Muuta: pakottaa kaikki GPU:lle
                 trust_remote_code=True,
-                torch_dtype=torch.bfloat16,
+                # torch_dtype=torch.bfloat16,
+                torch_dtype=torch.float16,  # Muuta: bfloat16 -> float16
+                low_cpu_mem_usage=True,  # Lisää tämä
+                offload_folder=None,     # Lisää tämä: estää CPU offloading
             )
             
             # Store loaded model and tokenizer
@@ -120,7 +143,7 @@ class ModelLoader:
         tokenizer = self.tokenizers[model_name]
         
         # Prepare input
-        inputs = tokenizer(prompt, return_tensors="pt", truncation=True)
+        inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=2048, padding=True)
         inputs = {k: v.to(model.device) for k, v in inputs.items()}
         
         # Default generation parameters
@@ -152,7 +175,14 @@ class ModelLoader:
         if model_name in self.loaded_models:
             del self.loaded_models[model_name]
             del self.tokenizers[model_name]
-            torch.cuda.empty_cache()
+            
+            import gc
+            gc.collect()  # Python garbage collection
+            
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+                torch.cuda.synchronize()  # Varmista että cache tyhjenee
+                
             logger.info(f"Model {model_name} unloaded")
     
     def get_model_info(self, model_name: str) -> Dict[str, Any]:

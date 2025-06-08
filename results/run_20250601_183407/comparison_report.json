@@ -1,0 +1,66 @@
+{
+  "timestamp": "2025-06-01T19:01:29.053180",
+  "models": [
+    "mistral"
+  ],
+  "summary": {
+    "best_scores": {}
+  },
+  "detailed_metrics": {
+    "standard": {
+      "use_case_metrics": {
+        "mistral": {
+          "custom": {
+            "completeness": 1.0,
+            "avg_length": 201.0,
+            "avg_steps": 27.0
+          }
+        }
+      },
+      "test_case_metrics": {
+        "mistral": {
+          "syntax_validity": {
+            "valid_count": 1,
+            "total_count": 1,
+            "validity_rate": 1.0
+          },
+          "keyword_coverage": {
+            "keyword_counts": {
+              "New Browser": 2,
+              "New Page": 1,
+              "Go To": 1,
+              "Click": 2,
+              "Type Text": 4,
+              "Get Text": 0,
+              "Wait For Elements State": 2,
+              "Take Screenshot": 2
+            },
+            "total_keywords": 14,
+            "unique_keywords_used": 7,
+            "coverage_rate": 0.875
+          }
+        }
+      }
+    },
+    "extended": {}
+  },
+  "performance_comparison": {
+    "mistral": {
+      "use_case_generation": {
+        "total_time": 211.4132354259491,
+        "memory_used": -972.72265625,
+        "avg_time_per_file": 211.4132354259491
+      },
+      "test_case_generation": {
+        "total_time": 440.60255551338196,
+        "memory_used": -11.234375
+      },
+      "total_time": 652.015790939331,
+      "total_memory": -983.95703125,
+      "files_per_second": 0.004730072826260048
+    }
+  },
+  "recommendations": [
+    "No significant differences found between models."
+  ]
+}

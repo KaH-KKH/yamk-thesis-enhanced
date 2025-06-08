@@ -1,35 +1,43 @@
 
-USE CASE: ** User logs into the system with valid credentials
-ID: UC-001
+USE CASE: ** Login Functionality
+ID: ** UC-LOGIN-001
 
 ACTORS:
 - system
 - users
 - user
+- User
+- System
 
 PRECONDITIONS:
-1. The user is at the login page: https://the-internet.herokuapp.com/login
-2. The user has access to a web browser
+1. User is on the login page at https://the-internet.herokuapp.com/login
+2. User has a valid username and password
 
 MAIN FLOW:
-1. User enters valid username "tomsmith"
-2. User enters valid password "SuperSecretPassword!"
-3. User clicks on the "Login" button
-4. 4. System verifies the entered credentials against the database
-5. 5. If the credentials are valid, the system displays a success message: "Success! Welcome to the site."
-6. 6. User is redirected to the secure area of the site
-7. **Alternative flows:**
-8. If the entered username or password is incorrect, the system displays an error message: "Invalid username or password."
-9. If the user enters incorrect credentials multiple times, the system locks the user account for a certain period
+1. User enters valid username (tomsmith) in the input field.
+2. User enters valid password (SuperSecretPassword!) in the input field.
+3. User clicks on the 'Login' button.
+4. 4. System receives the entered credentials.
+5. 5. System verifies the entered credentials against the database.
+6. 6. System finds the matching user account (tomsmith).
+7. 7. System grants access to the secure area and displays the success message.
+8. **Alternative flows:**
+9. Invalid credentials:**
+10. a. User enters an incorrect username or password.
+11. b. System does not find a matching user account.
+12. c. System displays an error message "Invalid credentials. Please try again."
+13. Empty fields:**
+14. a. User leaves the username or password field empty.
+15. b. System displays an error message "Username and password are required fields."
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. The user is logged into the system
-2. The user is in the secure area of the site
-3. The user can access secure features and functionalities
-4. 4. The user can logout from the secure area at any time.
+1. User is logged in to the secure area.
+2. System displays the success message "You are now logged in."
+3. User can navigate to other pages within the secure area.
+4. 4. User can logout from the secure area when desired.
 
 NOTES:
 None

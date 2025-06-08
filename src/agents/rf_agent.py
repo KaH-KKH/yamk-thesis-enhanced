@@ -4,6 +4,7 @@ Fixed version without pydantic-ai HuggingFaceModel
 """
 
 import asyncio
+import torch
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 from datetime import datetime
@@ -40,6 +41,10 @@ class RFAgent:
         # Load model
         logger.info(f"Loading model for RF Agent: {model_name}")
         self.model = self.model_loader.load_model(model_name)
+
+        # Tyhjennä muisti mallin latauksen jälkeen
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
         
         # Get system prompt from config
         self.system_prompt = self.config["agents"]["rf_agent"]["system_prompt"]
@@ -394,6 +399,17 @@ Format the test case with:
         FileHandler.save_json(report, str(report_file))
         
         return report
+    
+    def __del__(self):
+        """Cleanup when agent is destroyed"""
+        # Käytä model_loaderin unload_model metodia
+        if hasattr(self, 'model_loader') and hasattr(self, 'model_name'):
+            self.model_loader.unload_model(self.model_name)
+        
+        # Varmista että muisti tyhjennetään
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            logger.info(f"GPU memory cleared for model: {self.model_name}")
 
 
 async def main():
