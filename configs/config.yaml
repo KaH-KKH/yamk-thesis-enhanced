@@ -20,6 +20,18 @@ models:
       model_id: "google/gemma-7b-it"
       #quantization: "4bit"
       quantization: "8bit"
+    - name: "Falcon3-7B-Base"
+      model_id: "tiiuae/Falcon3-7B-Base"
+      #quantization: "4bit"
+      quantization: "8bit"
+    - name: "Meta-Llama-3-8B-Instruct"
+      model_id: "meta-llama/Meta-Llama-3-8B-Instruct"
+      #quantization: "4bit"
+      quantization: "8bit"
+    - name: "Qwen2-7B-Instruct"
+      model_id: "Qwen/Qwen2-7B-Instruct"
+      #quantization: "4bit"
+      quantization: "8bit"
 
 agents:
   uc_agent:

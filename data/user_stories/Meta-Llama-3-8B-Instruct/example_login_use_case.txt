@@ -1,0 +1,39 @@
+
+USE CASE: ** The system shall provide a secure login mechanism for users.
+ID: UC-001
+
+ACTORS:
+- system
+- user
+- users
+
+PRECONDITIONS:
+1. The user has a valid username and password.
+2. The user has access to the login page at https://the-internet.herokuapp.com/login.
+3. The user has not previously logged in.
+
+MAIN FLOW:
+1. The user navigates to the login page at https://the-internet.herokuapp.com/login.
+2. The user enters a valid username (e.g., tomsmith) in the username field.
+3. The user enters a valid password (e.g., SuperSecretPassword!) in the password field.
+4. 4. The user clicks the login button.
+5. 5. The system validates the username and password.
+6. 6. If the credentials are valid, the system displays a success message and logs the user in.
+7. 7. The user is redirected to the secure area.
+8. **Alternative Flows:**
+9. Invalid Credentials:**
+10. The user enters an invalid username or password.
+11. The system displays an error message.
+12. The user can retry logging in or navigate away from the page.
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+1. The user is logged in successfully and has access to the secure area.
+2. The user can logout from the secure area.
+3. The system maintains the user's login session until the user logs out or the session expires.
+4. This use case provides a clear and structured outline of the secure login process, including the main flow, alternative flows, and postconditions. The use case is testable and provides a clear understanding of the expected behavior of the system.
+
+NOTES:
+None

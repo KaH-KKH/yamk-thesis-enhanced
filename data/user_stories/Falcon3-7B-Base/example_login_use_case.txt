@@ -1,0 +1,33 @@
+
+USE CASE: Secure Login
+ID: UC-LOGIN-001
+
+ACTORS:
+- system
+- users
+- user
+
+PRECONDITIONS:
+1. User is on the login page at https://the-internet.herokuapp.com/login
+2. User has entered valid username and password
+
+MAIN FLOW:
+1. User enters username "tomsmith" and password "SuperSecretPassword!"
+2. User clicks the "Log in" button
+3. System validates the entered credentials
+4. 4. If credentials are valid, system displays a success message
+5. 5. User is redirected to a secure area
+6. 6. User has the option to logout from the secure area
+7. Alternative Flows:
+8. If credentials are invalid, system displays an error message
+9. If user clicks the "Log out" button, system logs user out and redirects them to the login page
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+1. User is either logged in successfully or receives an error message for invalid credentials
+2. User can logout from the secure area
+
+NOTES:
+None

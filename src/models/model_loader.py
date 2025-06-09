@@ -144,6 +144,8 @@ class ModelLoader:
         
         # Prepare input
         inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=2048, padding=True)
+        # LISÄÄ TÄMÄ RIVI: Poista token_type_ids jos se on olemassa
+        inputs.pop('token_type_ids', None)
         inputs = {k: v.to(model.device) for k, v in inputs.items()}
         
         # Default generation parameters

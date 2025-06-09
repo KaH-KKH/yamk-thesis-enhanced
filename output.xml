@@ -1,530 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-06-07T18:42:11.933283" rpa="false" schemaversion="5">
-<suite id="s1" name="Example Login Use Case" source="/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/mistral/example_login_use_case.robot">
+<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-06-09T16:40:23.587523" rpa="false" schemaversion="5">
+<suite id="s1" name="Example Login Use Case" source="/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Qwen2-7B-Instruct/example_login_use_case.robot">
 <test id="s1-t1" name="Test Login Functionality" line="17">
-<kw name="Run Keywords" owner="BuiltIn" type="SETUP">
-<kw>
-<msg time="2025-06-07T18:42:12.154570" level="FAIL">Keyword name cannot be empty.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.154514" elapsed="0.000095">Keyword name cannot be empty.</status>
-</kw>
-<kw name="Open Browser" owner="Browser">
+<kw name="Setup Browser" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<arg>${BROWSER}</arg>
+<arg>headless=${HEADLESS}</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
-<doc>Opens a new browser instance. Use this keyword for quick experiments or debugging sessions.</doc>
-<status status="NOT RUN" start="2025-06-07T18:42:12.154697" elapsed="0.000210"/>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="NOT RUN" start="2025-06-09T16:40:23.826913" elapsed="0.000290"/>
 </kw>
-<kw name="https://the-internet.herokuapp.com/login">
-<msg time="2025-06-07T18:42:12.155872" level="FAIL">No keyword with name 'https://the-internet.herokuapp.com/login' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.155810" elapsed="0.000092">No keyword with name 'https://the-internet.herokuapp.com/login' found.</status>
+<kw name="Set Browser Timeout" owner="Browser">
+<arg>${TIMEOUT}</arg>
+<tag>Config</tag>
+<tag>Setter</tag>
+<doc>Sets the timeout used by most input and getter keywords.</doc>
+<status status="NOT RUN" start="2025-06-09T16:40:23.827319" elapsed="0.000166"/>
 </kw>
-<kw>
-<msg time="2025-06-07T18:42:12.155994" level="FAIL">Keyword name cannot be empty.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.155960" elapsed="0.000051">Keyword name cannot be empty.</status>
+<kw name="New Context" owner="Browser">
+<arg>viewport={'width': 1280, 'height': 720}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new BrowserContext with specified options.</doc>
+<status status="NOT RUN" start="2025-06-09T16:40:23.827566" elapsed="0.000297"/>
 </kw>
-<kw name="Maximize Browser Window">
-<msg time="2025-06-07T18:42:12.156737" level="FAIL">No keyword with name 'Maximize Browser Window' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.156697" elapsed="0.000060">No keyword with name 'Maximize Browser Window' found.</status>
+<status status="PASS" start="2025-06-09T16:40:23.826528" elapsed="0.001381"/>
 </kw>
-<kw name="Variables ***">
-<msg time="2025-06-07T18:42:12.157459" level="FAIL">No keyword with name 'Variables ***' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.157422" elapsed="0.000056">No keyword with name 'Variables ***' found.</status>
-</kw>
-<kw name="Username">
-<msg time="2025-06-07T18:42:12.158088" level="FAIL">No keyword with name 'Username' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.158052" elapsed="0.000053">No keyword with name 'Username' found.</status>
-</kw>
-<kw name="tomsmith">
-<msg time="2025-06-07T18:42:12.158790" level="FAIL">No keyword with name 'tomsmith' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.158740" elapsed="0.000072">No keyword with name 'tomsmith' found.</status>
-</kw>
-<kw name="Password">
-<msg time="2025-06-07T18:42:12.159433" level="FAIL">No keyword with name 'Password' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.159392" elapsed="0.000060">No keyword with name 'Password' found.</status>
-</kw>
-<kw name="SuperSecretPassword!">
-<msg time="2025-06-07T18:42:12.160169" level="FAIL">No keyword with name 'SuperSecretPassword!' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.160126" elapsed="0.000061">No keyword with name 'SuperSecretPassword!' found.</status>
-</kw>
-<kw name="Teardown ***">
-<msg time="2025-06-07T18:42:12.160852" level="FAIL">No keyword with name 'Teardown ***' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.160814" elapsed="0.000055">No keyword with name 'Teardown ***' found.</status>
-</kw>
-<arg>Open Browser</arg>
+<kw name="New Browser" owner="Browser">
 <arg>${BROWSER}</arg>
-<arg>https://the-internet.herokuapp.com/login</arg>
-<arg>Maximize Browser Window</arg>
-<arg>Variables ***</arg>
-<arg>Username</arg>
-<arg>tomsmith</arg>
-<arg>Password</arg>
-<arg>SuperSecretPassword!</arg>
-<arg>Teardown ***</arg>
-<doc>Executes all the given keywords in a sequence.</doc>
-<status status="FAIL" start="2025-06-07T18:42:12.154321" elapsed="0.006592">Several failures occurred:
-
-1) Keyword name cannot be empty.
-
-2) No keyword with name 'https://the-internet.herokuapp.com/login' found.
-
-3) Keyword name cannot be empty.
-
-4) No keyword with name 'Maximize Browser Window' found.
-
-5) No keyword with name 'Variables ***' found.
-
-6) No keyword with name 'Username' found.
-
-7) No keyword with name 'tomsmith' found.
-
-8) No keyword with name 'Password' found.
-
-9) No keyword with name 'SuperSecretPassword!' found.
-
-10) No keyword with name 'Teardown ***' found.</status>
+<arg>headless=${HEADLESS}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="NOT RUN" start="2025-06-09T16:40:23.827979" elapsed="0.000166"/>
 </kw>
-<kw name="Run Keywords" owner="BuiltIn" type="TEARDOWN">
-<kw>
-<msg time="2025-06-07T18:42:12.161255" level="FAIL">Keyword name cannot be empty.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.161219" elapsed="0.000056">Keyword name cannot be empty.</status>
+<kw name="New Page" owner="Browser">
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="NOT RUN" start="2025-06-09T16:40:23.828215" elapsed="0.000152"/>
 </kw>
-<kw name="Close Browser">
+<kw name="Log" owner="BuiltIn">
+<arg>Executing test steps</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-06-09T16:40:23.828438" elapsed="0.000056"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser">
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="NOT RUN" start="2025-06-09T16:40:23.828551" elapsed="0.000121"/>
+</kw>
+<kw name="Close Browser" type="TEARDOWN">
 <kw name="Take Screenshot" owner="Browser">
 <arg>fullPage=True</arg>
 <tag>PageContent</tag>
 <doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
-<status status="NOT RUN" start="2025-06-07T18:42:12.161533" elapsed="0.000212"/>
+<status status="NOT RUN" start="2025-06-09T16:40:23.828933" elapsed="0.000150"/>
 </kw>
 <kw name="Close Browser">
-<msg time="2025-06-07T18:42:12.161877" level="FAIL">Keyword 'Close Browser' expected 0 arguments, got 1.</msg>
+<msg time="2025-06-09T16:40:23.829299" level="FAIL">Keyword 'Close Browser' expected 0 arguments, got 1.</msg>
 <arg>ALL</arg>
-<status status="FAIL" start="2025-06-07T18:42:12.161826" elapsed="0.000069">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+<status status="FAIL" start="2025-06-09T16:40:23.829172" elapsed="0.000165">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
 </kw>
-<status status="FAIL" start="2025-06-07T18:42:12.161373" elapsed="0.000573">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+<status status="FAIL" start="2025-06-09T16:40:23.828800" elapsed="0.000600">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
 </kw>
-<kw name="Test Steps ***">
-<msg time="2025-06-07T18:42:12.162792" level="FAIL">No keyword with name 'Test Steps ***' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.162740" elapsed="0.000074">No keyword with name 'Test Steps ***' found.</status>
-</kw>
-<kw name="Test Step 1:">
-<msg time="2025-06-07T18:42:12.163496" level="FAIL">No keyword with name 'Test Step 1:' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.163454" elapsed="0.000063">No keyword with name 'Test Step 1:' found.</status>
-</kw>
-<kw name="[Documentation]">
-<msg time="2025-06-07T18:42:12.164928" level="FAIL">No keyword with name '[Documentation]' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.164870" elapsed="0.000081">No keyword with name '[Documentation]' found.</status>
-</kw>
-<kw name="Enter valid username.">
-<msg time="2025-06-07T18:42:12.165778" level="FAIL">No keyword with name 'Enter valid username.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.165732" elapsed="0.000066">No keyword with name 'Enter valid username.' found.</status>
-</kw>
-<kw name="Input Text">
-<msg time="2025-06-07T18:42:12.166461" level="FAIL">No keyword with name 'Input Text' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.166417" elapsed="0.000064">No keyword with name 'Input Text' found.</status>
-</kw>
-<kw name="id:username">
-<msg time="2025-06-07T18:42:12.167123" level="FAIL">No keyword with name 'id:username' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.167086" elapsed="0.000055">No keyword with name 'id:username' found.</status>
-</kw>
-<kw name="Test Step 2:">
-<msg time="2025-06-07T18:42:12.167802" level="FAIL">No keyword with name 'Test Step 2:' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.167760" elapsed="0.000061">No keyword with name 'Test Step 2:' found.</status>
-</kw>
-<kw name="[Documentation]">
-<msg time="2025-06-07T18:42:12.168981" level="FAIL">No keyword with name '[Documentation]' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.168897" elapsed="0.000109">No keyword with name '[Documentation]' found.</status>
-</kw>
-<kw name="Enter valid password.">
-<msg time="2025-06-07T18:42:12.169909" level="FAIL">No keyword with name 'Enter valid password.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.169851" elapsed="0.000079">No keyword with name 'Enter valid password.' found.</status>
-</kw>
-<kw name="Input Text">
-<msg time="2025-06-07T18:42:12.170967" level="FAIL">No keyword with name 'Input Text' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.170904" elapsed="0.000088">No keyword with name 'Input Text' found.</status>
-</kw>
-<kw name="id:password">
-<msg time="2025-06-07T18:42:12.171674" level="FAIL">No keyword with name 'id:password' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.171631" elapsed="0.000063">No keyword with name 'id:password' found.</status>
-</kw>
-<kw name="Test Step 3:">
-<msg time="2025-06-07T18:42:12.172553" level="FAIL">No keyword with name 'Test Step 3:' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.172339" elapsed="0.000244">No keyword with name 'Test Step 3:' found.</status>
-</kw>
-<kw name="[Documentation]">
-<msg time="2025-06-07T18:42:12.173348" level="FAIL">No keyword with name '[Documentation]' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.173306" elapsed="0.000062">No keyword with name '[Documentation]' found.</status>
-</kw>
-<kw name="Click the login button.">
-<msg time="2025-06-07T18:42:12.174220" level="FAIL">No keyword with name 'Click the login button.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.174174" elapsed="0.000067">No keyword with name 'Click the login button.' found.</status>
-</kw>
-<kw name="Click Element">
-<msg time="2025-06-07T18:42:12.175013" level="FAIL">No keyword with name 'Click Element' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.174967" elapsed="0.000067">No keyword with name 'Click Element' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?</status>
-</kw>
-<kw name="id:login_button">
-<msg time="2025-06-07T18:42:12.175745" level="FAIL">No keyword with name 'id:login_button' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.175703" elapsed="0.000061">No keyword with name 'id:login_button' found.</status>
-</kw>
-<kw name="Test Step 4:">
-<msg time="2025-06-07T18:42:12.176416" level="FAIL">No keyword with name 'Test Step 4:' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.176377" elapsed="0.000058">No keyword with name 'Test Step 4:' found.</status>
-</kw>
-<kw name="[Documentation]">
-<msg time="2025-06-07T18:42:12.177156" level="FAIL">No keyword with name '[Documentation]' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.177114" elapsed="0.000060">No keyword with name '[Documentation]' found.</status>
-</kw>
-<kw name="Wait for the success message to appear.">
-<msg time="2025-06-07T18:42:12.177986" level="FAIL">No keyword with name 'Wait for the success message to appear.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.177939" elapsed="0.000068">No keyword with name 'Wait for the success message to appear.' found.</status>
-</kw>
-<kw name="Wait Until Page Contains">
-<msg time="2025-06-07T18:42:12.179028" level="FAIL">No keyword with name 'Wait Until Page Contains' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.178973" elapsed="0.000078">No keyword with name 'Wait Until Page Contains' found.</status>
-</kw>
-<kw name="You are now logged in.">
-<msg time="2025-06-07T18:42:12.179826" level="FAIL">No keyword with name 'You are now logged in.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.179784" elapsed="0.000062">No keyword with name 'You are now logged in.' found.</status>
-</kw>
-<kw name="Test Step 5:">
-<msg time="2025-06-07T18:42:12.180531" level="FAIL">No keyword with name 'Test Step 5:' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.180489" elapsed="0.000061">No keyword with name 'Test Step 5:' found.</status>
-</kw>
-<kw name="[Documentation]">
-<msg time="2025-06-07T18:42:12.181283" level="FAIL">No keyword with name '[Documentation]' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.181239" elapsed="0.000064">No keyword with name '[Documentation]' found.</status>
-</kw>
-<kw name="Verify the success message is displayed.">
-<msg time="2025-06-07T18:42:12.182054" level="FAIL">No keyword with name 'Verify the success message is displayed.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.182012" elapsed="0.000060">No keyword with name 'Verify the success message is displayed.' found.</status>
-</kw>
-<kw name="Should Contain" owner="BuiltIn">
-<msg time="2025-06-07T18:42:12.182174" level="FAIL">Keyword 'BuiltIn.Should Contain' expected 2 to 7 arguments, got 0.</msg>
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="FAIL" start="2025-06-07T18:42:12.182125" elapsed="0.000065">Keyword 'BuiltIn.Should Contain' expected 2 to 7 arguments, got 0.</status>
-</kw>
-<kw name="id:success_message">
-<msg time="2025-06-07T18:42:12.183033" level="FAIL">No keyword with name 'id:success_message' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.182886" elapsed="0.000282">No keyword with name 'id:success_message' found.</status>
-</kw>
-<kw name="You are now logged in.">
-<msg time="2025-06-07T18:42:12.184083" level="FAIL">No keyword with name 'You are now logged in.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.184030" elapsed="0.000074">No keyword with name 'You are now logged in.' found.</status>
-</kw>
-<kw name="Alternative test steps ***">
-<msg time="2025-06-07T18:42:12.184845" level="FAIL">No keyword with name 'Alternative test steps ***' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.184798" elapsed="0.000067">No keyword with name 'Alternative test steps ***' found.</status>
-</kw>
-<kw name="Test Step 6:">
-<msg time="2025-06-07T18:42:12.185538" level="FAIL">No keyword with name 'Test Step 6:' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.185479" elapsed="0.000078">No keyword with name 'Test Step 6:' found.</status>
-</kw>
-<kw name="[Documentation]">
-<msg time="2025-06-07T18:42:12.186257" level="FAIL">No keyword with name '[Documentation]' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.186217" elapsed="0.000058">No keyword with name '[Documentation]' found.</status>
-</kw>
-<kw name="Test invalid credentials.">
-<msg time="2025-06-07T18:42:12.187190" level="FAIL">No keyword with name 'Test invalid credentials.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.187135" elapsed="0.000074">No keyword with name 'Test invalid credentials.' found.</status>
-</kw>
-<kw name="Input Text">
-<msg time="2025-06-07T18:42:12.187904" level="FAIL">No keyword with name 'Input Text' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.187857" elapsed="0.000066">No keyword with name 'Input Text' found.</status>
-</kw>
-<kw name="id:username">
-<msg time="2025-06-07T18:42:12.188622" level="FAIL">No keyword with name 'id:username' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.188560" elapsed="0.000081">No keyword with name 'id:username' found.</status>
-</kw>
-<kw name="tom">
-<msg time="2025-06-07T18:42:12.189174" level="FAIL">No keyword with name 'tom' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.189134" elapsed="0.000059">No keyword with name 'tom' found.</status>
-</kw>
-<kw name="Input Text">
-<msg time="2025-06-07T18:42:12.189861" level="FAIL">No keyword with name 'Input Text' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.189820" elapsed="0.000058">No keyword with name 'Input Text' found.</status>
-</kw>
-<kw name="id:password">
-<msg time="2025-06-07T18:42:12.190668" level="FAIL">No keyword with name 'id:password' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.190619" elapsed="0.000069">No keyword with name 'id:password' found.</status>
-</kw>
-<kw name="password">
-<msg time="2025-06-07T18:42:12.191394" level="FAIL">No keyword with name 'password' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.191337" elapsed="0.000076">No keyword with name 'password' found.</status>
-</kw>
-<kw name="Click Element">
-<msg time="2025-06-07T18:42:12.192146" level="FAIL">No keyword with name 'Click Element' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.192108" elapsed="0.000057">No keyword with name 'Click Element' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?</status>
-</kw>
-<kw name="id:login_button">
-<msg time="2025-06-07T18:42:12.192911" level="FAIL">No keyword with name 'id:login_button' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.192871" elapsed="0.000061">No keyword with name 'id:login_button' found.</status>
-</kw>
-<kw name="Wait Until Element Is Not Visible">
-<msg time="2025-06-07T18:42:12.193684" level="FAIL">No keyword with name 'Wait Until Element Is Not Visible' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.193635" elapsed="0.000069">No keyword with name 'Wait Until Element Is Not Visible' found.</status>
-</kw>
-<kw name="id:success_message">
-<msg time="2025-06-07T18:42:12.194583" level="FAIL">No keyword with name 'id:success_message' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.194530" elapsed="0.000074">No keyword with name 'id:success_message' found.</status>
-</kw>
-<kw name="Should Contain" owner="BuiltIn">
-<msg time="2025-06-07T18:42:12.194714" level="FAIL">Keyword 'BuiltIn.Should Contain' expected 2 to 7 arguments, got 0.</msg>
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="FAIL" start="2025-06-07T18:42:12.194662" elapsed="0.000070">Keyword 'BuiltIn.Should Contain' expected 2 to 7 arguments, got 0.</status>
-</kw>
-<kw name="id:error_message">
-<msg time="2025-06-07T18:42:12.195506" level="FAIL">No keyword with name 'id:error_message' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.195462" elapsed="0.000063">No keyword with name 'id:error_message' found.</status>
-</kw>
-<kw name="Invalid credentials. Please try again.">
-<msg time="2025-06-07T18:42:12.196370" level="FAIL">No keyword with name 'Invalid credentials. Please try again.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.196324" elapsed="0.000066">No keyword with name 'Invalid credentials. Please try again.' found.</status>
-</kw>
-<kw name="Test Step 7:">
-<msg time="2025-06-07T18:42:12.197140" level="FAIL">No keyword with name 'Test Step 7:' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.197092" elapsed="0.000069">No keyword with name 'Test Step 7:' found.</status>
-</kw>
-<kw name="[Documentation]">
-<msg time="2025-06-07T18:42:12.198138" level="FAIL">No keyword with name '[Documentation]' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.198067" elapsed="0.000098">No keyword with name '[Documentation]' found.</status>
-</kw>
-<kw name="Test empty fields.">
-<msg time="2025-06-07T18:42:12.199118" level="FAIL">No keyword with name 'Test empty fields.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.199060" elapsed="0.000082">No keyword with name 'Test empty fields.' found.</status>
-</kw>
-<kw name="Input Text">
-<msg time="2025-06-07T18:42:12.199884" level="FAIL">No keyword with name 'Input Text' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.199836" elapsed="0.000070">No keyword with name 'Input Text' found.</status>
-</kw>
-<kw name="id:username">
-<msg time="2025-06-07T18:42:12.200787" level="FAIL">No keyword with name 'id:username' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.200736" elapsed="0.000072">No keyword with name 'id:username' found.</status>
-</kw>
-<kw name="&lt;blank&gt;">
-<msg time="2025-06-07T18:42:12.201521" level="FAIL">No keyword with name '&lt;blank&gt;' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.201471" elapsed="0.000070">No keyword with name '&lt;blank&gt;' found.</status>
-</kw>
-<kw name="Input Text">
-<msg time="2025-06-07T18:42:12.202376" level="FAIL">No keyword with name 'Input Text' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.202323" elapsed="0.000074">No keyword with name 'Input Text' found.</status>
-</kw>
-<kw name="id:password">
-<msg time="2025-06-07T18:42:12.203155" level="FAIL">No keyword with name 'id:password' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.203108" elapsed="0.000067">No keyword with name 'id:password' found.</status>
-</kw>
-<kw name="&lt;blank&gt;">
-<msg time="2025-06-07T18:42:12.203755" level="FAIL">No keyword with name '&lt;blank&gt;' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.203715" elapsed="0.000059">No keyword with name '&lt;blank&gt;' found.</status>
-</kw>
-<kw name="Click Element">
-<msg time="2025-06-07T18:42:12.204543" level="FAIL">No keyword with name 'Click Element' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.204502" elapsed="0.000060">No keyword with name 'Click Element' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?</status>
-</kw>
-<kw name="id:login_button">
-<msg time="2025-06-07T18:42:12.205311" level="FAIL">No keyword with name 'id:login_button' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.205264" elapsed="0.000067">No keyword with name 'id:login_button' found.</status>
-</kw>
-<kw name="Wait Until Element Is Not Visible">
-<msg time="2025-06-07T18:42:12.206028" level="FAIL">No keyword with name 'Wait Until Element Is Not Visible' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.205982" elapsed="0.000066">No keyword with name 'Wait Until Element Is Not Visible' found.</status>
-</kw>
-<kw name="id:success_message">
-<msg time="2025-06-07T18:42:12.206860" level="FAIL">No keyword with name 'id:success_message' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.206810" elapsed="0.000070">No keyword with name 'id:success_message' found.</status>
-</kw>
-<kw name="Should Contain" owner="BuiltIn">
-<msg time="2025-06-07T18:42:12.207007" level="FAIL">Keyword 'BuiltIn.Should Contain' expected 2 to 7 arguments, got 0.</msg>
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="FAIL" start="2025-06-07T18:42:12.206952" elapsed="0.000073">Keyword 'BuiltIn.Should Contain' expected 2 to 7 arguments, got 0.</status>
-</kw>
-<kw name="id:error_message">
-<msg time="2025-06-07T18:42:12.208083" level="FAIL">No keyword with name 'id:error_message' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.208032" elapsed="0.000073">No keyword with name 'id:error_message' found.</status>
-</kw>
-<kw name="Username and password are required fields.">
-<msg time="2025-06-07T18:42:12.209672" level="FAIL">No keyword with name 'Username and password are required fields.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.209618" elapsed="0.000076">No keyword with name 'Username and password are required fields.' found.</status>
-</kw>
-<kw name="```">
-<msg time="2025-06-07T18:42:12.210199" level="FAIL">No keyword with name '```' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.210160" elapsed="0.000058">No keyword with name '```' found.</status>
-</kw>
-<kw name="This Robot Framework test case follows all the given rules, and it covers the main flow and alternative flows of the use case. Additionally, it includes proper setup and teardown, clear test actions, and appropriate selectors and waits.">
-<msg time="2025-06-07T18:42:12.211500" level="FAIL">No keyword with name 'This Robot Framework test case follows all the given rules, and it covers the main flow and alternative flows of the use case. Additionally, it includes proper setup and teardown, clear test actions, and appropriate selectors and waits.' found.</msg>
-<status status="FAIL" start="2025-06-07T18:42:12.211450" elapsed="0.000070">No keyword with name 'This Robot Framework test case follows all the given rules, and it covers the main flow and alternative flows of the use case. Additionally, it includes proper setup and teardown, clear test actions, and appropriate selectors and waits.' found.</status>
-</kw>
-<arg>Close Browser</arg>
-<arg>Test Steps ***</arg>
-<arg>Test Step 1:</arg>
-<arg>[Documentation]</arg>
-<arg>Enter valid username.</arg>
-<arg>Input Text</arg>
-<arg>id:username</arg>
-<arg>${Username}</arg>
-<arg>Test Step 2:</arg>
-<arg>[Documentation]</arg>
-<arg>Enter valid password.</arg>
-<arg>Input Text</arg>
-<arg>id:password</arg>
-<arg>${Password}</arg>
-<arg>Test Step 3:</arg>
-<arg>[Documentation]</arg>
-<arg>Click the login button.</arg>
-<arg>Click Element</arg>
-<arg>id:login_button</arg>
-<arg>Test Step 4:</arg>
-<arg>[Documentation]</arg>
-<arg>Wait for the success message to appear.</arg>
-<arg>Wait Until Page Contains</arg>
-<arg>You are now logged in.</arg>
-<arg>Test Step 5:</arg>
-<arg>[Documentation]</arg>
-<arg>Verify the success message is displayed.</arg>
-<arg>Should Contain</arg>
-<arg>id:success_message</arg>
-<arg>You are now logged in.</arg>
-<arg>Alternative test steps ***</arg>
-<arg>Test Step 6:</arg>
-<arg>[Documentation]</arg>
-<arg>Test invalid credentials.</arg>
-<arg>Input Text</arg>
-<arg>id:username</arg>
-<arg>tom</arg>
-<arg>Input Text</arg>
-<arg>id:password</arg>
-<arg>password</arg>
-<arg>Click Element</arg>
-<arg>id:login_button</arg>
-<arg>Wait Until Element Is Not Visible</arg>
-<arg>id:success_message</arg>
-<arg>Should Contain</arg>
-<arg>id:error_message</arg>
-<arg>Invalid credentials. Please try again.</arg>
-<arg>Test Step 7:</arg>
-<arg>[Documentation]</arg>
-<arg>Test empty fields.</arg>
-<arg>Input Text</arg>
-<arg>id:username</arg>
-<arg>&lt;blank&gt;</arg>
-<arg>Input Text</arg>
-<arg>id:password</arg>
-<arg>&lt;blank&gt;</arg>
-<arg>Click Element</arg>
-<arg>id:login_button</arg>
-<arg>Wait Until Element Is Not Visible</arg>
-<arg>id:success_message</arg>
-<arg>Should Contain</arg>
-<arg>id:error_message</arg>
-<arg>Username and password are required fields.</arg>
-<arg>```</arg>
-<arg>This Robot Framework test case follows all the given rules, and it covers the main flow and alternative flows of the use case. Additionally, it includes proper setup and teardown, clear test actions, and appropriate selectors and waits.</arg>
-<doc>Executes all the given keywords in a sequence.</doc>
-<status status="FAIL" start="2025-06-07T18:42:12.161051" elapsed="0.050545">Several failures occurred:
-
-1) Keyword name cannot be empty.
-
-2) Keyword 'Close Browser' expected 0 arguments, got 1.
-
-3) No keyword with name 'Test Steps ***' found.
-
-4) No keyword with name 'Test Step 1:' found.
-
-5) No keyword with name '[Documentation]' found.
-
-6) No keyword with name 'Enter valid username.' found.
-
-7) No keyword with name 'Input Text' found.
-
-8) No keyword with name 'id:username' found.
-
-9) No keyword with name 'Test Step 2:' found.
-
-    [ Message content over the limit has been removed. ]
-...r.Click' and forgot to use enough whitespace between keyword and arguments?
-
-57) No keyword with name 'id:login_button' found.
-
-58) No keyword with name 'Wait Until Element Is Not Visible' found.
-
-59) No keyword with name 'id:success_message' found.
-
-60) Keyword 'BuiltIn.Should Contain' expected 2 to 7 arguments, got 0.
-
-61) No keyword with name 'id:error_message' found.
-
-62) No keyword with name 'Username and password are required fields.' found.
-
-63) No keyword with name '```' found.
-
-64) No keyword with name 'This Robot Framework test case follows all the given rules, and it covers the main flow and alternative flows of the use case. Additionally, it includes proper setup and teardown, clear test actions, and appropriate selectors and waits.' found.</status>
-</kw>
-<msg time="2025-06-07T18:42:12.295009" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:43125</msg>
+<msg time="2025-06-09T16:40:23.928957" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:39483</msg>
 <doc>Automated test for login functionality</doc>
 <tag>login smoke</tag>
-<status status="FAIL" start="2025-06-07T18:42:12.153726" elapsed="0.058382">Setup failed:
-Several failures occurred:
-
-1) Keyword name cannot be empty.
-
-2) No keyword with name 'https://the-internet.herokuapp.com/login' found.
-
-3) Keyword name cannot be empty.
-
-4) No keyword with name 'Maximize Browser Window' found.
-
-5) No keyword with name 'Variables ***' found.
-
-6) No keyword with name 'Username' found.
-
-7) No keyword with name 'tomsmith' found.
-
-8) No keyword with name 'Password' found.
-
-9) No keyword with name 'SuperSecretPassword!' found.
-
-10) No keyword with name 'Teardown ***' found.
-
-Also teardown failed:
-Several failures occurred:
-
-1) Keyword name cannot be empty.
-
-2) Keyword 'Close Browser' expected 0 arguments, got 1.
-
-3) No keyword with name 'Test Steps ***' found.
-
-4) No keyword with name 'Test Step 1:' found.
-
-5) No keyword with name '[Documentation]' found.
-
-6) No keyword with name 'Enter valid username.' found.
-
-7) No keyword with name 'Input Text' found.
-
-8) No keyword with name 'id:username' found.
-
-9) No keyword with name 'Test Step 2:' found.
-
-    [ Message content over the limit has been removed. ]
-...r.Click' and forgot to use enough whitespace between keyword and arguments?
-
-57) No keyword with name 'id:login_button' found.
-
-58) No keyword with name 'Wait Until Element Is Not Visible' found.
-
-59) No keyword with name 'id:success_message' found.
-
-60) Keyword 'BuiltIn.Should Contain' expected 2 to 7 arguments, got 0.
-
-61) No keyword with name 'id:error_message' found.
-
-62) No keyword with name 'Username and password are required fields.' found.
-
-63) No keyword with name '```' found.
-
-64) No keyword with name 'This Robot Framework test case follows all the given rules, and it covers the main flow and alternative flows of the use case. Additionally, it includes proper setup and teardown, clear test actions, and appropriate selectors and waits.' found.</status>
+<status status="FAIL" start="2025-06-09T16:40:23.826074" elapsed="0.003363">Teardown failed:
+Keyword 'Close Browser' expected 0 arguments, got 1.</status>
 </test>
 <doc>Automated test for login functionality</doc>
-<status status="FAIL" start="2025-06-07T18:42:11.934484" elapsed="1.131284"/>
+<status status="FAIL" start="2025-06-09T16:40:23.589500" elapsed="1.197842"/>
 </suite>
 <statistics>
 <total>

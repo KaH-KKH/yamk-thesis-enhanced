@@ -1,0 +1,19 @@
+{
+  "model": "Falcon3-7B-Base",
+  "timestamp": "2025-06-08T16:44:05.183328",
+  "total_files": 2,
+  "successful": 2,
+  "failed": 0,
+  "results": [
+    {
+      "use_case": "example_login_use_case.txt",
+      "test_case": "example_login_use_case.robot",
+      "status": "success"
+    },
+    {
+      "use_case": "example_login_use_case.json",
+      "test_case": "example_login_use_case.robot",
+      "status": "success"
+    }
+  ]
+}
