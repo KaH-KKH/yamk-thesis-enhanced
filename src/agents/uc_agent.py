@@ -147,6 +147,13 @@ Format the response as a structured use case."""
         # Get all requirement files
         requirement_files = list(requirement_path.glob("*.txt"))
         logger.info(f"Found {len(requirement_files)} requirement files")
+
+        # LISÄÄ TÄMÄ: Sample size rajoitus
+        if not self.config.get("evaluation", {}).get("full_evaluation", True):
+            sample_size = self.config.get("evaluation", {}).get("sample_size", 3)
+            if len(requirement_files) > sample_size:
+                requirement_files = requirement_files[:sample_size]
+                logger.info(f"Limited to {sample_size} files for evaluation")
         
         results = []
         for req_file in requirement_files:

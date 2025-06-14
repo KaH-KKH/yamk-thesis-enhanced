@@ -62,6 +62,8 @@ agents:
 
 evaluation:
   batch_size: 8
+  sample_size: 3  # Evaluoi vain 3 tiedostoa per malli
+  full_evaluation: false  # true = kaikki tiedostot
   metrics:
     - bleu
     - rouge

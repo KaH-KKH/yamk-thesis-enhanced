@@ -13,6 +13,7 @@ from loguru import logger
 import yaml
 from pathlib import Path
 from typing import Dict, Any, Optional
+from ..utils.model_cache import ModelCache
 
 
 class ModelLoader:
@@ -53,6 +54,14 @@ class ModelLoader:
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
         """Load a model by name"""
+        # Käytä cachea
+        cache = ModelCache()
+
+        # Tarkista onko jo cachessa
+        if hasattr(cache, '_models') and model_name in cache._models:
+            logger.info(f"Using cached model: {model_name}")
+            return cache._models[model_name]
+
         if model_name in self.loaded_models:
             logger.info(f"Model {model_name} already loaded")
             return self.loaded_models[model_name]
@@ -109,6 +118,10 @@ class ModelLoader:
             logger.info(f"Total parameters: {total_params:,}")
             logger.info(f"Model device: {next(model.parameters()).device}")
             
+            # Tallenna cacheen latauksen jälkeen
+            cache._models[model_name] = model
+            cache._tokenizers[model_name] = tokenizer
+
             return model
             
         except Exception as e:

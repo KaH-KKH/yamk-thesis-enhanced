@@ -358,6 +358,13 @@ Format the test case with:
         # Get all use case files
         use_case_files = list(use_case_path.glob("*.txt")) + list(use_case_path.glob("*.json"))
         logger.info(f"Found {len(use_case_files)} use case files")
+
+        # LISÄÄ TÄMÄ: Sample size rajoitus
+        if not self.config.get("evaluation", {}).get("full_evaluation", True):
+            sample_size = self.config.get("evaluation", {}).get("sample_size", 3)
+            if len(requirement_files) > sample_size:
+                requirement_files = requirement_files[:sample_size]
+                logger.info(f"Limited to {sample_size} files for evaluation")
         
         results = []
         for uc_file in use_case_files:
