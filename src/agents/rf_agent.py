@@ -56,17 +56,18 @@ class RFAgent:
     
     async def generate_test_case(self, use_case_file: str) -> str:
         """Generate Robot Framework test case from use case file"""
-        # Read use case
-        use_case_text = FileHandler.read_text_file(use_case_file)
-        
-        # Parse use case if it's JSON
-        if use_case_file.endswith('.json'):
-            use_case_data = json.loads(use_case_text)
-            # Convert to text format for processing
-            use_case_text = self._format_use_case_for_processing(use_case_data)
-        
-        # Create prompt
-        prompt = f"""{self.system_prompt}
+        try:
+            # Read use case
+            use_case_text = FileHandler.read_text_file(use_case_file)
+            
+            # Parse use case if it's JSON
+            if use_case_file.endswith('.json'):
+                use_case_data = json.loads(use_case_text)
+                # Convert to text format for processing
+                use_case_text = self._format_use_case_for_processing(use_case_data)
+            
+            # Create prompt
+            prompt = f"""{self.system_prompt}
 
 Target URL: {self.config["paths"]["base_url"]}
 
@@ -89,27 +90,31 @@ Format the test case with:
 - Teardown steps
 """
 
-        # Generate response
-        logger.info(f"Generating test case for: {use_case_file}")
-        start_time = datetime.now()
+            # Generate response
+            logger.info(f"Generating test case for: {use_case_file}")
+            start_time = datetime.now()
+            
+            response = self.model_loader.generate(
+                self.model_name,
+                prompt,
+                max_new_tokens=1024,
+                temperature=0.7
+            )
+            
+            generation_time = (datetime.now() - start_time).total_seconds()
+            logger.info(f"Test case generated in {generation_time:.2f} seconds")
+            
+            # Parse response into TestCase object
+            test_case = self._parse_response_to_test_case(response, use_case_text)
+            
+            # Convert to Robot Framework format
+            robot_content = self._convert_to_robot_format(test_case)
+            
+            return robot_content
         
-        response = self.model_loader.generate(
-            self.model_name,
-            prompt,
-            max_new_tokens=1024,
-            temperature=0.7
-        )
-        
-        generation_time = (datetime.now() - start_time).total_seconds()
-        logger.info(f"Test case generated in {generation_time:.2f} seconds")
-        
-        # Parse response into TestCase object
-        test_case = self._parse_response_to_test_case(response, use_case_text)
-        
-        # Convert to Robot Framework format
-        robot_content = self._convert_to_robot_format(test_case)
-        
-        return robot_content
+        except Exception as e:
+            logger.error(f"Error generating test case for {use_case_file}: {str(e)}")
+            raise
     
     def _format_use_case_for_processing(self, use_case_data: Dict[str, Any]) -> str:
         """Format use case data for processing"""
@@ -359,11 +364,11 @@ Format the test case with:
         use_case_files = list(use_case_path.glob("*.txt")) + list(use_case_path.glob("*.json"))
         logger.info(f"Found {len(use_case_files)} use case files")
 
-        # LISÄÄ TÄMÄ: Sample size rajoitus
+        # KORJAUS: Sample size rajoitus - käytä oikeaa muuttujan nimeä
         if not self.config.get("evaluation", {}).get("full_evaluation", True):
             sample_size = self.config.get("evaluation", {}).get("sample_size", 3)
-            if len(requirement_files) > sample_size:
-                requirement_files = requirement_files[:sample_size]
+            if len(use_case_files) > sample_size:  # KORJATTU: use_case_files
+                use_case_files = use_case_files[:sample_size]  # KORJATTU: use_case_files
                 logger.info(f"Limited to {sample_size} files for evaluation")
         
         results = []

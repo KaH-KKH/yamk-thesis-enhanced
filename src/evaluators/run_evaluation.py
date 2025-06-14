@@ -30,7 +30,7 @@ from .metrics import (
 )
 
 # Import other modules
-from .ab_testing import ABTestRunner
+from .ab_testing import ABTestRunner  # KORJAUS: Varmistettu import
 from .realtime_monitor import RealtimeMonitor
 
 # Import agents
@@ -483,13 +483,6 @@ class EnhancedEvaluationRunner:
                 if torch.cuda.is_available():
                     torch.cuda.empty_cache()
                     logger.info(f"GPU memory cleared after error in: {model}")
-
-            results = await self.evaluate_model(model)
-            all_results[model] = results
-            
-            # Save individual model results
-            model_file = self.run_dir / f"{model}_results.json"
-            FileHandler.save_json(results, str(model_file))
         
         # Generate standard comparison report
         comparison = self._generate_comparison_report(all_results)
@@ -528,13 +521,17 @@ class EnhancedEvaluationRunner:
         if len(self.models) == 2 and self.enable_extended_metrics:
             logger.info("Running A/B test between models")
             ab_runner = ABTestRunner()
-            ab_results = await ab_runner.run_ab_test(
-                model_a=self.models[0],
-                model_b=self.models[1],
-                test_data_path=self.config["paths"]["requirements_dir"],
-                output_dir=str(self.run_dir / "ab_test")
-            )
-            comparison["ab_test_results"] = ab_results
+            try:
+                ab_results = await ab_runner.run_ab_test(
+                    model_a=self.models[0],
+                    model_b=self.models[1],
+                    test_data_path=self.config["paths"]["requirements_dir"],
+                    output_dir=str(self.run_dir / "ab_test")
+                )
+                comparison["ab_test_results"] = ab_results
+            except Exception as e:
+                logger.error(f"A/B test failed: {str(e)}")
+                comparison["ab_test_error"] = str(e)
         
         logger.success(f"Enhanced evaluation complete! Results saved to: {self.run_dir}")
         

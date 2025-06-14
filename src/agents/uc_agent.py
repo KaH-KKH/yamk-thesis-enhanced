@@ -53,11 +53,12 @@ class UCAgent:
     
     async def generate_use_case(self, requirement_file: str) -> UseCase:
         """Generate use case from requirement file"""
-        # Read requirement
-        requirement_text = FileHandler.read_text_file(requirement_file)
-        
-        # Create prompt
-        prompt = f"""{self.system_prompt}
+        try:
+            # Read requirement
+            requirement_text = FileHandler.read_text_file(requirement_file)
+            
+            # Create prompt
+            prompt = f"""{self.system_prompt}
 
 Requirement:
 {requirement_text}
@@ -73,24 +74,28 @@ Generate a detailed use case with:
 
 Format the response as a structured use case."""
 
-        # Generate response using model
-        logger.info(f"Generating use case for: {requirement_file}")
-        start_time = datetime.now()
+            # Generate response using model
+            logger.info(f"Generating use case for: {requirement_file}")
+            start_time = datetime.now()
+            
+            response = self.model_loader.generate(
+                self.model_name, 
+                prompt,
+                max_new_tokens=1024,
+                temperature=0.7
+            )
+            
+            generation_time = (datetime.now() - start_time).total_seconds()
+            logger.info(f"Use case generated in {generation_time:.2f} seconds")
+            
+            # Parse response into UseCase object
+            use_case = self._parse_response_to_use_case(response, requirement_text)
+            
+            return use_case
         
-        response = self.model_loader.generate(
-            self.model_name, 
-            prompt,
-            max_new_tokens=1024,
-            temperature=0.7
-        )
-        
-        generation_time = (datetime.now() - start_time).total_seconds()
-        logger.info(f"Use case generated in {generation_time:.2f} seconds")
-        
-        # Parse response into UseCase object
-        use_case = self._parse_response_to_use_case(response, requirement_text)
-        
-        return use_case
+        except Exception as e:
+            logger.error(f"Error generating use case for {requirement_file}: {str(e)}")
+            raise
     
     def _parse_response_to_use_case(self, response: str, requirement_text: str) -> UseCase:
         """Parse LLM response into UseCase object"""
@@ -148,11 +153,11 @@ Format the response as a structured use case."""
         requirement_files = list(requirement_path.glob("*.txt"))
         logger.info(f"Found {len(requirement_files)} requirement files")
 
-        # LISÄÄ TÄMÄ: Sample size rajoitus
+        # KORJAUS: Sample size rajoitus - käytä oikeaa muuttujan nimeä
         if not self.config.get("evaluation", {}).get("full_evaluation", True):
             sample_size = self.config.get("evaluation", {}).get("sample_size", 3)
-            if len(requirement_files) > sample_size:
-                requirement_files = requirement_files[:sample_size]
+            if len(requirement_files) > sample_size:  # OIKEA muuttuja: requirement_files
+                requirement_files = requirement_files[:sample_size]  # OIKEA muuttuja: requirement_files
                 logger.info(f"Limited to {sample_size} files for evaluation")
         
         results = []

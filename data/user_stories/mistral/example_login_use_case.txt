@@ -1,36 +1,40 @@
 
-USE CASE: ** User Logs into the System
-ID: ** UC-LOGIN-001
+USE CASE: 
+ID: UC-001
 
 ACTORS:
-- user
 - system
+- user
 - users
 - User
+- System
 
 PRECONDITIONS:
-1. User is on the login page: https://the-internet.herokuapp.com/login
-2. User has access to the login credentials: tomsmith/SuperSecretPassword!
+1. User is at the login page (https://the-internet.herokuapp.com/login)
+2. User has a valid username and password
 
 MAIN FLOW:
-1. User enters username (tosmith) and password (SuperSecretPassword!) into the corresponding input fields.
-2. User clicks the "Login" button.
-3. System validates the entered credentials against the database.
-4. a. If validation is successful, proceed to step 5.
-5. b. If validation fails, display an error message and return to step 1.
-6. 4. System displays a success message.
-7. 5. User is now logged in and can access the secure area.
-8. **Alternative Flows:**
-9. Invalid Credentials*
-10. a. If validation fails, display an error message, clear the input fields, and return to step 1.
+1. User enters username (tomsmith) and password (SuperSecretPassword!) in the respective fields
+2. User clicks on the "Login" button
+3. System validates the username and password against the database
+4. 4. If validation is successful:
+5. a. System displays a success message
+6. b. User is redirected to the secure area
+7. 5. If validation fails:
+8. a. System displays an error message
+9. Alternative flows:
+10. User enters incorrect username or password:
+11. a. System displays an error message
+12. b. User can try again
+13. User leaves the login page without logging in:
+14. a. System does not redirect the user to the secure area
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. If the login was successful, the user is now logged in and can access the secure area.
-2. The system logs the successful login event.
-3. The user's session is established.
+1. If login is successful, user is authenticated and can access the secure area
+2. If login fails, user remains on the login page and is not authenticated.
 
 NOTES:
 None
