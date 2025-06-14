@@ -1394,7 +1394,7 @@ async def main():
         models, 
         args.config,
         enable_extended_metrics=args.extended_metrics,
-        enable_monitoring=args.monitoring
+        enable_monitoring=args.monitoring,
         enable_ab_test=args.ab_test  # LISÄÄ TÄMÄ
     )
     

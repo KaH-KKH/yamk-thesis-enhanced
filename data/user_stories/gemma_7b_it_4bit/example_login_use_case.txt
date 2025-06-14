@@ -10,26 +10,25 @@ ACTORS:
 
 PRECONDITIONS:
 1. User has internet connection
-2. User has valid username and password
+2. User has a valid username and password
 
 MAIN FLOW:
-1. User navigates to the login page at https://the-internet.herokuapp.com/login
+1. User navigates to the login page at  https://the-internet.herokuapp.com/login
 2. User enters username and password
 3. User clicks on the login button
 4. 4. System validates credentials
-5. 5. If credentials are valid, user is logged in and redirected to the main page
-6. 6. System displays a success message
-7. 7. User can interact with the system
-8. **Alternative Flows:**
-9. If the user forgets their password, they can click on the "Forgot password?" link to reset their password.
-10. If the user's credentials are invalid, the system will display an error message.
+5. 5. If credentials are valid, the system displays a success message and allows the user to access the secure area
+6. 6. If credentials are invalid, the system displays an error message
+7. **Alternative Flows:**
+8. If the user forgets their password, they can click on the "Forgot password?" link to reset their password.
+9. If the user's account is locked due to too many failed login attempts, they will need to wait for a specified amount of time before they can try logging in again.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User is logged into the system
-2. User can interact with the system
+1. User has successfully logged into the secure area
+2. User can access the features and functions of the secure area
 
 NOTES:
 None

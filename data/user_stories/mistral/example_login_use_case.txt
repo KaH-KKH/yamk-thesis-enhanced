@@ -1,5 +1,5 @@
 
-USE CASE: User logs in to the system with valid credentials
+USE CASE: User logs into the secure area with valid credentials
 ID: UC-001
 
 ACTORS:
@@ -7,33 +7,30 @@ ACTORS:
 - user
 - system
 - User
-- System
 
 PRECONDITIONS:
-1. User is at the login page: https://the-internet.herokuapp.com/login
-2. User has entered a valid username (tomsmith)
-3. User has entered a valid password (SuperSecretPassword!)
+1. The user is at the login page
+2. The user has access to a web browser
 
 MAIN FLOW:
-1. User enters username (tomsmith) and password (SuperSecretPassword!) in the respective fields.
-2. User clicks the 'Login' button.
-3. System checks if the entered credentials are valid.
-4. 4. System returns a successful login message and grants access to the secure area if the credentials are valid.
-5. 5. User is now logged in and can access secure features.
-6. Alternative flows:
-7. User enters invalid credentials:
-8. a. System displays an error message and prompts the user to try again.
-9. b. User can continue to attempt login with new credentials.
-10. User leaves the login page without logging in.
-11. a. User remains logged out and on the login page.
+1. User enters "tomsmith" as the username.
+2. User enters "SuperSecretPassword!" as the password.
+3. User clicks the "Login" button.
+4. 4. System checks the username and password against the database.
+5. 5. If the credentials are valid, the system displays a "Success" message.
+6. 6. The user is redirected to the secure area.
+7. Alternative flows:
+8. User enters invalid credentials:
+9. a. System displays an "Error" message.
+10. b. User can try again.
+11. User leaves the login page without logging in.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User is logged in and has access to secure features.
-2. System stores the user's session information.
-3. System displays a success message.
+1. If the login was successful, the user is in the secure area.
+2. If the login failed, the user remains on the login page.
 
 NOTES:
 None

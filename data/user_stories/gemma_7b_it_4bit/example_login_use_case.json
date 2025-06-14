@@ -9,24 +9,23 @@
   ],
   "preconditions": [
     "User has internet connection",
-    "User has valid username and password"
+    "User has a valid username and password"
   ],
   "main_flow": [
-    "User navigates to the login page at https://the-internet.herokuapp.com/login",
+    "User navigates to the login page at  https://the-internet.herokuapp.com/login",
     "User enters username and password",
     "User clicks on the login button",
     "4. System validates credentials",
-    "5. If credentials are valid, user is logged in and redirected to the main page",
-    "6. System displays a success message",
-    "7. User can interact with the system",
+    "5. If credentials are valid, the system displays a success message and allows the user to access the secure area",
+    "6. If credentials are invalid, the system displays an error message",
     "**Alternative Flows:**",
     "If the user forgets their password, they can click on the \"Forgot password?\" link to reset their password.",
-    "If the user's credentials are invalid, the system will display an error message."
+    "If the user's account is locked due to too many failed login attempts, they will need to wait for a specified amount of time before they can try logging in again."
   ],
   "alternative_flows": null,
   "postconditions": [
-    "User is logged into the system",
-    "User can interact with the system"
+    "User has successfully logged into the secure area",
+    "User can access the features and functions of the secure area"
   ],
   "notes": null
 }
