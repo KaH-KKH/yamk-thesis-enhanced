@@ -19,6 +19,7 @@ from .llm_evaluator import LLMEvaluator
 import nltk
 from nltk.translate.meteor_score import meteor_score
 from .dryrun_analyzer import DryrunAnalyzer
+import gc
 
 # Import all metric modules
 from .metrics import (
@@ -183,6 +184,38 @@ class EnhancedEvaluationRunner:
             results["error"] = str(e)
         
         return results
+    
+    # Lisää tämä funktio EnhancedEvaluationRunner luokan sisälle (esim. evaluate_model metodin jälkeen)
+    def _force_cleanup_gpu_memory(self):
+        """Aggressively clean up GPU memory"""
+        import gc
+        
+        # Clear all model references
+        if hasattr(self, 'llm_evaluator'):
+            if hasattr(self.llm_evaluator, 'model_loader'):
+                # Unload all models from evaluator
+                for model in list(self.llm_evaluator.model_loader.loaded_models.keys()):
+                    self.llm_evaluator.model_loader.unload_model(model)
+        
+        # Clear cache singleton
+        from ..utils.model_cache import ModelCache
+        cache = ModelCache()
+        cache.clear_all()
+        
+        # Force Python garbage collection
+        for _ in range(3):
+            gc.collect()
+        
+        # Clear CUDA cache multiple times
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
+            torch.cuda.empty_cache()
+            
+            # Log GPU memory status
+            allocated = torch.cuda.memory_allocated(0) / 1024**3
+            reserved = torch.cuda.memory_reserved(0) / 1024**3
+            logger.info(f"GPU Memory - Allocated: {allocated:.2f}GB, Reserved: {reserved:.2f}GB")
     
     # Lisää uusi metodi evaluate_model metodin jälkeen:
     async def _perform_llm_evaluation(self, model_name: str) -> Dict[str, Any]:
@@ -448,6 +481,7 @@ class EnhancedEvaluationRunner:
         
         return extended_metrics
     
+    # KORJAUS: Korvaa compare_models metodi tällä versiolla
     async def compare_models(self) -> Dict[str, Any]:
         """Run evaluation for all models and compare with extended analysis"""
         logger.info(f"Starting enhanced comparison of {len(self.models)} models")
@@ -455,14 +489,16 @@ class EnhancedEvaluationRunner:
         all_results = {}
         
         # Evaluate each model
-        for model in self.models:
-            # Tyhjennä muisti ennen uutta mallia
-            if torch.cuda.is_available():
-                torch.cuda.empty_cache()
-                logger.info(f"GPU memory cleared before evaluating: {model}")
-
-            logger.info(f"Evaluating model: {model}")
-
+        for i, model in enumerate(self.models):
+            # KORJAUS: Aggressiivinen muistin tyhjennys ennen jokaista mallia
+            logger.info(f"Forcing GPU cleanup before model {model}")
+            self._force_cleanup_gpu_memory()
+            
+            # KORJAUS: Odota hetki että muisti vapautuu
+            await asyncio.sleep(2)
+            
+            logger.info(f"Evaluating model {model} ({i+1}/{len(self.models)})")
+            
             try:
                 results = await self.evaluate_model(model)
                 all_results[model] = results
@@ -471,19 +507,27 @@ class EnhancedEvaluationRunner:
                 model_file = self.run_dir / f"{model}_results.json"
                 FileHandler.save_json(results, str(model_file))
                 
-                # Tyhjennä muisti mallin jälkeen
-                if torch.cuda.is_available():
-                    torch.cuda.empty_cache()
-                    logger.info(f"GPU memory cleared after evaluating: {model}")
-            
+            # KORJAUS: Lisätty OOM-virheenkäsittely
+            except torch.cuda.OutOfMemoryError as e:
+                logger.error(f"CUDA OOM for model {model}: {str(e)}")
+                all_results[model] = {
+                    "error": f"CUDA out of memory: {str(e)}",
+                    "status": "failed_oom"
+                }
+                
+                # Try to recover
+                self._force_cleanup_gpu_memory()
+                await asyncio.sleep(5)
+                
             except Exception as e:
                 logger.error(f"Error evaluating model {model}: {str(e)}")
                 all_results[model] = {"error": str(e)}
-                
-                # Tyhjennä muisti virheen jälkeenkin
-                if torch.cuda.is_available():
-                    torch.cuda.empty_cache()
-                    logger.info(f"GPU memory cleared after error in: {model}")
+            
+            finally:
+                # KORJAUS: Aina tyhjennä muisti mallin jälkeen
+                logger.info(f"Final cleanup after {model}")
+                self._force_cleanup_gpu_memory()
+                await asyncio.sleep(1)
         
         # Generate standard comparison report
         comparison = self._generate_comparison_report(all_results)
@@ -493,12 +537,11 @@ class EnhancedEvaluationRunner:
             comparative_results = self.comparative_analysis.analyze_models(all_results)
             comparison["extended_analysis"] = comparative_results
         
-        # *** TÄHÄN KOHTAAN DRYRUN-ANALYYSI ***
-        # Run dryrun analysis - KORJAUS: vain evaluoiduille malleille
+        # Run dryrun analysis
         logger.info("Running Robot Framework dryrun analysis...")
         dryrun_analyzer = DryrunAnalyzer(self.config_path)
         
-        # KORJAUS: Rajoita analysoitavat mallit vain evaluoituihin
+        # Rajoita analysoitavat mallit vain evaluoituihin
         dryrun_results = await dryrun_analyzer.analyze_specific_models(self.models)
         
         # Generate dryrun report
@@ -521,7 +564,7 @@ class EnhancedEvaluationRunner:
         FileHandler.save_text_file(summary, str(summary_file))
         
         # Run A/B tests if exactly 2 models
-        if len(self.models) == 2 and self.enable_ab_test:  # MUUTA TÄMÄ
+        if len(self.models) == 2 and self.enable_ab_test:
             logger.info("Running A/B test between models")
             ab_runner = ABTestRunner()
             try:

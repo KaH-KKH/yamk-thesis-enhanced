@@ -1,5 +1,6 @@
 """
 UC Agent - Generates use cases from requirements
+KORJATTU VERSIO: Parannettu muistinhallinta
 """
 
 import asyncio
@@ -8,6 +9,7 @@ from pathlib import Path
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 import json
+import gc  # KORJAUS: Lisätty gc import
 
 from pydantic import BaseModel, Field
 from loguru import logger
@@ -42,7 +44,7 @@ class UCAgent:
         logger.info(f"Loading model: {model_name}")
         self.model = self.model_loader.load_model(model_name)
 
-        # Tyhjennä muisti mallin latauksen jälkeen
+        # KORJAUS: Tyhjennä muisti mallin latauksen jälkeen
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
         
@@ -147,7 +149,7 @@ Format the response as a structured use case."""
         return UseCase(**use_case_data)
     
     async def batch_generate(self, requirement_dir: str, output_dir: str):
-        """Generate use cases for all requirements in directory"""
+        """Generate use cases for all requirements in directory with memory optimization"""
         requirement_path = Path(requirement_dir)
         output_path = Path(output_dir) / self.model_name
         output_path.mkdir(parents=True, exist_ok=True)
@@ -156,15 +158,16 @@ Format the response as a structured use case."""
         requirement_files = list(requirement_path.glob("*.txt"))
         logger.info(f"Found {len(requirement_files)} requirement files")
 
-        # KORJAUS: Sample size rajoitus - käytä oikeaa muuttujan nimeä
+        # Sample size rajoitus
         if not self.config.get("evaluation", {}).get("full_evaluation", True):
             sample_size = self.config.get("evaluation", {}).get("sample_size", 3)
-            if len(requirement_files) > sample_size:  # OIKEA muuttuja: requirement_files
-                requirement_files = requirement_files[:sample_size]  # OIKEA muuttuja: requirement_files
+            if len(requirement_files) > sample_size:
+                requirement_files = requirement_files[:sample_size]
                 logger.info(f"Limited to {sample_size} files for evaluation")
         
         results = []
-        for req_file in requirement_files:
+        # KORJAUS: Lisätty muistin optimointi batch-käsittelyyn
+        for i, req_file in enumerate(requirement_files):
             try:
                 # Generate use case
                 use_case = await self.generate_use_case(str(req_file))
@@ -186,6 +189,13 @@ Format the response as a structured use case."""
                 
                 logger.success(f"Generated use case: {output_file.name}")
                 
+                # KORJAUS: Säännöllinen muistin tyhjennys
+                if i % 5 == 0 and i > 0:
+                    gc.collect()
+                    if torch.cuda.is_available():
+                        torch.cuda.empty_cache()
+                    logger.info(f"Memory cleanup after {i} files")
+                
             except Exception as e:
                 logger.error(f"Error processing {req_file.name}: {str(e)}")
                 results.append({
@@ -200,16 +210,30 @@ Format the response as a structured use case."""
         """Format use case as readable text"""
         return self.text_processor.format_use_case(use_case.model_dump())
     
+    # KORJAUS: Parannettu __del__ metodi paremmalla virheenkäsittelyllä
     def __del__(self):
         """Cleanup when agent is destroyed"""
-        # Käytä model_loaderin unload_model metodia
-        if hasattr(self, 'model_loader') and hasattr(self, 'model_name'):
-            self.model_loader.unload_model(self.model_name)
-        
-        # Varmista että muisti tyhjennetään
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-            logger.info(f"GPU memory cleared for model: {self.model_name}")
+        try:
+            # Unload model from loader
+            if hasattr(self, 'model_loader') and hasattr(self, 'model_name'):
+                self.model_loader.unload_model(self.model_name)
+                logger.info(f"Model {self.model_name} unloaded from UC Agent")
+            
+            # Clear any remaining references
+            if hasattr(self, 'model'):
+                del self.model
+            if hasattr(self, 'tokenizer'):
+                del self.tokenizer
+            
+            # Force garbage collection
+            gc.collect()
+            
+            # Clear GPU cache
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+                logger.info(f"GPU memory cleared for model: {getattr(self, 'model_name', 'unknown')}")
+        except Exception as e:
+            logger.error(f"Error in UC Agent cleanup: {str(e)}")
 
 
 async def main():

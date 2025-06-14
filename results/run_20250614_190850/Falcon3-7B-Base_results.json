@@ -1,0 +1,12 @@
+{
+  "model": "Falcon3-7B-Base",
+  "timestamp": "2025-06-14T19:33:11.510363",
+  "use_case_generation": {},
+  "test_case_generation": {},
+  "metrics": {
+    "standard": {},
+    "extended": {}
+  },
+  "performance": {},
+  "error": "CUDA error: out of memory\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n"
+}

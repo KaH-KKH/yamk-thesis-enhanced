@@ -1,5 +1,6 @@
 """
 Model loader for open-source LLMs with 8-bit (4-bit) quantization
+KORJATTU VERSIO: Parannettu muistinhallinta ja virheenkäsittely
 """
 
 import torch
@@ -31,25 +32,53 @@ class ModelLoader:
         self.loaded_models = {}
         self.tokenizers = {}
         
-        # Setup quantization config for 8-bit (vähemmän ongelmia)
-        self.quantization_config = BitsAndBytesConfig(
-            load_in_8bit=True,  # Muuta 4bit -> 8bit
+        # KORJAUS: Lisätty vaihtoehtoiset kvantisointikonfiguraatiot
+        # 8-bit config (vakaa mutta käyttää enemmän muistia)
+        self.quantization_config_8bit = BitsAndBytesConfig(
+            load_in_8bit=True,
             llm_int8_enable_fp32_cpu_offload=True,
             llm_int8_threshold=6.0,
         )
         
+        # 4-bit config (käyttää vähemmän muistia)
+        self.quantization_config_4bit = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_use_double_quant=True,
+            bnb_4bit_quant_type="nf4"
+        )
+        
+        # Default to 8-bit for stability
+        self.quantization_config = self.quantization_config_8bit
+        
         logger.info("Model loader initialized")
     
-    def load_model(self, model_name: str):
+    # KORJAUS: Lisätty GPU muistin seurantafunktio
+    def _get_gpu_memory_usage(self):
+        """Get current GPU memory usage"""
+        if torch.cuda.is_available():
+            allocated = torch.cuda.memory_allocated(0) / 1024**3
+            reserved = torch.cuda.memory_reserved(0) / 1024**3
+            return allocated, reserved
+        return 0, 0
+    
+    def load_model(self, model_name: str, force_reload: bool = False):
+        """Load a model by name with improved memory management"""
+        
+        # KORJAUS: Lisätty muistin tila ennen latausta
+        allocated, reserved = self._get_gpu_memory_usage()
+        logger.info(f"GPU memory before loading {model_name}: Allocated={allocated:.2f}GB, Reserved={reserved:.2f}GB")
+        
         # Tyhjennä muisti ennen uuden mallin lataamista
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
-        """Load a model by name"""
+            torch.cuda.synchronize()  # KORJAUS: Lisätty synkronointi
+        
         # Käytä cachea
         cache = ModelCache()
 
-        # KORJAUS: Tarkista onko cachessa JA hae tokenizer
-        if hasattr(cache, '_models') and model_name in cache._models:
+        # Tarkista onko cachessa JA hae tokenizer
+        if not force_reload and hasattr(cache, '_models') and model_name in cache._models:
             logger.info(f"Using cached model: {model_name}")
             # KRIITTINEN KORJAUS: Tallenna tokenizer myös tähän instanssiin
             if hasattr(cache, '_tokenizers') and model_name in cache._tokenizers:
@@ -57,7 +86,7 @@ class ModelLoader:
                 self.tokenizer = cache._tokenizers[model_name]  # For compatibility
             return cache._models[model_name]
 
-        if model_name in self.loaded_models:
+        if model_name in self.loaded_models and not force_reload:
             logger.info(f"Model {model_name} already loaded")
             return self.loaded_models[model_name]
         
@@ -80,15 +109,16 @@ class ModelLoader:
             if tokenizer.pad_token is None:
                 tokenizer.pad_token = tokenizer.eos_token
 
-            # Load model with 8-bit quantization
+            # KORJAUS: Muutettu device_map ja lisätty muistirajoitukset
             model = AutoModelForCausalLM.from_pretrained(
                 model_id,
                 quantization_config=self.quantization_config,
-                device_map={"": 0},  # Muuta: pakottaa kaikki GPU:lle
+                device_map="auto",  # KORJAUS: Anna automaattisesti jakaa GPU/CPU
                 trust_remote_code=True,
-                torch_dtype=torch.float16,  # Muuta: bfloat16 -> float16
-                low_cpu_mem_usage=True,  # Lisää tämä
-                offload_folder=None,     # Lisää tämä: estää CPU offloading
+                torch_dtype=torch.float16,
+                low_cpu_mem_usage=True,
+                max_memory={0: "22GB", "cpu": "30GB"},  # KORJAUS: Rajoita GPU muistia
+                offload_folder="offload",  # KORJAUS: Salli offloading tarvittaessa
             )
             
             # Store loaded model and tokenizer
@@ -96,22 +126,70 @@ class ModelLoader:
             self.tokenizers[model_name] = tokenizer
             self.tokenizer = tokenizer  # For compatibility
             
+            # KORJAUS: Parempi cache-tallennus
+            cache.add_model(model_name, model, tokenizer)
+            
+            # KORJAUS: Muistin käytön raportointi latauksen jälkeen
+            allocated, reserved = self._get_gpu_memory_usage()
             logger.success(f"Model {model_name} loaded successfully")
+            logger.info(f"GPU memory after loading: Allocated={allocated:.2f}GB, Reserved={reserved:.2f}GB")
             
             # Log model info
             total_params = sum(p.numel() for p in model.parameters())
             logger.info(f"Total parameters: {total_params:,}")
-            logger.info(f"Model device: {next(model.parameters()).device}")
             
-            # KORJAUS: Tallenna cacheen latauksen jälkeen MOLEMMAT
-            cache._models[model_name] = model
-            cache._tokenizers[model_name] = tokenizer
+            # KORJAUS: Tarkista onko malli jaettu usealle laitteelle
+            if hasattr(model, 'hf_device_map'):
+                logger.info(f"Model device map: {model.hf_device_map}")
 
             return model
             
+        # KORJAUS: Lisätty OOM-virheenkäsittely ja automaattinen 4-bit retry
+        except torch.cuda.OutOfMemoryError as e:
+            logger.error(f"CUDA OOM while loading {model_name}. Trying with 4-bit quantization...")
+            
+            # KORJAUS: Hätäsiivous
+            self._emergency_cleanup()
+            
+            # Retry with 4-bit quantization
+            try:
+                self.quantization_config = self.quantization_config_4bit
+                return self.load_model(model_name, force_reload=True)
+            except Exception as e2:
+                logger.error(f"Failed to load {model_name} even with 4-bit: {str(e2)}")
+                raise
+                
         except Exception as e:
             logger.error(f"Error loading model {model_name}: {str(e)}")
             raise
+    
+    # KORJAUS: Lisätty hätäsiivosfunktio
+    def _emergency_cleanup(self):
+        """Emergency cleanup when OOM occurs"""
+        logger.warning("Performing emergency GPU cleanup")
+        
+        # Unload all models
+        for model_name in list(self.loaded_models.keys()):
+            self.unload_model(model_name)
+        
+        # Clear cache
+        cache = ModelCache()
+        cache.clear_all()
+        
+        # Force garbage collection
+        import gc
+        for _ in range(5):
+            gc.collect()
+        
+        # Clear CUDA cache
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
+            torch.cuda.empty_cache()
+        
+        # Wait a bit
+        import time
+        time.sleep(3)
     
     def get_pipeline(self, model_name: str, task: str = "text-generation", **kwargs):
         """Get a pipeline for the model"""
@@ -150,7 +228,7 @@ class ModelLoader:
         
         # Prepare input
         inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=2048, padding=True)
-        # LISÄÄ TÄMÄ RIVI: Poista token_type_ids jos se on olemassa
+        # Poista token_type_ids jos se on olemassa
         inputs.pop('token_type_ids', None)
         inputs = {k: v.to(model.device) for k, v in inputs.items()}
         
@@ -178,20 +256,33 @@ class ModelLoader:
         
         return generated_text
     
+    # KORJAUS: Parannettu unload_model metodi
     def unload_model(self, model_name: str):
-        """Unload a model to free memory"""
+        """Unload a model to free memory with improved cleanup"""
         if model_name in self.loaded_models:
+            # Delete model
             del self.loaded_models[model_name]
-            del self.tokenizers[model_name]
             
+            # Delete tokenizer
+            if model_name in self.tokenizers:
+                del self.tokenizers[model_name]
+            
+            # KORJAUS: Poista myös cachesta
+            cache = ModelCache()
+            cache.remove_model(model_name)
+            
+            # Force garbage collection
             import gc
-            gc.collect()  # Python garbage collection
+            gc.collect()
             
+            # Clear CUDA cache
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
-                torch.cuda.synchronize()  # Varmista että cache tyhjenee
-                
-            logger.info(f"Model {model_name} unloaded")
+                torch.cuda.synchronize()
+            
+            # KORJAUS: Raportti muistin tilasta poiston jälkeen
+            allocated, reserved = self._get_gpu_memory_usage()
+            logger.info(f"Model {model_name} unloaded. GPU memory: Allocated={allocated:.2f}GB, Reserved={reserved:.2f}GB")
     
     def get_model_info(self, model_name: str) -> Dict[str, Any]:
         """Get information about a model"""

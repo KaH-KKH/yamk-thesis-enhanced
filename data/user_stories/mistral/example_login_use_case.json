@@ -1,33 +1,35 @@
 {
   "id": "UC-001",
-  "title": "User logs into the secure area with valid credentials",
+  "title": "User logs into the system with valid credentials",
   "actors": [
     "users",
-    "user",
     "system",
+    "user",
     "User"
   ],
   "preconditions": [
-    "The user is at the login page",
-    "The user has access to a web browser"
+    "User is on the login page: https://the-internet.herokuapp.com/login",
+    "User has valid credentials: tomsmith and SuperSecretPassword!"
   ],
   "main_flow": [
-    "User enters \"tomsmith\" as the username.",
-    "User enters \"SuperSecretPassword!\" as the password.",
-    "User clicks the \"Login\" button.",
-    "4. System checks the username and password against the database.",
-    "5. If the credentials are valid, the system displays a \"Success\" message.",
-    "6. The user is redirected to the secure area.",
+    "User enters username \"tomsmith\" in the username input field.",
+    "User enters password \"SuperSecretPassword!\" in the password input field.",
+    "User clicks on the \"Login\" button.",
+    "4. System validates the entered credentials against the database.",
+    "5. If the credentials are valid, system displays a success message \"Welcome to the Secure Area, tomsmith!\" and navigates the user to the secure area.",
+    "6. If the credentials are invalid, system displays an error message \"Invalid credentials. Please try again.\"",
     "Alternative flows:",
-    "User enters invalid credentials:",
-    "a. System displays an \"Error\" message.",
-    "b. User can try again.",
-    "User leaves the login page without logging in."
+    "If the user enters incorrect credentials:",
+    "a. System displays an error message \"Invalid credentials. Please try again.\"",
+    "b. User can retry by entering the correct credentials.",
+    "If the user leaves the login page without logging in:",
+    "a. System does not display any success or error message."
   ],
   "alternative_flows": null,
   "postconditions": [
-    "If the login was successful, the user is in the secure area.",
-    "If the login failed, the user remains on the login page."
+    "If the user logs in successfully, the user is navigated to the secure area, and a success message is displayed.",
+    "If the user enters invalid credentials, an error message is displayed, and the user remains on the login page.",
+    "The user can log out from the secure area at any time."
   ],
   "notes": null
 }

@@ -1,105 +1,277 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-06-14T17:21:02.651450" rpa="false" schemaversion="5">
+<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-06-14T19:21:08.967568" rpa="false" schemaversion="5">
 <suite id="s1" name="Example Login Use Case" source="/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/mistral/example_login_use_case.robot">
 <test id="s1-t1" name="Test Login Functionality" line="17">
-<kw name="Setup Browser" type="SETUP">
-<kw name="New Browser" owner="Browser">
-<arg>${BROWSER}</arg>
-<arg>headless=${HEADLESS}</arg>
-<tag>BrowserControl</tag>
-<tag>Setter</tag>
-<doc>Create a new playwright Browser with specified options.</doc>
-<status status="NOT RUN" start="2025-06-14T17:21:02.777519" elapsed="0.000272"/>
+<kw name="Run Keywords" owner="BuiltIn" type="SETUP">
+<kw name="Title Should Be">
+<msg time="2025-06-14T19:21:09.114799" level="FAIL">No keyword with name 'Title Should Be' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.114737" elapsed="0.000097">No keyword with name 'Title Should Be' found.</status>
 </kw>
-<kw name="Set Browser Timeout" owner="Browser">
-<arg>${TIMEOUT}</arg>
-<tag>Config</tag>
-<tag>Setter</tag>
-<doc>Sets the timeout used by most input and getter keywords.</doc>
-<status status="NOT RUN" start="2025-06-14T17:21:02.777894" elapsed="0.000152"/>
+<kw name="Log in">
+<msg time="2025-06-14T19:21:09.115416" level="FAIL">No keyword with name 'Log in' found. Did you mean:
+    BuiltIn.Log
+    BuiltIn.Log Many
+    OperatingSystem.Log File</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.115366" elapsed="0.000075">No keyword with name 'Log in' found. Did you mean:
+    BuiltIn.Log
+    BuiltIn.Log Many
+    OperatingSystem.Log File</status>
 </kw>
-<kw name="New Context" owner="Browser">
-<arg>viewport={'width': 1280, 'height': 720}</arg>
-<tag>BrowserControl</tag>
-<tag>Setter</tag>
-<doc>Create a new BrowserContext with specified options.</doc>
-<status status="NOT RUN" start="2025-06-14T17:21:02.778118" elapsed="0.000338"/>
+<kw name="Test ***">
+<msg time="2025-06-14T19:21:09.116041" level="FAIL">No keyword with name 'Test ***' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.115979" elapsed="0.000097">No keyword with name 'Test ***' found.</status>
 </kw>
-<status status="PASS" start="2025-06-14T17:21:02.777086" elapsed="0.001427"/>
+<kw name="[Documentation]">
+<msg time="2025-06-14T19:21:09.116771" level="FAIL">No keyword with name '[Documentation]' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.116727" elapsed="0.000063">No keyword with name '[Documentation]' found.</status>
 </kw>
-<kw name="New Browser" owner="Browser">
-<arg>${BROWSER}</arg>
-<arg>headless=${HEADLESS}</arg>
-<tag>BrowserControl</tag>
-<tag>Setter</tag>
-<doc>Create a new playwright Browser with specified options.</doc>
-<status status="NOT RUN" start="2025-06-14T17:21:02.778586" elapsed="0.000198"/>
+<kw name="Test: Enter valid credentials and click Login">
+<msg time="2025-06-14T19:21:09.117254" level="FAIL">No keyword with name 'Test: Enter valid credentials and click Login' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.117218" elapsed="0.000053">No keyword with name 'Test: Enter valid credentials and click Login' found.</status>
 </kw>
-<kw name="New Page" owner="Browser">
-<arg>${BASE_URL}/login</arg>
-<tag>BrowserControl</tag>
-<tag>Setter</tag>
-<doc>Open a new Page.</doc>
-<status status="NOT RUN" start="2025-06-14T17:21:02.778852" elapsed="0.000129"/>
+<kw name="InputText">
+<msg time="2025-06-14T19:21:09.117880" level="FAIL">No keyword with name 'InputText' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.117841" elapsed="0.000058">No keyword with name 'InputText' found.</status>
 </kw>
-<kw name="Type Text" owner="Browser">
-<arg>id=username</arg>
-<arg>tomsmith</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Types the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="NOT RUN" start="2025-06-14T17:21:02.779038" elapsed="0.000138"/>
+<kw name="username">
+<msg time="2025-06-14T19:21:09.118559" level="FAIL">No keyword with name 'username' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.118514" elapsed="0.000064">No keyword with name 'username' found.</status>
 </kw>
-<kw name="Type Text" owner="Browser">
-<arg>id=password</arg>
-<arg>SuperSecretPassword!</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Types the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="NOT RUN" start="2025-06-14T17:21:02.779230" elapsed="0.000135"/>
+<kw name="InputText">
+<msg time="2025-06-14T19:21:09.119191" level="FAIL">No keyword with name 'InputText' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.119152" elapsed="0.000056">No keyword with name 'InputText' found.</status>
 </kw>
-<kw name="Click" owner="Browser">
-<arg>css=button[type='submit']</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="NOT RUN" start="2025-06-14T17:21:02.779438" elapsed="0.000158"/>
+<kw name="password">
+<msg time="2025-06-14T19:21:09.119794" level="FAIL">No keyword with name 'password' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.119755" elapsed="0.000056">No keyword with name 'password' found.</status>
 </kw>
-<kw name="Wait For Elements State" owner="Browser">
-<arg>text=You logged into a secure area!</arg>
-<arg>visible</arg>
-<tag>PageContent</tag>
-<tag>Wait</tag>
-<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="NOT RUN" start="2025-06-14T17:21:02.779661" elapsed="0.000134"/>
+<kw name="ClickButton">
+<msg time="2025-06-14T19:21:09.120426" level="FAIL">No keyword with name 'ClickButton' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.120390" elapsed="0.000052">No keyword with name 'ClickButton' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?</status>
 </kw>
-<kw name="Take Screenshot" owner="Browser">
-<tag>PageContent</tag>
-<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
-<status status="NOT RUN" start="2025-06-14T17:21:02.779857" elapsed="0.000108"/>
+<kw name="login_button">
+<msg time="2025-06-14T19:21:09.121081" level="FAIL">No keyword with name 'login_button' found. Did you try using keyword 'BuiltIn.Log' and forgot to use enough whitespace between keyword and arguments?</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.121033" elapsed="0.000068">No keyword with name 'login_button' found. Did you try using keyword 'BuiltIn.Log' and forgot to use enough whitespace between keyword and arguments?</status>
 </kw>
-<kw name="Close Browser" type="TEARDOWN">
-<kw name="Take Screenshot" owner="Browser">
-<arg>fullPage=True</arg>
-<tag>PageContent</tag>
-<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
-<status status="NOT RUN" start="2025-06-14T17:21:02.780261" elapsed="0.000208"/>
+<kw name="[Documentation]">
+<msg time="2025-06-14T19:21:09.121760" level="FAIL">No keyword with name '[Documentation]' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.121723" elapsed="0.000055">No keyword with name '[Documentation]' found.</status>
 </kw>
-<kw name="Close Browser">
-<msg time="2025-06-14T17:21:02.780597" level="FAIL">Keyword 'Close Browser' expected 0 arguments, got 1.</msg>
-<arg>ALL</arg>
-<status status="FAIL" start="2025-06-14T17:21:02.780545" elapsed="0.000085">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+<kw name="Test: Verify success message is displayed">
+<msg time="2025-06-14T19:21:09.122277" level="FAIL">No keyword with name 'Test: Verify success message is displayed' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.122237" elapsed="0.000059">No keyword with name 'Test: Verify success message is displayed' found.</status>
 </kw>
-<status status="FAIL" start="2025-06-14T17:21:02.780105" elapsed="0.000582">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+<kw name="WaitUntilPageContains">
+<msg time="2025-06-14T19:21:09.123030" level="FAIL">No keyword with name 'WaitUntilPageContains' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.122988" elapsed="0.000060">No keyword with name 'WaitUntilPageContains' found.</status>
 </kw>
-<msg time="2025-06-14T17:21:02.809659" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:33809</msg>
+<kw name="Welcome to the Secure Area, tomsmith!">
+<msg time="2025-06-14T19:21:09.123605" level="FAIL">No keyword with name 'Welcome to the Secure Area, tomsmith!' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.123563" elapsed="0.000062">No keyword with name 'Welcome to the Secure Area, tomsmith!' found.</status>
+</kw>
+<kw name="[Documentation]">
+<msg time="2025-06-14T19:21:09.124577" level="FAIL">No keyword with name '[Documentation]' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.124524" elapsed="0.000074">No keyword with name '[Documentation]' found.</status>
+</kw>
+<kw name="Test: Verify user is in the secure area">
+<msg time="2025-06-14T19:21:09.125201" level="FAIL">No keyword with name 'Test: Verify user is in the secure area' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.125160" elapsed="0.000059">No keyword with name 'Test: Verify user is in the secure area' found.</status>
+</kw>
+<kw name="Title Should Be">
+<msg time="2025-06-14T19:21:09.125895" level="FAIL">No keyword with name 'Title Should Be' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.125858" elapsed="0.000056">No keyword with name 'Title Should Be' found.</status>
+</kw>
+<kw name="Secure Area: To Do List">
+<msg time="2025-06-14T19:21:09.126666" level="FAIL">No keyword with name 'Secure Area: To Do List' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.126621" elapsed="0.000065">No keyword with name 'Secure Area: To Do List' found.</status>
+</kw>
+<kw name="Teardown ***">
+<msg time="2025-06-14T19:21:09.127322" level="FAIL">No keyword with name 'Teardown ***' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.127279" elapsed="0.000062">No keyword with name 'Teardown ***' found.</status>
+</kw>
+<arg>Title Should Be</arg>
+<arg>Log in</arg>
+<arg>Test ***</arg>
+<arg>[Documentation]</arg>
+<arg>Test: Enter valid credentials and click Login</arg>
+<arg>InputText</arg>
+<arg>username</arg>
+<arg>${USERNAME}</arg>
+<arg>InputText</arg>
+<arg>password</arg>
+<arg>${PASSWORD}</arg>
+<arg>ClickButton</arg>
+<arg>login_button</arg>
+<arg>[Documentation]</arg>
+<arg>Test: Verify success message is displayed</arg>
+<arg>WaitUntilPageContains</arg>
+<arg>Welcome to the Secure Area, tomsmith!</arg>
+<arg>[Documentation]</arg>
+<arg>Test: Verify user is in the secure area</arg>
+<arg>Title Should Be</arg>
+<arg>Secure Area: To Do List</arg>
+<arg>Teardown ***</arg>
+<doc>Executes all the given keywords in a sequence.</doc>
+<status status="FAIL" start="2025-06-14T19:21:09.113543" elapsed="0.013939">Several failures occurred:
+
+1) No keyword with name 'Title Should Be' found.
+
+2) No keyword with name 'Log in' found. Did you mean:
+    BuiltIn.Log
+    BuiltIn.Log Many
+    OperatingSystem.Log File
+
+3) No keyword with name 'Test ***' found.
+
+4) No keyword with name '[Documentation]' found.
+
+5) No keyword with name 'Test: Enter valid credentials and click Login' found.
+
+6) No keyword with name 'InputText' found.
+
+7) No keyword with name 'username' found.
+
+8) No keyword with name 'InputText' found.
+    [ Message content over the limit has been removed. ]
+11) No keyword with name 'login_button' found. Did you try using keyword 'BuiltIn.Log' and forgot to use enough whitespace between keyword and arguments?
+
+12) No keyword with name '[Documentation]' found.
+
+13) No keyword with name 'Test: Verify success message is displayed' found.
+
+14) No keyword with name 'WaitUntilPageContains' found.
+
+15) No keyword with name 'Welcome to the Secure Area, tomsmith!' found.
+
+16) No keyword with name '[Documentation]' found.
+
+17) No keyword with name 'Test: Verify user is in the secure area' found.
+
+18) No keyword with name 'Title Should Be' found.
+
+19) No keyword with name 'Secure Area: To Do List' found.
+
+20) No keyword with name 'Teardown ***' found.</status>
+</kw>
+<kw name="Run Keywords" owner="BuiltIn" type="TEARDOWN">
+<kw name="GoToUrl">
+<msg time="2025-06-14T19:21:09.128248" level="FAIL">No keyword with name 'GoToUrl' found. Did you mean:
+    Browser.Get Url
+    Browser.Go To</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.128203" elapsed="0.000067">No keyword with name 'GoToUrl' found. Did you mean:
+    Browser.Get Url
+    Browser.Go To</status>
+</kw>
+<kw name="/login">
+<msg time="2025-06-14T19:21:09.128858" level="FAIL">No keyword with name '/login' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.128815" elapsed="0.000062">No keyword with name '/login' found.</status>
+</kw>
+<kw name="Title Should Be">
+<msg time="2025-06-14T19:21:09.129645" level="FAIL">No keyword with name 'Title Should Be' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.129601" elapsed="0.000064">No keyword with name 'Title Should Be' found.</status>
+</kw>
+<kw name="Log in">
+<msg time="2025-06-14T19:21:09.130128" level="FAIL">No keyword with name 'Log in' found. Did you mean:
+    BuiltIn.Log
+    BuiltIn.Log Many
+    OperatingSystem.Log File</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.130080" elapsed="0.000070">No keyword with name 'Log in' found. Did you mean:
+    BuiltIn.Log
+    BuiltIn.Log Many
+    OperatingSystem.Log File</status>
+</kw>
+<kw name="```">
+<msg time="2025-06-14T19:21:09.130670" level="FAIL">No keyword with name '```' found.</msg>
+<status status="FAIL" start="2025-06-14T19:21:09.130627" elapsed="0.000062">No keyword with name '```' found.</status>
+</kw>
+<arg>GoToUrl</arg>
+<arg>/login</arg>
+<arg>Title Should Be</arg>
+<arg>Log in</arg>
+<arg>```</arg>
+<doc>Executes all the given keywords in a sequence.</doc>
+<status status="FAIL" start="2025-06-14T19:21:09.127697" elapsed="0.003030">Several failures occurred:
+
+1) No keyword with name 'GoToUrl' found. Did you mean:
+    Browser.Get Url
+    Browser.Go To
+
+2) No keyword with name '/login' found.
+
+3) No keyword with name 'Title Should Be' found.
+
+4) No keyword with name 'Log in' found. Did you mean:
+    BuiltIn.Log
+    BuiltIn.Log Many
+    OperatingSystem.Log File
+
+5) No keyword with name '```' found.</status>
+</kw>
+<msg time="2025-06-14T19:21:09.197629" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:59681</msg>
 <doc>Automated test for login functionality</doc>
 <tag>login smoke</tag>
-<status status="FAIL" start="2025-06-14T17:21:02.776581" elapsed="0.004145">Teardown failed:
-Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+<status status="FAIL" start="2025-06-14T19:21:09.112999" elapsed="0.017772">Setup failed:
+Several failures occurred:
+
+1) No keyword with name 'Title Should Be' found.
+
+2) No keyword with name 'Log in' found. Did you mean:
+    BuiltIn.Log
+    BuiltIn.Log Many
+    OperatingSystem.Log File
+
+3) No keyword with name 'Test ***' found.
+
+4) No keyword with name '[Documentation]' found.
+
+5) No keyword with name 'Test: Enter valid credentials and click Login' found.
+
+6) No keyword with name 'InputText' found.
+
+7) No keyword with name 'username' found.
+
+8) No keyword with name 'InputText' found.
+    [ Message content over the limit has been removed. ]
+11) No keyword with name 'login_button' found. Did you try using keyword 'BuiltIn.Log' and forgot to use enough whitespace between keyword and arguments?
+
+12) No keyword with name '[Documentation]' found.
+
+13) No keyword with name 'Test: Verify success message is displayed' found.
+
+14) No keyword with name 'WaitUntilPageContains' found.
+
+15) No keyword with name 'Welcome to the Secure Area, tomsmith!' found.
+
+16) No keyword with name '[Documentation]' found.
+
+17) No keyword with name 'Test: Verify user is in the secure area' found.
+
+18) No keyword with name 'Title Should Be' found.
+
+19) No keyword with name 'Secure Area: To Do List' found.
+
+20) No keyword with name 'Teardown ***' found.
+
+Also teardown failed:
+Several failures occurred:
+
+1) No keyword with name 'GoToUrl' found. Did you mean:
+    Browser.Get Url
+    Browser.Go To
+
+2) No keyword with name '/login' found.
+
+3) No keyword with name 'Title Should Be' found.
+
+4) No keyword with name 'Log in' found. Did you mean:
+    BuiltIn.Log
+    BuiltIn.Log Many
+    OperatingSystem.Log File
+
+5) No keyword with name '```' found.</status>
 </test>
 <doc>Automated test for login functionality</doc>
-<status status="FAIL" start="2025-06-14T17:21:02.652162" elapsed="0.710434"/>
+<status status="FAIL" start="2025-06-14T19:21:08.969191" elapsed="0.768513"/>
 </suite>
 <statistics>
 <total>

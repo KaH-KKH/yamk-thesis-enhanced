@@ -1,36 +1,38 @@
 
-USE CASE: User logs into the secure area with valid credentials
+USE CASE: User logs into the system with valid credentials
 ID: UC-001
 
 ACTORS:
 - users
-- user
 - system
+- user
 - User
 
 PRECONDITIONS:
-1. The user is at the login page
-2. The user has access to a web browser
+1. User is on the login page: https://the-internet.herokuapp.com/login
+2. User has valid credentials: tomsmith and SuperSecretPassword!
 
 MAIN FLOW:
-1. User enters "tomsmith" as the username.
-2. User enters "SuperSecretPassword!" as the password.
-3. User clicks the "Login" button.
-4. 4. System checks the username and password against the database.
-5. 5. If the credentials are valid, the system displays a "Success" message.
-6. 6. The user is redirected to the secure area.
+1. User enters username "tomsmith" in the username input field.
+2. User enters password "SuperSecretPassword!" in the password input field.
+3. User clicks on the "Login" button.
+4. 4. System validates the entered credentials against the database.
+5. 5. If the credentials are valid, system displays a success message "Welcome to the Secure Area, tomsmith!" and navigates the user to the secure area.
+6. 6. If the credentials are invalid, system displays an error message "Invalid credentials. Please try again."
 7. Alternative flows:
-8. User enters invalid credentials:
-9. a. System displays an "Error" message.
-10. b. User can try again.
-11. User leaves the login page without logging in.
+8. If the user enters incorrect credentials:
+9. a. System displays an error message "Invalid credentials. Please try again."
+10. b. User can retry by entering the correct credentials.
+11. If the user leaves the login page without logging in:
+12. a. System does not display any success or error message.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. If the login was successful, the user is in the secure area.
-2. If the login failed, the user remains on the login page.
+1. If the user logs in successfully, the user is navigated to the secure area, and a success message is displayed.
+2. If the user enters invalid credentials, an error message is displayed, and the user remains on the login page.
+3. The user can log out from the secure area at any time.
 
 NOTES:
 None

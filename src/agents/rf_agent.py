@@ -1,6 +1,7 @@
 """
 RF Agent - Generates Robot Framework test cases from use cases
 Fixed version without pydantic-ai HuggingFaceModel
+KORJATTU VERSIO: Parannettu muistinhallinta
 """
 
 import asyncio
@@ -10,6 +11,7 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime
 import json
 import re
+import gc  # KORJAUS: Lisätty gc import
 
 from pydantic import BaseModel, Field
 from loguru import logger
@@ -42,7 +44,7 @@ class RFAgent:
         logger.info(f"Loading model for RF Agent: {model_name}")
         self.model = self.model_loader.load_model(model_name)
 
-        # Tyhjennä muisti mallin latauksen jälkeen
+        # KORJAUS: Tyhjennä muisti mallin latauksen jälkeen
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
         
@@ -358,7 +360,7 @@ Format the test case with:
         return "\n".join(lines)
     
     async def batch_generate(self, use_case_dir: str, output_dir: str) -> Dict[str, Any]:
-        """Generate test cases for all use cases in directory"""
+        """Generate test cases for all use cases in directory with memory optimization"""
         use_case_path = Path(use_case_dir)
         output_path = Path(output_dir) / self.model_name
         output_path.mkdir(parents=True, exist_ok=True)
@@ -367,15 +369,16 @@ Format the test case with:
         use_case_files = list(use_case_path.glob("*.txt")) + list(use_case_path.glob("*.json"))
         logger.info(f"Found {len(use_case_files)} use case files")
 
-        # KORJAUS: Sample size rajoitus - käytä oikeaa muuttujan nimeä
+        # Sample size rajoitus
         if not self.config.get("evaluation", {}).get("full_evaluation", True):
             sample_size = self.config.get("evaluation", {}).get("sample_size", 3)
-            if len(use_case_files) > sample_size:  # KORJATTU: use_case_files
-                use_case_files = use_case_files[:sample_size]  # KORJATTU: use_case_files
+            if len(use_case_files) > sample_size:
+                use_case_files = use_case_files[:sample_size]
                 logger.info(f"Limited to {sample_size} files for evaluation")
         
         results = []
-        for uc_file in use_case_files:
+        # KORJAUS: Lisätty muistin optimointi batch-käsittelyyn
+        for i, uc_file in enumerate(use_case_files):
             try:
                 # Generate test case
                 robot_content = await self.generate_test_case(str(uc_file))
@@ -391,6 +394,13 @@ Format the test case with:
                 })
                 
                 logger.success(f"Generated test case: {output_file.name}")
+                
+                # KORJAUS: Säännöllinen muistin tyhjennys
+                if i % 5 == 0 and i > 0:
+                    gc.collect()
+                    if torch.cuda.is_available():
+                        torch.cuda.empty_cache()
+                    logger.info(f"Memory cleanup after {i} files")
                 
             except Exception as e:
                 logger.error(f"Error processing {uc_file.name}: {str(e)}")
@@ -415,16 +425,30 @@ Format the test case with:
         
         return report
     
+    # KORJAUS: Parannettu __del__ metodi paremmalla virheenkäsittelyllä
     def __del__(self):
         """Cleanup when agent is destroyed"""
-        # Käytä model_loaderin unload_model metodia
-        if hasattr(self, 'model_loader') and hasattr(self, 'model_name'):
-            self.model_loader.unload_model(self.model_name)
-        
-        # Varmista että muisti tyhjennetään
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-            logger.info(f"GPU memory cleared for model: {self.model_name}")
+        try:
+            # Unload model from loader
+            if hasattr(self, 'model_loader') and hasattr(self, 'model_name'):
+                self.model_loader.unload_model(self.model_name)
+                logger.info(f"Model {self.model_name} unloaded from RF Agent")
+            
+            # Clear any remaining references
+            if hasattr(self, 'model'):
+                del self.model
+            if hasattr(self, 'tokenizer'):
+                del self.tokenizer
+            
+            # Force garbage collection
+            gc.collect()
+            
+            # Clear GPU cache
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+                logger.info(f"GPU memory cleared for model: {getattr(self, 'model_name', 'unknown')}")
+        except Exception as e:
+            logger.error(f"Error in RF Agent cleanup: {str(e)}")
 
 
 async def main():
