@@ -1,43 +1,36 @@
 
-USE CASE: ** Login Functionality
+USE CASE: ** User Logs into the System
 ID: ** UC-LOGIN-001
 
 ACTORS:
+- user
 - system
 - users
-- user
 - User
-- System
 
 PRECONDITIONS:
-1. User is on the login page at https://the-internet.herokuapp.com/login
-2. User has a valid username and password
+1. User is on the login page: https://the-internet.herokuapp.com/login
+2. User has access to the login credentials: tomsmith/SuperSecretPassword!
 
 MAIN FLOW:
-1. User enters valid username (tomsmith) in the input field.
-2. User enters valid password (SuperSecretPassword!) in the input field.
-3. User clicks on the 'Login' button.
-4. 4. System receives the entered credentials.
-5. 5. System verifies the entered credentials against the database.
-6. 6. System finds the matching user account (tomsmith).
-7. 7. System grants access to the secure area and displays the success message.
-8. **Alternative flows:**
-9. Invalid credentials:**
-10. a. User enters an incorrect username or password.
-11. b. System does not find a matching user account.
-12. c. System displays an error message "Invalid credentials. Please try again."
-13. Empty fields:**
-14. a. User leaves the username or password field empty.
-15. b. System displays an error message "Username and password are required fields."
+1. User enters username (tosmith) and password (SuperSecretPassword!) into the corresponding input fields.
+2. User clicks the "Login" button.
+3. System validates the entered credentials against the database.
+4. a. If validation is successful, proceed to step 5.
+5. b. If validation fails, display an error message and return to step 1.
+6. 4. System displays a success message.
+7. 5. User is now logged in and can access the secure area.
+8. **Alternative Flows:**
+9. Invalid Credentials*
+10. a. If validation fails, display an error message, clear the input fields, and return to step 1.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User is logged in to the secure area.
-2. System displays the success message "You are now logged in."
-3. User can navigate to other pages within the secure area.
-4. 4. User can logout from the secure area when desired.
+1. If the login was successful, the user is now logged in and can access the secure area.
+2. The system logs the successful login event.
+3. The user's session is established.
 
 NOTES:
 None

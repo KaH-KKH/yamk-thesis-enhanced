@@ -15,6 +15,10 @@ import seaborn as sns
 from loguru import logger
 import torch
 import numpy as np
+from .llm_evaluator import LLMEvaluator
+import nltk
+from nltk.translate.meteor_score import meteor_score
+from .dryrun_analyzer import DryrunAnalyzer
 
 # Import all metric modules
 from .metrics import (
@@ -45,7 +49,8 @@ class EnhancedEvaluationRunner:
     """Enhanced evaluation runner with all metrics integrated"""
     
     def __init__(self, models: List[str], config_path: str = "configs/config.yaml", 
-                 enable_extended_metrics: bool = True, enable_monitoring: bool = False):
+                 enable_extended_metrics: bool = True, enable_monitoring: bool = False,
+                 enable_llm_evaluation: bool = True):
         """
         Initialize enhanced evaluation runner
         
@@ -56,11 +61,13 @@ class EnhancedEvaluationRunner:
             enable_monitoring: Enable realtime monitoring
         """
         self.models = models
+        self.config_path = config_path  # <-- LISÄÄ TÄMÄ RIVI!
         self.config = FileHandler.load_yaml(config_path)
         self.results_dir = Path(self.config["paths"]["results_dir"])
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.enable_extended_metrics = enable_extended_metrics
         self.enable_monitoring = enable_monitoring
+        self.enable_llm_evaluation = enable_llm_evaluation
         
         # Initialize standard metrics
         self.rouge_scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
@@ -82,6 +89,13 @@ class EnhancedEvaluationRunner:
                     project_name=self.config["monitoring"]["wandb"].get("project", "yamk-thesis")
                 )
         
+        # Initialize LLM evaluator
+        if self.enable_llm_evaluation:
+            # Use a different model as evaluator to avoid bias
+            evaluator_model = "mistral" if "mistral" not in models else "gemma_7b_it_4bit"
+            self.llm_evaluator = LLMEvaluator(evaluator_model, config_path)
+            logger.info(f"LLM evaluator initialized with model: {evaluator_model}")
+
         # Create results directory
         self.run_dir = self.results_dir / f"run_{self.timestamp}"
         self.run_dir.mkdir(parents=True, exist_ok=True)
@@ -157,12 +171,65 @@ class EnhancedEvaluationRunner:
             # Log to monitoring if enabled
             if self.enable_monitoring:
                 self._log_to_monitor(model_name, results)
+
+            # Lisää LLM evaluation ennen results palautusta:
+            if self.enable_llm_evaluation:
+                llm_evaluation = await self._perform_llm_evaluation(model_name)
+                results["llm_evaluation"] = llm_evaluation
             
         except Exception as e:
             logger.error(f"Error evaluating model {model_name}: {str(e)}")
             results["error"] = str(e)
         
         return results
+    
+    # Lisää uusi metodi evaluate_model metodin jälkeen:
+    async def _perform_llm_evaluation(self, model_name: str) -> Dict[str, Any]:
+        """Perform LLM-based evaluation for a model"""
+        logger.info(f"Performing LLM evaluation for {model_name}")
+        
+        llm_results = {
+            "use_case_evaluations": [],
+            "test_case_evaluations": [],
+            "summary": {}
+        }
+        
+        # Evaluate use cases
+        uc_dir = Path(self.config["paths"]["user_stories_dir"]) / model_name
+        if uc_dir.exists():
+            uc_files = list(uc_dir.glob("*.txt"))
+            for uc_file in uc_files[:5]:  # Limit to 5 files for efficiency
+                content = FileHandler.read_text_file(str(uc_file))
+                evaluation = await self.llm_evaluator.evaluate_use_case(content, model_name)
+                llm_results["use_case_evaluations"].append({
+                    "file": uc_file.name,
+                    "evaluation": evaluation
+                })
+        
+        # Evaluate test cases
+        tc_dir = Path(self.config["paths"]["test_cases_dir"]) / model_name
+        if tc_dir.exists():
+            tc_files = list(tc_dir.glob("*.robot"))
+            for tc_file in tc_files[:5]:  # Limit to 5 files
+                content = FileHandler.read_text_file(str(tc_file))
+                evaluation = await self.llm_evaluator.evaluate_test_case(content, model_name)
+                llm_results["test_case_evaluations"].append({
+                    "file": tc_file.name,
+                    "evaluation": evaluation
+                })
+        
+        # Calculate summary statistics
+        if llm_results["use_case_evaluations"]:
+            uc_scores = [e["evaluation"].get("overall_score", 0) 
+                        for e in llm_results["use_case_evaluations"]]
+            llm_results["summary"]["avg_use_case_score"] = np.mean(uc_scores)
+        
+        if llm_results["test_case_evaluations"]:
+            tc_scores = [e["evaluation"].get("overall_score", 0) 
+                        for e in llm_results["test_case_evaluations"]]
+            llm_results["summary"]["avg_test_case_score"] = np.mean(tc_scores)
+        
+        return llm_results
     
     async def _evaluate_use_case_generation(self, model_name: str) -> Dict[str, Any]:
         """Evaluate use case generation with extended metrics"""
@@ -291,6 +358,29 @@ class EnhancedEvaluationRunner:
                         "recall": R.mean().item(),
                         "f1": F1.mean().item()
                     }
+
+                    # _calculate_standard_metrics metodissa, lisää BLEU/ROUGE/BERTScore jälkeen:
+                    # METEOR
+                    if references and len(references) == len(candidates):
+                        # Ensure NLTK data is downloaded
+                        try:
+                            nltk.download('wordnet', quiet=True)
+                            nltk.download('omw-1.4', quiet=True)
+                        except:
+                            pass
+                        
+                        meteor_scores = []
+                        for cand, ref in zip(candidates, references):
+                            # METEOR expects tokenized input
+                            score = meteor_score([ref.split()], cand.split())
+                            meteor_scores.append(score)
+                        
+                        metrics["use_case_metrics"]["meteor"] = {
+                            "mean": np.mean(meteor_scores),
+                            "min": np.min(meteor_scores),
+                            "max": np.max(meteor_scores),
+                            "std": np.std(meteor_scores)
+                        }
         
         # Calculate test case metrics
         if tc_dir.exists():
@@ -409,6 +499,19 @@ class EnhancedEvaluationRunner:
             comparative_results = self.comparative_analysis.analyze_models(all_results)
             comparison["extended_analysis"] = comparative_results
         
+        # *** TÄHÄN KOHTAAN DRYRUN-ANALYYSI ***
+        # Run dryrun analysis
+        logger.info("Running Robot Framework dryrun analysis...")
+        dryrun_analyzer = DryrunAnalyzer(self.config_path)
+        dryrun_results = await dryrun_analyzer.analyze_all_models()
+        
+        # Generate dryrun report
+        dryrun_report_dir = self.run_dir / "dryrun_analysis"
+        dryrun_report = dryrun_analyzer.generate_report(dryrun_results, dryrun_report_dir)
+        
+        # Add to comparison
+        comparison["dryrun_analysis"] = dryrun_results
+
         # Save comparison
         comparison_file = self.run_dir / "comparison_report.json"
         FileHandler.save_json(comparison, str(comparison_file))
@@ -871,7 +974,53 @@ class EnhancedEvaluationRunner:
             "## Executive Summary",
             ""
         ]
+
+        # Lisää LLM-pohjainen arviointi yhteenvetoon
+        if "llm_based_comparison" in comparison:
+            llm_comp = comparison["llm_based_comparison"]
+            lines.extend([
+                "### LLM-based Evaluation Results",
+                ""
+            ])
+            
+            if "ranking" in llm_comp:
+                lines.append("**Model Ranking (by LLM evaluation):**")
+                for rank_info in llm_comp["ranking"]:
+                    lines.append(f"{rank_info['rank']}. {rank_info['model']} "
+                            f"(Score: {rank_info['score']}/100) - {rank_info['reason']}")
+                lines.append("")
         
+        # Yhdistä numeeriset ja LLM-pohjaiset tulokset
+        lines.extend([
+            "## Combined Evaluation Results",
+            "",
+            "| Model | BLEU | ROUGE-L | BERTScore | METEOR | LLM Score | Overall |",
+            "|-------|------|---------|-----------|---------|-----------|---------|"
+        ])
+        
+        # Päivitä _generate_comprehensive_report metodia:
+        # Lisää Dryrun Analysis osio:
+        if "dryrun_analysis" in comparison:
+            lines.extend([
+                "",
+                "## Robot Framework Dryrun Analysis",
+                "",
+                f"**Overall Success Rate:** {comparison['dryrun_analysis']['summary']['overall_success_rate']:.1%}",
+                "",
+                "| Model | Success Rate | Failed Tests | Most Common Error |",
+                "|-------|--------------|--------------|-------------------|"
+            ])
+            
+            for model, results in comparison['dryrun_analysis']['by_model'].items():
+                # Get most common error type
+                error_patterns = comparison['dryrun_analysis']['error_analysis']['model_error_patterns'].get(model, {})
+                most_common_error = max(error_patterns.items(), key=lambda x: x[1])[0] if error_patterns else "None"
+                
+                lines.append(
+                    f"| {model} | {results['success_rate']:.1%} | "
+                    f"{results['failed']}/{results['total_files']} | {most_common_error} |"
+                )
+
         # Best model overall
         if "recommendations" in comparison and comparison["recommendations"]:
             lines.append(comparison["recommendations"][0])

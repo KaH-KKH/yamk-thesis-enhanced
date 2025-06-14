@@ -67,6 +67,22 @@ evaluation:
     - rouge
     - bertscore
     - semantic_similarity
+  llm_evaluation:
+    enabled: true
+    evaluator_model: "mistral"  # Model used for evaluation
+    criteria:
+      use_case:
+        - completeness
+        - clarity
+        - testability
+        - technical_accuracy
+        - structure
+      test_case:
+        - syntax_correctness
+        - test_coverage
+        - best_practices
+        - maintainability
+        - executability
 
 extended_metrics:
   enabled: true

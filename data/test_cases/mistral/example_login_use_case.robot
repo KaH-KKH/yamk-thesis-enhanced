@@ -17,15 +17,6 @@ ${TIMEOUT}       10s
 Test Login Functionality
     [Documentation]    Automated test for login functionality
     [Tags]    login smoke
-    [Setup]    Run Keywords
-    ...    # Open the login page
-    ...    Open Browser        ${BROWSER}    https://the-internet.herokuapp.com/login
-    ...    # Maximize browser window
-    ...    Maximize Browser Window
-    ...    Variables ***
-    ...    Username            tomsmith
-    ...    Password            SuperSecretPassword!
-    ...    Teardown ***
     
     New Browser    ${BROWSER}    headless=${HEADLESS}
     New Page    ${BASE_URL}/login
@@ -34,43 +25,6 @@ Test Login Functionality
     Click    css=button[type='submit']
     Wait For Elements State    text=You logged into a secure area!    visible
     Take Screenshot
-    
-    [Teardown]    Run Keywords
-    ...    # Close the browser window
-    ...    Close Browser
-    ...    Test Steps ***
-    ...    Test Step 1:
-    ...    [Documentation]     Enter valid username.
-    ...    Input Text          id:username       ${Username}
-    ...    Test Step 2:
-    ...    [Documentation]     Enter valid password.
-    ...    Input Text          id:password       ${Password}
-    ...    Test Step 3:
-    ...    [Documentation]     Click the login button.
-    ...    Click Element          id:login_button
-    ...    Test Step 4:
-    ...    [Documentation]     Wait for the success message to appear.
-    ...    Wait Until Page Contains    You are now logged in.
-    ...    Test Step 5:
-    ...    [Documentation]     Verify the success message is displayed.
-    ...    Should Contain         id:success_message      You are now logged in.
-    ...    Alternative test steps ***
-    ...    Test Step 6:
-    ...    [Documentation]     Test invalid credentials.
-    ...    Input Text          id:username       tom
-    ...    Input Text          id:password       password
-    ...    Click Element          id:login_button
-    ...    Wait Until Element Is Not Visible         id:success_message
-    ...    Should Contain         id:error_message      Invalid credentials. Please try again.
-    ...    Test Step 7:
-    ...    [Documentation]     Test empty fields.
-    ...    Input Text          id:username       <blank>
-    ...    Input Text          id:password       <blank>
-    ...    Click Element          id:login_button
-    ...    Wait Until Element Is Not Visible         id:success_message
-    ...    Should Contain         id:error_message      Username and password are required fields.
-    ...    ```
-    ...    This Robot Framework test case follows all the given rules, and it covers the main flow and alternative flows of the use case. Additionally, it includes proper setup and teardown, clear test actions, and appropriate selectors and waits.
 
 *** Keywords ***
 Setup Browser
