@@ -50,7 +50,7 @@ class EnhancedEvaluationRunner:
     
     def __init__(self, models: List[str], config_path: str = "configs/config.yaml", 
                  enable_extended_metrics: bool = True, enable_monitoring: bool = False,
-                 enable_llm_evaluation: bool = True):
+                 enable_llm_evaluation: bool = True, enable_ab_test: bool = False):  # LISÄÄ TÄMÄ
         """
         Initialize enhanced evaluation runner
         
@@ -68,6 +68,7 @@ class EnhancedEvaluationRunner:
         self.enable_extended_metrics = enable_extended_metrics
         self.enable_monitoring = enable_monitoring
         self.enable_llm_evaluation = enable_llm_evaluation
+        self.enable_ab_test = enable_ab_test  # LISÄÄ TÄMÄ
         
         # Initialize standard metrics
         self.rouge_scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
@@ -520,7 +521,7 @@ class EnhancedEvaluationRunner:
         FileHandler.save_text_file(summary, str(summary_file))
         
         # Run A/B tests if exactly 2 models
-        if len(self.models) == 2 and self.enable_extended_metrics:
+        if len(self.models) == 2 and self.enable_ab_test:  # MUUTA TÄMÄ
             logger.info("Running A/B test between models")
             ab_runner = ABTestRunner()
             try:
@@ -1394,6 +1395,7 @@ async def main():
         args.config,
         enable_extended_metrics=args.extended_metrics,
         enable_monitoring=args.monitoring
+        enable_ab_test=args.ab_test  # LISÄÄ TÄMÄ
     )
     
     comparison = await runner.compare_models()

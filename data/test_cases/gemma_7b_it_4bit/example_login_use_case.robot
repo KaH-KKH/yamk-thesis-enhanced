@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation    ** This test case verifies the functionality of the login process to the secure area on the internet.herokuapp.com website.
+Documentation    ** This test case verifies the functionality of the login user use case on the internet.herokuapp.com website.
 Library          Browser
-Test Tags        ** login secure area user authentication
+Test Tags        ** login user system
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -15,24 +15,25 @@ ${TIMEOUT}       10s
 
 *** Test Cases ***
 **
-    [Documentation]    ** This test case verifies the functionality of the login process to the secure area on the internet.herokuapp.com website.
-    [Tags]    ** login secure area user authentication
+    [Documentation]    ** This test case verifies the functionality of the login user use case on the internet.herokuapp.com website.
+    [Tags]    ** login user system
     [Setup]    Run Keywords
-    ...    Open the browser
-    ...    Navigate to the login page at  https://the-internet.herokuapp.com/login
+    ...    Open Chrome
+    ...    Navigate to the login page at the-internet.herokuapp.com/login
     
-    Type Text    id="valid"    test value
-    Click    text="""
-    Get Text
-    Get Text
-    Log    Action: **Alternative Flows:**
-    Type Text    id="field"    test value
-    Click    text="""
+    Type Text    id="username"    test value
+    Click    text="l"
+    Log    Action: Validate credentials
+    Log    Action: If credentials are valid, log in and redirect to the main page
+    Log    Action: Display a success message
+    Log    Action: Interact with the system
     
     [Teardown]    Run Keywords
-    ...    Close the browser
-    ...    Expected Result:**
-    ...    The user is able to successfully login to the secure area with valid credentials and access the features and functionality of the secure area. Alternatively, if the user enters invalid credentials or forgets their password, appropriate error messages are displayed.
+    ...    Close Chrome
+    ...    Expected Results:**
+    ...    User is successfully logged into the system
+    ...    User can interact with the system
+    ...    System displays a success message
 
 *** Keywords ***
 Setup Browser

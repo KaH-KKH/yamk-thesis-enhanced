@@ -1,10 +1,10 @@
 {
   "id": "** UC-LOGIN-001",
-  "title": "** Login to Secure Area",
+  "title": "** Login User",
   "actors": [
     "users",
-    "system",
     "user",
+    "system",
     "User"
   ],
   "preconditions": [
@@ -12,20 +12,21 @@
     "User has valid username and password"
   ],
   "main_flow": [
-    "User accesses the login page at  https://the-internet.herokuapp.com/login",
+    "User navigates to the login page at https://the-internet.herokuapp.com/login",
     "User enters username and password",
-    "User clicks on the \"Login\" button",
+    "User clicks on the login button",
     "4. System validates credentials",
-    "5. If credentials are valid, user is redirected to the secure area",
+    "5. If credentials are valid, user is logged in and redirected to the main page",
     "6. System displays a success message",
+    "7. User can interact with the system",
     "**Alternative Flows:**",
-    "If the user enters invalid credentials, an error message is displayed.",
-    "If the user forgets their password, they can click on the \"Forgot Password\" link to reset their password."
+    "If the user forgets their password, they can click on the \"Forgot password?\" link to reset their password.",
+    "If the user's credentials are invalid, the system will display an error message."
   ],
   "alternative_flows": null,
   "postconditions": [
-    "User is logged into the secure area",
-    "User can access the features and functionality of the secure area"
+    "User is logged into the system",
+    "User can interact with the system"
   ],
   "notes": null
 }

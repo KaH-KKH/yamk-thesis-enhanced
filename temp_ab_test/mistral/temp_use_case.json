@@ -1,0 +1,31 @@
+{
+  "id": "",
+  "title": "",
+  "actors": [
+    "users",
+    "user",
+    "system",
+    "User"
+  ],
+  "preconditions": [
+    "User is at the login page (https://the-internet.herokuapp.com/login)",
+    "User has a valid username and password"
+  ],
+  "main_flow": [
+    "User enters valid username (tomsmith) and password (SuperSecretPassword!)",
+    "User clicks the 'Login' button",
+    "System verifies the entered credentials against the database",
+    "4. If credentials are valid, system displays success message and grants access to secure area",
+    "5. User can now interact with the secure area",
+    "Alternative flows:",
+    "a. System displays error message",
+    "b. User can retry entering the credentials"
+  ],
+  "alternative_flows": null,
+  "postconditions": [
+    "System grants access to secure area upon successful login",
+    "User is able to interact with the secure area",
+    "User can logout from the secure area at any time."
+  ],
+  "notes": null
+}

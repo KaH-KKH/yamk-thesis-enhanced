@@ -1,36 +1,36 @@
 {
-  "id": "** UC-LOGIN-001",
-  "title": "** Login Functionality",
+  "id": "UC-001",
+  "title": "User logs in to the system with valid credentials",
   "actors": [
     "users",
+    "user",
     "system",
-    "user"
+    "User",
+    "System"
   ],
   "preconditions": [
-    "User is on the login page at https://the-internet.herokuapp.com/login",
-    "User has a valid username and password"
+    "User is at the login page: https://the-internet.herokuapp.com/login",
+    "User has entered a valid username (tomsmith)",
+    "User has entered a valid password (SuperSecretPassword!)"
   ],
   "main_flow": [
-    "User enters the correct username (tomsmith) in the provided input field.",
-    "User enters the correct password (SuperSecretPassword!) in the provided input field.",
+    "User enters username (tomsmith) and password (SuperSecretPassword!) in the respective fields.",
     "User clicks the 'Login' button.",
-    "4. System validates the provided credentials.",
-    "5. If credentials are valid, system displays a success message, \"You are now logged in.\"",
-    "6. If credentials are invalid, system displays an error message, \"Invalid username or password.\"",
-    "**Alternative flows:**",
-    "**Alternative flow 1: Incorrect username**",
-    "User enters an incorrect username in step 1.",
-    "System displays an error message, \"Invalid username or password.\"",
-    "**Alternative flow 2: Incorrect password**",
-    "User enters the correct username in step 1.",
-    "User enters an incorrect password in step 3.",
-    "System displays an error message, \"Invalid username or password.\""
+    "System checks if the entered credentials are valid.",
+    "4. System returns a successful login message and grants access to the secure area if the credentials are valid.",
+    "5. User is now logged in and can access secure features.",
+    "Alternative flows:",
+    "User enters invalid credentials:",
+    "a. System displays an error message and prompts the user to try again.",
+    "b. User can continue to attempt login with new credentials.",
+    "User leaves the login page without logging in.",
+    "a. User remains logged out and on the login page."
   ],
   "alternative_flows": null,
   "postconditions": [
-    "User is logged in and can access the secure area.",
-    "System stores the user session information.",
-    "User can log out whenever needed."
+    "User is logged in and has access to secure features.",
+    "System stores the user's session information.",
+    "System displays a success message."
   ],
   "notes": null
 }

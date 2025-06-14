@@ -1,11 +1,11 @@
 
-USE CASE: ** Login to Secure Area
+USE CASE: ** Login User
 ID: ** UC-LOGIN-001
 
 ACTORS:
 - users
-- system
 - user
+- system
 - User
 
 PRECONDITIONS:
@@ -13,22 +13,23 @@ PRECONDITIONS:
 2. User has valid username and password
 
 MAIN FLOW:
-1. User accesses the login page at  https://the-internet.herokuapp.com/login
+1. User navigates to the login page at https://the-internet.herokuapp.com/login
 2. User enters username and password
-3. User clicks on the "Login" button
+3. User clicks on the login button
 4. 4. System validates credentials
-5. 5. If credentials are valid, user is redirected to the secure area
+5. 5. If credentials are valid, user is logged in and redirected to the main page
 6. 6. System displays a success message
-7. **Alternative Flows:**
-8. If the user enters invalid credentials, an error message is displayed.
-9. If the user forgets their password, they can click on the "Forgot Password" link to reset their password.
+7. 7. User can interact with the system
+8. **Alternative Flows:**
+9. If the user forgets their password, they can click on the "Forgot password?" link to reset their password.
+10. If the user's credentials are invalid, the system will display an error message.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User is logged into the secure area
-2. User can access the features and functionality of the secure area
+1. User is logged into the system
+2. User can interact with the system
 
 NOTES:
 None

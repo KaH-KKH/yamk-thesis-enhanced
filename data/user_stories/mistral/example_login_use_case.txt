@@ -1,39 +1,39 @@
 
-USE CASE: ** Login Functionality
-ID: ** UC-LOGIN-001
+USE CASE: User logs in to the system with valid credentials
+ID: UC-001
 
 ACTORS:
 - users
-- system
 - user
+- system
+- User
+- System
 
 PRECONDITIONS:
-1. User is on the login page at https://the-internet.herokuapp.com/login
-2. User has a valid username and password
+1. User is at the login page: https://the-internet.herokuapp.com/login
+2. User has entered a valid username (tomsmith)
+3. User has entered a valid password (SuperSecretPassword!)
 
 MAIN FLOW:
-1. User enters the correct username (tomsmith) in the provided input field.
-2. User enters the correct password (SuperSecretPassword!) in the provided input field.
-3. User clicks the 'Login' button.
-4. 4. System validates the provided credentials.
-5. 5. If credentials are valid, system displays a success message, "You are now logged in."
-6. 6. If credentials are invalid, system displays an error message, "Invalid username or password."
-7. **Alternative flows:**
-8. **Alternative flow 1: Incorrect username**
-9. User enters an incorrect username in step 1.
-10. System displays an error message, "Invalid username or password."
-11. **Alternative flow 2: Incorrect password**
-12. User enters the correct username in step 1.
-13. User enters an incorrect password in step 3.
-14. System displays an error message, "Invalid username or password."
+1. User enters username (tomsmith) and password (SuperSecretPassword!) in the respective fields.
+2. User clicks the 'Login' button.
+3. System checks if the entered credentials are valid.
+4. 4. System returns a successful login message and grants access to the secure area if the credentials are valid.
+5. 5. User is now logged in and can access secure features.
+6. Alternative flows:
+7. User enters invalid credentials:
+8. a. System displays an error message and prompts the user to try again.
+9. b. User can continue to attempt login with new credentials.
+10. User leaves the login page without logging in.
+11. a. User remains logged out and on the login page.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User is logged in and can access the secure area.
-2. System stores the user session information.
-3. User can log out whenever needed.
+1. User is logged in and has access to secure features.
+2. System stores the user's session information.
+3. System displays a success message.
 
 NOTES:
 None
