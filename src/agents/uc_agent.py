@@ -95,6 +95,9 @@ Format the response as a structured use case."""
         
         except Exception as e:
             logger.error(f"Error generating use case for {requirement_file}: {str(e)}")
+            logger.error(f"Exception type: {type(e).__name__}")
+            import traceback
+            logger.error(f"Traceback: {traceback.format_exc()}")
             raise
     
     def _parse_response_to_use_case(self, response: str, requirement_text: str) -> UseCase:

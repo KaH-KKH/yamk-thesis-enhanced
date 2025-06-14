@@ -114,6 +114,9 @@ Format the test case with:
         
         except Exception as e:
             logger.error(f"Error generating test case for {use_case_file}: {str(e)}")
+            logger.error(f"Exception type: {type(e).__name__}")
+            import traceback
+            logger.error(f"Traceback: {traceback.format_exc()}")
             raise
     
     def _format_use_case_for_processing(self, use_case_data: Dict[str, Any]) -> str:

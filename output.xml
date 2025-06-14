@@ -1,205 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-06-11T08:15:48.277505" rpa="false" schemaversion="5">
-<suite id="s1" name="Example Login Use Case" source="/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/example_login_use_case.robot">
+<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-06-14T13:41:42.610341" rpa="false" schemaversion="5">
+<suite id="s1" name="Example Login Use Case" source="/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/mistral/example_login_use_case.robot">
 <test id="s1-t1" name="Test Login Functionality" line="17">
-<kw name="Run Keywords" owner="BuiltIn" type="SETUP">
-<kw name="Open Browser" owner="Browser">
+<kw name="Setup Browser" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<arg>${BROWSER}</arg>
+<arg>headless=${HEADLESS}</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
-<doc>Opens a new browser instance. Use this keyword for quick experiments or debugging sessions.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.527876" elapsed="0.000401"/>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="NOT RUN" start="2025-06-14T13:41:42.736245" elapsed="0.000315"/>
 </kw>
-<arg>Open Browser</arg>
-<doc>Executes all the given keywords in a sequence.</doc>
-<status status="PASS" start="2025-06-11T08:15:48.527676" elapsed="0.000660"/>
+<kw name="Set Browser Timeout" owner="Browser">
+<arg>${TIMEOUT}</arg>
+<tag>Config</tag>
+<tag>Setter</tag>
+<doc>Sets the timeout used by most input and getter keywords.</doc>
+<status status="NOT RUN" start="2025-06-14T13:41:42.736662" elapsed="0.000148"/>
 </kw>
-<kw name="Go To" owner="Browser">
-<arg>https://the-internet.herokuapp.com/The</arg>
+<kw name="New Context" owner="Browser">
+<arg>viewport={'width': 1280, 'height': 720}</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
-<doc>Navigates to the given ``url``.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.528412" elapsed="0.000168"/>
+<doc>Create a new BrowserContext with specified options.</doc>
+<status status="NOT RUN" start="2025-06-14T13:41:42.736877" elapsed="0.000287"/>
+</kw>
+<status status="PASS" start="2025-06-14T13:41:42.735910" elapsed="0.001299"/>
+</kw>
+<kw name="New Browser" owner="Browser">
+<arg>${BROWSER}</arg>
+<arg>headless=${HEADLESS}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="NOT RUN" start="2025-06-14T13:41:42.737272" elapsed="0.000154"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<arg>${BASE_URL}/login</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="NOT RUN" start="2025-06-14T13:41:42.737489" elapsed="0.000136"/>
 </kw>
 <kw name="Type Text" owner="Browser">
-<arg>id="Username"</arg>
-<arg>test value</arg>
+<arg>id=username</arg>
+<arg>tomsmith</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Types the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.528643" elapsed="0.000160"/>
+<status status="NOT RUN" start="2025-06-14T13:41:42.737682" elapsed="0.000120"/>
 </kw>
 <kw name="Type Text" owner="Browser">
-<arg>id="Password"</arg>
-<arg>test value</arg>
+<arg>id=password</arg>
+<arg>SuperSecretPassword!</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Types the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.528864" elapsed="0.000122"/>
+<status status="NOT RUN" start="2025-06-14T13:41:42.737856" elapsed="0.000227"/>
 </kw>
 <kw name="Click" owner="Browser">
-<arg>text="L"</arg>
+<arg>css=button[type='submit']</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.529042" elapsed="0.000113"/>
+<status status="NOT RUN" start="2025-06-14T13:41:42.738331" elapsed="0.000450"/>
 </kw>
-<kw name="Log" owner="BuiltIn">
-<arg>Action: Validate Credentials</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.529207" elapsed="0.000043"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>Action: If Credentials Are Valid:</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.529293" elapsed="0.000041"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>Action: Redirect to Secure Area</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.529379" elapsed="0.000034"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>Action: Display Success Message</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.529774" elapsed="0.000066"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>Action: Else:</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.529893" elapsed="0.000042"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>Action: Display Error Message</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.529979" elapsed="0.000038"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>Action: If Forgotten Password:</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.530061" elapsed="0.000035"/>
-</kw>
-<kw name="Click" owner="Browser">
-<arg>text="F"</arg>
+<kw name="Wait For Elements State" owner="Browser">
+<arg>text=You logged into a secure area!</arg>
+<arg>visible</arg>
 <tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.530138" elapsed="0.000144"/>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="NOT RUN" start="2025-06-14T13:41:42.738864" elapsed="0.000181"/>
 </kw>
-<kw name="Log" owner="BuiltIn">
-<arg>Action: Reset Password</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.530340" elapsed="0.000042"/>
+<kw name="Take Screenshot" owner="Browser">
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="NOT RUN" start="2025-06-14T13:41:42.739116" elapsed="0.000123"/>
 </kw>
-<kw name="Run Keywords" owner="BuiltIn" type="TEARDOWN">
-<kw name="Close Browser">
+<kw name="Close Browser" type="TEARDOWN">
 <kw name="Take Screenshot" owner="Browser">
 <arg>fullPage=True</arg>
 <tag>PageContent</tag>
 <doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
-<status status="NOT RUN" start="2025-06-11T08:15:48.530734" elapsed="0.000139"/>
+<status status="NOT RUN" start="2025-06-14T13:41:42.739565" elapsed="0.000230"/>
 </kw>
 <kw name="Close Browser">
-<msg time="2025-06-11T08:15:48.531020" level="FAIL">Keyword 'Close Browser' expected 0 arguments, got 1.</msg>
+<msg time="2025-06-14T13:41:42.739948" level="FAIL">Keyword 'Close Browser' expected 0 arguments, got 1.</msg>
 <arg>ALL</arg>
-<status status="FAIL" start="2025-06-11T08:15:48.530963" elapsed="0.000087">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+<status status="FAIL" start="2025-06-14T13:41:42.739890" elapsed="0.000091">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
 </kw>
-<status status="FAIL" start="2025-06-11T08:15:48.530605" elapsed="0.000501">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+<status status="FAIL" start="2025-06-14T13:41:42.739422" elapsed="0.000626">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
 </kw>
-<kw name="Expected Results:">
-<msg time="2025-06-11T08:15:48.531957" level="FAIL">No keyword with name 'Expected Results:' found.</msg>
-<status status="FAIL" start="2025-06-11T08:15:48.531908" elapsed="0.000071">No keyword with name 'Expected Results:' found.</status>
-</kw>
-<kw name="User is successfully logged into the secure area when valid credentials are entered.">
-<msg time="2025-06-11T08:15:48.532491" level="FAIL">No keyword with name 'User is successfully logged into the secure area when valid credentials are entered.' found.</msg>
-<status status="FAIL" start="2025-06-11T08:15:48.532450" elapsed="0.000061">No keyword with name 'User is successfully logged into the secure area when valid credentials are entered.' found.</status>
-</kw>
-<kw name="An error message is displayed when invalid credentials are entered.">
-<msg time="2025-06-11T08:15:48.533006" level="FAIL">No keyword with name 'An error message is displayed when invalid credentials are entered.' found.</msg>
-<status status="FAIL" start="2025-06-11T08:15:48.532970" elapsed="0.000053">No keyword with name 'An error message is displayed when invalid credentials are entered.' found.</status>
-</kw>
-<kw name="A success message is displayed when the user is successfully logged in.">
-<msg time="2025-06-11T08:15:48.533493" level="FAIL">No keyword with name 'A success message is displayed when the user is successfully logged in.' found.</msg>
-<status status="FAIL" start="2025-06-11T08:15:48.533460" elapsed="0.000050">No keyword with name 'A success message is displayed when the user is successfully logged in.' found.</status>
-</kw>
-<kw name="The user can access the features and functionality of the secure area.">
-<msg time="2025-06-11T08:15:48.533978" level="FAIL">No keyword with name 'The user can access the features and functionality of the secure area.' found.</msg>
-<status status="FAIL" start="2025-06-11T08:15:48.533942" elapsed="0.000054">No keyword with name 'The user can access the features and functionality of the secure area.' found.</status>
-</kw>
-<kw name="The user can reset their password if they forget it.">
-<msg time="2025-06-11T08:15:48.534539" level="FAIL">No keyword with name 'The user can reset their password if they forget it.' found.</msg>
-<status status="FAIL" start="2025-06-11T08:15:48.534504" elapsed="0.000144">No keyword with name 'The user can reset their password if they forget it.' found.</status>
-</kw>
-<kw name="```">
-<msg time="2025-06-11T08:15:48.535143" level="FAIL">No keyword with name '```' found.</msg>
-<status status="FAIL" start="2025-06-11T08:15:48.535105" elapsed="0.000055">No keyword with name '```' found.</status>
-</kw>
-<kw name="Please let me know if this generated test case meets your requirements.**">
-<msg time="2025-06-11T08:15:48.535716" level="FAIL">No keyword with name 'Please let me know if this generated test case meets your requirements.**' found.</msg>
-<status status="FAIL" start="2025-06-11T08:15:48.535674" elapsed="0.000061">No keyword with name 'Please let me know if this generated test case meets your requirements.**' found.</status>
-</kw>
-<arg>Close Browser</arg>
-<arg>Expected Results:</arg>
-<arg>User is successfully logged into the secure area when valid credentials are entered.</arg>
-<arg>An error message is displayed when invalid credentials are entered.</arg>
-<arg>A success message is displayed when the user is successfully logged in.</arg>
-<arg>The user can access the features and functionality of the secure area.</arg>
-<arg>The user can reset their password if they forget it.</arg>
-<arg>```</arg>
-<arg>Please let me know if this generated test case meets your requirements.**</arg>
-<doc>Executes all the given keywords in a sequence.</doc>
-<status status="FAIL" start="2025-06-11T08:15:48.530473" elapsed="0.005312">Several failures occurred:
-
-1) Keyword 'Close Browser' expected 0 arguments, got 1.
-
-2) No keyword with name 'Expected Results:' found.
-
-3) No keyword with name 'User is successfully logged into the secure area when valid credentials are entered.' found.
-
-4) No keyword with name 'An error message is displayed when invalid credentials are entered.' found.
-
-5) No keyword with name 'A success message is displayed when the user is successfully logged in.' found.
-
-6) No keyword with name 'The user can access the features and functionality of the secure area.' found.
-
-7) No keyword with name 'The user can reset their password if they forget it.' found.
-
-8) No keyword with name '```' found.
-
-9) No keyword with name 'Please let me know if this generated test case meets your requirements.**' found.</status>
-</kw>
-<msg time="2025-06-11T08:15:48.612631" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:35115</msg>
-<doc>Tests the functionality of logging into the secure area.</doc>
-<tag>Smoke Regression</tag>
-<status status="FAIL" start="2025-06-11T08:15:48.527141" elapsed="0.008787">Teardown failed:
-Several failures occurred:
-
-1) Keyword 'Close Browser' expected 0 arguments, got 1.
-
-2) No keyword with name 'Expected Results:' found.
-
-3) No keyword with name 'User is successfully logged into the secure area when valid credentials are entered.' found.
-
-4) No keyword with name 'An error message is displayed when invalid credentials are entered.' found.
-
-5) No keyword with name 'A success message is displayed when the user is successfully logged in.' found.
-
-6) No keyword with name 'The user can access the features and functionality of the secure area.' found.
-
-7) No keyword with name 'The user can reset their password if they forget it.' found.
-
-8) No keyword with name '```' found.
-
-9) No keyword with name 'Please let me know if this generated test case meets your requirements.**' found.</status>
+<msg time="2025-06-14T13:41:42.807689" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:59961</msg>
+<doc>Automated test for login functionality</doc>
+<tag>login smoke</tag>
+<status status="FAIL" start="2025-06-14T13:41:42.735522" elapsed="0.004561">Teardown failed:
+Keyword 'Close Browser' expected 0 arguments, got 1.</status>
 </test>
-<doc>Tests the functionality of logging into the secure area.</doc>
-<status status="FAIL" start="2025-06-11T08:15:48.279235" elapsed="2.054076"/>
+<doc>Automated test for login functionality</doc>
+<status status="FAIL" start="2025-06-14T13:41:42.611295" elapsed="0.849761"/>
 </suite>
 <statistics>
 <total>
 <stat pass="0" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">Smoke Regression</stat>
+<stat pass="0" fail="1" skip="0">login smoke</stat>
 </tag>
 <suite>
 <stat name="Example Login Use Case" id="s1" pass="0" fail="1" skip="0">Example Login Use Case</stat>

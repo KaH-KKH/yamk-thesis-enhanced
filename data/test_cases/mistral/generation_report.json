@@ -1,19 +1,19 @@
 {
   "model": "mistral",
-  "timestamp": "2025-06-11T07:42:54.857473",
+  "timestamp": "2025-06-14T13:41:42.439569",
   "total_files": 2,
-  "successful": 2,
-  "failed": 0,
+  "successful": 0,
+  "failed": 2,
   "results": [
     {
       "use_case": "example_login_use_case.txt",
-      "test_case": "example_login_use_case.robot",
-      "status": "success"
+      "status": "failed",
+      "error": "'mistral'"
     },
     {
       "use_case": "example_login_use_case.json",
-      "test_case": "example_login_use_case.robot",
-      "status": "success"
+      "status": "failed",
+      "error": "'mistral'"
     }
   ]
 }

@@ -2,36 +2,32 @@
   "id": "UC-001",
   "title": "",
   "actors": [
+    "users",
     "system",
     "user",
-    "users",
-    "User",
-    "System"
+    "User (U)",
+    "The System (S)"
   ],
   "preconditions": [
-    "User is at the login page (https://the-internet.herokuapp.com/login)",
+    "User is on the login page",
     "User has a valid username and password"
   ],
   "main_flow": [
-    "User enters username (tomsmith) and password (SuperSecretPassword!) in the respective fields",
-    "User clicks on the \"Login\" button",
-    "System validates the username and password against the database",
-    "4. If validation is successful:",
-    "a. System displays a success message",
-    "b. User is redirected to the secure area",
-    "5. If validation fails:",
-    "a. System displays an error message",
-    "Alternative flows:",
-    "User enters incorrect username or password:",
-    "a. System displays an error message",
-    "b. User can try again",
-    "User leaves the login page without logging in:",
-    "a. System does not redirect the user to the secure area"
+    "User enters valid username (U1)",
+    "User enters valid password (U2)",
+    "User clicks 'Login' button (U3)",
+    "4. System checks username and password against database (S1)",
+    "5. If credentials are valid (S2-Yes), system displays success message (S3)",
+    "6. System grants access to secure area (S4)",
+    "7. User can now interact with secure area functionalities",
+    "Alternative Flows:",
+    "If credentials are invalid (S2-No), system displays error message (S5)",
+    "User can retry login attempt"
   ],
   "alternative_flows": null,
   "postconditions": [
-    "If login is successful, user is authenticated and can access the secure area",
-    "If login fails, user remains on the login page and is not authenticated."
+    "Secure area is accessible only after successful login",
+    "Users can logout from secure area when needed."
   ],
   "notes": null
 }

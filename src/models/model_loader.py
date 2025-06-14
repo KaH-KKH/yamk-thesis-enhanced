@@ -31,15 +31,6 @@ class ModelLoader:
         self.loaded_models = {}
         self.tokenizers = {}
         
-        # Setup quantization config for 4-bit
-        # self.quantization_config = BitsAndBytesConfig(
-        #    load_in_4bit=True,
-        #    bnb_4bit_quant_type="nf4",
-        #    bnb_4bit_use_double_quant=True,
-        #    bnb_4bit_compute_dtype=torch.bfloat16,
-        #    llm_int8_enable_fp32_cpu_offload=True  # LISÄÄ TÄMÄ TÄNNE
-        # )
-
         # Setup quantization config for 8-bit (vähemmän ongelmia)
         self.quantization_config = BitsAndBytesConfig(
             load_in_8bit=True,  # Muuta 4bit -> 8bit
@@ -57,9 +48,13 @@ class ModelLoader:
         # Käytä cachea
         cache = ModelCache()
 
-        # Tarkista onko jo cachessa
+        # KORJAUS: Tarkista onko cachessa JA hae tokenizer
         if hasattr(cache, '_models') and model_name in cache._models:
             logger.info(f"Using cached model: {model_name}")
+            # KRIITTINEN KORJAUS: Tallenna tokenizer myös tähän instanssiin
+            if hasattr(cache, '_tokenizers') and model_name in cache._tokenizers:
+                self.tokenizers[model_name] = cache._tokenizers[model_name]
+                self.tokenizer = cache._tokenizers[model_name]  # For compatibility
             return cache._models[model_name]
 
         if model_name in self.loaded_models:
@@ -84,15 +79,6 @@ class ModelLoader:
             # Add padding token if not present
             if tokenizer.pad_token is None:
                 tokenizer.pad_token = tokenizer.eos_token
-            
-            # Load model with 4-bit quantization
-            # model = AutoModelForCausalLM.from_pretrained(
-            #    model_id,
-            #    quantization_config=self.quantization_config,
-            #    device_map="auto",
-            #    trust_remote_code=True,
-            #    torch_dtype=torch.bfloat16,
-            # )
 
             # Load model with 8-bit quantization
             model = AutoModelForCausalLM.from_pretrained(
@@ -100,7 +86,6 @@ class ModelLoader:
                 quantization_config=self.quantization_config,
                 device_map={"": 0},  # Muuta: pakottaa kaikki GPU:lle
                 trust_remote_code=True,
-                # torch_dtype=torch.bfloat16,
                 torch_dtype=torch.float16,  # Muuta: bfloat16 -> float16
                 low_cpu_mem_usage=True,  # Lisää tämä
                 offload_folder=None,     # Lisää tämä: estää CPU offloading
@@ -118,7 +103,7 @@ class ModelLoader:
             logger.info(f"Total parameters: {total_params:,}")
             logger.info(f"Model device: {next(model.parameters()).device}")
             
-            # Tallenna cacheen latauksen jälkeen
+            # KORJAUS: Tallenna cacheen latauksen jälkeen MOLEMMAT
             cache._models[model_name] = model
             cache._tokenizers[model_name] = tokenizer
 
@@ -153,6 +138,14 @@ class ModelLoader:
     def generate(self, model_name: str, prompt: str, **kwargs) -> str:
         """Generate text using the model"""
         model = self.load_model(model_name)
+        
+        # KORJAUS: Varmista että tokenizer on olemassa
+        if model_name not in self.tokenizers:
+            logger.error(f"Tokenizer for {model_name} not found in self.tokenizers")
+            logger.info(f"Available tokenizers: {list(self.tokenizers.keys())}")
+            # Yritä ladata uudelleen
+            self.load_model(model_name)
+        
         tokenizer = self.tokenizers[model_name]
         
         # Prepare input
@@ -220,7 +213,6 @@ class ModelLoader:
         
         return info
     
-    #def list_available_models(self) -> List[str]:
     def list_available_models(self) -> list[str]:
         """List all available models"""
         return list(self.models_config.keys())
