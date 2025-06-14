@@ -1,33 +1,36 @@
 {
-  "id": "UC-001",
-  "title": "",
+  "id": "** UC-LOGIN-001",
+  "title": "** Login Functionality",
   "actors": [
     "users",
     "system",
-    "user",
-    "User (U)",
-    "The System (S)"
+    "user"
   ],
   "preconditions": [
-    "User is on the login page",
+    "User is on the login page at https://the-internet.herokuapp.com/login",
     "User has a valid username and password"
   ],
   "main_flow": [
-    "User enters valid username (U1)",
-    "User enters valid password (U2)",
-    "User clicks 'Login' button (U3)",
-    "4. System checks username and password against database (S1)",
-    "5. If credentials are valid (S2-Yes), system displays success message (S3)",
-    "6. System grants access to secure area (S4)",
-    "7. User can now interact with secure area functionalities",
-    "Alternative Flows:",
-    "If credentials are invalid (S2-No), system displays error message (S5)",
-    "User can retry login attempt"
+    "User enters the correct username (tomsmith) in the provided input field.",
+    "User enters the correct password (SuperSecretPassword!) in the provided input field.",
+    "User clicks the 'Login' button.",
+    "4. System validates the provided credentials.",
+    "5. If credentials are valid, system displays a success message, \"You are now logged in.\"",
+    "6. If credentials are invalid, system displays an error message, \"Invalid username or password.\"",
+    "**Alternative flows:**",
+    "**Alternative flow 1: Incorrect username**",
+    "User enters an incorrect username in step 1.",
+    "System displays an error message, \"Invalid username or password.\"",
+    "**Alternative flow 2: Incorrect password**",
+    "User enters the correct username in step 1.",
+    "User enters an incorrect password in step 3.",
+    "System displays an error message, \"Invalid username or password.\""
   ],
   "alternative_flows": null,
   "postconditions": [
-    "Secure area is accessible only after successful login",
-    "Users can logout from secure area when needed."
+    "User is logged in and can access the secure area.",
+    "System stores the user session information.",
+    "User can log out whenever needed."
   ],
   "notes": null
 }

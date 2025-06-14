@@ -87,6 +87,45 @@ class DryrunAnalyzer:
         
         return analysis_results
     
+    async def analyze_specific_models(self, model_names: List[str]) -> Dict[str, Any]:
+        """Run dryrun analysis for specific models only"""
+        logger.info(f"Starting dryrun analysis for specific models: {model_names}")
+        
+        analysis_results = {
+            "timestamp": datetime.now().isoformat(),
+            "summary": {},
+            "by_model": {},
+            "error_analysis": {},
+            "comparative_analysis": {}
+        }
+        
+        # Analyze only specified models
+        for model_name in model_names:
+            model_dir = self.test_cases_dir / model_name
+            if model_dir.exists() and model_dir.is_dir():
+                logger.info(f"Analyzing model: {model_name}")
+                model_results = await self.analyze_model(model_dir)
+                analysis_results["by_model"][model_name] = model_results
+            else:
+                logger.warning(f"No test cases found for model: {model_name} at {model_dir}")
+                analysis_results["by_model"][model_name] = {
+                    "total_files": 0,
+                    "successful": 0,
+                    "failed": 0,
+                    "file_results": {},
+                    "errors": ["No test cases directory found"],
+                    "warnings": [],
+                    "execution_time": 0,
+                    "success_rate": 0
+                }
+        
+        # Generate summary and comparisons only for analyzed models
+        analysis_results["summary"] = self._generate_summary(analysis_results["by_model"])
+        analysis_results["error_analysis"] = self._analyze_errors(analysis_results["by_model"])
+        analysis_results["comparative_analysis"] = self._compare_models(analysis_results["by_model"])
+        
+        return analysis_results
+        
     async def analyze_model(self, model_dir: Path) -> Dict[str, Any]:
         """Analyze all test cases for a specific model"""
         robot_files = list(model_dir.glob("*.robot"))

@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation    ** This test case verifies the functionality of logging into the secure area of the internet.herokuapp.com website.
+Documentation    ** This test case verifies the functionality of the login process to the secure area on the internet.herokuapp.com website.
 Library          Browser
-Test Tags        ** login secure area the-internet.herokuapp.com
+Test Tags        ** login secure area user authentication
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -15,23 +15,24 @@ ${TIMEOUT}       10s
 
 *** Test Cases ***
 **
-    [Documentation]    ** This test case verifies the functionality of logging into the secure area of the internet.herokuapp.com website.
-    [Tags]    ** login secure area the-internet.herokuapp.com
+    [Documentation]    ** This test case verifies the functionality of the login process to the secure area on the internet.herokuapp.com website.
+    [Tags]    ** login secure area user authentication
     [Setup]    Run Keywords
-    ...    Open Chrome browser
-    ...    Navigate to the login page at the-internet.herokuapp.com/login
+    ...    Open the browser
+    ...    Navigate to the login page at  https://the-internet.herokuapp.com/login
     
-    Type Text    id="username"    john.doe@example.com
-    Type Text    id="password"    secret123
+    Type Text    id="valid"    test value
     Click    text="""
     Get Text
     Get Text
+    Log    Action: **Alternative Flows:**
+    Type Text    id="field"    test value
+    Click    text="""
     
     [Teardown]    Run Keywords
-    ...    Close Chrome browser
+    ...    Close the browser
     ...    Expected Result:**
-    ...    User is successfully logged into the secure area
-    ...    User can access the features and functionality of the secure area
+    ...    The user is able to successfully login to the secure area with valid credentials and access the features and functionality of the secure area. Alternatively, if the user enters invalid credentials or forgets their password, appropriate error messages are displayed.
 
 *** Keywords ***
 Setup Browser

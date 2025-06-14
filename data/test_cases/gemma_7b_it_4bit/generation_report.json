@@ -1,19 +1,19 @@
 {
   "model": "gemma_7b_it_4bit",
-  "timestamp": "2025-06-14T13:55:35.352425",
+  "timestamp": "2025-06-14T15:01:35.135081",
   "total_files": 2,
-  "successful": 0,
-  "failed": 2,
+  "successful": 2,
+  "failed": 0,
   "results": [
     {
       "use_case": "example_login_use_case.txt",
-      "status": "failed",
-      "error": "'gemma_7b_it_4bit'"
+      "test_case": "example_login_use_case.robot",
+      "status": "success"
     },
     {
       "use_case": "example_login_use_case.json",
-      "status": "failed",
-      "error": "'gemma_7b_it_4bit'"
+      "test_case": "example_login_use_case.robot",
+      "status": "success"
     }
   ]
 }

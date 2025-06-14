@@ -493,10 +493,12 @@ class EnhancedEvaluationRunner:
             comparison["extended_analysis"] = comparative_results
         
         # *** TÄHÄN KOHTAAN DRYRUN-ANALYYSI ***
-        # Run dryrun analysis
+        # Run dryrun analysis - KORJAUS: vain evaluoiduille malleille
         logger.info("Running Robot Framework dryrun analysis...")
         dryrun_analyzer = DryrunAnalyzer(self.config_path)
-        dryrun_results = await dryrun_analyzer.analyze_all_models()
+        
+        # KORJAUS: Rajoita analysoitavat mallit vain evaluoituihin
+        dryrun_results = await dryrun_analyzer.analyze_specific_models(self.models)
         
         # Generate dryrun report
         dryrun_report_dir = self.run_dir / "dryrun_analysis"
