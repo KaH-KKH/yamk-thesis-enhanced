@@ -6,7 +6,7 @@ Singleton model cache to manage loaded models across agents
 import torch
 from loguru import logger
 import gc
-from typing import Dict, Any
+from typing import Dict, Any, List
 
 
 class ModelCache:
@@ -35,6 +35,10 @@ class ModelCache:
             self._usage_count[model_name] = self._usage_count.get(model_name, 0) + 1
             return self._models[model_name], self._tokenizers.get(model_name)
         return None, None
+    
+    def list_cached_models(self) -> List[str]:
+        """List all cached model names"""
+        return list(self._models.keys())
     
     def remove_model(self, model_name: str):
         """Remove model from cache"""

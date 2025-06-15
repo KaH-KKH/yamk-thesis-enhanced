@@ -1,0 +1,194 @@
+{
+  "timestamp": "2025-06-15T10:42:10.321714",
+  "models": [
+    "mistral",
+    "Falcon3-7B-Base"
+  ],
+  "summary": {
+    "best_scores": {}
+  },
+  "detailed_metrics": {
+    "standard": {},
+    "extended": {}
+  },
+  "performance_comparison": {
+    "mistral": {},
+    "Falcon3-7B-Base": {}
+  },
+  "recommendations": [
+    "No significant differences found between models."
+  ],
+  "llm_evaluator_info": {
+    "enabled": true,
+    "model": "gemma_7b_it_4bit",
+    "reason": "Selected as neutral evaluator (not in evaluated models: ['mistral', 'Falcon3-7B-Base'])"
+  },
+  "extended_analysis": {
+    "consistency": {},
+    "trade_offs": {
+      "mistral": {
+        "quality_score": 0,
+        "speed_quality_ratio": 0.0,
+        "memory_quality_ratio": 0.0,
+        "efficiency_score": 0.0
+      },
+      "Falcon3-7B-Base": {
+        "quality_score": 0,
+        "speed_quality_ratio": 0.0,
+        "memory_quality_ratio": 0.0,
+        "efficiency_score": 0.0
+      }
+    },
+    "scalability": {
+      "mistral": {
+        "files_per_second": 0,
+        "memory_efficiency": 1000.0,
+        "time_complexity": "O(n) - Linear"
+      },
+      "Falcon3-7B-Base": {
+        "files_per_second": 0,
+        "memory_efficiency": 1000.0,
+        "time_complexity": "O(n) - Linear"
+      }
+    },
+    "robustness": {
+      "mistral": {
+        "error_rate": 0.0,
+        "success_rate": 1.0,
+        "graceful_failure": true,
+        "reliability_score": 100.0
+      },
+      "Falcon3-7B-Base": {
+        "error_rate": 0.0,
+        "success_rate": 1.0,
+        "graceful_failure": true,
+        "reliability_score": 100.0
+      }
+    },
+    "statistical_significance": {
+      "mistral_vs_Falcon3-7B-Base": {
+        "model1": "mistral",
+        "model2": "Falcon3-7B-Base",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "Falcon3-7B-Base"
+      }
+    },
+    "ranking": [
+      {
+        "model": "mistral",
+        "composite_score": 0.5,
+        "scores": {
+          "completeness": 0.0,
+          "validity": 0.0,
+          "speed": 1.0,
+          "memory": 1.0
+        },
+        "rank": 1
+      },
+      {
+        "model": "Falcon3-7B-Base",
+        "composite_score": 0.5,
+        "scores": {
+          "completeness": 0.0,
+          "validity": 0.0,
+          "speed": 1.0,
+          "memory": 1.0
+        },
+        "rank": 2
+      }
+    ],
+    "recommendations": [
+      "Recommended model: mistral (highest composite score)",
+      "mistral excels at: speed, memory",
+      "mistral needs improvement in: completeness, validity",
+      "Falcon3-7B-Base excels at: speed, memory",
+      "Falcon3-7B-Base needs improvement in: completeness, validity",
+      "Best quality/performance balance: mistral"
+    ]
+  },
+  "dryrun_analysis": {
+    "timestamp": "2025-06-15T10:42:10.331001",
+    "summary": {
+      "total_models": 2,
+      "total_test_files": 2,
+      "total_successful": 0,
+      "total_failed": 2,
+      "overall_success_rate": 0.0,
+      "best_model": "mistral",
+      "worst_model": "mistral"
+    },
+    "by_model": {
+      "mistral": {
+        "total_files": 1,
+        "successful": 0,
+        "failed": 1,
+        "file_results": {
+          "example_login_use_case.robot": {
+            "file": "example_login_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nExample Login Use Case :: Automated test for login functionality              \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nExample Login Use Case :: Automated test for login functionality      | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          }
+        },
+        "errors": [],
+        "warnings": [],
+        "execution_time": 0.852696,
+        "success_rate": 0.0
+      },
+      "Falcon3-7B-Base": {
+        "total_files": 1,
+        "successful": 0,
+        "failed": 1,
+        "file_results": {
+          "example_login_use_case.robot": {
+            "file": "example_login_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nExample Login Use Case :: Tests the login functionality for the-internet.he...\n==============================================================================\nTest Login Functionality :: Tests the login functionality for the-... | FAIL |\nKeyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\nAlso teardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nExample Login Use Case :: Tests the login functionality for the-in... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          }
+        },
+        "errors": [],
+        "warnings": [],
+        "execution_time": 0.576921,
+        "success_rate": 0.0
+      }
+    },
+    "error_analysis": {
+      "error_type_distribution": {},
+      "common_errors": {},
+      "model_error_patterns": {
+        "mistral": {},
+        "Falcon3-7B-Base": {}
+      },
+      "top_errors": []
+    },
+    "comparative_analysis": {
+      "success_rates": {
+        "mistral": 0.0,
+        "Falcon3-7B-Base": 0.0
+      },
+      "error_prone_models": [],
+      "most_stable_models": [
+        "Falcon3-7B-Base"
+      ],
+      "execution_efficiency": {
+        "mistral": {
+          "avg_time_per_file": 0.852696,
+          "total_time": 0.852696
+        },
+        "Falcon3-7B-Base": {
+          "avg_time_per_file": 0.576921,
+          "total_time": 0.576921
+        }
+      }
+    }
+  }
+}

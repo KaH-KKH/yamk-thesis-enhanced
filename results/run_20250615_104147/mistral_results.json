@@ -1,0 +1,12 @@
+{
+  "model": "mistral",
+  "timestamp": "2025-06-15T10:42:02.435396",
+  "use_case_generation": {},
+  "test_case_generation": {},
+  "metrics": {
+    "standard": {},
+    "extended": {}
+  },
+  "performance": {},
+  "error": "'ModelCache' object has no attribute 'list_cached_models'"
+}
