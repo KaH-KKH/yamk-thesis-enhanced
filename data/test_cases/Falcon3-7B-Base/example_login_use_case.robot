@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation    Tests the login functionality for the-internet.herokuapp.com
+Documentation    Automated test for login functionality
 Library          Browser
-Test Tags        login browser_testing
+Test Tags        login smoke
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -15,15 +15,16 @@ ${TIMEOUT}       10s
 
 *** Test Cases ***
 Test Login Functionality
-    [Documentation]    Tests the login functionality for the-internet.herokuapp.com
-    [Tags]    login browser_testing
+    [Documentation]    Automated test for login functionality
+    [Tags]    login smoke
     
-    Log    Action: Initialize browser
-    Go To    https://the-internet.herokuapp.com/login
-    Type Text    id="username"    test value
-    Type Text    id="password"    test value
-    Click    text="L"
-    Get Text
+    New Browser    ${BROWSER}    headless=${HEADLESS}
+    New Page    ${BASE_URL}/login
+    Type Text    id=username    tomsmith
+    Type Text    id=password    SuperSecretPassword!
+    Click    css=button[type='submit']
+    Wait For Elements State    text=You logged into a secure area!    visible
+    Take Screenshot
 
 *** Keywords ***
 Setup Browser

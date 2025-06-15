@@ -1,43 +1,39 @@
 
-USE CASE: User logs in to the application
-ID: UC-001
+USE CASE: ** Secure Login
+ID: 
 
 ACTORS:
-- user
 - users
+- user
 - system
+- User
 
 PRECONDITIONS:
-1. User is on the login page at https://the-internet.he”
-2. The story should unfold through the characters interactions, decisions, and the consequences of their actions. Aim to weave in common sense lessons and social cues. The narrative should cater to a diverse age group, including at least one dialogue and presenting both positive and negative outcomes.
-3. Do not start with classic sentences like "Once upon a time", be creative.
-4. In the bustling city of Cyberville, there was an online platform called "The Internet," which had gained immense popularity among its users. This platform offered various features, but today we will focus on the login functionality.
-5. Our protagonist, Alex, is a diligent user who wants to access the secured area of The Internet. To do so, they need to follow the login process carefully.
-6. Alex opens their laptop and navigates to the login page at https://the-internet.herokuapp.com/login. They see two input fields labeled 'Username' and 'Password.' With excitement, they remember the details of their account: tomsmith as the username and SuperSecretPassword! as the password.
-7. Precondition:
-8. Alex is on the login page at https://the-internet.herokuapp.com/login
+1. User is on the login page at https://the-internet.herokuapp.com/login
+2. User has entered valid credentials: tomsmith/SuperSecretPassword!
 
 MAIN FLOW:
-1. Alex enters their username, tomsmith, into the first input field.
-2. They type in their password, SuperSecretPassword!, into the second input field.
-3. After double-checking for typos, Alex clicks the 'Log in' button.
-4. 4. Upon successful entry, the system displays a success message, welcoming them to the secured area.
-5. Alternative Flow:
-6. 5. If Alex accidentally types in an incorrect password, the system shows an error message indicating invalid credentials.
-7. 6. Frustrated, Alex tries again, remembering the correct password this time.
-8. 7. Once entered correctly, the system allows Alex to proceed to the secured area.
+1. User enters valid username (tomsmith) in the username field.
+2. User enters valid password (SuperSecretPassword!) in the password field.
+3. User clicks the "Login" button.
+4. 4. The system validates the entered credentials.
+5. 5. The system displays a success message: "Login successful."
+6. 6. The system redirects the user to the secure area.
+7. **Alternative Flows:**
+8. The system displays an error message: "Invalid username."
+9. The user can try again by re-entering the username.
+10. The system displays an error message: "Invalid password."
+11. The user can try again by re-entering the password.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. Successful login grants Alex access to the secured area.
-2. An unsuccessful login results in an error message, prompting Alex to re-enter their credentials.
-3. As our tale comes to a close, let us reflect on some essential life lessons woven within this simple interaction:
-4. Remembering your login information is crucial for seamless access to digital platforms.
-5. Patience and perseverance are vital when encountering technical issues or errors.
-6. Double-checking inputs before submitting forms helps avoid unnecessary mistakes.
-7. And finally, always ensure you have a strong, unique password to protect your accounts from potential threats. Happy browsing, everyone!
+1. The user is now logged in and redirected to the secure area.
+2. The user can access secure content or perform actions within the secure area.
+3. **Note:** The use case assumes that the user has the ability to log out and return to the login page. This can be handled in a separate use case for "Logout" functionality.
+4. ---
+5. **Note:** The response provided is a structured use case for the given requirement. It includes the ID, title, actors, preconditions, main flow, alternative flows, and postconditions. This format is standard for use cases and should be easily understood by stakeholders and developers.
 
 NOTES:
 None

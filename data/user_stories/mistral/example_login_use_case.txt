@@ -1,41 +1,37 @@
 
-USE CASE: ** Login Functionality
+USE CASE: ** User logs in to the system with valid credentials
 ID: ** UC-LOGIN-001
 
 ACTORS:
-- user
 - users
+- user
 - system
+- User
+- System
 
 PRECONDITIONS:
 1. User is on the login page
-2. User has valid credentials (username: tomsmith, password: SuperSecretPassword!)
+2. User has a valid username and password
 
 MAIN FLOW:
-1. User enters their username (tomsmith) in the input field.
-2. User enters their password (SuperSecretPassword!) in the input field.
-3. User clicks the "Login" button.
-4. 4. System validates the entered username and password against the stored values.
-5. 5. If the validation is successful, system displays the success message "Welcome, tomsmith!" and grants access to the secure area.
-6. 6. If the validation is unsuccessful, system displays the error message "Invalid credentials. Please try again."
-7. **Alternative flows:**
-8. **Alternative flow 1: User enters invalid credentials**
-9. User enters an incorrect username.
-10. User enters an incorrect password.
-11. System displays the error message "Invalid credentials. Please try again."
-12. **Alternative flow 2: User leaves input fields empty**
-13. User leaves the username field empty.
-14. User leaves the password field empty.
-15. System displays the error message "Username and password are required."
+1. User enters username and password into the respective fields.
+2. User clicks on the "Login" button.
+3. System receives the input and checks the validity of the credentials against the database.
+4. 4. System verifies if the entered username and password match the stored credentials (tomsmith/SuperSecretPassword!).
+5. 5. If credentials are valid, the system displays a success message.
+6. 6. User is redirected to the secured area of the application.
+7. **Alternative Flows:**
+8. Invalid credentials:**
+9. a. System verifies that the entered username and password do not match the stored credentials.
+10. b. System displays an error message.
+11. c. User remains on the login page and can try again.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. System has validated the entered credentials.
-2. If the login was successful, the user is granted access to the secure area.
-3. If the login was unsuccessful, the user remains on the login page and sees an error message.
-4. 4. User can logout from the secure area at any time.
+1. User is either authenticated and redirected to the secured area or remains on the login page with an error message.
+2. System logs the successful login event.
 
 NOTES:
 None

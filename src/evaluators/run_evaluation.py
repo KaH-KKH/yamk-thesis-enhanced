@@ -98,7 +98,9 @@ class EnhancedEvaluationRunner:
             "reason": None
         }
         
-        # Initialize LLM evaluator
+        # Initialize LLM evaluator model selection
+        self.llm_evaluator_model = None
+        
         if self.enable_llm_evaluation:
             # Lista mahdollisista evaluaattorimalleista prioriteettijärjestyksessä
             evaluator_candidates = [
@@ -131,6 +133,23 @@ class EnhancedEvaluationRunner:
         logger.info(f"  Evaluator model: {self.llm_evaluator_model}")
         logger.info(f"  Reason: {self.llm_evaluator_info['reason']}")
         logger.info("="*60)
+        
+        # KORJAUS: Luo LLMEvaluator objekti
+        if self.enable_llm_evaluation and self.llm_evaluator_model:
+            try:
+                self.llm_evaluator = LLMEvaluator(
+                    model_name=self.llm_evaluator_model,
+                    config_path=config_path
+                )
+                logger.info(f"LLM Evaluator initialized successfully with model: {self.llm_evaluator_model}")
+            except Exception as e:
+                logger.error(f"Failed to initialize LLM Evaluator: {str(e)}")
+                self.enable_llm_evaluation = False
+                self.llm_evaluator = None
+                self.llm_evaluator_info["enabled"] = False
+                self.llm_evaluator_info["error"] = str(e)
+        else:
+            self.llm_evaluator = None
 
         # Create results directory
         self.run_dir = self.results_dir / f"run_{self.timestamp}"
@@ -219,13 +238,13 @@ class EnhancedEvaluationRunner:
         
         return results
     
-    # Lisää tämä funktio EnhancedEvaluationRunner luokan sisälle (esim. evaluate_model metodin jälkeen)
     def _force_cleanup_gpu_memory(self):
         """Aggressively clean up GPU memory"""
         import gc
         
         # Clear all model references
-        if hasattr(self, 'llm_evaluator'):
+        # KORJAUS: Tarkista että llm_evaluator on olemassa
+        if hasattr(self, 'llm_evaluator') and self.llm_evaluator:
             if hasattr(self.llm_evaluator, 'model_loader'):
                 # Unload all models from evaluator
                 for model in list(self.llm_evaluator.model_loader.loaded_models.keys()):
@@ -251,7 +270,6 @@ class EnhancedEvaluationRunner:
             reserved = torch.cuda.memory_reserved(0) / 1024**3
             logger.info(f"GPU Memory - Allocated: {allocated:.2f}GB, Reserved: {reserved:.2f}GB")
     
-    # Lisää uusi metodi evaluate_model metodin jälkeen:
     async def _perform_llm_evaluation(self, model_name: str) -> Dict[str, Any]:
         """Perform LLM-based evaluation for a model"""
         logger.info(f"Performing LLM evaluation for {model_name} using evaluator: {self.llm_evaluator_model}")
@@ -262,6 +280,12 @@ class EnhancedEvaluationRunner:
             "test_case_evaluations": [],
             "summary": {}
         }
+        
+        # KORJAUS: Tarkista että llm_evaluator on olemassa
+        if not self.llm_evaluator:
+            logger.warning("LLM Evaluator not initialized, skipping LLM evaluation")
+            llm_results["error"] = "LLM Evaluator not initialized"
+            return llm_results
         
         # Evaluate use cases
         uc_dir = Path(self.config["paths"]["user_stories_dir"]) / model_name
@@ -516,7 +540,6 @@ class EnhancedEvaluationRunner:
         
         return extended_metrics
     
-    # KORJAUS: Korvaa compare_models metodi tällä versiolla
     async def compare_models(self) -> Dict[str, Any]:
         """Run evaluation for all models and compare with extended analysis"""
         logger.info(f"Starting enhanced comparison of {len(self.models)} models")

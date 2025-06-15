@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-06-14T21:16:55.230950" rpa="false" schemaversion="5">
+<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-06-15T11:34:46.715776" rpa="false" schemaversion="5">
 <suite id="s1" name="Example Login Use Case" source="/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Falcon3-7B-Base/example_login_use_case.robot">
 <test id="s1-t1" name="Test Login Functionality" line="17">
 <kw name="Setup Browser" type="SETUP">
@@ -9,98 +9,104 @@
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Create a new playwright Browser with specified options.</doc>
-<status status="NOT RUN" start="2025-06-14T21:16:55.381437" elapsed="0.000270"/>
+<status status="NOT RUN" start="2025-06-15T11:34:46.874524" elapsed="0.001539"/>
 </kw>
 <kw name="Set Browser Timeout" owner="Browser">
 <arg>${TIMEOUT}</arg>
 <tag>Config</tag>
 <tag>Setter</tag>
 <doc>Sets the timeout used by most input and getter keywords.</doc>
-<status status="NOT RUN" start="2025-06-14T21:16:55.381815" elapsed="0.000165"/>
+<status status="NOT RUN" start="2025-06-15T11:34:46.876208" elapsed="0.000176"/>
 </kw>
 <kw name="New Context" owner="Browser">
 <arg>viewport={'width': 1280, 'height': 720}</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Create a new BrowserContext with specified options.</doc>
-<status status="NOT RUN" start="2025-06-14T21:16:55.382054" elapsed="0.000283"/>
+<status status="NOT RUN" start="2025-06-15T11:34:46.876468" elapsed="0.000302"/>
 </kw>
-<status status="PASS" start="2025-06-14T21:16:55.380967" elapsed="0.001416"/>
+<status status="PASS" start="2025-06-15T11:34:46.874137" elapsed="0.002692"/>
 </kw>
-<kw name="Log" owner="BuiltIn">
-<arg>Action: Initialize browser</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-14T21:16:55.382451" elapsed="0.000057"/>
-</kw>
-<kw name="Go To" owner="Browser">
-<arg>https://the-internet.herokuapp.com/login</arg>
+<kw name="New Browser" owner="Browser">
+<arg>${BROWSER}</arg>
+<arg>headless=${HEADLESS}</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
-<doc>Navigates to the given ``url``.</doc>
-<status status="NOT RUN" start="2025-06-14T21:16:55.382565" elapsed="0.000147"/>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="NOT RUN" start="2025-06-15T11:34:46.876914" elapsed="0.000169"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<arg>${BASE_URL}/login</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="NOT RUN" start="2025-06-15T11:34:46.877158" elapsed="0.000156"/>
 </kw>
 <kw name="Type Text" owner="Browser">
-<arg>id="username"</arg>
-<arg>test value</arg>
+<arg>id=username</arg>
+<arg>tomsmith</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Types the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="NOT RUN" start="2025-06-14T21:16:55.382771" elapsed="0.000130"/>
+<status status="NOT RUN" start="2025-06-15T11:34:46.877378" elapsed="0.000151"/>
 </kw>
 <kw name="Type Text" owner="Browser">
-<arg>id="password"</arg>
-<arg>test value</arg>
+<arg>id=password</arg>
+<arg>SuperSecretPassword!</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Types the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="NOT RUN" start="2025-06-14T21:16:55.382957" elapsed="0.000117"/>
+<status status="NOT RUN" start="2025-06-15T11:34:46.877595" elapsed="0.000137"/>
 </kw>
 <kw name="Click" owner="Browser">
-<arg>text="L"</arg>
+<arg>css=button[type='submit']</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="NOT RUN" start="2025-06-14T21:16:55.383130" elapsed="0.000128"/>
+<status status="NOT RUN" start="2025-06-15T11:34:46.877810" elapsed="0.000125"/>
 </kw>
-<kw name="Get Text" owner="Browser">
-<msg time="2025-06-14T21:16:55.383440" level="FAIL">Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.</msg>
-<tag>Assertion</tag>
-<tag>Getter</tag>
+<kw name="Wait For Elements State" owner="Browser">
+<arg>text=You logged into a secure area!</arg>
+<arg>visible</arg>
 <tag>PageContent</tag>
-<doc>Returns text attribute of the element found by ``selector``.</doc>
-<status status="FAIL" start="2025-06-14T21:16:55.383319" elapsed="0.000157">Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.</status>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="NOT RUN" start="2025-06-15T11:34:46.877997" elapsed="0.000153"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser">
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="NOT RUN" start="2025-06-15T11:34:46.878213" elapsed="0.000118"/>
 </kw>
 <kw name="Close Browser" type="TEARDOWN">
 <kw name="Take Screenshot" owner="Browser">
 <arg>fullPage=True</arg>
 <tag>PageContent</tag>
 <doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
-<status status="NOT RUN" start="2025-06-14T21:16:55.383849" elapsed="0.000166"/>
+<status status="NOT RUN" start="2025-06-15T11:34:46.878620" elapsed="0.000248"/>
 </kw>
 <kw name="Close Browser">
-<msg time="2025-06-14T21:16:55.384162" level="FAIL">Keyword 'Close Browser' expected 0 arguments, got 1.</msg>
+<msg time="2025-06-15T11:34:46.879020" level="FAIL">Keyword 'Close Browser' expected 0 arguments, got 1.</msg>
 <arg>ALL</arg>
-<status status="FAIL" start="2025-06-14T21:16:55.384107" elapsed="0.000079">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+<status status="FAIL" start="2025-06-15T11:34:46.878957" elapsed="0.000103">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
 </kw>
-<status status="FAIL" start="2025-06-14T21:16:55.383700" elapsed="0.000540">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+<status status="FAIL" start="2025-06-15T11:34:46.878472" elapsed="0.000654">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
 </kw>
-<msg time="2025-06-14T21:16:55.454563" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:46651</msg>
-<doc>Tests the login functionality for the-internet.herokuapp.com</doc>
-<tag>login browser_testing</tag>
-<status status="FAIL" start="2025-06-14T21:16:55.380339" elapsed="0.003942">Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.
-
-Also teardown failed:
+<msg time="2025-06-15T11:34:46.957410" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:55887</msg>
+<doc>Automated test for login functionality</doc>
+<tag>login smoke</tag>
+<status status="FAIL" start="2025-06-15T11:34:46.873668" elapsed="0.005499">Teardown failed:
 Keyword 'Close Browser' expected 0 arguments, got 1.</status>
 </test>
-<doc>Tests the login functionality for the-internet.herokuapp.com</doc>
-<status status="FAIL" start="2025-06-14T21:16:55.231904" elapsed="0.867320"/>
+<doc>Automated test for login functionality</doc>
+<status status="FAIL" start="2025-06-15T11:34:46.717022" elapsed="1.793673"/>
 </suite>
 <statistics>
 <total>
 <stat pass="0" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">login browser_testing</stat>
+<stat pass="0" fail="1" skip="0">login smoke</stat>
 </tag>
 <suite>
 <stat name="Example Login Use Case" id="s1" pass="0" fail="1" skip="0">Example Login Use Case</stat>
