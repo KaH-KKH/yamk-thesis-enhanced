@@ -1,0 +1,499 @@
+{
+  "model": "mistral",
+  "timestamp": "2025-06-15T14:19:20.497702",
+  "use_case_generation": {
+    "generation_report": {
+      "total_files": 1,
+      "successful": 1,
+      "failed": 0,
+      "results": [
+        {
+          "requirement": "example_login.txt",
+          "use_case": "example_login_use_case.json",
+          "status": "success"
+        }
+      ]
+    },
+    "performance": {
+      "total_time": 340.94422340393066,
+      "memory_used": 953.33203125,
+      "avg_time_per_file": 340.94422340393066
+    }
+  },
+  "test_case_generation": {
+    "generation_report": {
+      "model": "mistral",
+      "timestamp": "2025-06-15T14:45:23.224392",
+      "total_files": 2,
+      "successful": 2,
+      "failed": 0,
+      "results": [
+        {
+          "use_case": "example_login_use_case.txt",
+          "test_case": "example_login_use_case.robot",
+          "status": "success"
+        },
+        {
+          "use_case": "example_login_use_case.json",
+          "test_case": "example_login_use_case.robot",
+          "status": "success"
+        }
+      ]
+    },
+    "test_validation": {
+      "executable": 0,
+      "failed": 1,
+      "errors": [
+        {
+          "file": "example_login_use_case.robot",
+          "error": ""
+        }
+      ],
+      "executability_rate": 0.0
+    },
+    "performance": {
+      "total_time": 1211.7246565818787,
+      "memory_used": -1900.81640625
+    }
+  },
+  "metrics": {
+    "standard": {
+      "use_case_metrics": {
+        "custom": {
+          "completeness": 1.0,
+          "avg_length": 178.0,
+          "avg_steps": 21.0
+        }
+      },
+      "test_case_metrics": {
+        "syntax_validity": {
+          "valid_count": 1,
+          "total_count": 1,
+          "validity_rate": 1.0
+        },
+        "keyword_coverage": {
+          "keyword_counts": {
+            "New Browser": 2,
+            "New Page": 1,
+            "Go To": 1,
+            "Click": 2,
+            "Type Text": 4,
+            "Get Text": 0,
+            "Wait For Elements State": 2,
+            "Take Screenshot": 2
+          },
+          "total_keywords": 14,
+          "unique_keywords_used": 7,
+          "coverage_rate": 0.875
+        }
+      }
+    },
+    "extended": {
+      "quality": {
+        "perplexity": {
+          "mean_perplexity": 19.800167083740234,
+          "min_perplexity": 19.800167083740234,
+          "max_perplexity": 19.800167083740234,
+          "std_perplexity": 0.0
+        },
+        "diversity": {
+          "self_bleu": 0.0,
+          "distinct_1": 0.41702127659574467,
+          "distinct_2": 0.7350427350427351,
+          "distinct_3": 0.8583690987124464,
+          "vocabulary_size": 98,
+          "token_type_ratio": 0.41702127659574467
+        },
+        "coherence": {
+          "mean_coherence": 0.2955712378025055,
+          "min_coherence": 0.2955712378025055,
+          "max_coherence": 0.2955712378025055,
+          "std_coherence": 0.0
+        }
+      },
+      "user_experience": {
+        "readability": {
+          "flesch_reading_ease": {
+            "score": 47.8992219679634,
+            "interpretation": "Difficult"
+          },
+          "flesch_kincaid_grade": {
+            "score": 8.425354691075519,
+            "interpretation": "Grade level: 8.4"
+          },
+          "gunning_fog": {
+            "score": 9.289702517162471,
+            "interpretation": "Years of education needed: 9.3"
+          },
+          "smog_index": {
+            "score": 9.318704503766252,
+            "interpretation": "Score: 9.32"
+          },
+          "automated_readability_index": {
+            "score": 8.060087933561306,
+            "interpretation": "Score: 8.06"
+          },
+          "coleman_liau_index": {
+            "score": 10.304093567251464,
+            "interpretation": "Score: 10.30"
+          },
+          "linsear_write_formula": {
+            "score": 4.0,
+            "interpretation": "Score: 4.00"
+          },
+          "dale_chall_readability_score": {
+            "score": 14.531931884057974,
+            "interpretation": "Score: 14.53"
+          },
+          "avg_sentence_length": 8.064516129032258,
+          "avg_word_length": 3.92,
+          "syllables_per_word": 1.224,
+          "overall_readability": "Poor - Difficult to understand"
+        },
+        "clarity": {
+          "specificity_score": 0.0,
+          "vagueness_score": 0.0,
+          "structure_score": 0.0,
+          "conditional_clarity": 0.0,
+          "ambiguity_score": 0.17396313364055302,
+          "overall_clarity": 0.0
+        },
+        "actionability": {
+          "action_verb_density": 0.00425531914893617,
+          "step_clarity": 0.5555555555555556,
+          "executable_steps": 0.5555555555555556,
+          "overall_actionability": 0.37178881008668246
+        },
+        "completeness": {
+          "completeness_score": 1.0,
+          "missing_elements": []
+        },
+        "usability": {
+          "navigation_ease": 1.0,
+          "information_findability": 0.46399999999999997,
+          "consistency_score": 1.0,
+          "user_friendliness": 0.6826290363590134
+        },
+        "accessibility": {
+          "plain_language_score": 0.8553191489361702,
+          "technical_jargon_ratio": 0.00425531914893617,
+          "international_friendly": 1.0
+        }
+      },
+      "robot_framework": {
+        "overall_quality": {
+          "total_tests": 4,
+          "documentation_coverage": 0.25,
+          "tag_coverage": 0.25,
+          "verification_coverage": 0.5
+        },
+        "keyword_analysis": {
+          "total_keywords_used": 17,
+          "unique_keywords": 8,
+          "custom_keywords_defined": 3,
+          "keyword_reuse_ratio": 0.375,
+          "browser_keyword_usage": {
+            "interaction": 2
+          },
+          "most_used_keywords": {
+            "New": 4,
+            "Type": 4,
+            "Click": 2,
+            "Wait": 2,
+            "Take": 2,
+            "Set": 1,
+            "Close": 1,
+            "Go": 1
+          }
+        },
+        "structure_analysis": {
+          "avg_test_length": 5.0,
+          "max_test_length": 9,
+          "min_test_length": 2,
+          "avg_complexity": 1.0,
+          "max_complexity": 1
+        },
+        "best_practices": {
+          "selector_usage": {
+            "id": 4,
+            "css": 3,
+            "xpath": 0,
+            "text": 1,
+            "data_test": 0,
+            "aria": 0
+          },
+          "best_selector_ratio": 0.5,
+          "explicit_wait_usage": 2,
+          "implicit_wait_usage": 0,
+          "wait_strategy_score": 1.0,
+          "error_handling_present": false,
+          "screenshot_usage": 2,
+          "data_driven_testing": false,
+          "template_usage": 0,
+          "loop_usage": 0
+        },
+        "individual_files": {
+          "example_login_use_case.robot": {
+            "syntax_valid": true,
+            "sections": [
+              "Settings",
+              "Variables",
+              "Keywords"
+            ],
+            "test_count": 1,
+            "keyword_count": 3,
+            "documentation_present": true,
+            "tags_present": true,
+            "setup_teardown": {
+              "test_setup": true,
+              "test_teardown": true,
+              "suite_setup": false,
+              "suite_teardown": false
+            },
+            "line_count": 46,
+            "non_empty_lines": 39
+          }
+        }
+      },
+      "test_case_ux": {
+        "readability": {
+          "flesch_reading_ease": {
+            "score": 4.234046511627923,
+            "interpretation": "Very Difficult"
+          },
+          "flesch_kincaid_grade": {
+            "score": 19.0782015503876,
+            "interpretation": "Grade level: 19.1"
+          },
+          "gunning_fog": {
+            "score": 19.312248062015506,
+            "interpretation": "Years of education needed: 19.3"
+          },
+          "smog_index": {
+            "score": 17.58133193835471,
+            "interpretation": "Score: 17.58"
+          },
+          "automated_readability_index": {
+            "score": 26.709051094890512,
+            "interpretation": "Score: 26.71"
+          },
+          "coleman_liau_index": {
+            "score": 23.697674418604652,
+            "interpretation": "Score: 23.70"
+          },
+          "linsear_write_formula": {
+            "score": 18.0,
+            "interpretation": "Score: 18.00"
+          },
+          "dale_chall_readability_score": {
+            "score": 15.687652868217056,
+            "interpretation": "Score: 15.69"
+          },
+          "avg_sentence_length": 77.33333333333333,
+          "avg_word_length": 4.418103448275862,
+          "syllables_per_word": 1.1594827586206897,
+          "overall_readability": "Poor - Difficult to understand"
+        },
+        "clarity": {
+          "specificity_score": 0.0,
+          "vagueness_score": 0.0,
+          "structure_score": 0.0,
+          "conditional_clarity": 0.0,
+          "ambiguity_score": 0.38000000000000006,
+          "overall_clarity": 0.0
+        },
+        "actionability": {
+          "action_verb_density": 0.034482758620689655,
+          "instruction_quality": 0.75,
+          "overall_actionability": 0.3922413793103448
+        },
+        "completeness": {
+          "completeness_score": 0.8,
+          "missing_elements": [
+            "error handling"
+          ]
+        },
+        "usability": {
+          "navigation_ease": 0.3333333333333333,
+          "information_findability": 0.11350574712643678,
+          "consistency_score": 1.0,
+          "user_friendliness": 0.48444444444444446
+        },
+        "accessibility": {
+          "plain_language_score": 0.7931034482758621,
+          "technical_jargon_ratio": 0.01293103448275862,
+          "international_friendly": 1.0
+        }
+      },
+      "system_info": {
+        "cpu": {
+          "physical_cores": 12,
+          "logical_cores": 24,
+          "max_frequency": 0.0,
+          "cpu_model": "13th Gen Intel(R) Core(TM) i7-13700HX"
+        },
+        "memory": {
+          "total_gb": 15.460460662841797,
+          "available_gb": 10.239006042480469,
+          "used_gb": 4.8252410888671875,
+          "percent": 33.8
+        },
+        "gpu": [
+          {
+            "id": 0,
+            "name": "NVIDIA RTX 2000 Ada Generation Laptop GPU",
+            "utilization": 5.0,
+            "memory_used": 3342.0,
+            "memory_total": 8188.0,
+            "temperature": 52.0,
+            "driver_version": "538.92",
+            "compute_capability": "(8, 9)",
+            "pcie_link_width": 8,
+            "pcie_link_gen": 4
+          }
+        ]
+      }
+    }
+  },
+  "performance": {
+    "use_case_generation_detailed": {
+      "total_time": 352.3691318035126,
+      "cpu": {
+        "mean_percent": 11.85,
+        "max_percent": 26.4,
+        "min_percent": 4.2,
+        "std_percent": 4.46963386683443
+      },
+      "memory": {
+        "mean_mb": 6283.3260529029185,
+        "max_mb": 7298.5625,
+        "min_mb": 4659.9609375,
+        "peak_mb": 2638.6015625
+      },
+      "gpu": {
+        "mean_percent": 49.934010152284266,
+        "max_percent": 100,
+        "mean_memory_mb": 7542.180203045686,
+        "max_memory_mb": 7811.0,
+        "peak_memory_mb": 3836.0,
+        "mean_temperature": 54.923857868020306,
+        "max_temperature": 61.0,
+        "mean_power_watts": 22.238408629441622,
+        "max_power_watts": 35.758,
+        "total_energy_joules": 7836.128741448087
+      },
+      "efficiency": {
+        "cpu_efficiency": 88.15,
+        "memory_efficiency": 60.31126929299315,
+        "gpu_efficiency": 50.065989847715734,
+        "performance_per_watt": 44.96724638273313
+      }
+    },
+    "test_case_generation_detailed": {
+      "total_time": 1220.2422518730164,
+      "cpu": {
+        "mean_percent": 12.625573770491803,
+        "max_percent": 34.4,
+        "min_percent": 3.4,
+        "std_percent": 4.588078823836645
+      },
+      "memory": {
+        "mean_mb": 5296.491121926229,
+        "max_mb": 7230.99609375,
+        "min_mb": 4231.70703125,
+        "peak_mb": 2999.2890625
+      },
+      "gpu": {
+        "mean_percent": 80.55409836065574,
+        "max_percent": 100,
+        "mean_memory_mb": 7573.1429508196725,
+        "max_memory_mb": 7794.0,
+        "peak_memory_mb": 5333.0,
+        "mean_temperature": 57.744918032786885,
+        "max_temperature": 60.0,
+        "mean_power_watts": 27.74164327868852,
+        "max_power_watts": 36.127,
+        "total_energy_joules": 33851.52526504481
+      },
+      "efficiency": {
+        "cpu_efficiency": 87.3744262295082,
+        "memory_efficiency": 66.54462810615017,
+        "gpu_efficiency": 19.445901639344257,
+        "performance_per_watt": 36.046891309002326
+      }
+    },
+    "use_case_generation": {
+      "total_time": 340.94422340393066,
+      "memory_used": 953.33203125,
+      "avg_time_per_file": 340.94422340393066
+    },
+    "test_case_generation": {
+      "total_time": 1211.7246565818787,
+      "memory_used": -1900.81640625
+    },
+    "total_time": 1552.6688799858093,
+    "total_memory": -947.484375,
+    "files_per_second": 0.002933031068883249
+  },
+  "llm_evaluation": {
+    "evaluator_info": {
+      "enabled": true,
+      "model": "gemma_7b_it_4bit",
+      "reason": "Selected as neutral evaluator (not in evaluated models: ['mistral', 'Meta-Llama-3-8B-Instruct'])"
+    },
+    "use_case_evaluations": [
+      {
+        "file": "example_login_use_case.txt",
+        "evaluation": {
+          "completeness": 10,
+          "clarity": 10,
+          "testability": 10,
+          "technical_accuracy": 10,
+          "structure": 10,
+          "overall_score": 10,
+          "strengths": [
+            "All necessary sections are present",
+            "Clear and unambiguous",
+            "Easily testable",
+            "Technically accurate",
+            "Well-organized"
+          ],
+          "weaknesses": [],
+          "suggestions": [],
+          "evaluated_model": "mistral",
+          "content_type": "use_case"
+        }
+      }
+    ],
+    "test_case_evaluations": [
+      {
+        "file": "example_login_use_case.robot",
+        "evaluation": {
+          "syntax_correctness": 10,
+          "test_coverage": 5,
+          "best_practices": 7,
+          "maintainability": 8,
+          "executability": 10,
+          "overall_score": 7.6,
+          "strengths": [
+            "Proper use of libraries, variables, and test setup/teardown",
+            "Correct syntax and indentation"
+          ],
+          "weaknesses": [
+            "Limited test coverage as it only tests login functionality",
+            "No error handling for failed login attempts"
+          ],
+          "suggestions": [
+            "Consider adding test cases for other functionality, add error handling for failed login attempts, and use more descriptive test case names"
+          ],
+          "evaluated_model": "mistral",
+          "content_type": "test_case"
+        }
+      }
+    ],
+    "summary": {
+      "avg_use_case_score": 10.0,
+      "avg_test_case_score": 7.6
+    }
+  }
+}

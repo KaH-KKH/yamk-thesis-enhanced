@@ -1,40 +1,32 @@
 
-USE CASE: ** User Login
-ID: ** UC-LOGIN-001
+USE CASE: Login Functionality
+ID: 
 
 ACTORS:
-- system
 - users
 - user
+- system
 - User
-- The System
 
 PRECONDITIONS:
-1. User is on the login page at https://the-internet.herokuapp.com/login
-2. User has entered their username and password
+1. User is on the login page (https://the-internet.herokuapp.com/login)
+2. User has valid credentials (username: tomsmith, password: SuperSecretPassword!)
 
 MAIN FLOW:
-1. User enters their username into the 'Username' input field.
-2. User enters their password into the 'Password' input field.
-3. User clicks on the 'Login' button.
-4. 4. The System receives the username and password.
-5. 5. The System checks if the provided credentials are valid.
-6. 6. If the provided credentials are invalid, The System displays an error message.
-7. 7. If the provided credentials are valid, The System displays a success message and grants access to the secure area.
-8. **Alternative Flows:**
-9. Flow for invalid credentials:**
-10. Go back to step 5.
-11. If the credentials are still invalid, The System continues to display error messages.
-12. Flow for valid credentials:**
-13. Go to step 7.
-14. User can click on the 'Logout' button to leave the secure area.
+1. User enters valid username and password in the respective fields.
+2. User clicks the 'Login' button.
+3. System validates the entered credentials.
+4. 4. If credentials are valid, system displays a success message and allows the user to access the secure area.
+5. Alternative flows:
+6. a. System displays an error message.
+7. b. User can attempt to log in again.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. If the credentials were invalid, The User remains on the login page.
-2. If the credentials were valid, The User is granted access to the secure area.
+1. If login is successful, user is directed to the secure area and the success message is displayed.
+2. If login is unsuccessful, user remains on the login page and the error message is displayed.
 
 NOTES:
 None

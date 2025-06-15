@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation    This test case tests the secure login functionality of the system, verifying that a valid username and password result in successful login and access to the secure area.
+Documentation    Test the secure login mechanism for users.
 Library          Browser
-Test Tags        login security
+Test Tags        security login functional
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -14,25 +14,17 @@ ${HEADLESS}      false
 ${TIMEOUT}       10s
 
 *** Test Cases ***
-UC-001 Secure Login
-    [Documentation]    This test case tests the secure login functionality of the system, verifying that a valid username and password result in successful login and access to the secure area.
-    [Tags]    login security
-    [Setup]    Run Keywords
-    ...    Go To  https://the-internet.herokuapp.com/login
+UC-001 - Secure Login ***
+    [Documentation]    Test the secure login mechanism for users.
+    [Tags]    security login functional
     
-    Click    text="E"
-    Log    Action: Input Text  id=password  SuperSecretPassword!
-    Click    text="E"
-    Wait For Elements State
-    Click    text="L"
-    Log    Action: Input Text  id=password  SuperSecretPassword!
-    Click    text="E"
-    Wait For Elements State
-    Click    text="L"
-    
-    [Teardown]    Run Keywords
-    ...    ```
-    ...    This test case uses Browser library keywords, tests the secure login functionality, and includes proper setup and teardown. The test case name, documentation, tags, setup, main test steps, and teardown are clearly defined. The test case uses appropriate selectors and waits, and includes a timeout for the Wait Until Page Contains keyword. The test case is executable and can be run to verify the secure login functionality of the system.
+    New Browser    ${BROWSER}    headless=${HEADLESS}
+    New Page    ${BASE_URL}/login
+    Type Text    id=username    tomsmith
+    Type Text    id=password    SuperSecretPassword!
+    Click    css=button[type='submit']
+    Wait For Elements State    text=You logged into a secure area!    visible
+    Take Screenshot
 
 *** Keywords ***
 Setup Browser

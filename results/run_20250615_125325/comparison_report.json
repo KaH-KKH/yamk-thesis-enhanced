@@ -1,0 +1,962 @@
+{
+  "timestamp": "2025-06-15T14:12:48.586301",
+  "models": [
+    "mistral",
+    "Falcon3-7B-Base"
+  ],
+  "summary": {
+    "best_scores": {
+      "quality_perplexity": {
+        "model": "mistral",
+        "value": 21.978925704956055
+      }
+    }
+  },
+  "detailed_metrics": {
+    "standard": {
+      "use_case_metrics": {
+        "mistral": {
+          "custom": {
+            "completeness": 1.0,
+            "avg_length": 203.0,
+            "avg_steps": 17.0
+          }
+        },
+        "Falcon3-7B-Base": {
+          "custom": {
+            "completeness": 1.0,
+            "avg_length": 23.0,
+            "avg_steps": 0.0
+          }
+        }
+      },
+      "test_case_metrics": {
+        "mistral": {
+          "syntax_validity": {
+            "valid_count": 1,
+            "total_count": 1,
+            "validity_rate": 1.0
+          },
+          "keyword_coverage": {
+            "keyword_counts": {
+              "New Browser": 2,
+              "New Page": 1,
+              "Go To": 1,
+              "Click": 2,
+              "Type Text": 4,
+              "Get Text": 0,
+              "Wait For Elements State": 2,
+              "Take Screenshot": 2
+            },
+            "total_keywords": 14,
+            "unique_keywords_used": 7,
+            "coverage_rate": 0.875
+          }
+        },
+        "Falcon3-7B-Base": {
+          "syntax_validity": {
+            "valid_count": 1,
+            "total_count": 1,
+            "validity_rate": 1.0
+          },
+          "keyword_coverage": {
+            "keyword_counts": {
+              "New Browser": 1,
+              "New Page": 0,
+              "Go To": 7,
+              "Click": 1,
+              "Type Text": 2,
+              "Get Text": 0,
+              "Wait For Elements State": 3,
+              "Take Screenshot": 1
+            },
+            "total_keywords": 15,
+            "unique_keywords_used": 6,
+            "coverage_rate": 0.75
+          }
+        }
+      }
+    },
+    "extended": {
+      "quality": {
+        "mistral": {
+          "perplexity": {
+            "mean_perplexity": 21.978925704956055,
+            "min_perplexity": 21.978925704956055,
+            "max_perplexity": 21.978925704956055,
+            "std_perplexity": 0.0
+          },
+          "diversity": {
+            "self_bleu": 0.0,
+            "distinct_1": 0.45689655172413796,
+            "distinct_2": 0.7835497835497836,
+            "distinct_3": 0.9,
+            "vocabulary_size": 106,
+            "token_type_ratio": 0.45689655172413796
+          },
+          "coherence": {
+            "mean_coherence": 0.24225690960884094,
+            "min_coherence": 0.24225690960884094,
+            "max_coherence": 0.24225690960884094,
+            "std_coherence": 0.0
+          }
+        },
+        "Falcon3-7B-Base": {
+          "perplexity": {
+            "mean_perplexity": 64.1206283569336,
+            "min_perplexity": 64.1206283569336,
+            "max_perplexity": 64.1206283569336,
+            "std_perplexity": 0.0
+          },
+          "diversity": {
+            "self_bleu": 0.0,
+            "distinct_1": 0.6129032258064516,
+            "distinct_2": 0.9333333333333333,
+            "distinct_3": 1.0,
+            "vocabulary_size": 19,
+            "token_type_ratio": 0.6129032258064516
+          },
+          "coherence": {
+            "mean_coherence": 1.0,
+            "min_coherence": 1.0,
+            "max_coherence": 1.0,
+            "std_coherence": 0.0
+          }
+        }
+      },
+      "user_experience": {
+        "mistral": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 43.89154545454548,
+              "interpretation": "Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 10.416585858585862,
+              "interpretation": "Grade level: 10.4"
+            },
+            "gunning_fog": {
+              "score": 11.946666666666667,
+              "interpretation": "Years of education needed: 11.9"
+            },
+            "smog_index": {
+              "score": 11.602472056035307,
+              "interpretation": "Score: 11.60"
+            },
+            "automated_readability_index": {
+              "score": 9.34645320197044,
+              "interpretation": "Score: 9.35"
+            },
+            "coleman_liau_index": {
+              "score": 10.869696969696967,
+              "interpretation": "Score: 10.87"
+            },
+            "linsear_write_formula": {
+              "score": 6.111111111111111,
+              "interpretation": "Score: 6.11"
+            },
+            "dale_chall_readability_score": {
+              "score": 14.179906868686867,
+              "interpretation": "Score: 14.18"
+            },
+            "avg_sentence_length": 11.714285714285714,
+            "avg_word_length": 4.2439024390243905,
+            "syllables_per_word": 1.4227642276422765,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.0,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.017241379310344827,
+            "ambiguity_score": 0.28225108225108225,
+            "overall_clarity": 0.0
+          },
+          "actionability": {
+            "action_verb_density": 0.03879310344827586,
+            "step_clarity": 0.8571428571428571,
+            "executable_steps": 0.8571428571428571,
+            "overall_actionability": 0.5843596059113301
+          },
+          "completeness": {
+            "completeness_score": 1.0,
+            "missing_elements": []
+          },
+          "usability": {
+            "navigation_ease": 1.0,
+            "information_findability": 0.47696476964769646,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.6339837261503928
+          },
+          "accessibility": {
+            "plain_language_score": 0.8318965517241379,
+            "technical_jargon_ratio": 0.0,
+            "international_friendly": 1.0
+          }
+        },
+        "Falcon3-7B-Base": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 34.255000000000024,
+              "interpretation": "Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 13.450000000000003,
+              "interpretation": "Grade level: 13.5"
+            },
+            "gunning_fog": {
+              "score": 16.0,
+              "interpretation": "Years of education needed: 16.0"
+            },
+            "smog_index": {
+              "score": 14.554592549557764,
+              "interpretation": "Score: 14.55"
+            },
+            "automated_readability_index": {
+              "score": 14.57739130434782,
+              "interpretation": "Score: 14.58"
+            },
+            "coleman_liau_index": {
+              "score": 16.07,
+              "interpretation": "Score: 16.07"
+            },
+            "linsear_write_formula": {
+              "score": 14.0,
+              "interpretation": "Score: 14.00"
+            },
+            "dale_chall_readability_score": {
+              "score": 14.892000000000001,
+              "interpretation": "Score: 14.89"
+            },
+            "avg_sentence_length": 31.0,
+            "avg_word_length": 4.096774193548387,
+            "syllables_per_word": 1.1612903225806452,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.0,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.0,
+            "ambiguity_score": 0.4,
+            "overall_clarity": 0.0
+          },
+          "actionability": {
+            "action_verb_density": 0.0,
+            "step_clarity": 0.0,
+            "executable_steps": 0.0,
+            "overall_actionability": 0.0
+          },
+          "completeness": {
+            "completeness_score": 1.0,
+            "missing_elements": []
+          },
+          "usability": {
+            "navigation_ease": 0.6666666666666666,
+            "information_findability": 0.5376344086021505,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.385
+          },
+          "accessibility": {
+            "plain_language_score": 0.8709677419354839,
+            "technical_jargon_ratio": 0.0,
+            "international_friendly": 1.0
+          }
+        }
+      },
+      "robot_framework": {
+        "mistral": {
+          "overall_quality": {
+            "total_tests": 4,
+            "documentation_coverage": 0.25,
+            "tag_coverage": 0.25,
+            "verification_coverage": 0.5
+          },
+          "keyword_analysis": {
+            "total_keywords_used": 17,
+            "unique_keywords": 8,
+            "custom_keywords_defined": 3,
+            "keyword_reuse_ratio": 0.375,
+            "browser_keyword_usage": {
+              "interaction": 2
+            },
+            "most_used_keywords": {
+              "New": 4,
+              "Type": 4,
+              "Click": 2,
+              "Wait": 2,
+              "Take": 2,
+              "Set": 1,
+              "Close": 1,
+              "Go": 1
+            }
+          },
+          "structure_analysis": {
+            "avg_test_length": 5.0,
+            "max_test_length": 9,
+            "min_test_length": 2,
+            "avg_complexity": 1.0,
+            "max_complexity": 1
+          },
+          "best_practices": {
+            "selector_usage": {
+              "id": 4,
+              "css": 3,
+              "xpath": 0,
+              "text": 1,
+              "data_test": 0,
+              "aria": 0
+            },
+            "best_selector_ratio": 0.5,
+            "explicit_wait_usage": 2,
+            "implicit_wait_usage": 0,
+            "wait_strategy_score": 1.0,
+            "error_handling_present": false,
+            "screenshot_usage": 2,
+            "data_driven_testing": false,
+            "template_usage": 0,
+            "loop_usage": 0
+          },
+          "individual_files": {
+            "example_login_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 46,
+              "non_empty_lines": 39
+            }
+          }
+        },
+        "Falcon3-7B-Base": {
+          "overall_quality": {
+            "total_tests": 4,
+            "documentation_coverage": 0.25,
+            "tag_coverage": 0.25,
+            "verification_coverage": 0.5
+          },
+          "keyword_analysis": {
+            "total_keywords_used": 116,
+            "unique_keywords": 10,
+            "custom_keywords_defined": 3,
+            "keyword_reuse_ratio": 0.3,
+            "browser_keyword_usage": {
+              "interaction": 1
+            },
+            "most_used_keywords": {
+              "Log": 92,
+              "Go": 7,
+              "Get": 6,
+              "Wait": 3,
+              "New": 2,
+              "Type": 2,
+              "Set": 1,
+              "Take": 1,
+              "Close": 1,
+              "Click": 1
+            }
+          },
+          "structure_analysis": {
+            "avg_test_length": 29.75,
+            "max_test_length": 108,
+            "min_test_length": 2,
+            "avg_complexity": 1.0,
+            "max_complexity": 1
+          },
+          "best_practices": {
+            "selector_usage": {
+              "id": 2,
+              "css": 2,
+              "xpath": 0,
+              "text": 0,
+              "data_test": 0,
+              "aria": 0
+            },
+            "best_selector_ratio": 0.5,
+            "explicit_wait_usage": 3,
+            "implicit_wait_usage": 0,
+            "wait_strategy_score": 1.0,
+            "error_handling_present": false,
+            "screenshot_usage": 1,
+            "data_driven_testing": false,
+            "template_usage": 0,
+            "loop_usage": 0
+          },
+          "individual_files": {
+            "example_login_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 145,
+              "non_empty_lines": 138
+            }
+          }
+        }
+      },
+      "test_case_ux": {
+        "mistral": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 4.234046511627923,
+              "interpretation": "Very Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 19.0782015503876,
+              "interpretation": "Grade level: 19.1"
+            },
+            "gunning_fog": {
+              "score": 19.312248062015506,
+              "interpretation": "Years of education needed: 19.3"
+            },
+            "smog_index": {
+              "score": 17.58133193835471,
+              "interpretation": "Score: 17.58"
+            },
+            "automated_readability_index": {
+              "score": 26.709051094890512,
+              "interpretation": "Score: 26.71"
+            },
+            "coleman_liau_index": {
+              "score": 23.697674418604652,
+              "interpretation": "Score: 23.70"
+            },
+            "linsear_write_formula": {
+              "score": 18.0,
+              "interpretation": "Score: 18.00"
+            },
+            "dale_chall_readability_score": {
+              "score": 15.687652868217056,
+              "interpretation": "Score: 15.69"
+            },
+            "avg_sentence_length": 77.33333333333333,
+            "avg_word_length": 4.418103448275862,
+            "syllables_per_word": 1.1594827586206897,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.0,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.0,
+            "ambiguity_score": 0.38000000000000006,
+            "overall_clarity": 0.0
+          },
+          "actionability": {
+            "action_verb_density": 0.034482758620689655,
+            "instruction_quality": 0.75,
+            "overall_actionability": 0.3922413793103448
+          },
+          "completeness": {
+            "completeness_score": 0.8,
+            "missing_elements": [
+              "error handling"
+            ]
+          },
+          "usability": {
+            "navigation_ease": 0.3333333333333333,
+            "information_findability": 0.11350574712643678,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.48444444444444446
+          },
+          "accessibility": {
+            "plain_language_score": 0.7931034482758621,
+            "technical_jargon_ratio": 0.01293103448275862,
+            "international_friendly": 1.0
+          }
+        },
+        "Falcon3-7B-Base": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": -16.569483607541713,
+              "interpretation": "Very Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 32.66679236219527,
+              "interpretation": "Grade level: 32.7"
+            },
+            "gunning_fog": {
+              "score": 33.33969016452504,
+              "interpretation": "Years of education needed: 33.3"
+            },
+            "smog_index": {
+              "score": 22.076135915942103,
+              "interpretation": "Score: 22.08"
+            },
+            "automated_readability_index": {
+              "score": 40.72191443850267,
+              "interpretation": "Score: 40.72"
+            },
+            "coleman_liau_index": {
+              "score": 16.225363276089826,
+              "interpretation": "Score: 16.23"
+            },
+            "linsear_write_formula": {
+              "score": 13.8,
+              "interpretation": "Score: 13.80"
+            },
+            "dale_chall_readability_score": {
+              "score": 15.810515900084065,
+              "interpretation": "Score: 15.81"
+            },
+            "avg_sentence_length": 326.0,
+            "avg_word_length": 4.607361963190184,
+            "syllables_per_word": 1.4049079754601228,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.006134969325153374,
+            "vagueness_score": 0.0,
+            "structure_score": 0.006134969325153374,
+            "conditional_clarity": 0.006134969325153374,
+            "ambiguity_score": 0.5,
+            "overall_clarity": 0.0049079754601227
+          },
+          "actionability": {
+            "action_verb_density": 0.009202453987730062,
+            "instruction_quality": 0.75,
+            "overall_actionability": 0.379601226993865
+          },
+          "completeness": {
+            "completeness_score": 0.8,
+            "missing_elements": [
+              "error handling"
+            ]
+          },
+          "usability": {
+            "navigation_ease": 0.3333333333333333,
+            "information_findability": 0.7137014314928426,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.3333333333333333
+          },
+          "accessibility": {
+            "plain_language_score": 0.8476482617586912,
+            "technical_jargon_ratio": 0.014314928425357873,
+            "international_friendly": 1.0
+          }
+        }
+      },
+      "system_info": {
+        "mistral": {
+          "cpu": {
+            "physical_cores": 12,
+            "logical_cores": 24,
+            "max_frequency": 0.0,
+            "cpu_model": "13th Gen Intel(R) Core(TM) i7-13700HX"
+          },
+          "memory": {
+            "total_gb": 15.460460662841797,
+            "available_gb": 8.307106018066406,
+            "used_gb": 6.7586517333984375,
+            "percent": 46.3
+          },
+          "gpu": [
+            {
+              "id": 0,
+              "name": "NVIDIA RTX 2000 Ada Generation Laptop GPU",
+              "utilization": 4.0,
+              "memory_used": 3551.0,
+              "memory_total": 8188.0,
+              "temperature": 52.0,
+              "driver_version": "538.92",
+              "compute_capability": "(8, 9)",
+              "pcie_link_width": 8,
+              "pcie_link_gen": 4
+            }
+          ]
+        },
+        "Falcon3-7B-Base": {
+          "cpu": {
+            "physical_cores": 12,
+            "logical_cores": 24,
+            "max_frequency": 0.0,
+            "cpu_model": "13th Gen Intel(R) Core(TM) i7-13700HX"
+          },
+          "memory": {
+            "total_gb": 15.460460662841797,
+            "available_gb": 8.990951538085938,
+            "used_gb": 6.073219299316406,
+            "percent": 41.8
+          },
+          "gpu": [
+            {
+              "id": 0,
+              "name": "NVIDIA RTX 2000 Ada Generation Laptop GPU",
+              "utilization": 52.0,
+              "memory_used": 3530.0,
+              "memory_total": 8188.0,
+              "temperature": 54.0,
+              "driver_version": "538.92",
+              "compute_capability": "(8, 9)",
+              "pcie_link_width": 8,
+              "pcie_link_gen": 4
+            }
+          ]
+        }
+      }
+    }
+  },
+  "performance_comparison": {
+    "mistral": {
+      "use_case_generation_detailed": {
+        "total_time": 386.3715054988861,
+        "cpu": {
+          "mean_percent": 12.271047227926077,
+          "max_percent": 26.7,
+          "min_percent": 4.2,
+          "std_percent": 4.468700587449852
+        },
+        "memory": {
+          "mean_mb": 6893.836803773101,
+          "max_mb": 7988.62890625,
+          "min_mb": 4915.02734375,
+          "peak_mb": 3073.6015625
+        },
+        "gpu": {
+          "mean_percent": 60.79260780287474,
+          "max_percent": 100,
+          "mean_memory_mb": 7473.837782340863,
+          "max_memory_mb": 7715.0,
+          "peak_memory_mb": 4972.0,
+          "mean_temperature": 55.106776180698155,
+          "max_temperature": 59.0,
+          "mean_power_watts": 23.471954825462014,
+          "max_power_watts": 29.951,
+          "total_energy_joules": 9068.894522915602
+        },
+        "efficiency": {
+          "cpu_efficiency": 87.72895277207392,
+          "memory_efficiency": 56.45496825417874,
+          "gpu_efficiency": 39.20739219712526,
+          "performance_per_watt": 42.60403564321858
+        }
+      },
+      "test_case_generation_detailed": {
+        "total_time": 1188.4639654159546,
+        "cpu": {
+          "mean_percent": 12.826874585268747,
+          "max_percent": 28.7,
+          "min_percent": 4.1,
+          "std_percent": 4.569222909374398
+        },
+        "memory": {
+          "mean_mb": 6406.807346964168,
+          "max_mb": 8056.9921875,
+          "min_mb": 5348.5859375,
+          "peak_mb": 2708.40625
+        },
+        "gpu": {
+          "mean_percent": 82.56602521566025,
+          "max_percent": 100,
+          "mean_memory_mb": 7610.307232913073,
+          "max_memory_mb": 7792.0,
+          "peak_memory_mb": 5049.0,
+          "mean_temperature": 57.68148639681486,
+          "max_temperature": 60.0,
+          "mean_power_watts": 28.133411413404115,
+          "max_power_watts": 30.934,
+          "total_energy_joules": 33435.54568905273
+        },
+        "efficiency": {
+          "cpu_efficiency": 87.17312541473126,
+          "memory_efficiency": 59.531297700545636,
+          "gpu_efficiency": 17.433974784339753,
+          "performance_per_watt": 35.544925046791576
+        }
+      },
+      "use_case_generation": {
+        "total_time": 378.74248361587524,
+        "memory_used": 1336.73828125,
+        "avg_time_per_file": 378.74248361587524
+      },
+      "test_case_generation": {
+        "total_time": 1180.177887916565,
+        "memory_used": -864.375
+      },
+      "total_time": 1558.9203715324402,
+      "total_memory": 472.36328125,
+      "files_per_second": 0.002640316424112091
+    },
+    "Falcon3-7B-Base": {
+      "use_case_generation_detailed": {
+        "total_time": 706.8746328353882,
+        "cpu": {
+          "mean_percent": 12.826608505997818,
+          "max_percent": 28.3,
+          "min_percent": 4.6,
+          "std_percent": 4.560471042705591
+        },
+        "memory": {
+          "mean_mb": 5784.392299107143,
+          "max_mb": 6507.4609375,
+          "min_mb": 4831.16015625,
+          "peak_mb": 1676.30078125
+        },
+        "gpu": {
+          "mean_percent": 77.98909487459106,
+          "max_percent": 98,
+          "mean_memory_mb": 7328.90185387132,
+          "max_memory_mb": 7465.0,
+          "peak_memory_mb": 4154.0,
+          "mean_temperature": 57.525627044711015,
+          "max_temperature": 60.0,
+          "mean_power_watts": 27.591711014176663,
+          "max_power_watts": 29.652,
+          "total_energy_joules": 19503.88059244627
+        },
+        "efficiency": {
+          "cpu_efficiency": 87.17339149400217,
+          "memory_efficiency": 63.46279242394511,
+          "gpu_efficiency": 22.01090512540894,
+          "performance_per_watt": 36.24276868825563
+        }
+      },
+      "test_case_generation_detailed": {
+        "total_time": 1301.7346856594086,
+        "cpu": {
+          "mean_percent": 12.617895362663495,
+          "max_percent": 31.7,
+          "min_percent": 5.2,
+          "std_percent": 4.460163969353806
+        },
+        "memory": {
+          "mean_mb": 5843.041034204072,
+          "max_mb": 6526.48046875,
+          "min_mb": 4869.8984375,
+          "peak_mb": 1656.58203125
+        },
+        "gpu": {
+          "mean_percent": 81.23305588585018,
+          "max_percent": 98,
+          "mean_memory_mb": 7566.3442330558855,
+          "max_memory_mb": 7776.0,
+          "peak_memory_mb": 4507.0,
+          "mean_temperature": 58.09928656361475,
+          "max_temperature": 60.0,
+          "mean_power_watts": 28.59292627824019,
+          "max_power_watts": 33.38,
+          "total_energy_joules": 37220.403900887635
+        },
+        "efficiency": {
+          "cpu_efficiency": 87.38210463733651,
+          "memory_efficiency": 63.092336739492254,
+          "gpu_efficiency": 18.766944114149823,
+          "performance_per_watt": 34.97368510899917
+        }
+      },
+      "use_case_generation": {
+        "total_time": 705.1384031772614,
+        "memory_used": 99.515625,
+        "avg_time_per_file": 705.1384031772614
+      },
+      "test_case_generation": {
+        "total_time": 1297.5202355384827,
+        "memory_used": 36.73828125
+      },
+      "total_time": 2002.658638715744,
+      "total_memory": 136.25390625,
+      "files_per_second": 0.0014181613077576415
+    }
+  },
+  "recommendations": [
+    "Overall recommendation: **mistral** (best in 1 metrics)",
+    "\n**Extended Metrics Insights:**"
+  ],
+  "llm_evaluator_info": {
+    "enabled": true,
+    "model": "gemma_7b_it_4bit",
+    "reason": "Selected as neutral evaluator (not in evaluated models: ['mistral', 'Falcon3-7B-Base'])"
+  },
+  "extended_analysis": {
+    "consistency": {},
+    "trade_offs": {
+      "mistral": {
+        "quality_score": 0,
+        "speed_quality_ratio": 0.0,
+        "memory_quality_ratio": 0.0,
+        "efficiency_score": 0.0
+      },
+      "Falcon3-7B-Base": {
+        "quality_score": 0,
+        "speed_quality_ratio": 0.0,
+        "memory_quality_ratio": 0.0,
+        "efficiency_score": 0.0
+      }
+    },
+    "scalability": {
+      "mistral": {
+        "files_per_second": 0.002640316424112091,
+        "memory_efficiency": 4.234029357039487,
+        "time_complexity": "O(n²) - Quadratic"
+      },
+      "Falcon3-7B-Base": {
+        "files_per_second": 0.0014181613077576415,
+        "memory_efficiency": 14.678478254637195,
+        "time_complexity": "O(n²) - Quadratic"
+      }
+    },
+    "robustness": {
+      "mistral": {
+        "error_rate": 0.0,
+        "success_rate": 1.0,
+        "graceful_failure": false,
+        "reliability_score": 100.0
+      },
+      "Falcon3-7B-Base": {
+        "error_rate": 0.0,
+        "success_rate": 1.0,
+        "graceful_failure": false,
+        "reliability_score": 100.0
+      }
+    },
+    "statistical_significance": {
+      "mistral_vs_Falcon3-7B-Base": {
+        "model1": "mistral",
+        "model2": "Falcon3-7B-Base",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "Falcon3-7B-Base"
+      }
+    },
+    "ranking": [
+      {
+        "model": "mistral",
+        "composite_score": 0.25,
+        "scores": {
+          "completeness": 0.0,
+          "validity": 0.0,
+          "speed": 1.0,
+          "memory": 0.0
+        },
+        "rank": 1
+      },
+      {
+        "model": "Falcon3-7B-Base",
+        "composite_score": 0.25,
+        "scores": {
+          "completeness": 0.0,
+          "validity": 0.0,
+          "speed": 0.0,
+          "memory": 1.0
+        },
+        "rank": 2
+      }
+    ],
+    "recommendations": [
+      "Recommended model: mistral (highest composite score)",
+      "mistral excels at: speed",
+      "mistral needs improvement in: completeness, validity, memory",
+      "Falcon3-7B-Base excels at: memory",
+      "Falcon3-7B-Base needs improvement in: completeness, validity, speed",
+      "Best quality/performance balance: mistral"
+    ]
+  },
+  "dryrun_analysis": {
+    "timestamp": "2025-06-15T14:12:48.645041",
+    "summary": {
+      "total_models": 2,
+      "total_test_files": 2,
+      "total_successful": 0,
+      "total_failed": 2,
+      "overall_success_rate": 0.0,
+      "best_model": "mistral",
+      "worst_model": "mistral"
+    },
+    "by_model": {
+      "mistral": {
+        "total_files": 1,
+        "successful": 0,
+        "failed": 1,
+        "file_results": {
+          "example_login_use_case.robot": {
+            "file": "example_login_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nExample Login Use Case :: Automated test for login functionality              \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nExample Login Use Case :: Automated test for login functionality      | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          }
+        },
+        "errors": [],
+        "warnings": [],
+        "execution_time": 1.705037,
+        "success_rate": 0.0
+      },
+      "Falcon3-7B-Base": {
+        "total_files": 1,
+        "successful": 0,
+        "failed": 1,
+        "file_results": {
+          "example_login_use_case.robot": {
+            "file": "example_login_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nExample Login Use Case :: This test case verifies the functionality describ...\n==============================================================================\nTest Login Functionality :: This test case verifies the functional... | FAIL |\nSeveral failures occurred:\n\n1) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\n2) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\n3) Keyword 'Browser.Wait For Elements State' expected 1 to 4 arguments, got 0.\n\n4) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\n5) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\n6) Keyword 'Browser.Wait For Elements State' expected 1 to 4 arguments, got 0.\n\n7) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\n8) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\nAlso teardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nExample Login Use Case :: This test case verifies the functionalit... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          }
+        },
+        "errors": [],
+        "warnings": [],
+        "execution_time": 1.089167,
+        "success_rate": 0.0
+      }
+    },
+    "error_analysis": {
+      "error_type_distribution": {},
+      "common_errors": {},
+      "model_error_patterns": {
+        "mistral": {},
+        "Falcon3-7B-Base": {}
+      },
+      "top_errors": []
+    },
+    "comparative_analysis": {
+      "success_rates": {
+        "mistral": 0.0,
+        "Falcon3-7B-Base": 0.0
+      },
+      "error_prone_models": [],
+      "most_stable_models": [
+        "Falcon3-7B-Base"
+      ],
+      "execution_efficiency": {
+        "mistral": {
+          "avg_time_per_file": 1.705037,
+          "total_time": 1.705037
+        },
+        "Falcon3-7B-Base": {
+          "avg_time_per_file": 1.089167,
+          "total_time": 1.089167
+        }
+      }
+    }
+  }
+}

@@ -1,36 +1,14 @@
 {
-  "id": "",
-  "title": "** Secure Login",
+  "id": "UC-001",
+  "title": "Generated Use Case",
   "actors": [
     "users",
-    "user",
     "system",
-    "User"
+    "user"
   ],
-  "preconditions": [
-    "User is on the login page at https://the-internet.herokuapp.com/login",
-    "User has entered valid credentials: tomsmith/SuperSecretPassword!"
-  ],
-  "main_flow": [
-    "User enters valid username (tomsmith) in the username field.",
-    "User enters valid password (SuperSecretPassword!) in the password field.",
-    "User clicks the \"Login\" button.",
-    "4. The system validates the entered credentials.",
-    "5. The system displays a success message: \"Login successful.\"",
-    "6. The system redirects the user to the secure area.",
-    "**Alternative Flows:**",
-    "The system displays an error message: \"Invalid username.\"",
-    "The user can try again by re-entering the username.",
-    "The system displays an error message: \"Invalid password.\"",
-    "The user can try again by re-entering the password."
-  ],
+  "preconditions": [],
+  "main_flow": [],
   "alternative_flows": null,
-  "postconditions": [
-    "The user is now logged in and redirected to the secure area.",
-    "The user can access secure content or perform actions within the secure area.",
-    "**Note:** The use case assumes that the user has the ability to log out and return to the login page. This can be handled in a separate use case for \"Logout\" functionality.",
-    "---",
-    "**Note:** The response provided is a structured use case for the given requirement. It includes the ID, title, actors, preconditions, main flow, alternative flows, and postconditions. This format is standard for use cases and should be easily understood by stakeholders and developers."
-  ],
+  "postconditions": [],
   "notes": null
 }

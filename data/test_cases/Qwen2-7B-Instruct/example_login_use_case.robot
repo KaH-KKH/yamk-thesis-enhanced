@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation    Automated test for login functionality
+Documentation    Verifies the failure of login process using incorrect credentials.
 Library          Browser
-Test Tags        login smoke
+Test Tags        login security
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -15,13 +15,39 @@ ${TIMEOUT}       10s
 
 *** Test Cases ***
 Test Login Functionality
-    [Documentation]    Automated test for login functionality
-    [Tags]    login smoke
+    [Documentation]    Verifies the failure of login process using incorrect credentials.
+    [Tags]    login security
+    [Setup]    Run Keywords
+    ...    Open Browser [URL=https://the-internet.herokuapp.com] [Title=The Internet]
+    ...    Wait Until Text Present [Text=Welcome] [Timeout=10s]
+    ...    Click Element With XPath=//a[@href='/login'] [Wait=1s]
     
-    New Browser    ${BROWSER}    headless=${HEADLESS}
-    New Page    ${BASE_URL}
-    Log    Executing test steps
-    Take Screenshot
+    Click    text="E"
+    Type Text    id="Text"    test value
+    Type Text    id="Text"    test value
+    Click    text="E"
+    Wait For Elements State
+    Click    text="E"
+    Type Text    id="Text"    test value
+    Type Text    id="Text"    test value
+    Click    text="E"
+    Wait For Elements State
+    Type Text    id="Text"    test value
+    Type Text    id="Text"    test value
+    Click    text="E"
+    Wait For Elements State
+    Click    text="E"
+    Type Text    id="Text"    test value
+    Type Text    id="Text"    test value
+    Click    text="E"
+    Wait For Elements State
+    
+    [Teardown]    Run Keywords
+    ...    Close Browser
+    ...    Expected Outcomes:
+    ...    The system should display an error message indicating invalid credentials.
+    ...    The user should remain on the login page without accessing the secure area.
+    ...    ```
 
 *** Keywords ***
 Setup Browser

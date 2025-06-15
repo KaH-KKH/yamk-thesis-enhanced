@@ -1,23 +1,45 @@
 
-USE CASE: Generated Use Case
+USE CASE: Implementing a secure login process for authorized users
 ID: UC-001
 
 ACTORS:
 - users
-- system
 - user
+- system
+- User - The individual who accesses the website and interacts with the login feature.
 
 PRECONDITIONS:
-
+1. The user has a registered account with valid credentials (username: "tomsmith", password: "SuperSecretPassword!").
+2. The user is at the login page of the website (https://the-internet.herokuapp.com/login).
 
 MAIN FLOW:
-
+1. User Accesses Login Page**: The user navigates to the login URL, https://the-internet.herokuapp.com/login.
+2. User Enters Credentials**: The user types the username "tomsmith" into the provided field and the password "SuperSecretPassword!" into the corresponding field.
+3. User Submits Credentials**: The user clicks the submit button or presses Enter, initiating the authentication process.
+4. 4. **System Validates Credentials**:
+5. The system verifies the entered username and password against its stored records.
+6. If validation passes (correct credentials), the user is redirected to the dashboard page.
+7. 5. **Success Message Displayed**:
+8. Upon successful authentication, the system displays a success message, possibly including a link or option to logout.
+9. 6. **User Accesses Dashboard**:
+10. The user now has access to the secure area, where they can interact with features such as managing their profile or performing specific tasks.
+11. Alternative Flows (Invalid Credentials):
+12. User Types Incorrect Password**:
+13. Step 3**: The user submits incorrect credentials (e.g., "wrongpassword").
+14. Step 4**: The system detects the failure in validation and displays an error message indicating invalid credentials.
+15. Postcondition**: The user remains on the login page without accessing the secure area.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-
+1. Successful Login**:
+2. The user successfully accesses the secure area after entering correct credentials.
+3. The dashboard page is displayed, providing access to secured features and functionalities.
+4. Failed Login**:
+5. The user is unable to access the secure area due to incorrect credentials.
+6. An error message is displayed, informing the user that their login attempt was unsuccessful.
+7. The user remains on the login page.
 
 NOTES:
 None

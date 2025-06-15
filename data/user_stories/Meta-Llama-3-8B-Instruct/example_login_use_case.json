@@ -2,35 +2,37 @@
   "id": "UC-001",
   "title": "** The system shall provide a secure login mechanism for users.",
   "actors": [
-    "system",
+    "users",
     "user",
-    "users"
+    "system",
+    "User: a person who wants to access the secure area of the system."
   ],
   "preconditions": [
     "The user has a valid username and password.",
-    "The user has access to the login page at https://the-internet.herokuapp.com/login.",
-    "The user has not previously logged in."
+    "The user has access to a web browser and internet connection.",
+    "The system is operational and accessible at https://the-internet.herokuapp.com/login."
   ],
   "main_flow": [
     "The user navigates to the login page at https://the-internet.herokuapp.com/login.",
-    "The user enters a valid username (e.g., tomsmith) in the username field.",
-    "The user enters a valid password (e.g., SuperSecretPassword!) in the password field.",
-    "4. The user clicks the login button.",
-    "5. The system validates the username and password.",
-    "6. If the credentials are valid, the system displays a success message and logs the user in.",
-    "7. The user is redirected to the secure area.",
+    "The user enters a valid username (tomsmit) and password (SuperSecretPassword!).",
+    "The system verifies the credentials and checks for any invalid attempts.",
+    "4. If the credentials are valid, the system displays a success message (e.g., \"You logged in successfully!\").",
+    "5. The system grants access to the secure area.",
     "**Alternative Flows:**",
     "Invalid Credentials:**",
-    "The user enters an invalid username or password.",
-    "The system displays an error message.",
-    "The user can retry logging in or navigate away from the page."
+    "The user enters invalid username and password.",
+    "The system displays an error message (e.g., \"Your username or password is invalid!\").",
+    "The user is not granted access to the secure area.",
+    "Forgot Password:**",
+    "The user clicks on the \"Forgot Password\" link.",
+    "The system redirects the user to a password reset page.",
+    "The user enters the required information to reset the password."
   ],
   "alternative_flows": null,
   "postconditions": [
     "The user is logged in successfully and has access to the secure area.",
-    "The user can logout from the secure area.",
-    "The system maintains the user's login session until the user logs out or the session expires.",
-    "This use case provides a clear and structured outline of the secure login process, including the main flow, alternative flows, and postconditions. The use case is testable and provides a clear understanding of the expected behavior of the system."
+    "The user can perform actions within the secure area.",
+    "The system has recorded the user's login activity for security purposes."
   ],
   "notes": null
 }
