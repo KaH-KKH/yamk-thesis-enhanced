@@ -1,38 +1,41 @@
 
-USE CASE: User logs into the system with valid credentials
-ID: UC-001
+USE CASE: ** Login Functionality
+ID: ** UC-LOGIN-001
 
 ACTORS:
+- user
 - users
 - system
-- user
-- User
 
 PRECONDITIONS:
-1. User is on the login page: https://the-internet.herokuapp.com/login
-2. User has valid credentials: tomsmith and SuperSecretPassword!
+1. User is on the login page
+2. User has valid credentials (username: tomsmith, password: SuperSecretPassword!)
 
 MAIN FLOW:
-1. User enters username "tomsmith" in the username input field.
-2. User enters password "SuperSecretPassword!" in the password input field.
-3. User clicks on the "Login" button.
-4. 4. System validates the entered credentials against the database.
-5. 5. If the credentials are valid, system displays a success message "Welcome to the Secure Area, tomsmith!" and navigates the user to the secure area.
-6. 6. If the credentials are invalid, system displays an error message "Invalid credentials. Please try again."
-7. Alternative flows:
-8. If the user enters incorrect credentials:
-9. a. System displays an error message "Invalid credentials. Please try again."
-10. b. User can retry by entering the correct credentials.
-11. If the user leaves the login page without logging in:
-12. a. System does not display any success or error message.
+1. User enters their username (tomsmith) in the input field.
+2. User enters their password (SuperSecretPassword!) in the input field.
+3. User clicks the "Login" button.
+4. 4. System validates the entered username and password against the stored values.
+5. 5. If the validation is successful, system displays the success message "Welcome, tomsmith!" and grants access to the secure area.
+6. 6. If the validation is unsuccessful, system displays the error message "Invalid credentials. Please try again."
+7. **Alternative flows:**
+8. **Alternative flow 1: User enters invalid credentials**
+9. User enters an incorrect username.
+10. User enters an incorrect password.
+11. System displays the error message "Invalid credentials. Please try again."
+12. **Alternative flow 2: User leaves input fields empty**
+13. User leaves the username field empty.
+14. User leaves the password field empty.
+15. System displays the error message "Username and password are required."
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. If the user logs in successfully, the user is navigated to the secure area, and a success message is displayed.
-2. If the user enters invalid credentials, an error message is displayed, and the user remains on the login page.
-3. The user can log out from the secure area at any time.
+1. System has validated the entered credentials.
+2. If the login was successful, the user is granted access to the secure area.
+3. If the login was unsuccessful, the user remains on the login page and sees an error message.
+4. 4. User can logout from the secure area at any time.
 
 NOTES:
 None

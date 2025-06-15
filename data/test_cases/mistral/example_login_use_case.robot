@@ -17,18 +17,6 @@ ${TIMEOUT}       10s
 Test Login Functionality
     [Documentation]    Automated test for login functionality
     [Tags]    login smoke
-    [Setup]    Run Keywords
-    ...    Title Should Be      Log in
-    ...    Test ***
-    ...    [Documentation]    Test: Enter valid credentials and click Login
-    ...    InputText            username           ${USERNAME}
-    ...    InputText            password         ${PASSWORD}
-    ...    ClickButton           login_button
-    ...    [Documentation]    Test: Verify success message is displayed
-    ...    WaitUntilPageContains  Welcome to the Secure Area, tomsmith!
-    ...    [Documentation]    Test: Verify user is in the secure area
-    ...    Title Should Be      Secure Area: To Do List
-    ...    Teardown ***
     
     New Browser    ${BROWSER}    headless=${HEADLESS}
     New Page    ${BASE_URL}/login
@@ -37,11 +25,6 @@ Test Login Functionality
     Click    css=button[type='submit']
     Wait For Elements State    text=You logged into a secure area!    visible
     Take Screenshot
-    
-    [Teardown]    Run Keywords
-    ...    GoToUrl              /login
-    ...    Title Should Be      Log in
-    ...    ```
 
 *** Keywords ***
 Setup Browser

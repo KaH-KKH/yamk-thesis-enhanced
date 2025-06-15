@@ -32,6 +32,10 @@ models:
       model_id: "Qwen/Qwen2-7B-Instruct"
       #quantization: "4bit"
       quantization: "8bit"
+    # LISÄÄ TÄMÄ: Pienempi fallback malli evaluaattoriksi
+    - name: "gemma_2b_it"
+      model_id: "google/gemma-2b-it"
+      quantization: "4bit"
 
 agents:
   uc_agent:
@@ -64,6 +68,8 @@ evaluation:
   batch_size: 8
   sample_size: 3  # Evaluoi vain 3 tiedostoa per malli
   full_evaluation: false  # true = kaikki tiedostot
+  # Maksimi mallien määrä kerralla (suositus)
+  max_models_per_run: 3
   metrics:
     - bleu
     - rouge
@@ -71,7 +77,15 @@ evaluation:
     - semantic_similarity
   llm_evaluation:
     enabled: true
-    evaluator_model: "mistral"  # Model used for evaluation
+    max_files_per_model: 5  # Rajoita tiedostomäärää muistin säästämiseksi
+    # Prioriteettijärjestys evaluaattorimalleille
+    evaluator_models:
+      - "mistral"
+      - "gemma_7b_it_4bit"
+      - "Falcon3-7B-Base"
+      - "Meta-Llama-3-8B-Instruct"
+      - "Qwen2-7B-Instruct"
+      - "gemma_2b_it"  # Fallback
     criteria:
       use_case:
         - completeness

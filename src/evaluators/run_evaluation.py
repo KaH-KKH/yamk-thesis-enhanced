@@ -90,13 +90,47 @@ class EnhancedEvaluationRunner:
                 self.monitor.start_wandb_logging(
                     project_name=self.config["monitoring"]["wandb"].get("project", "yamk-thesis")
                 )
+
+        # MUUTOS: Tallenna evaluaattori info näkyvästi
+        self.llm_evaluator_info = {
+            "enabled": self.enable_llm_evaluation,
+            "model": None,
+            "reason": None
+        }
         
         # Initialize LLM evaluator
         if self.enable_llm_evaluation:
-            # Use a different model as evaluator to avoid bias
-            evaluator_model = "mistral" if "mistral" not in models else "gemma_7b_it_4bit"
-            self.llm_evaluator = LLMEvaluator(evaluator_model, config_path)
-            logger.info(f"LLM evaluator initialized with model: {evaluator_model}")
+            # Lista mahdollisista evaluaattorimalleista prioriteettijärjestyksessä
+            evaluator_candidates = [
+                "mistral",
+                "gemma_7b_it_4bit", 
+                "Falcon3-7B-Base",
+                "Meta-Llama-3-8B-Instruct",
+                "Qwen2-7B-Instruct"
+            ]
+            
+            # Valitse ensimmäinen malli joka ei ole evaluoitavissa malleissa
+            for candidate in evaluator_candidates:
+                if candidate not in models:
+                    self.llm_evaluator_model = candidate
+                    self.llm_evaluator_info["model"] = candidate
+                    self.llm_evaluator_info["reason"] = f"Selected as neutral evaluator (not in evaluated models: {models})"
+                    break
+            
+            # Jos kaikki mallit ovat evaluoitavissa, käytä pienintä mallia
+            if self.llm_evaluator_model is None:
+                self.llm_evaluator_model = "gemma_2b_it"
+                self.llm_evaluator_info["model"] = "gemma_2b_it"
+                self.llm_evaluator_info["reason"] = "Fallback model - all standard models are being evaluated"
+                logger.warning(f"All standard models are being evaluated. Using fallback: {self.llm_evaluator_model}")
+
+        # MUUTOS: Näkyvämpi lokitus
+        logger.info("="*60)
+        logger.info(f"LLM EVALUATOR CONFIGURATION:")
+        logger.info(f"  Evaluated models: {', '.join(models)}")
+        logger.info(f"  Evaluator model: {self.llm_evaluator_model}")
+        logger.info(f"  Reason: {self.llm_evaluator_info['reason']}")
+        logger.info("="*60)
 
         # Create results directory
         self.run_dir = self.results_dir / f"run_{self.timestamp}"
@@ -220,9 +254,10 @@ class EnhancedEvaluationRunner:
     # Lisää uusi metodi evaluate_model metodin jälkeen:
     async def _perform_llm_evaluation(self, model_name: str) -> Dict[str, Any]:
         """Perform LLM-based evaluation for a model"""
-        logger.info(f"Performing LLM evaluation for {model_name}")
+        logger.info(f"Performing LLM evaluation for {model_name} using evaluator: {self.llm_evaluator_model}")
         
         llm_results = {
+            "evaluator_info": self.llm_evaluator_info.copy(),  # LISÄYS: Evaluaattori info
             "use_case_evaluations": [],
             "test_case_evaluations": [],
             "summary": {}
@@ -485,6 +520,10 @@ class EnhancedEvaluationRunner:
     async def compare_models(self) -> Dict[str, Any]:
         """Run evaluation for all models and compare with extended analysis"""
         logger.info(f"Starting enhanced comparison of {len(self.models)} models")
+
+        # LISÄYS: Näytä evaluaattori info heti alussa
+        if self.enable_llm_evaluation:
+            logger.info(f"LLM Evaluator: {self.llm_evaluator_model} will be used for quality assessment")
         
         all_results = {}
         
@@ -531,6 +570,9 @@ class EnhancedEvaluationRunner:
         
         # Generate standard comparison report
         comparison = self._generate_comparison_report(all_results)
+
+        # LISÄYS: Lisää evaluaattori info vertailuraporttiin
+        comparison["llm_evaluator_info"] = self.llm_evaluator_info
         
         # Add extended comparative analysis
         if self.enable_extended_metrics:
@@ -895,6 +937,16 @@ class EnhancedEvaluationRunner:
     
     def _create_comprehensive_dashboard(self, all_results: Dict[str, Any], comparison: Dict[str, Any]):
         """Create comprehensive dashboard as HTML"""
+        # LISÄYS: Näytä evaluaattori info dashboardissa
+        evaluator_section = ""
+        if "llm_evaluator_info" in comparison and comparison["llm_evaluator_info"]["enabled"]:
+            evaluator_section = f"""
+                <div class="info-box">
+                    <h3>LLM Evaluator Information</h3>
+                    <p><strong>Model:</strong> {comparison['llm_evaluator_info']['model']}</p>
+                    <p><strong>Selection reason:</strong> {comparison['llm_evaluator_info']['reason']}</p>
+                </div>
+            """
         html_content = f"""
         <!DOCTYPE html>
         <html>
@@ -1017,6 +1069,19 @@ class EnhancedEvaluationRunner:
             "## Executive Summary",
             ""
         ]
+
+        # LISÄYS: Näytä evaluaattori info raportissa
+        if "llm_evaluator_info" in comparison and comparison["llm_evaluator_info"]["enabled"]:
+            lines.extend([
+                f"**LLM Evaluator:** {comparison['llm_evaluator_info']['model']}",
+                f"**Evaluator Selection:** {comparison['llm_evaluator_info']['reason']}",
+            ])
+        
+        lines.extend([
+            "",
+            "## Executive Summary",
+            ""
+        ])
 
         # Lisää LLM-pohjainen arviointi yhteenvetoon
         if "llm_based_comparison" in comparison:

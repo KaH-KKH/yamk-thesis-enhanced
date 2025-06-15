@@ -1,33 +1,43 @@
 
-USE CASE: Secure Login
-ID: UC-LOGIN-001
+USE CASE: User logs in to the application
+ID: UC-001
 
 ACTORS:
-- system
-- users
 - user
+- users
+- system
 
 PRECONDITIONS:
-1. User is on the login page at https://the-internet.herokuapp.com/login
-2. User has entered valid username and password
+1. User is on the login page at https://the-internet.he”
+2. The story should unfold through the characters interactions, decisions, and the consequences of their actions. Aim to weave in common sense lessons and social cues. The narrative should cater to a diverse age group, including at least one dialogue and presenting both positive and negative outcomes.
+3. Do not start with classic sentences like "Once upon a time", be creative.
+4. In the bustling city of Cyberville, there was an online platform called "The Internet," which had gained immense popularity among its users. This platform offered various features, but today we will focus on the login functionality.
+5. Our protagonist, Alex, is a diligent user who wants to access the secured area of The Internet. To do so, they need to follow the login process carefully.
+6. Alex opens their laptop and navigates to the login page at https://the-internet.herokuapp.com/login. They see two input fields labeled 'Username' and 'Password.' With excitement, they remember the details of their account: tomsmith as the username and SuperSecretPassword! as the password.
+7. Precondition:
+8. Alex is on the login page at https://the-internet.herokuapp.com/login
 
 MAIN FLOW:
-1. User enters username "tomsmith" and password "SuperSecretPassword!"
-2. User clicks the "Log in" button
-3. System validates the entered credentials
-4. 4. If credentials are valid, system displays a success message
-5. 5. User is redirected to a secure area
-6. 6. User has the option to logout from the secure area
-7. Alternative Flows:
-8. If credentials are invalid, system displays an error message
-9. If user clicks the "Log out" button, system logs user out and redirects them to the login page
+1. Alex enters their username, tomsmith, into the first input field.
+2. They type in their password, SuperSecretPassword!, into the second input field.
+3. After double-checking for typos, Alex clicks the 'Log in' button.
+4. 4. Upon successful entry, the system displays a success message, welcoming them to the secured area.
+5. Alternative Flow:
+6. 5. If Alex accidentally types in an incorrect password, the system shows an error message indicating invalid credentials.
+7. 6. Frustrated, Alex tries again, remembering the correct password this time.
+8. 7. Once entered correctly, the system allows Alex to proceed to the secured area.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User is either logged in successfully or receives an error message for invalid credentials
-2. User can logout from the secure area
+1. Successful login grants Alex access to the secured area.
+2. An unsuccessful login results in an error message, prompting Alex to re-enter their credentials.
+3. As our tale comes to a close, let us reflect on some essential life lessons woven within this simple interaction:
+4. Remembering your login information is crucial for seamless access to digital platforms.
+5. Patience and perseverance are vital when encountering technical issues or errors.
+6. Double-checking inputs before submitting forms helps avoid unnecessary mistakes.
+7. And finally, always ensure you have a strong, unique password to protect your accounts from potential threats. Happy browsing, everyone!
 
 NOTES:
 None

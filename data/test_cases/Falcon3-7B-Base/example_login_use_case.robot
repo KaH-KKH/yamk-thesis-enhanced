@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation    This test case verifies the login functionality with correct credentials
+Documentation    Tests the login functionality for the-internet.herokuapp.com
 Library          Browser
-Test Tags        Login Login Form Log In 
+Test Tags        login browser_testing
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -14,17 +14,16 @@ ${HEADLESS}      false
 ${TIMEOUT}       10s
 
 *** Test Cases ***
-Login with Correct Credentials
-    [Documentation]    This test case verifies the login functionality with correct credentials
-    [Tags]    Login Login Form Log In 
+Test Login Functionality
+    [Documentation]    Tests the login functionality for the-internet.herokuapp.com
+    [Tags]    login browser_testing
     
-    New Browser    ${BROWSER}    headless=${HEADLESS}
-    New Page    ${BASE_URL}/login
-    Type Text    id=username    tomsmith
-    Type Text    id=password    SuperSecretPassword!
-    Click    css=button[type='submit']
-    Wait For Elements State    text=You logged into a secure area!    visible
-    Take Screenshot
+    Log    Action: Initialize browser
+    Go To    https://the-internet.herokuapp.com/login
+    Type Text    id="username"    test value
+    Type Text    id="password"    test value
+    Click    text="L"
+    Get Text
 
 *** Keywords ***
 Setup Browser

@@ -204,6 +204,10 @@ Format the response as a structured use case."""
                     "error": str(e)
                 })
         
+        # KORJAUS: POISTETTU DUPLIKOITU FOR-LOOP!
+        # Tässä oli toinen for-loop joka käytti väärää muuttujaa (req_files)
+        # ja teki saman asian uudestaan. Se on nyt poistettu.
+        
         return results
     
     def _format_use_case_text(self, use_case: UseCase) -> str:

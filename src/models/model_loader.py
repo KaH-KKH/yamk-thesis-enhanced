@@ -65,27 +65,29 @@ class ModelLoader:
     def load_model(self, model_name: str, force_reload: bool = False):
         """Load a model by name with improved memory management"""
         
-        # KORJAUS: Lisätty muistin tila ennen latausta
+        # KORJAUS: Optimoi cache käyttöä - pidä vain 1 malli kerrallaan muistissa
+        cache = ModelCache()
+        if len(cache.list_cached_models()) >= 1 and model_name not in cache.list_cached_models():
+            logger.info("Cache full, clearing old models before loading new one")
+            cache.optimize_cache(max_models=0)  # Tyhjennä kaikki vanhat mallit
+            
+        # Log initial memory state
         allocated, reserved = self._get_gpu_memory_usage()
         logger.info(f"GPU memory before loading {model_name}: Allocated={allocated:.2f}GB, Reserved={reserved:.2f}GB")
         
-        # Tyhjennä muisti ennen uuden mallin lataamista
+        # Clear memory before loading
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
-            torch.cuda.synchronize()  # KORJAUS: Lisätty synkronointi
+            torch.cuda.synchronize()
         
-        # Käytä cachea
-        cache = ModelCache()
-
-        # Tarkista onko cachessa JA hae tokenizer
+        # Check cache
         if not force_reload and hasattr(cache, '_models') and model_name in cache._models:
             logger.info(f"Using cached model: {model_name}")
-            # KRIITTINEN KORJAUS: Tallenna tokenizer myös tähän instanssiin
             if hasattr(cache, '_tokenizers') and model_name in cache._tokenizers:
                 self.tokenizers[model_name] = cache._tokenizers[model_name]
-                self.tokenizer = cache._tokenizers[model_name]  # For compatibility
+                self.tokenizer = cache._tokenizers[model_name]
             return cache._models[model_name]
-
+        
         if model_name in self.loaded_models and not force_reload:
             logger.info(f"Model {model_name} already loaded")
             return self.loaded_models[model_name]
@@ -98,21 +100,40 @@ class ModelLoader:
         
         logger.info(f"Loading model: {model_name} ({model_id})")
         
+        # KORJAUS: Valitse kvantisointitaso mallin koon mukaan
+        if "gemma-2b" in model_id.lower() or "gemma_2b" in model_name.lower():
+            # Pienempi malli voi käyttää 8-bit
+            current_quantization = self.quantization_config_8bit
+            logger.info("Using 8-bit quantization for small model")
+        else:
+            # Isommat mallit käyttävät 4-bit jos muisti on tiukalla
+            allocated, _ = self._get_gpu_memory_usage()
+            if allocated > 5.0:  # Jos yli 5GB käytössä, käytä 4-bit
+                logger.info("High memory usage detected, using 4-bit quantization")
+                current_quantization = self.quantization_config_4bit
+            else:
+                # Muuten käytä mallin config määritystä
+                if model_config.get('quantization') == '4bit':
+                    current_quantization = self.quantization_config_4bit
+                    logger.info("Using 4-bit quantization as configured")
+                else:
+                    current_quantization = self.quantization_config_8bit
+                    logger.info("Using 8-bit quantization as configured")
+        
         try:
-            # Load tokenizer
+            # Load tokenizer first (uses less memory)
             tokenizer = AutoTokenizer.from_pretrained(
                 model_id,
                 trust_remote_code=True
             )
             
-            # Add padding token if not present
             if tokenizer.pad_token is None:
                 tokenizer.pad_token = tokenizer.eos_token
-
-            # KORJAUS: Muutettu device_map ja lisätty muistirajoitukset
+            
+            # Load model with appropriate settings
             model = AutoModelForCausalLM.from_pretrained(
                 model_id,
-                quantization_config=self.quantization_config,
+                quantization_config=current_quantization,
                 device_map="auto",  # KORJAUS: Anna automaattisesti jakaa GPU/CPU
                 trust_remote_code=True,
                 torch_dtype=torch.float16,
@@ -126,10 +147,10 @@ class ModelLoader:
             self.tokenizers[model_name] = tokenizer
             self.tokenizer = tokenizer  # For compatibility
             
-            # KORJAUS: Parempi cache-tallennus
+            # Add to cache
             cache.add_model(model_name, model, tokenizer)
             
-            # KORJAUS: Muistin käytön raportointi latauksen jälkeen
+            # Log success and memory usage
             allocated, reserved = self._get_gpu_memory_usage()
             logger.success(f"Model {model_name} loaded successfully")
             logger.info(f"GPU memory after loading: Allocated={allocated:.2f}GB, Reserved={reserved:.2f}GB")
@@ -138,23 +159,52 @@ class ModelLoader:
             total_params = sum(p.numel() for p in model.parameters())
             logger.info(f"Total parameters: {total_params:,}")
             
-            # KORJAUS: Tarkista onko malli jaettu usealle laitteelle
+            # Check if model is split across devices
             if hasattr(model, 'hf_device_map'):
                 logger.info(f"Model device map: {model.hf_device_map}")
-
+            
             return model
             
-        # KORJAUS: Lisätty OOM-virheenkäsittely ja automaattinen 4-bit retry
         except torch.cuda.OutOfMemoryError as e:
-            logger.error(f"CUDA OOM while loading {model_name}. Trying with 4-bit quantization...")
+            logger.error(f"CUDA OOM while loading {model_name}. Trying recovery...")
             
-            # KORJAUS: Hätäsiivous
+            # Emergency cleanup
             self._emergency_cleanup()
             
             # Retry with 4-bit quantization
             try:
-                self.quantization_config = self.quantization_config_4bit
-                return self.load_model(model_name, force_reload=True)
+                logger.info("Retrying with 4-bit quantization after OOM")
+                # Force 4-bit for retry
+                forced_4bit_config = BitsAndBytesConfig(
+                    load_in_4bit=True,
+                    bnb_4bit_compute_dtype=torch.float16,
+                    bnb_4bit_use_double_quant=True,
+                    bnb_4bit_quant_type="nf4"
+                )
+                
+                model = AutoModelForCausalLM.from_pretrained(
+                    model_id,
+                    quantization_config=forced_4bit_config,
+                    device_map="auto",
+                    trust_remote_code=True,
+                    torch_dtype=torch.float16,
+                    low_cpu_mem_usage=True,
+                    max_memory={0: "20GB", "cpu": "40GB"},  # Even more conservative
+                    offload_folder="offload",
+                )
+                
+                # If successful, store everything
+                self.loaded_models[model_name] = model
+                self.tokenizers[model_name] = tokenizer
+                self.tokenizer = tokenizer
+                cache.add_model(model_name, model, tokenizer)
+                
+                allocated, reserved = self._get_gpu_memory_usage()
+                logger.success(f"Model {model_name} loaded with 4-bit after OOM recovery")
+                logger.info(f"GPU memory after recovery: Allocated={allocated:.2f}GB, Reserved={reserved:.2f}GB")
+                
+                return model
+                
             except Exception as e2:
                 logger.error(f"Failed to load {model_name} even with 4-bit: {str(e2)}")
                 raise
@@ -283,6 +333,29 @@ class ModelLoader:
             # KORJAUS: Raportti muistin tilasta poiston jälkeen
             allocated, reserved = self._get_gpu_memory_usage()
             logger.info(f"Model {model_name} unloaded. GPU memory: Allocated={allocated:.2f}GB, Reserved={reserved:.2f}GB")
+    
+    # Lisää myös tämä metodi joka tyhjentää kaikki paitsi tietyn mallin:
+    def clear_all_except(self, keep_model: Optional[str] = None):
+        """Clear all models except the specified one"""
+        logger.info(f"Clearing all models except: {keep_model}")
+        
+        # Unload from loader
+        for model_name in list(self.loaded_models.keys()):
+            if model_name != keep_model:
+                self.unload_model(model_name)
+        
+        # Clear from cache
+        cache = ModelCache()
+        for model_name in cache.list_cached_models():
+            if model_name != keep_model:
+                cache.remove_model(model_name)
+        
+        # Force cleanup
+        import gc
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
     
     def get_model_info(self, model_name: str) -> Dict[str, Any]:
         """Get information about a model"""
