@@ -31,7 +31,7 @@ from .metrics import (
 )
 
 # Import other modules
-from .ab_testing import ABTestRunner  # KORJAUS: Varmistettu import
+from .ab_testing import ABTestRunner
 from .realtime_monitor import RealtimeMonitor
 
 # Import agents
@@ -51,7 +51,7 @@ class EnhancedEvaluationRunner:
     
     def __init__(self, models: List[str], config_path: str = "configs/config.yaml", 
                  enable_extended_metrics: bool = True, enable_monitoring: bool = False,
-                 enable_llm_evaluation: bool = True, enable_ab_test: bool = False):  # LISÄÄ TÄMÄ
+                 enable_llm_evaluation: bool = True, enable_ab_test: bool = False):
         """
         Initialize enhanced evaluation runner
         
@@ -60,16 +60,18 @@ class EnhancedEvaluationRunner:
             config_path: Path to configuration file
             enable_extended_metrics: Enable all extended metrics
             enable_monitoring: Enable realtime monitoring
+            enable_llm_evaluation: Enable LLM-based evaluation
+            enable_ab_test: Enable A/B testing for 2 models
         """
         self.models = models
-        self.config_path = config_path  # <-- LISÄÄ TÄMÄ RIVI!
+        self.config_path = config_path
         self.config = FileHandler.load_yaml(config_path)
         self.results_dir = Path(self.config["paths"]["results_dir"])
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.enable_extended_metrics = enable_extended_metrics
         self.enable_monitoring = enable_monitoring
         self.enable_llm_evaluation = enable_llm_evaluation
-        self.enable_ab_test = enable_ab_test  # LISÄÄ TÄMÄ
+        self.enable_ab_test = enable_ab_test
         
         # Initialize standard metrics
         self.rouge_scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
@@ -91,7 +93,7 @@ class EnhancedEvaluationRunner:
                     project_name=self.config["monitoring"]["wandb"].get("project", "yamk-thesis")
                 )
 
-        # MUUTOS: Tallenna evaluaattori info näkyvästi
+        # Initialize evaluator info
         self.llm_evaluator_info = {
             "enabled": self.enable_llm_evaluation,
             "model": None,
@@ -100,6 +102,7 @@ class EnhancedEvaluationRunner:
         
         # Initialize LLM evaluator model selection
         self.llm_evaluator_model = None
+        self.llm_evaluator = None
         
         if self.enable_llm_evaluation:
             # Lista mahdollisista evaluaattorimalleista prioriteettijärjestyksessä
@@ -126,30 +129,63 @@ class EnhancedEvaluationRunner:
                 self.llm_evaluator_info["reason"] = "Fallback model - all standard models are being evaluated"
                 logger.warning(f"All standard models are being evaluated. Using fallback: {self.llm_evaluator_model}")
 
-        # MUUTOS: Näkyvämpi lokitus
-        logger.info("="*60)
-        logger.info(f"LLM EVALUATOR CONFIGURATION:")
-        logger.info(f"  Evaluated models: {', '.join(models)}")
-        logger.info(f"  Evaluator model: {self.llm_evaluator_model}")
-        logger.info(f"  Reason: {self.llm_evaluator_info['reason']}")
-        logger.info("="*60)
-        
-        # KORJAUS: Luo LLMEvaluator objekti
-        if self.enable_llm_evaluation and self.llm_evaluator_model:
-            try:
-                self.llm_evaluator = LLMEvaluator(
-                    model_name=self.llm_evaluator_model,
-                    config_path=config_path
-                )
-                logger.info(f"LLM Evaluator initialized successfully with model: {self.llm_evaluator_model}")
-            except Exception as e:
-                logger.error(f"Failed to initialize LLM Evaluator: {str(e)}")
-                self.enable_llm_evaluation = False
-                self.llm_evaluator = None
-                self.llm_evaluator_info["enabled"] = False
-                self.llm_evaluator_info["error"] = str(e)
-        else:
-            self.llm_evaluator = None
+            # Näkyvämpi lokitus
+            logger.info("="*60)
+            logger.info(f"LLM EVALUATOR CONFIGURATION:")
+            logger.info(f"  Evaluated models: {', '.join(models)}")
+            logger.info(f"  Evaluator model: {self.llm_evaluator_model}")
+            logger.info(f"  Reason: {self.llm_evaluator_info['reason']}")
+            logger.info("="*60)
+            
+            # Initialize LLM Evaluator with correct parameters
+            if self.llm_evaluator_model:
+                try:
+                    # Try different initialization approaches
+                    try:
+                        # Approach 1: Only config_path
+                        self.llm_evaluator = LLMEvaluator(config_path=config_path)
+                        
+                        # Try to set model if method exists
+                        if hasattr(self.llm_evaluator, 'set_model'):
+                            self.llm_evaluator.set_model(self.llm_evaluator_model)
+                        elif hasattr(self.llm_evaluator, 'model'):
+                            self.llm_evaluator.model = self.llm_evaluator_model
+                        elif hasattr(self.llm_evaluator, 'initialize_model'):
+                            self.llm_evaluator.initialize_model(self.llm_evaluator_model)
+                        
+                        logger.info(f"LLM Evaluator initialized successfully (config-only approach)")
+                        
+                    except TypeError:
+                        # Approach 2: Try with model parameter (different name)
+                        self.llm_evaluator = LLMEvaluator(model=self.llm_evaluator_model, config_path=config_path)
+                        logger.info(f"LLM Evaluator initialized successfully with model parameter")
+                        
+                except Exception as e:
+                    # Final fallback: Try without any parameters and configure later
+                    try:
+                        self.llm_evaluator = LLMEvaluator()
+                        
+                        # Configure after initialization
+                        if hasattr(self.llm_evaluator, 'configure'):
+                            self.llm_evaluator.configure(
+                                model=self.llm_evaluator_model,
+                                config_path=config_path
+                            )
+                        elif hasattr(self.llm_evaluator, 'setup'):
+                            self.llm_evaluator.setup(
+                                model=self.llm_evaluator_model,
+                                config_path=config_path
+                            )
+                        
+                        logger.info(f"LLM Evaluator initialized with post-configuration")
+                        
+                    except Exception as final_e:
+                        logger.error(f"Failed to initialize LLM Evaluator with all approaches: {str(final_e)}")
+                        logger.error(f"Original error: {str(e)}")
+                        self.enable_llm_evaluation = False
+                        self.llm_evaluator = None
+                        self.llm_evaluator_info["enabled"] = False
+                        self.llm_evaluator_info["error"] = str(final_e)
 
         # Create results directory
         self.run_dir = self.results_dir / f"run_{self.timestamp}"
@@ -158,6 +194,7 @@ class EnhancedEvaluationRunner:
         logger.info(f"Enhanced evaluation runner initialized for models: {models}")
         logger.info(f"Extended metrics: {self.enable_extended_metrics}")
         logger.info(f"Monitoring: {self.enable_monitoring}")
+        logger.info(f"LLM Evaluation: {self.enable_llm_evaluation}")
     
     async def evaluate_model(self, model_name: str) -> Dict[str, Any]:
         """Evaluate a single model with all metrics"""
@@ -227,8 +264,8 @@ class EnhancedEvaluationRunner:
             if self.enable_monitoring:
                 self._log_to_monitor(model_name, results)
 
-            # Lisää LLM evaluation ennen results palautusta:
-            if self.enable_llm_evaluation:
+            # Phase 6: LLM-based evaluation
+            if self.enable_llm_evaluation and self.llm_evaluator:
                 llm_evaluation = await self._perform_llm_evaluation(model_name)
                 results["llm_evaluation"] = llm_evaluation
             
@@ -243,17 +280,23 @@ class EnhancedEvaluationRunner:
         import gc
         
         # Clear all model references
-        # KORJAUS: Tarkista että llm_evaluator on olemassa
         if hasattr(self, 'llm_evaluator') and self.llm_evaluator:
             if hasattr(self.llm_evaluator, 'model_loader'):
                 # Unload all models from evaluator
                 for model in list(self.llm_evaluator.model_loader.loaded_models.keys()):
                     self.llm_evaluator.model_loader.unload_model(model)
+            elif hasattr(self.llm_evaluator, 'cleanup'):
+                self.llm_evaluator.cleanup()
+            elif hasattr(self.llm_evaluator, 'unload'):
+                self.llm_evaluator.unload()
         
         # Clear cache singleton
-        from ..utils.model_cache import ModelCache
-        cache = ModelCache()
-        cache.clear_all()
+        try:
+            from ..utils.model_cache import ModelCache
+            cache = ModelCache()
+            cache.clear_all()
+        except ImportError:
+            pass
         
         # Force Python garbage collection
         for _ in range(3):
@@ -275,52 +318,78 @@ class EnhancedEvaluationRunner:
         logger.info(f"Performing LLM evaluation for {model_name} using evaluator: {self.llm_evaluator_model}")
         
         llm_results = {
-            "evaluator_info": self.llm_evaluator_info.copy(),  # LISÄYS: Evaluaattori info
+            "evaluator_info": self.llm_evaluator_info.copy(),
             "use_case_evaluations": [],
             "test_case_evaluations": [],
             "summary": {}
         }
         
-        # KORJAUS: Tarkista että llm_evaluator on olemassa
         if not self.llm_evaluator:
             logger.warning("LLM Evaluator not initialized, skipping LLM evaluation")
             llm_results["error"] = "LLM Evaluator not initialized"
             return llm_results
         
-        # Evaluate use cases
-        uc_dir = Path(self.config["paths"]["user_stories_dir"]) / model_name
-        if uc_dir.exists():
-            uc_files = list(uc_dir.glob("*.txt"))
-            for uc_file in uc_files[:5]:  # Limit to 5 files for efficiency
-                content = FileHandler.read_text_file(str(uc_file))
-                evaluation = await self.llm_evaluator.evaluate_use_case(content, model_name)
-                llm_results["use_case_evaluations"].append({
-                    "file": uc_file.name,
-                    "evaluation": evaluation
-                })
-        
-        # Evaluate test cases
-        tc_dir = Path(self.config["paths"]["test_cases_dir"]) / model_name
-        if tc_dir.exists():
-            tc_files = list(tc_dir.glob("*.robot"))
-            for tc_file in tc_files[:5]:  # Limit to 5 files
-                content = FileHandler.read_text_file(str(tc_file))
-                evaluation = await self.llm_evaluator.evaluate_test_case(content, model_name)
-                llm_results["test_case_evaluations"].append({
-                    "file": tc_file.name,
-                    "evaluation": evaluation
-                })
-        
-        # Calculate summary statistics
-        if llm_results["use_case_evaluations"]:
-            uc_scores = [e["evaluation"].get("overall_score", 0) 
-                        for e in llm_results["use_case_evaluations"]]
-            llm_results["summary"]["avg_use_case_score"] = np.mean(uc_scores)
-        
-        if llm_results["test_case_evaluations"]:
-            tc_scores = [e["evaluation"].get("overall_score", 0) 
-                        for e in llm_results["test_case_evaluations"]]
-            llm_results["summary"]["avg_test_case_score"] = np.mean(tc_scores)
+        try:
+            # Evaluate use cases
+            uc_dir = Path(self.config["paths"]["user_stories_dir"]) / model_name
+            if uc_dir.exists():
+                uc_files = list(uc_dir.glob("*.txt"))
+                for uc_file in uc_files[:5]:  # Limit to 5 files for efficiency
+                    content = FileHandler.read_text_file(str(uc_file))
+                    
+                    # Handle different possible method names
+                    evaluation = None
+                    if hasattr(self.llm_evaluator, 'evaluate_use_case'):
+                        evaluation = await self.llm_evaluator.evaluate_use_case(content, model_name)
+                    elif hasattr(self.llm_evaluator, 'evaluate'):
+                        evaluation = await self.llm_evaluator.evaluate(content, content_type="use_case", model=model_name)
+                    else:
+                        logger.warning("LLM Evaluator has no suitable evaluation method for use cases")
+                        break
+                    
+                    if evaluation:
+                        llm_results["use_case_evaluations"].append({
+                            "file": uc_file.name,
+                            "evaluation": evaluation
+                        })
+            
+            # Evaluate test cases
+            tc_dir = Path(self.config["paths"]["test_cases_dir"]) / model_name
+            if tc_dir.exists():
+                tc_files = list(tc_dir.glob("*.robot"))
+                for tc_file in tc_files[:5]:  # Limit to 5 files
+                    content = FileHandler.read_text_file(str(tc_file))
+                    
+                    # Handle different possible method names
+                    evaluation = None
+                    if hasattr(self.llm_evaluator, 'evaluate_test_case'):
+                        evaluation = await self.llm_evaluator.evaluate_test_case(content, model_name)
+                    elif hasattr(self.llm_evaluator, 'evaluate'):
+                        evaluation = await self.llm_evaluator.evaluate(content, content_type="test_case", model=model_name)
+                    else:
+                        logger.warning("LLM Evaluator has no suitable evaluation method for test cases")
+                        break
+                    
+                    if evaluation:
+                        llm_results["test_case_evaluations"].append({
+                            "file": tc_file.name,
+                            "evaluation": evaluation
+                        })
+            
+            # Calculate summary statistics
+            if llm_results["use_case_evaluations"]:
+                uc_scores = [e["evaluation"].get("overall_score", 0) 
+                            for e in llm_results["use_case_evaluations"]]
+                llm_results["summary"]["avg_use_case_score"] = np.mean(uc_scores)
+            
+            if llm_results["test_case_evaluations"]:
+                tc_scores = [e["evaluation"].get("overall_score", 0) 
+                            for e in llm_results["test_case_evaluations"]]
+                llm_results["summary"]["avg_test_case_score"] = np.mean(tc_scores)
+                
+        except Exception as e:
+            logger.error(f"Error during LLM evaluation: {str(e)}")
+            llm_results["error"] = str(e)
         
         return llm_results
     
@@ -452,28 +521,25 @@ class EnhancedEvaluationRunner:
                         "f1": F1.mean().item()
                     }
 
-                    # _calculate_standard_metrics metodissa, lisää BLEU/ROUGE/BERTScore jälkeen:
                     # METEOR
-                    if references and len(references) == len(candidates):
-                        # Ensure NLTK data is downloaded
-                        try:
-                            nltk.download('wordnet', quiet=True)
-                            nltk.download('omw-1.4', quiet=True)
-                        except:
-                            pass
-                        
-                        meteor_scores = []
-                        for cand, ref in zip(candidates, references):
-                            # METEOR expects tokenized input
-                            score = meteor_score([ref.split()], cand.split())
-                            meteor_scores.append(score)
-                        
-                        metrics["use_case_metrics"]["meteor"] = {
-                            "mean": np.mean(meteor_scores),
-                            "min": np.min(meteor_scores),
-                            "max": np.max(meteor_scores),
-                            "std": np.std(meteor_scores)
-                        }
+                    try:
+                        nltk.download('wordnet', quiet=True)
+                        nltk.download('omw-1.4', quiet=True)
+                    except:
+                        pass
+                    
+                    meteor_scores = []
+                    for cand, ref in zip(candidates, references):
+                        # METEOR expects tokenized input
+                        score = meteor_score([ref.split()], cand.split())
+                        meteor_scores.append(score)
+                    
+                    metrics["use_case_metrics"]["meteor"] = {
+                        "mean": np.mean(meteor_scores),
+                        "min": np.min(meteor_scores),
+                        "max": np.max(meteor_scores),
+                        "std": np.std(meteor_scores)
+                    }
         
         # Calculate test case metrics
         if tc_dir.exists():
@@ -544,7 +610,7 @@ class EnhancedEvaluationRunner:
         """Run evaluation for all models and compare with extended analysis"""
         logger.info(f"Starting enhanced comparison of {len(self.models)} models")
 
-        # LISÄYS: Näytä evaluaattori info heti alussa
+        # Show evaluator info at start
         if self.enable_llm_evaluation:
             logger.info(f"LLM Evaluator: {self.llm_evaluator_model} will be used for quality assessment")
         
@@ -552,11 +618,11 @@ class EnhancedEvaluationRunner:
         
         # Evaluate each model
         for i, model in enumerate(self.models):
-            # KORJAUS: Aggressiivinen muistin tyhjennys ennen jokaista mallia
+            # Aggressive memory cleanup before each model
             logger.info(f"Forcing GPU cleanup before model {model}")
             self._force_cleanup_gpu_memory()
             
-            # KORJAUS: Odota hetki että muisti vapautuu
+            # Wait for memory to be freed
             await asyncio.sleep(2)
             
             logger.info(f"Evaluating model {model} ({i+1}/{len(self.models)})")
@@ -569,7 +635,6 @@ class EnhancedEvaluationRunner:
                 model_file = self.run_dir / f"{model}_results.json"
                 FileHandler.save_json(results, str(model_file))
                 
-            # KORJAUS: Lisätty OOM-virheenkäsittely
             except torch.cuda.OutOfMemoryError as e:
                 logger.error(f"CUDA OOM for model {model}: {str(e)}")
                 all_results[model] = {
@@ -586,7 +651,7 @@ class EnhancedEvaluationRunner:
                 all_results[model] = {"error": str(e)}
             
             finally:
-                # KORJAUS: Aina tyhjennä muisti mallin jälkeen
+                # Always clean memory after model
                 logger.info(f"Final cleanup after {model}")
                 self._force_cleanup_gpu_memory()
                 await asyncio.sleep(1)
@@ -594,7 +659,7 @@ class EnhancedEvaluationRunner:
         # Generate standard comparison report
         comparison = self._generate_comparison_report(all_results)
 
-        # LISÄYS: Lisää evaluaattori info vertailuraporttiin
+        # Add evaluator info to comparison report
         comparison["llm_evaluator_info"] = self.llm_evaluator_info
         
         # Add extended comparative analysis
@@ -606,7 +671,7 @@ class EnhancedEvaluationRunner:
         logger.info("Running Robot Framework dryrun analysis...")
         dryrun_analyzer = DryrunAnalyzer(self.config_path)
         
-        # Rajoita analysoitavat mallit vain evaluoituihin
+        # Limit analyzed models to only evaluated ones
         dryrun_results = await dryrun_analyzer.analyze_specific_models(self.models)
         
         # Generate dryrun report
@@ -920,47 +985,50 @@ class EnhancedEvaluationRunner:
         if not self.enable_extended_metrics:
             return
         
-        import plotly.graph_objects as go
-        
-        # Prepare data
-        categories = ['Readability', 'Clarity', 'Actionability', 'Completeness', 'Usability']
-        
-        fig = go.Figure()
-        
-        for model, results in all_results.items():
-            if "metrics" in results and "extended" in results["metrics"]:
-                ux = results["metrics"]["extended"].get("user_experience", {})
-                
-                values = [
-                    ux.get("readability", {}).get("flesch_reading_ease", {}).get("score", 0) / 100,
-                    ux.get("clarity", {}).get("overall_clarity", 0),
-                    ux.get("actionability", {}).get("overall_actionability", 0),
-                    ux.get("completeness", {}).get("completeness_score", 0),
-                    ux.get("usability", {}).get("user_friendliness", 0)
-                ]
-                
-                fig.add_trace(go.Scatterpolar(
-                    r=values,
-                    theta=categories,
-                    fill='toself',
-                    name=model
-                ))
-        
-        fig.update_layout(
-            polar=dict(
-                radialaxis=dict(
-                    visible=True,
-                    range=[0, 1]
-                )),
-            showlegend=True,
-            title="User Experience Metrics Comparison"
-        )
-        
-        fig.write_html(str(self.run_dir / "ux_metrics_radar.html"))
+        try:
+            import plotly.graph_objects as go
+            
+            # Prepare data
+            categories = ['Readability', 'Clarity', 'Actionability', 'Completeness', 'Usability']
+            
+            fig = go.Figure()
+            
+            for model, results in all_results.items():
+                if "metrics" in results and "extended" in results["metrics"]:
+                    ux = results["metrics"]["extended"].get("user_experience", {})
+                    
+                    values = [
+                        ux.get("readability", {}).get("flesch_reading_ease", {}).get("score", 0) / 100,
+                        ux.get("clarity", {}).get("overall_clarity", 0),
+                        ux.get("actionability", {}).get("overall_actionability", 0),
+                        ux.get("completeness", {}).get("completeness_score", 0),
+                        ux.get("usability", {}).get("user_friendliness", 0)
+                    ]
+                    
+                    fig.add_trace(go.Scatterpolar(
+                        r=values,
+                        theta=categories,
+                        fill='toself',
+                        name=model
+                    ))
+            
+            fig.update_layout(
+                polar=dict(
+                    radialaxis=dict(
+                        visible=True,
+                        range=[0, 1]
+                    )),
+                showlegend=True,
+                title="User Experience Metrics Comparison"
+            )
+            
+            fig.write_html(str(self.run_dir / "ux_metrics_radar.html"))
+        except ImportError:
+            logger.warning("Plotly not installed, skipping radar chart")
     
     def _create_comprehensive_dashboard(self, all_results: Dict[str, Any], comparison: Dict[str, Any]):
         """Create comprehensive dashboard as HTML"""
-        # LISÄYS: Näytä evaluaattori info dashboardissa
+        # Add evaluator section
         evaluator_section = ""
         if "llm_evaluator_info" in comparison and comparison["llm_evaluator_info"]["enabled"]:
             evaluator_section = f"""
@@ -970,6 +1038,7 @@ class EnhancedEvaluationRunner:
                     <p><strong>Selection reason:</strong> {comparison['llm_evaluator_info']['reason']}</p>
                 </div>
             """
+        
         html_content = f"""
         <!DOCTYPE html>
         <html>
@@ -978,6 +1047,7 @@ class EnhancedEvaluationRunner:
             <style>
                 body {{ font-family: Arial, sans-serif; margin: 20px; }}
                 .header {{ background-color: #f0f0f0; padding: 20px; border-radius: 10px; }}
+                .info-box {{ background-color: #e8f4f8; padding: 15px; border-radius: 5px; margin: 10px 0; }}
                 .metric-card {{ 
                     display: inline-block; 
                     background-color: #fff; 
@@ -1000,6 +1070,8 @@ class EnhancedEvaluationRunner:
                 <p>Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
                 <p>Models evaluated: {', '.join(self.models)}</p>
             </div>
+            
+            {evaluator_section}
             
             <div class="section">
                 <h2>Summary</h2>
@@ -1088,25 +1160,23 @@ class EnhancedEvaluationRunner:
             f"# Comprehensive LLM Evaluation Report",
             f"**Generated:** {comparison['timestamp']}",
             f"**Models:** {', '.join(comparison['models'])}",
-            "",
-            "## Executive Summary",
             ""
         ]
 
-        # LISÄYS: Näytä evaluaattori info raportissa
+        # Show evaluator info in report
         if "llm_evaluator_info" in comparison and comparison["llm_evaluator_info"]["enabled"]:
             lines.extend([
                 f"**LLM Evaluator:** {comparison['llm_evaluator_info']['model']}",
                 f"**Evaluator Selection:** {comparison['llm_evaluator_info']['reason']}",
+                ""
             ])
         
         lines.extend([
-            "",
             "## Executive Summary",
             ""
         ])
 
-        # Lisää LLM-pohjainen arviointi yhteenvetoon
+        # Add LLM-based evaluation to summary
         if "llm_based_comparison" in comparison:
             llm_comp = comparison["llm_based_comparison"]
             lines.extend([
@@ -1121,7 +1191,7 @@ class EnhancedEvaluationRunner:
                             f"(Score: {rank_info['score']}/100) - {rank_info['reason']}")
                 lines.append("")
         
-        # Yhdistä numeeriset ja LLM-pohjaiset tulokset
+        # Combined evaluation results
         lines.extend([
             "## Combined Evaluation Results",
             "",
@@ -1129,8 +1199,9 @@ class EnhancedEvaluationRunner:
             "|-------|------|---------|-----------|---------|-----------|---------|"
         ])
         
-        # Päivitä _generate_comprehensive_report metodia:
-        # Lisää Dryrun Analysis osio:
+        # Add model comparison data here
+        
+        # Dryrun Analysis section
         if "dryrun_analysis" in comparison:
             lines.extend([
                 "",
@@ -1154,6 +1225,7 @@ class EnhancedEvaluationRunner:
 
         # Best model overall
         if "recommendations" in comparison and comparison["recommendations"]:
+            lines.append("")
             lines.append(comparison["recommendations"][0])
             lines.append("")
         
@@ -1268,15 +1340,18 @@ class EnhancedEvaluationRunner:
     
     def _get_memory_usage(self) -> float:
         """Get current memory usage in MB"""
-        import psutil
-        return psutil.Process().memory_info().rss / 1024 / 1024
+        try:
+            import psutil
+            return psutil.Process().memory_info().rss / 1024 / 1024
+        except ImportError:
+            return 0.0
     
     def _log_to_monitor(self, model_name: str, results: Dict[str, Any]):
         """Log results to monitoring system"""
         if not self.enable_monitoring:
             return
         
-        # Hae system info performance_metrics:stä
+        # Get system info from performance_metrics
         system_info = self.performance_metrics.get_system_info() if self.enable_extended_metrics else {}
         
         # Prepare metrics for monitoring
@@ -1288,7 +1363,7 @@ class EnhancedEvaluationRunner:
                     "timestamp": datetime.now()
                 }
             },
-            "system": system_info  # Lisää tämä
+            "system": system_info
         }
        
         # Add key metrics
@@ -1515,6 +1590,7 @@ async def main():
     parser.add_argument("--extended-metrics", action="store_true", help="Enable extended metrics")
     parser.add_argument("--monitoring", action="store_true", help="Enable realtime monitoring")
     parser.add_argument("--ab-test", action="store_true", help="Run A/B test (for 2 models)")
+    parser.add_argument("--no-llm-eval", action="store_true", help="Disable LLM-based evaluation")
     
     args = parser.parse_args()
     
@@ -1526,7 +1602,8 @@ async def main():
         args.config,
         enable_extended_metrics=args.extended_metrics,
         enable_monitoring=args.monitoring,
-        enable_ab_test=args.ab_test  # LISÄÄ TÄMÄ
+        enable_llm_evaluation=not args.no_llm_eval,
+        enable_ab_test=args.ab_test
     )
     
     comparison = await runner.compare_models()

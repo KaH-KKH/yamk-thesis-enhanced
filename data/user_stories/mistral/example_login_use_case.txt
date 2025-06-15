@@ -1,37 +1,40 @@
 
-USE CASE: ** User logs in to the system with valid credentials
+USE CASE: ** User Login
 ID: ** UC-LOGIN-001
 
 ACTORS:
+- system
 - users
 - user
-- system
 - User
-- System
+- The System
 
 PRECONDITIONS:
-1. User is on the login page
-2. User has a valid username and password
+1. User is on the login page at https://the-internet.herokuapp.com/login
+2. User has entered their username and password
 
 MAIN FLOW:
-1. User enters username and password into the respective fields.
-2. User clicks on the "Login" button.
-3. System receives the input and checks the validity of the credentials against the database.
-4. 4. System verifies if the entered username and password match the stored credentials (tomsmith/SuperSecretPassword!).
-5. 5. If credentials are valid, the system displays a success message.
-6. 6. User is redirected to the secured area of the application.
-7. **Alternative Flows:**
-8. Invalid credentials:**
-9. a. System verifies that the entered username and password do not match the stored credentials.
-10. b. System displays an error message.
-11. c. User remains on the login page and can try again.
+1. User enters their username into the 'Username' input field.
+2. User enters their password into the 'Password' input field.
+3. User clicks on the 'Login' button.
+4. 4. The System receives the username and password.
+5. 5. The System checks if the provided credentials are valid.
+6. 6. If the provided credentials are invalid, The System displays an error message.
+7. 7. If the provided credentials are valid, The System displays a success message and grants access to the secure area.
+8. **Alternative Flows:**
+9. Flow for invalid credentials:**
+10. Go back to step 5.
+11. If the credentials are still invalid, The System continues to display error messages.
+12. Flow for valid credentials:**
+13. Go to step 7.
+14. User can click on the 'Logout' button to leave the secure area.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User is either authenticated and redirected to the secured area or remains on the login page with an error message.
-2. System logs the successful login event.
+1. If the credentials were invalid, The User remains on the login page.
+2. If the credentials were valid, The User is granted access to the secure area.
 
 NOTES:
 None

@@ -1,34 +1,37 @@
 {
   "id": "** UC-LOGIN-001",
-  "title": "** User logs in to the system with valid credentials",
+  "title": "** User Login",
   "actors": [
+    "system",
     "users",
     "user",
-    "system",
     "User",
-    "System"
+    "The System"
   ],
   "preconditions": [
-    "User is on the login page",
-    "User has a valid username and password"
+    "User is on the login page at https://the-internet.herokuapp.com/login",
+    "User has entered their username and password"
   ],
   "main_flow": [
-    "User enters username and password into the respective fields.",
-    "User clicks on the \"Login\" button.",
-    "System receives the input and checks the validity of the credentials against the database.",
-    "4. System verifies if the entered username and password match the stored credentials (tomsmith/SuperSecretPassword!).",
-    "5. If credentials are valid, the system displays a success message.",
-    "6. User is redirected to the secured area of the application.",
+    "User enters their username into the 'Username' input field.",
+    "User enters their password into the 'Password' input field.",
+    "User clicks on the 'Login' button.",
+    "4. The System receives the username and password.",
+    "5. The System checks if the provided credentials are valid.",
+    "6. If the provided credentials are invalid, The System displays an error message.",
+    "7. If the provided credentials are valid, The System displays a success message and grants access to the secure area.",
     "**Alternative Flows:**",
-    "Invalid credentials:**",
-    "a. System verifies that the entered username and password do not match the stored credentials.",
-    "b. System displays an error message.",
-    "c. User remains on the login page and can try again."
+    "Flow for invalid credentials:**",
+    "Go back to step 5.",
+    "If the credentials are still invalid, The System continues to display error messages.",
+    "Flow for valid credentials:**",
+    "Go to step 7.",
+    "User can click on the 'Logout' button to leave the secure area."
   ],
   "alternative_flows": null,
   "postconditions": [
-    "User is either authenticated and redirected to the secured area or remains on the login page with an error message.",
-    "System logs the successful login event."
+    "If the credentials were invalid, The User remains on the login page.",
+    "If the credentials were valid, The User is granted access to the secure area."
   ],
   "notes": null
 }
