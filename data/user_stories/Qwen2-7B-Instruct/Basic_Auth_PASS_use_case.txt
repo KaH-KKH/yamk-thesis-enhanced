@@ -1,0 +1,52 @@
+
+USE CASE: Successfully accessing the basic authentication page using valid credentials.
+ID: UC-001
+
+ACTORS:
+- user
+- you
+- admin
+- User: The individual interacting with the website.
+- System: The target web application requiring basic authentication.
+
+PRECONDITIONS:
+1. The "Basic Auth" page at `https://the-internet.herokuapp.com/basic_auth` is accessible via the internet.
+2. The user has internet connectivity.
+3. The user possesses a valid username ("admin") and password ("admin").
+4. 4. The system is configured to require basic authentication.
+5. Main Flow (numbered steps):
+6. User Access**: The user navigates to the "Basic Auth" page through the provided URL.
+7. Header Verification**: The user checks the browser's headers to confirm that the site is indeed asking for a login.
+8. Input Credentials**:
+9. The user enters "admin" as the username into the designated field.
+10. The user enters "admin" as the password into the corresponding field.
+11. 4. **Submit Login**: The user clicks or presses the "Sign in" button.
+12. 5. **Page Redirection**: The browser redirects to a new page displaying the "Basic Auth" and "Congratulations!" headers.
+13. 6. **Confirmation of Successful Authentication**: The user verifies the presence of both headers, confirming successful authentication.
+14. Alternative Flows (if applicable):
+15. Invalid Credentials**: If the user inputs incorrect credentials (e.g., "wrongusername" or "wrongpassword"), the system should display an error message, and the user may attempt authentication again or return to the main flow by navigating back.
+16. Network Issues**: If the user encounters network connectivity problems during navigation, they might need to check their internet connection and retry.
+
+MAIN FLOW:
+
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+1. Authentication Status**: The user is successfully authenticated, gaining access to the secured content on the "Basic Auth" page.
+2. Browser State**: The browser maintains a session with the site, allowing further interaction without reauthentication until the session expires.
+3. Error Handling**: Any errors encountered during the process are handled appropriately, either informing the user or retrying with alternative mechanisms.
+4. Test Cases:
+5. Test Case TC-UC-LOGIN-001A: Verify Successful Login with Valid Credentials.
+6. Inputs**: Valid username ("admin"), valid password ("admin").
+7. Expected Outcome**: User is redirected to the "Basic Auth" page with both headers present.
+8. Test Case TC-UC-LOGIN-001B: Verify Failure to Login with Invalid Credentials.
+9. Inputs**: Invalid username ("wrongusername"), invalid password ("wrongpassword").
+10. Expected Outcome**: Error message displayed, indicating incorrect credentials, prompting the user to retry.
+11. Test Case TC-UC-LOGIN-001C: Verify Error Handling for Network Disconnection.
+12. Scenario**: Simulate network disconnection during login attempt.
+13. Expected Outcome**: Error message displayed, prompting the user to reconnect or attempt login again after reestablishing the network connection.
+
+NOTES:
+None

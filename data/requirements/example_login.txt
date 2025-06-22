@@ -1,7 +1,0 @@
-Requirement: Login Functionality
-The system shall provide a secure login mechanism for users at https://the-internet.herokuapp.com/login
-- Users must enter username and password
-- Valid credentials: tomsmith/SuperSecretPassword!
-- System shall display success message upon successful login
-- System shall display error message for invalid credentials
-- Users can logout from the secure area

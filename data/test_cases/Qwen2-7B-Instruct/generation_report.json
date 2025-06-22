@@ -1,18 +1,23 @@
 {
   "model": "Qwen2-7B-Instruct",
-  "timestamp": "2025-06-15T19:47:51.729273",
-  "total_files": 2,
-  "successful": 2,
+  "timestamp": "2025-06-20T16:31:16.813191",
+  "total_files": 3,
+  "successful": 3,
   "failed": 0,
   "results": [
     {
-      "use_case": "example_login_use_case.txt",
-      "test_case": "example_login_use_case.robot",
+      "use_case": "Basic_Auth_PASS_use_case.txt",
+      "test_case": "Basic_Auth_PASS_use_case.robot",
       "status": "success"
     },
     {
-      "use_case": "example_login_use_case.json",
-      "test_case": "example_login_use_case.robot",
+      "use_case": "Basic_Auth_FAIL_use_case.txt",
+      "test_case": "Basic_Auth_FAIL_use_case.robot",
+      "status": "success"
+    },
+    {
+      "use_case": "Basic_Auth_PASS_use_case.json",
+      "test_case": "Basic_Auth_PASS_use_case.robot",
       "status": "success"
     }
   ]

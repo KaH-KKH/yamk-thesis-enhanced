@@ -1,0 +1,47 @@
+{
+  "id": "UC-001",
+  "title": "Successfully accessing the basic authentication page using valid credentials.",
+  "actors": [
+    "user",
+    "you",
+    "admin",
+    "User: The individual interacting with the website.",
+    "System: The target web application requiring basic authentication."
+  ],
+  "preconditions": [
+    "The \"Basic Auth\" page at `https://the-internet.herokuapp.com/basic_auth` is accessible via the internet.",
+    "The user has internet connectivity.",
+    "The user possesses a valid username (\"admin\") and password (\"admin\").",
+    "4. The system is configured to require basic authentication.",
+    "Main Flow (numbered steps):",
+    "User Access**: The user navigates to the \"Basic Auth\" page through the provided URL.",
+    "Header Verification**: The user checks the browser's headers to confirm that the site is indeed asking for a login.",
+    "Input Credentials**:",
+    "The user enters \"admin\" as the username into the designated field.",
+    "The user enters \"admin\" as the password into the corresponding field.",
+    "4. **Submit Login**: The user clicks or presses the \"Sign in\" button.",
+    "5. **Page Redirection**: The browser redirects to a new page displaying the \"Basic Auth\" and \"Congratulations!\" headers.",
+    "6. **Confirmation of Successful Authentication**: The user verifies the presence of both headers, confirming successful authentication.",
+    "Alternative Flows (if applicable):",
+    "Invalid Credentials**: If the user inputs incorrect credentials (e.g., \"wrongusername\" or \"wrongpassword\"), the system should display an error message, and the user may attempt authentication again or return to the main flow by navigating back.",
+    "Network Issues**: If the user encounters network connectivity problems during navigation, they might need to check their internet connection and retry."
+  ],
+  "main_flow": [],
+  "alternative_flows": null,
+  "postconditions": [
+    "Authentication Status**: The user is successfully authenticated, gaining access to the secured content on the \"Basic Auth\" page.",
+    "Browser State**: The browser maintains a session with the site, allowing further interaction without reauthentication until the session expires.",
+    "Error Handling**: Any errors encountered during the process are handled appropriately, either informing the user or retrying with alternative mechanisms.",
+    "Test Cases:",
+    "Test Case TC-UC-LOGIN-001A: Verify Successful Login with Valid Credentials.",
+    "Inputs**: Valid username (\"admin\"), valid password (\"admin\").",
+    "Expected Outcome**: User is redirected to the \"Basic Auth\" page with both headers present.",
+    "Test Case TC-UC-LOGIN-001B: Verify Failure to Login with Invalid Credentials.",
+    "Inputs**: Invalid username (\"wrongusername\"), invalid password (\"wrongpassword\").",
+    "Expected Outcome**: Error message displayed, indicating incorrect credentials, prompting the user to retry.",
+    "Test Case TC-UC-LOGIN-001C: Verify Error Handling for Network Disconnection.",
+    "Scenario**: Simulate network disconnection during login attempt.",
+    "Expected Outcome**: Error message displayed, prompting the user to reconnect or attempt login again after reestablishing the network connection."
+  ],
+  "notes": null
+}

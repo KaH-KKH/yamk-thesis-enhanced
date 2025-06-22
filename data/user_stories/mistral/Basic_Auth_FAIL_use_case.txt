@@ -1,0 +1,30 @@
+
+USE CASE: Unauthorized Access to Basic Auth Page
+ID: UC-001
+
+ACTORS:
+- button
+- User
+
+PRECONDITIONS:
+1. User is on the Basic Auth page (https://the-internet.herokuapp.com/basic_auth)
+2. User has not provided valid credentials for authorization
+
+MAIN FLOW:
+1. User navigates to the URL: https://the-internet.herokuapp.com/basic_auth
+2. System checks if user has provided valid credentials for authorization
+3. User presses the Cancel button instead of entering credentials
+4. 4. System displays the "Not authorized" message and the page remains unchanged
+5. Alternative flows (if any):
+6. N/A
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+1. User remains on the Basic Auth page
+2. "Not authorized" message is displayed
+3. User is unable to access protected resources without proper authorization.
+
+NOTES:
+None

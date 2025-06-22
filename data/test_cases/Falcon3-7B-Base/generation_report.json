@@ -1,18 +1,23 @@
 {
   "model": "Falcon3-7B-Base",
-  "timestamp": "2025-06-15T14:02:27.793774",
-  "total_files": 2,
-  "successful": 2,
+  "timestamp": "2025-06-20T19:42:47.240581",
+  "total_files": 3,
+  "successful": 3,
   "failed": 0,
   "results": [
     {
-      "use_case": "example_login_use_case.txt",
-      "test_case": "example_login_use_case.robot",
+      "use_case": "Basic_Auth_PASS_use_case.txt",
+      "test_case": "Basic_Auth_PASS_use_case.robot",
       "status": "success"
     },
     {
-      "use_case": "example_login_use_case.json",
-      "test_case": "example_login_use_case.robot",
+      "use_case": "Basic_Auth_FAIL_use_case.txt",
+      "test_case": "Basic_Auth_FAIL_use_case.robot",
+      "status": "success"
+    },
+    {
+      "use_case": "Basic_Auth_PASS_use_case.json",
+      "test_case": "Basic_Auth_PASS_use_case.robot",
       "status": "success"
     }
   ]

@@ -1,18 +1,23 @@
 {
   "model": "gemma_7b_it_4bit",
-  "timestamp": "2025-06-14T17:53:55.712060",
-  "total_files": 2,
-  "successful": 2,
+  "timestamp": "2025-06-20T20:19:23.428120",
+  "total_files": 3,
+  "successful": 3,
   "failed": 0,
   "results": [
     {
-      "use_case": "example_login_use_case.txt",
-      "test_case": "example_login_use_case.robot",
+      "use_case": "Basic_Auth_PASS_use_case.txt",
+      "test_case": "Basic_Auth_PASS_use_case.robot",
       "status": "success"
     },
     {
-      "use_case": "example_login_use_case.json",
-      "test_case": "example_login_use_case.robot",
+      "use_case": "Basic_Auth_FAIL_use_case.txt",
+      "test_case": "Basic_Auth_FAIL_use_case.robot",
+      "status": "success"
+    },
+    {
+      "use_case": "Basic_Auth_PASS_use_case.json",
+      "test_case": "Basic_Auth_PASS_use_case.robot",
       "status": "success"
     }
   ]

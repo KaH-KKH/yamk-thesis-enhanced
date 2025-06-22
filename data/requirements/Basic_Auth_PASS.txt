@@ -1,0 +1,8 @@
+1. Go To    https://the-internet.herokuapp.com/basic_auth
+2. Check the header: This site is asking you to sign in.
+3. Input username = admin to the field Username 
+4. Input password = admin to the field Password
+5. Press button Sign in
+6. Browser page opens and there is two headers
+6.1. Basic Auth
+6.2. Congratulations! You must have the proper credentials.

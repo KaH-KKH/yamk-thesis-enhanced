@@ -1,0 +1,27 @@
+{
+  "id": "UC-001",
+  "title": "Unauthorized Access to Basic Auth Page",
+  "actors": [
+    "button",
+    "User"
+  ],
+  "preconditions": [
+    "User is on the Basic Auth page (https://the-internet.herokuapp.com/basic_auth)",
+    "User has not provided valid credentials for authorization"
+  ],
+  "main_flow": [
+    "User navigates to the URL: https://the-internet.herokuapp.com/basic_auth",
+    "System checks if user has provided valid credentials for authorization",
+    "User presses the Cancel button instead of entering credentials",
+    "4. System displays the \"Not authorized\" message and the page remains unchanged",
+    "Alternative flows (if any):",
+    "N/A"
+  ],
+  "alternative_flows": null,
+  "postconditions": [
+    "User remains on the Basic Auth page",
+    "\"Not authorized\" message is displayed",
+    "User is unable to access protected resources without proper authorization."
+  ],
+  "notes": null
+}

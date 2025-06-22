@@ -1,0 +1,25 @@
+{
+  "id": "UC-001",
+  "title": "** Cancel Basic Authentication",
+  "actors": [
+    "button"
+  ],
+  "preconditions": [
+    "The user has navigated to the basic authentication page.",
+    "The user has not yet entered any authentication credentials."
+  ],
+  "main_flow": [
+    "The user presses the Cancel button on the basic authentication page.",
+    "The system prompts the user to sign in.",
+    "The user is redirected to the original page without entering any authentication credentials.",
+    "4. The browser page opens, and the text \"Not authorized\" is displayed.",
+    "**Alternative Flows:** None"
+  ],
+  "alternative_flows": null,
+  "postconditions": [
+    "The user is not authenticated.",
+    "The browser page displays the text \"Not authorized\".",
+    "The user is not redirected to any other page."
+  ],
+  "notes": null
+}

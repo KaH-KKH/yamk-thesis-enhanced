@@ -1,0 +1,38 @@
+
+USE CASE: ** Basic Auth Login Use Case
+ID: ** UC-LOGIN-001
+
+ACTORS:
+- user
+- you
+- admin
+- User
+
+PRECONDITIONS:
+1. User is on the Basic Auth page (<https://the-internet.herokuapp.com/basic_auth>)
+2. User has the correct credentials (admin/admin)
+
+MAIN FLOW:
+1. User navigates to the Basic Auth page (<https://the-internet.herokuapp.com/basic_auth>)
+2. User enters the correct username "admin" in the Username field
+3. User enters the correct password "admin" in the Password field
+4. 4. User clicks the "Sign in" button
+5. 5. System checks the entered credentials against the expected values
+6. 6. If the entered credentials are correct, the system grants access and displays the "Congratulations! You must have the proper credentials." page with the two headers "Basic Auth" and "Congratulations!"
+7. **Alternative flows:**
+8. Invalid credentials:**
+9. a. User enters incorrect username or password
+10. b. System denies access and keeps the user on the login page with an error message "Bad Username or Password"
+11. Incorrect URL:**
+12. a. User navigates to an incorrect URL
+13. b. System displays an error message "Page not found"
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+1. User is authenticated and on the "Congratulations! You must have the proper credentials." page
+2. User can interact with the elements on the page, such as click on the headers or use the browser's Back button.
+
+NOTES:
+None

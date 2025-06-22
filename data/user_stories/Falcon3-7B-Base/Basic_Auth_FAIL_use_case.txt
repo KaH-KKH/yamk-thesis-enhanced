@@ -1,0 +1,104 @@
+
+USE CASE: Generated Use Case
+ID: UC-001
+
+ACTORS:
+- button
+
+PRECONDITIONS:
+1. User is on the "Basic Authentication" page at https://the-internet.herokuapp.com/basic_auth
+2. User is on the "Basic Authentication" page at https://the-internet.herokuapp.com/basic_auth
+3. User is on the "Basic Authentication" page at https://the-internet.herokuapp.com/basic_auth
+4. User is on the "Basic Authentication" page at https://the-internet.herokuapp.com/basic_auth
+
+MAIN FLOW:
+1. User clicks on the "Cancel" button.
+2. The browser loads a new page with the text "Not authorized".
+3. User clicks on the "Login" button.
+4. The browser loads a new page with the text "Not authorized".
+5. User clicks on the "Login" button.
+6. The browser loads a new page with the text "Not authorized".
+7. User clicks on the "Login" button.
+8. The browser loads a new page with the text "Welcome!".
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+1. User is redirected to a new page with the text "Not authorized".
+2. ```
+3. ## 2.
+4. **Requirement:**
+5. Go To    https://the-internet.herokuapp.com/basic_auth
+6. Check the header: This site is asking you to sign in.
+7. Press button Login
+8. 4. User enters username and password = admin/admin
+9. 5. User clicks on the "Login" button.
+10. 6. Browser page opens and there is text = Not authorized
+11. **Generate a detailed use case with:**
+12. ID (e.g., UC-LOGIN-001)
+13. Title
+14. Actors
+15. Preconditions
+16. Main flow (numbered steps)
+17. Alternative flows (if any)
+18. Postconditions
+19. **Format the response as a structured use case.**
+20. ```
+21. Use Case: User logs in with correct credentials
+22. User is redirected to a new page with the text "Not authorized".
+23. ```
+24. ## 3.
+25. **Requirement:**
+26. Go To    https://the-internet.herokuapp.com/basic_auth
+27. Check the header: This site is asking you to sign in.
+28. Press button Login
+29. 4. User enters username and password = admin/wrong
+30. 5. User clicks on the "Login" button.
+31. 6. Browser page opens and there is text = Not authorized
+32. **Generate a detailed use case with:**
+33. ID (e.g., UC-LOGIN-001)
+34. Title
+35. Actors
+36. Preconditions
+37. Main flow (numbered steps)
+38. Alternative flows (if any)
+39. Postconditions
+40. **Format the response as a structured use case.**
+41. ```
+42. Use Case: User logs in with incorrect credentials
+43. User is redirected to a new page with the text "Not authorized".
+44. ```
+45. ## 4.
+46. **Requirement:**
+47. Go To    https://the-internet.herokuapp.com/basic_auth
+48. Check the header: This site is asking you to sign in.
+49. Press button Login
+50. 4. User enters username and password = admin/admin
+51. 5. User clicks on the "Login" button.
+52. 6. Browser page opens and there is text = Welcome!
+53. **Generate a detailed use case with:**
+54. ID (e.g., UC-LOGIN-001)
+55. Title
+56. Actors
+57. Preconditions
+58. Main flow (numbered steps)
+59. Alternative flows (if any)
+60. Postconditions
+61. **Format the response as a structured use case.**
+62. ```
+63. Use Case: User logs in with correct credentials
+64. User is redirected to a new page with the text "Welcome!".
+65. ```
+66. ## 5.
+67. **Requirement:**
+68. Go To    https://the-internet.herokuapp.com/basic_auth
+69. Check the header: This site is asking you to sign in.
+70. Press button Login
+71. 4. User enters username and password = admin/admin
+72. 5. User clicks on the "Login" button.
+73. 6. Browser page opens and there is text = Welcome!
+74. 7. User clicks on
+
+NOTES:
+None

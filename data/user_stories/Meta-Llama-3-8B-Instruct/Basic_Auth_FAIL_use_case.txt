@@ -1,0 +1,28 @@
+
+USE CASE: ** Cancel Basic Authentication
+ID: UC-001
+
+ACTORS:
+- button
+
+PRECONDITIONS:
+1. The user has navigated to the basic authentication page.
+2. The user has not yet entered any authentication credentials.
+
+MAIN FLOW:
+1. The user presses the Cancel button on the basic authentication page.
+2. The system prompts the user to sign in.
+3. The user is redirected to the original page without entering any authentication credentials.
+4. 4. The browser page opens, and the text "Not authorized" is displayed.
+5. **Alternative Flows:** None
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+1. The user is not authenticated.
+2. The browser page displays the text "Not authorized".
+3. The user is not redirected to any other page.
+
+NOTES:
+None

@@ -1,0 +1,4 @@
+1. Go To    https://the-internet.herokuapp.com/basic_auth
+2. Check the header: This site is asking you to sign in.
+3. Press button Cancel
+4. Browser page opens and there is text = Not authorized

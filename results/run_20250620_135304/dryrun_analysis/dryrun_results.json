@@ -1,0 +1,174 @@
+{
+  "timestamp": "2025-06-20T15:22:13.428631",
+  "summary": {
+    "total_models": 2,
+    "total_test_files": 4,
+    "total_successful": 0,
+    "total_failed": 4,
+    "overall_success_rate": 0.0,
+    "best_model": "Qwen2-7B-Instruct",
+    "worst_model": "Qwen2-7B-Instruct"
+  },
+  "by_model": {
+    "Qwen2-7B-Instruct": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Validate the behavior of the Basic Authenticati...\n==============================================================================\nTest Login Functionality :: Validate the behavior of the Basic Aut... | FAIL |\nSeveral failures occurred:\n\n1) Keyword 'BuiltIn.Log' expected 1 to 6 arguments, got 7.\n\n2) Keyword 'Browser.Wait For Elements State' expected 1 to 4 arguments, got 0.\n\n3) Keyword 'Browser.Wait For Elements State' expected 1 to 4 arguments, got 0.\n\n4) Keyword 'Browser.Wait For Elements State' expected 1 to 4 arguments, got 0.\n\nAlso teardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Validate the behavior of the Basic Aut... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        }
+      },
+      "errors": [],
+      "warnings": [],
+      "execution_time": 1.27749,
+      "success_rate": 0.0
+    },
+    "Falcon3-7B-Base": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [
+            "No keyword with name 'The URL of the page is \"https://the-internet.herokuapp.com/\"' found",
+            "No keyword with name '```' found",
+            "No keyword with name 'These additional steps help to ensure that the test case not only verifies the main functionality but also checks other aspects of the page to confirm that the system is behaving as expected.' found",
+            "No keyword with name '- Open The Internet Site URL' found",
+            "No keyword with name 'The title of the page is \"The Internet Site\"' found",
+            "No keyword with name 'In this extended example, additional verification steps have been added to ensure that:' found",
+            "No keyword with name '- Initialize Browser library' found",
+            "No keyword with name '- Close the browser' found"
+          ],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: This test case logs in to The Internet Site to ...\n==============================================================================\nLogin to The Internet Site :: This test case logs in to The Intern... | FAIL |\nSetup failed:\nSeveral failures occurred:\n\n1) No keyword with name '- Initialize Browser library' found.\n\n2) No keyword with name '- Open The Internet Site URL' found.\n\nAlso teardown failed:\nSeveral failures occurred:\n\n1) No keyword with name '- Close the browser' found. Did you mean:\n    Browser.Close Browser\n    Close Browser\n\n2) No keyword with name '```' found.\n\n3) No keyword with name 'In this extended example, additional verification steps have been added to ensure that:' found.\n\n4) No keyword with name 'The title of the page is \"The Internet Site\"' found.\n\n5) No keyword with name 'The URL of the page is \"https://the-internet.herokuapp.com/\"' found.\n\n6) No keyword with name 'These additional steps help to ensure that the test case not only verifies the main functionality but also checks other aspects of the page to confirm that the system is behaving as expected.' found.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: This test case logs in to The Internet... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword"
+          ],
+          "return_code": 1
+        }
+      },
+      "errors": [
+        "No keyword with name 'The URL of the page is \"https://the-internet.herokuapp.com/\"' found",
+        "No keyword with name '```' found",
+        "No keyword with name 'These additional steps help to ensure that the test case not only verifies the main functionality but also checks other aspects of the page to confirm that the system is behaving as expected.' found",
+        "No keyword with name '- Open The Internet Site URL' found",
+        "No keyword with name 'The title of the page is \"The Internet Site\"' found",
+        "No keyword with name 'In this extended example, additional verification steps have been added to ensure that:' found",
+        "No keyword with name '- Initialize Browser library' found",
+        "No keyword with name '- Close the browser' found"
+      ],
+      "warnings": [],
+      "execution_time": 1.083818,
+      "success_rate": 0.0
+    }
+  },
+  "error_analysis": {
+    "error_type_distribution": {
+      "missing_keyword": 8
+    },
+    "common_errors": {
+      "No keyword with name 'The URL of the page is \"https://the-internet.herokuapp.com/\"' found": 1,
+      "No keyword with name '```' found": 1,
+      "No keyword with name 'These additional steps help to ensure that the test case not only verifies the main functionality but also checks other aspects of the page to confirm that the system is behaving as expected.' found": 1,
+      "No keyword with name '- Open The Internet Site URL' found": 1,
+      "No keyword with name 'The title of the page is \"The Internet Site\"' found": 1,
+      "No keyword with name 'In this extended example, additional verification steps have been added to ensure that:' found": 1,
+      "No keyword with name '- Initialize Browser library' found": 1,
+      "No keyword with name '- Close the browser' found": 1
+    },
+    "model_error_patterns": {
+      "Qwen2-7B-Instruct": {},
+      "Falcon3-7B-Base": {
+        "missing_keyword": 8
+      }
+    },
+    "top_errors": [
+      [
+        "No keyword with name 'The URL of the page is \"https://the-internet.herokuapp.com/\"' found",
+        1
+      ],
+      [
+        "No keyword with name '```' found",
+        1
+      ],
+      [
+        "No keyword with name 'These additional steps help to ensure that the test case not only verifies the main functionality but also checks other aspects of the page to confirm that the system is behaving as expected.' found",
+        1
+      ],
+      [
+        "No keyword with name '- Open The Internet Site URL' found",
+        1
+      ],
+      [
+        "No keyword with name 'The title of the page is \"The Internet Site\"' found",
+        1
+      ],
+      [
+        "No keyword with name 'In this extended example, additional verification steps have been added to ensure that:' found",
+        1
+      ],
+      [
+        "No keyword with name '- Initialize Browser library' found",
+        1
+      ],
+      [
+        "No keyword with name '- Close the browser' found",
+        1
+      ]
+    ]
+  },
+  "comparative_analysis": {
+    "success_rates": {
+      "Qwen2-7B-Instruct": 0.0,
+      "Falcon3-7B-Base": 0.0
+    },
+    "error_prone_models": [],
+    "most_stable_models": [
+      "Falcon3-7B-Base"
+    ],
+    "execution_efficiency": {
+      "Qwen2-7B-Instruct": {
+        "avg_time_per_file": 0.638745,
+        "total_time": 1.27749
+      },
+      "Falcon3-7B-Base": {
+        "avg_time_per_file": 0.541909,
+        "total_time": 1.083818
+      }
+    }
+  }
+}

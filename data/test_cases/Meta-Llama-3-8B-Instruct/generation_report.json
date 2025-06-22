@@ -1,18 +1,23 @@
 {
   "model": "Meta-Llama-3-8B-Instruct",
-  "timestamp": "2025-06-15T18:47:17.814814",
-  "total_files": 2,
-  "successful": 2,
+  "timestamp": "2025-06-20T18:36:03.175768",
+  "total_files": 3,
+  "successful": 3,
   "failed": 0,
   "results": [
     {
-      "use_case": "example_login_use_case.txt",
-      "test_case": "example_login_use_case.robot",
+      "use_case": "Basic_Auth_PASS_use_case.txt",
+      "test_case": "Basic_Auth_PASS_use_case.robot",
       "status": "success"
     },
     {
-      "use_case": "example_login_use_case.json",
-      "test_case": "example_login_use_case.robot",
+      "use_case": "Basic_Auth_FAIL_use_case.txt",
+      "test_case": "Basic_Auth_FAIL_use_case.robot",
+      "status": "success"
+    },
+    {
+      "use_case": "Basic_Auth_PASS_use_case.json",
+      "test_case": "Basic_Auth_PASS_use_case.robot",
       "status": "success"
     }
   ]

@@ -1,0 +1,271 @@
+{
+  "timestamp": "2025-06-20T20:32:11.915746",
+  "summary": {
+    "total_models": 3,
+    "total_test_files": 6,
+    "total_successful": 0,
+    "total_failed": 6,
+    "overall_success_rate": 0.0,
+    "best_model": "Meta-Llama-3-8B-Instruct",
+    "worst_model": "Meta-Llama-3-8B-Instruct"
+  },
+  "by_model": {
+    "Meta-Llama-3-8B-Instruct": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [
+            "Suite 'Basic Auth PASS use case' contains no tests or tasks.",
+            "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Meta-Llama-3-8B-Instruct/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** UC-LOGIN-001: Basic Authentication'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'."
+          ],
+          "warnings": [],
+          "output": "[ ERROR ] Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Meta-Llama-3-8B-Instruct/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** UC-LOGIN-001: Basic Authentication'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.\n[ ERROR ] Suite 'Basic Auth PASS use case' contains no tests or tasks.\n\nTry --help for usage information.\n",
+          "error_types": [
+            "other",
+            "other"
+          ],
+          "return_code": 252
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [
+            "No keyword with name 'Note: You can run this test case using Robot Framework, and it should pass if the cancel button functionality is working correctly. If the test case fails, it indicates that there is an issue with the cancel button functionality. You can modify the test case as needed to better test the functionality.' found",
+            "No keyword with name 'Click Button' found",
+            "No keyword with name 'Keywords Used:' found",
+            "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found",
+            "No keyword with name 'Verify Page Contains' found",
+            "No keyword with name 'chrome' found",
+            "No keyword with name 'Wait Until Page Contains' found",
+            "No keyword with name 'Maximize Browser Window' found"
+          ],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Tests the cancel button functionality on the ba...\n==============================================================================\nTest Login Functionality :: Tests the cancel button functionality ... | FAIL |\nSetup failed:\nSeveral failures occurred:\n\n1) No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found.\n\n2) No keyword with name 'chrome' found.\n\n3) No keyword with name 'Maximize Browser Window' found.\n\nAlso teardown failed:\nSeveral failures occurred:\n\n1) Keyword 'Close Browser' expected 0 arguments, got 1.\n\n2) No keyword with name 'Keywords Used:' found.\n\n3) No keyword with name 'Maximize Browser Window' found.\n\n4) No keyword with name 'Click Button' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?\n\n5) No keyword with name 'Wait Until Page Contains' found.\n\n6) No keyword with name 'Verify Page Contains' found.\n\n7) Keyword 'Close Browser' expected 0 arguments, got 1.\n\n8) No keyword with name 'Note: You can run this test case using Robot Framework, and it should pass if the cancel button functionality is working correctly. If the test case fails, it indicates that there is an issue with the cancel button functionality. You can modify the test case as needed to better test the functionality.' found.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Tests the cancel button functionality ... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword"
+          ],
+          "return_code": 1
+        }
+      },
+      "errors": [
+        "Suite 'Basic Auth PASS use case' contains no tests or tasks.",
+        "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Meta-Llama-3-8B-Instruct/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** UC-LOGIN-001: Basic Authentication'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.",
+        "No keyword with name 'Note: You can run this test case using Robot Framework, and it should pass if the cancel button functionality is working correctly. If the test case fails, it indicates that there is an issue with the cancel button functionality. You can modify the test case as needed to better test the functionality.' found",
+        "No keyword with name 'Click Button' found",
+        "No keyword with name 'Keywords Used:' found",
+        "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found",
+        "No keyword with name 'Verify Page Contains' found",
+        "No keyword with name 'chrome' found",
+        "No keyword with name 'Wait Until Page Contains' found",
+        "No keyword with name 'Maximize Browser Window' found"
+      ],
+      "warnings": [],
+      "execution_time": 0.911583,
+      "success_rate": 0.0
+    },
+    "Falcon3-7B-Base": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        }
+      },
+      "errors": [],
+      "warnings": [],
+      "execution_time": 1.14445,
+      "success_rate": 0.0
+    },
+    "gemma_7b_it_4bit": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [
+            "Suite 'Basic Auth PASS use case' contains no tests or tasks.",
+            "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'."
+          ],
+          "warnings": [],
+          "output": "[ ERROR ] Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.\n[ ERROR ] Suite 'Basic Auth PASS use case' contains no tests or tasks.\n\nTry --help for usage information.\n",
+          "error_types": [
+            "other",
+            "other"
+          ],
+          "return_code": 252
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [
+            "No keyword with name 'Open the browser' found",
+            "No keyword with name 'Navigate to the basic authentication page' found",
+            "No keyword with name 'Expected Results:**' found",
+            "No keyword with name 'The user is not logged in to the website.' found",
+            "No keyword with name 'The user has seen the text \"Not authorized\" on the page.' found",
+            "No keyword with name 'Close the browser' found"
+          ],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: ** This test case verifies that the user can ca...\n==============================================================================\nTest Login Functionality :: ** This test case verifies that the us... | FAIL |\nSetup failed:\nSeveral failures occurred:\n\n1) No keyword with name 'Open the browser' found. Did you mean:\n    Browser.Open Browser\n\n2) No keyword with name 'Navigate to the basic authentication page' found.\n\nAlso teardown failed:\nSeveral failures occurred:\n\n1) No keyword with name 'Close the browser' found. Did you mean:\n    Browser.Close Browser\n    Close Browser\n\n2) No keyword with name 'Expected Results:**' found.\n\n3) No keyword with name 'The user is not logged in to the website.' found.\n\n4) No keyword with name 'The user has seen the text \"Not authorized\" on the page.' found.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: ** This test case verifies that the us... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword"
+          ],
+          "return_code": 1
+        }
+      },
+      "errors": [
+        "Suite 'Basic Auth PASS use case' contains no tests or tasks.",
+        "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.",
+        "No keyword with name 'Open the browser' found",
+        "No keyword with name 'Navigate to the basic authentication page' found",
+        "No keyword with name 'Expected Results:**' found",
+        "No keyword with name 'The user is not logged in to the website.' found",
+        "No keyword with name 'The user has seen the text \"Not authorized\" on the page.' found",
+        "No keyword with name 'Close the browser' found"
+      ],
+      "warnings": [],
+      "execution_time": 0.6554679999999999,
+      "success_rate": 0.0
+    }
+  },
+  "error_analysis": {
+    "error_type_distribution": {
+      "other": 4,
+      "missing_keyword": 14
+    },
+    "common_errors": {
+      "Suite 'Basic Auth PASS use case' contains no tests or tasks.": 2,
+      "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Meta-Llama-3-8B-Instruct/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** UC-LOGIN-001: Basic Authentication'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.": 1,
+      "No keyword with name 'Note: You can run this test case using Robot Framework, and it should pass if the cancel button functionality is working correctly. If the test case fails, it indicates that there is an issue with the cancel button functionality. You can modify the test case as needed to better test the functionality.' found": 1,
+      "No keyword with name 'Click Button' found": 1,
+      "No keyword with name 'Keywords Used:' found": 1,
+      "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found": 1,
+      "No keyword with name 'Verify Page Contains' found": 1,
+      "No keyword with name 'chrome' found": 1,
+      "No keyword with name 'Wait Until Page Contains' found": 1,
+      "No keyword with name 'Maximize Browser Window' found": 1,
+      "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.": 1,
+      "No keyword with name 'Open the browser' found": 1,
+      "No keyword with name 'Navigate to the basic authentication page' found": 1,
+      "No keyword with name 'Expected Results:**' found": 1,
+      "No keyword with name 'The user is not logged in to the website.' found": 1,
+      "No keyword with name 'The user has seen the text \"Not authorized\" on the page.' found": 1,
+      "No keyword with name 'Close the browser' found": 1
+    },
+    "model_error_patterns": {
+      "Meta-Llama-3-8B-Instruct": {
+        "other": 2,
+        "missing_keyword": 8
+      },
+      "Falcon3-7B-Base": {},
+      "gemma_7b_it_4bit": {
+        "other": 2,
+        "missing_keyword": 6
+      }
+    },
+    "top_errors": [
+      [
+        "Suite 'Basic Auth PASS use case' contains no tests or tasks.",
+        2
+      ],
+      [
+        "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Meta-Llama-3-8B-Instruct/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** UC-LOGIN-001: Basic Authentication'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.",
+        1
+      ],
+      [
+        "No keyword with name 'Note: You can run this test case using Robot Framework, and it should pass if the cancel button functionality is working correctly. If the test case fails, it indicates that there is an issue with the cancel button functionality. You can modify the test case as needed to better test the functionality.' found",
+        1
+      ],
+      [
+        "No keyword with name 'Click Button' found",
+        1
+      ],
+      [
+        "No keyword with name 'Keywords Used:' found",
+        1
+      ],
+      [
+        "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found",
+        1
+      ],
+      [
+        "No keyword with name 'Verify Page Contains' found",
+        1
+      ],
+      [
+        "No keyword with name 'chrome' found",
+        1
+      ],
+      [
+        "No keyword with name 'Wait Until Page Contains' found",
+        1
+      ],
+      [
+        "No keyword with name 'Maximize Browser Window' found",
+        1
+      ]
+    ]
+  },
+  "comparative_analysis": {
+    "success_rates": {
+      "Meta-Llama-3-8B-Instruct": 0.0,
+      "Falcon3-7B-Base": 0.0,
+      "gemma_7b_it_4bit": 0.0
+    },
+    "error_prone_models": [
+      "Meta-Llama-3-8B-Instruct"
+    ],
+    "most_stable_models": [
+      "Falcon3-7B-Base",
+      "gemma_7b_it_4bit"
+    ],
+    "execution_efficiency": {
+      "Meta-Llama-3-8B-Instruct": {
+        "avg_time_per_file": 0.4557915,
+        "total_time": 0.911583
+      },
+      "Falcon3-7B-Base": {
+        "avg_time_per_file": 0.572225,
+        "total_time": 1.14445
+      },
+      "gemma_7b_it_4bit": {
+        "avg_time_per_file": 0.32773399999999997,
+        "total_time": 0.6554679999999999
+      }
+    }
+  }
+}

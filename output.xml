@@ -1,118 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-06-15T19:47:52.112479" rpa="false" schemaversion="5">
-<suite id="s1" name="Example Login Use Case" source="/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Qwen2-7B-Instruct/example_login_use_case.robot">
+<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-06-20T20:19:23.667288" rpa="false" schemaversion="5">
+<suite id="s1" name="Basic Auth FAIL use case" source="/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_FAIL_use_case.robot">
 <test id="s1-t1" name="Test Login Functionality" line="17">
 <kw name="Run Keywords" owner="BuiltIn" type="SETUP">
-<kw name="Open Browser [URL=https://the-internet.herokuapp.com] [Title=The Internet]">
-<msg time="2025-06-15T19:47:52.314515" level="FAIL">No keyword with name 'Open Browser [URL=https://the-internet.herokuapp.com] [Title=The Internet]' found.</msg>
-<status status="FAIL" start="2025-06-15T19:47:52.314420" elapsed="0.000145">No keyword with name 'Open Browser [URL=https://the-internet.herokuapp.com] [Title=The Internet]' found.</status>
+<kw name="Open the browser">
+<msg time="2025-06-20T20:19:23.788487" level="FAIL">No keyword with name 'Open the browser' found. Did you mean:
+    Browser.Open Browser</msg>
+<status status="FAIL" start="2025-06-20T20:19:23.788412" elapsed="0.000115">No keyword with name 'Open the browser' found. Did you mean:
+    Browser.Open Browser</status>
 </kw>
-<kw name="Wait Until Text Present [Text=Welcome] [Timeout=10s]">
-<msg time="2025-06-15T19:47:52.315253" level="FAIL">No keyword with name 'Wait Until Text Present [Text=Welcome] [Timeout=10s]' found.</msg>
-<status status="FAIL" start="2025-06-15T19:47:52.315193" elapsed="0.000092">No keyword with name 'Wait Until Text Present [Text=Welcome] [Timeout=10s]' found.</status>
+<kw name="Navigate to the basic authentication page">
+<msg time="2025-06-20T20:19:23.789523" level="FAIL">No keyword with name 'Navigate to the basic authentication page' found.</msg>
+<status status="FAIL" start="2025-06-20T20:19:23.789439" elapsed="0.000120">No keyword with name 'Navigate to the basic authentication page' found.</status>
 </kw>
-<kw name="Click Element With XPath=//a[@href='/login'] [Wait=1s]">
-<msg time="2025-06-15T19:47:52.315919" level="FAIL">No keyword with name 'Click Element With XPath=//a[@href='/login'] [Wait=1s]' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?</msg>
-<status status="FAIL" start="2025-06-15T19:47:52.315868" elapsed="0.000075">No keyword with name 'Click Element With XPath=//a[@href='/login'] [Wait=1s]' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?</status>
-</kw>
-<arg>Open Browser [URL=https://the-internet.herokuapp.com] [Title=The Internet]</arg>
-<arg>Wait Until Text Present [Text=Welcome] [Timeout=10s]</arg>
-<arg>Click Element With XPath=//a[@href='/login'] [Wait=1s]</arg>
+<arg>Open the browser</arg>
+<arg>Navigate to the basic authentication page</arg>
 <doc>Executes all the given keywords in a sequence.</doc>
-<status status="FAIL" start="2025-06-15T19:47:52.313450" elapsed="0.002546">Several failures occurred:
+<status status="FAIL" start="2025-06-20T20:19:23.787042" elapsed="0.002582">Several failures occurred:
 
-1) No keyword with name 'Open Browser [URL=https://the-internet.herokuapp.com] [Title=The Internet]' found.
+1) No keyword with name 'Open the browser' found. Did you mean:
+    Browser.Open Browser
 
-2) No keyword with name 'Wait Until Text Present [Text=Welcome] [Timeout=10s]' found.
-
-3) No keyword with name 'Click Element With XPath=//a[@href='/login'] [Wait=1s]' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?</status>
+2) No keyword with name 'Navigate to the basic authentication page' found.</status>
 </kw>
 <kw name="Run Keywords" owner="BuiltIn" type="TEARDOWN">
-<kw name="Close Browser">
-<kw name="Take Screenshot" owner="Browser">
-<arg>fullPage=True</arg>
-<tag>PageContent</tag>
-<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
-<status status="NOT RUN" start="2025-06-15T19:47:52.316543" elapsed="0.000279"/>
+<kw name="Close the browser">
+<msg time="2025-06-20T20:19:23.790658" level="FAIL">No keyword with name 'Close the browser' found. Did you mean:
+    Browser.Close Browser
+    Close Browser</msg>
+<status status="FAIL" start="2025-06-20T20:19:23.790582" elapsed="0.000118">No keyword with name 'Close the browser' found. Did you mean:
+    Browser.Close Browser
+    Close Browser</status>
 </kw>
-<kw name="Close Browser">
-<msg time="2025-06-15T19:47:52.317012" level="FAIL">Keyword 'Close Browser' expected 0 arguments, got 1.</msg>
-<arg>ALL</arg>
-<status status="FAIL" start="2025-06-15T19:47:52.316940" elapsed="0.000097">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+<kw name="Expected Results:**">
+<msg time="2025-06-20T20:19:23.791484" level="FAIL">No keyword with name 'Expected Results:**' found.</msg>
+<status status="FAIL" start="2025-06-20T20:19:23.791435" elapsed="0.000072">No keyword with name 'Expected Results:**' found.</status>
 </kw>
-<status status="FAIL" start="2025-06-15T19:47:52.316362" elapsed="0.000750">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+<kw name="The user is not logged in to the website.">
+<msg time="2025-06-20T20:19:23.792299" level="FAIL">No keyword with name 'The user is not logged in to the website.' found.</msg>
+<status status="FAIL" start="2025-06-20T20:19:23.792257" elapsed="0.000062">No keyword with name 'The user is not logged in to the website.' found.</status>
 </kw>
-<kw name="Expected Outcomes:">
-<msg time="2025-06-15T19:47:52.318079" level="FAIL">No keyword with name 'Expected Outcomes:' found.</msg>
-<status status="FAIL" start="2025-06-15T19:47:52.318020" elapsed="0.000105">No keyword with name 'Expected Outcomes:' found.</status>
+<kw name="The user has seen the text &quot;Not authorized&quot; on the page.">
+<msg time="2025-06-20T20:19:23.792955" level="FAIL">No keyword with name 'The user has seen the text "Not authorized" on the page.' found.</msg>
+<status status="FAIL" start="2025-06-20T20:19:23.792906" elapsed="0.000071">No keyword with name 'The user has seen the text "Not authorized" on the page.' found.</status>
 </kw>
-<kw name="The system should display an error message indicating invalid credentials.">
-<msg time="2025-06-15T19:47:52.318786" level="FAIL">No keyword with name 'The system should display an error message indicating invalid credentials.' found.</msg>
-<status status="FAIL" start="2025-06-15T19:47:52.318729" elapsed="0.000081">No keyword with name 'The system should display an error message indicating invalid credentials.' found.</status>
-</kw>
-<kw name="The user should remain on the login page without accessing the secure area.">
-<msg time="2025-06-15T19:47:52.319465" level="FAIL">No keyword with name 'The user should remain on the login page without accessing the secure area.' found.</msg>
-<status status="FAIL" start="2025-06-15T19:47:52.319404" elapsed="0.000085">No keyword with name 'The user should remain on the login page without accessing the secure area.' found.</status>
-</kw>
-<kw name="```">
-<msg time="2025-06-15T19:47:52.320859" level="FAIL">No keyword with name '```' found.</msg>
-<status status="FAIL" start="2025-06-15T19:47:52.320791" elapsed="0.000096">No keyword with name '```' found.</status>
-</kw>
-<arg>Close Browser</arg>
-<arg>Expected Outcomes:</arg>
-<arg>The system should display an error message indicating invalid credentials.</arg>
-<arg>The user should remain on the login page without accessing the secure area.</arg>
-<arg>```</arg>
+<arg>Close the browser</arg>
+<arg>Expected Results:**</arg>
+<arg>The user is not logged in to the website.</arg>
+<arg>The user has seen the text "Not authorized" on the page.</arg>
 <doc>Executes all the given keywords in a sequence.</doc>
-<status status="FAIL" start="2025-06-15T19:47:52.316162" elapsed="0.004773">Several failures occurred:
+<status status="FAIL" start="2025-06-20T20:19:23.789824" elapsed="0.003194">Several failures occurred:
 
-1) Keyword 'Close Browser' expected 0 arguments, got 1.
+1) No keyword with name 'Close the browser' found. Did you mean:
+    Browser.Close Browser
+    Close Browser
 
-2) No keyword with name 'Expected Outcomes:' found.
+2) No keyword with name 'Expected Results:**' found.
 
-3) No keyword with name 'The system should display an error message indicating invalid credentials.' found.
+3) No keyword with name 'The user is not logged in to the website.' found.
 
-4) No keyword with name 'The user should remain on the login page without accessing the secure area.' found.
-
-5) No keyword with name '```' found.</status>
+4) No keyword with name 'The user has seen the text "Not authorized" on the page.' found.</status>
 </kw>
-<msg time="2025-06-15T19:47:52.408098" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:36487</msg>
-<doc>Verifies the failure of login process using incorrect credentials.</doc>
-<tag>login security</tag>
-<status status="FAIL" start="2025-06-15T19:47:52.312717" elapsed="0.008272">Setup failed:
+<msg time="2025-06-20T20:19:23.826711" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:47949</msg>
+<doc>** This test case verifies that the user can cancel login on the basic authentication page.</doc>
+<tag>** smoke login</tag>
+<status status="FAIL" start="2025-06-20T20:19:23.786436" elapsed="0.006626">Setup failed:
 Several failures occurred:
 
-1) No keyword with name 'Open Browser [URL=https://the-internet.herokuapp.com] [Title=The Internet]' found.
+1) No keyword with name 'Open the browser' found. Did you mean:
+    Browser.Open Browser
 
-2) No keyword with name 'Wait Until Text Present [Text=Welcome] [Timeout=10s]' found.
-
-3) No keyword with name 'Click Element With XPath=//a[@href='/login'] [Wait=1s]' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?
+2) No keyword with name 'Navigate to the basic authentication page' found.
 
 Also teardown failed:
 Several failures occurred:
 
-1) Keyword 'Close Browser' expected 0 arguments, got 1.
+1) No keyword with name 'Close the browser' found. Did you mean:
+    Browser.Close Browser
+    Close Browser
 
-2) No keyword with name 'Expected Outcomes:' found.
+2) No keyword with name 'Expected Results:**' found.
 
-3) No keyword with name 'The system should display an error message indicating invalid credentials.' found.
+3) No keyword with name 'The user is not logged in to the website.' found.
 
-4) No keyword with name 'The user should remain on the login page without accessing the secure area.' found.
-
-5) No keyword with name '```' found.</status>
+4) No keyword with name 'The user has seen the text "Not authorized" on the page.' found.</status>
 </test>
-<doc>Verifies the failure of login process using incorrect credentials.</doc>
-<status status="FAIL" start="2025-06-15T19:47:52.113616" elapsed="1.165141"/>
+<doc>** This test case verifies that the user can cancel login on the basic authentication page.</doc>
+<status status="FAIL" start="2025-06-20T20:19:23.667939" elapsed="0.708101"/>
 </suite>
 <statistics>
 <total>
 <stat pass="0" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">login security</stat>
+<stat pass="0" fail="1" skip="0">** smoke login</stat>
 </tag>
 <suite>
-<stat name="Example Login Use Case" id="s1" pass="0" fail="1" skip="0">Example Login Use Case</stat>
+<stat name="Basic Auth FAIL use case" id="s1" pass="0" fail="1" skip="0">Basic Auth FAIL use case</stat>
 </suite>
 </statistics>
 <errors>
