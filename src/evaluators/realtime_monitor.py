@@ -19,6 +19,8 @@ import GPUtil
 from loguru import logger
 import time
 from collections import deque
+import sys
+import yaml
 
 # Optional: Weights & Biases integration
 try:
@@ -36,19 +38,27 @@ class RealtimeMonitor:
         self.config_path = config_path
         self.metrics_buffer = deque(maxlen=1000)  # Keep last 1000 data points
         self.start_time = datetime.now()
+
+        self.config = self._load_config() # Ladataan konfiguraatio alustuksessa
         
         # Initialize W&B if available
         if WANDB_AVAILABLE:
             self.wandb_run = None
+
+    def _load_config(self):
+        """Load configuration from YAML file."""
+        try:
+            with open(self.config_path, 'r') as f:
+                return yaml.safe_load(f)
+        except FileNotFoundError:
+            logger.error(f"Configuration file not found: {self.config_path}")
+            return {}
+        except yaml.YAMLError as e:
+            logger.error(f"Error parsing configuration file {self.config_path}: {e}")
+            return {}
     
     def create_streamlit_dashboard(self):
         """Create Streamlit dashboard for realtime monitoring"""
-        st.set_page_config(
-            page_title="LLM Evaluation Monitor",
-            page_icon="📊",
-            layout="wide"
-        )
-        
         # Header
         st.title("🚀 LLM Evaluation Realtime Monitor")
         st.markdown("---")
@@ -57,13 +67,24 @@ class RealtimeMonitor:
         with st.sidebar:
             st.header("Configuration")
             
+            # --- TÄMÄ KOHTA MUUTTUU ---
             # Model selection
-            model_options = ["mistral", "gemma_7b_it_4bit", "llama2", "falcon"]
+            available_models_from_config = []
+            if self.config and "models" in self.config and "available" in self.config["models"]:
+                for model_info in self.config["models"]["available"]:
+                    available_models_from_config.append(model_info["name"])
+            
+            # Jos configista ei löydy malleja, käytä kovakoodattuja varamalleja
+            if not available_models_from_config:
+                available_models_from_config = ["mistral", "gemma_7b_it_4bit", "llama2", "falcon"] 
+                st.warning("Could not load models from config. Using default options.")
+            
             selected_models = st.multiselect(
                 "Select Models to Monitor",
-                model_options,
-                default=["mistral"]
+                available_models_from_config, # Käytä dynaamista listaa
+                default=[m for m in ["mistral", "gemma_7b_it_4bit", "Meta-Llama-3-8B-Instruct"] if m in available_models_from_config] # Aseta oletukset dynaamisesti
             )
+            # --- MUUTOS PÄÄTTYY ---
             
             # Metric selection
             metric_categories = {
@@ -136,7 +157,7 @@ class RealtimeMonitor:
             time.sleep(refresh_rate)
             
             # Force streamlit to rerun
-            st.experimental_rerun()
+            st.rerun()
     
     def _collect_current_metrics(self, models: List[str]) -> Dict[str, Any]:
         """Collect current metrics from running evaluations"""
@@ -596,10 +617,15 @@ def main():
 
 if __name__ == "__main__":
     # Check if running in Streamlit
-    try:
-        # This will only work in Streamlit context
+    if "streamlit" in sys.modules:
+        # Running in Streamlit - set page config FIRST
+        st.set_page_config(
+            page_title="LLM Evaluation Monitor",
+            page_icon="📊",
+            layout="wide"
+        )
         monitor = RealtimeMonitor()
         monitor.create_streamlit_dashboard()
-    except:
+    else:
         # Otherwise run CLI
         main()
