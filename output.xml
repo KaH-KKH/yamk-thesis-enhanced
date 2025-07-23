@@ -1,99 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-06-20T20:19:23.667288" rpa="false" schemaversion="5">
-<suite id="s1" name="Basic Auth FAIL use case" source="/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_FAIL_use_case.robot">
+<robot generator="Robot 7.2.2 (Python 3.12.3 on linux)" generated="2025-07-22T21:01:33.231509" rpa="false" schemaversion="5">
+<suite id="s1" name="Basic Auth FAIL use case" source="/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/opt_1.3b/Basic_Auth_FAIL_use_case.robot">
 <test id="s1-t1" name="Test Login Functionality" line="17">
-<kw name="Run Keywords" owner="BuiltIn" type="SETUP">
-<kw name="Open the browser">
-<msg time="2025-06-20T20:19:23.788487" level="FAIL">No keyword with name 'Open the browser' found. Did you mean:
-    Browser.Open Browser</msg>
-<status status="FAIL" start="2025-06-20T20:19:23.788412" elapsed="0.000115">No keyword with name 'Open the browser' found. Did you mean:
-    Browser.Open Browser</status>
+<kw name="Setup Browser" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<arg>${BROWSER}</arg>
+<arg>headless=${HEADLESS}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="NOT RUN" start="2025-07-22T21:01:33.298772" elapsed="0.000223"/>
 </kw>
-<kw name="Navigate to the basic authentication page">
-<msg time="2025-06-20T20:19:23.789523" level="FAIL">No keyword with name 'Navigate to the basic authentication page' found.</msg>
-<status status="FAIL" start="2025-06-20T20:19:23.789439" elapsed="0.000120">No keyword with name 'Navigate to the basic authentication page' found.</status>
+<kw name="Set Browser Timeout" owner="Browser">
+<arg>${TIMEOUT}</arg>
+<tag>Config</tag>
+<tag>Setter</tag>
+<doc>Sets the timeout used by most input and getter keywords.</doc>
+<status status="NOT RUN" start="2025-07-22T21:01:33.299087" elapsed="0.000147"/>
 </kw>
-<arg>Open the browser</arg>
-<arg>Navigate to the basic authentication page</arg>
-<doc>Executes all the given keywords in a sequence.</doc>
-<status status="FAIL" start="2025-06-20T20:19:23.787042" elapsed="0.002582">Several failures occurred:
-
-1) No keyword with name 'Open the browser' found. Did you mean:
-    Browser.Open Browser
-
-2) No keyword with name 'Navigate to the basic authentication page' found.</status>
+<kw name="New Context" owner="Browser">
+<arg>viewport={'width': 1280, 'height': 720}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new BrowserContext with specified options.</doc>
+<status status="NOT RUN" start="2025-07-22T21:01:33.299303" elapsed="0.000244"/>
 </kw>
-<kw name="Run Keywords" owner="BuiltIn" type="TEARDOWN">
-<kw name="Close the browser">
-<msg time="2025-06-20T20:19:23.790658" level="FAIL">No keyword with name 'Close the browser' found. Did you mean:
-    Browser.Close Browser
-    Close Browser</msg>
-<status status="FAIL" start="2025-06-20T20:19:23.790582" elapsed="0.000118">No keyword with name 'Close the browser' found. Did you mean:
-    Browser.Close Browser
-    Close Browser</status>
+<status status="PASS" start="2025-07-22T21:01:33.298403" elapsed="0.001187"/>
 </kw>
-<kw name="Expected Results:**">
-<msg time="2025-06-20T20:19:23.791484" level="FAIL">No keyword with name 'Expected Results:**' found.</msg>
-<status status="FAIL" start="2025-06-20T20:19:23.791435" elapsed="0.000072">No keyword with name 'Expected Results:**' found.</status>
+<kw name="New Browser" owner="Browser">
+<arg>${BROWSER}</arg>
+<arg>headless=${HEADLESS}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="NOT RUN" start="2025-07-22T21:01:33.299652" elapsed="0.000146"/>
 </kw>
-<kw name="The user is not logged in to the website.">
-<msg time="2025-06-20T20:19:23.792299" level="FAIL">No keyword with name 'The user is not logged in to the website.' found.</msg>
-<status status="FAIL" start="2025-06-20T20:19:23.792257" elapsed="0.000062">No keyword with name 'The user is not logged in to the website.' found.</status>
+<kw name="New Page" owner="Browser">
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="NOT RUN" start="2025-07-22T21:01:33.299856" elapsed="0.000114"/>
 </kw>
-<kw name="The user has seen the text &quot;Not authorized&quot; on the page.">
-<msg time="2025-06-20T20:19:23.792955" level="FAIL">No keyword with name 'The user has seen the text "Not authorized" on the page.' found.</msg>
-<status status="FAIL" start="2025-06-20T20:19:23.792906" elapsed="0.000071">No keyword with name 'The user has seen the text "Not authorized" on the page.' found.</status>
+<kw name="Log" owner="BuiltIn">
+<arg>Executing test steps</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-07-22T21:01:33.300028" elapsed="0.000046"/>
 </kw>
-<arg>Close the browser</arg>
-<arg>Expected Results:**</arg>
-<arg>The user is not logged in to the website.</arg>
-<arg>The user has seen the text "Not authorized" on the page.</arg>
-<doc>Executes all the given keywords in a sequence.</doc>
-<status status="FAIL" start="2025-06-20T20:19:23.789824" elapsed="0.003194">Several failures occurred:
-
-1) No keyword with name 'Close the browser' found. Did you mean:
-    Browser.Close Browser
-    Close Browser
-
-2) No keyword with name 'Expected Results:**' found.
-
-3) No keyword with name 'The user is not logged in to the website.' found.
-
-4) No keyword with name 'The user has seen the text "Not authorized" on the page.' found.</status>
+<kw name="Take Screenshot" owner="Browser">
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="NOT RUN" start="2025-07-22T21:01:33.300122" elapsed="0.000233"/>
 </kw>
-<msg time="2025-06-20T20:19:23.826711" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:47949</msg>
-<doc>** This test case verifies that the user can cancel login on the basic authentication page.</doc>
-<tag>** smoke login</tag>
-<status status="FAIL" start="2025-06-20T20:19:23.786436" elapsed="0.006626">Setup failed:
-Several failures occurred:
-
-1) No keyword with name 'Open the browser' found. Did you mean:
-    Browser.Open Browser
-
-2) No keyword with name 'Navigate to the basic authentication page' found.
-
-Also teardown failed:
-Several failures occurred:
-
-1) No keyword with name 'Close the browser' found. Did you mean:
-    Browser.Close Browser
-    Close Browser
-
-2) No keyword with name 'Expected Results:**' found.
-
-3) No keyword with name 'The user is not logged in to the website.' found.
-
-4) No keyword with name 'The user has seen the text "Not authorized" on the page.' found.</status>
+<kw name="Close Browser" type="TEARDOWN">
+<kw name="Take Screenshot" owner="Browser">
+<arg>fullPage=True</arg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="NOT RUN" start="2025-07-22T21:01:33.300614" elapsed="0.000185"/>
+</kw>
+<kw name="Close Browser">
+<msg time="2025-07-22T21:01:33.300984" level="FAIL">Keyword 'Close Browser' expected 0 arguments, got 1.</msg>
+<arg>ALL</arg>
+<status status="FAIL" start="2025-07-22T21:01:33.300877" elapsed="0.000141">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+</kw>
+<status status="FAIL" start="2025-07-22T21:01:33.300482" elapsed="0.000601">Keyword 'Close Browser' expected 0 arguments, got 1.</status>
+</kw>
+<msg time="2025-07-22T21:01:33.303775" level="INFO">Starting Browser process /home/kkhalttunen/yamk_thesis_enhanced/yamk_env/lib/python3.12/site-packages/Browser/wrapper/index.js using at 127.0.0.1:50343</msg>
+<doc>Automated test for login functionality</doc>
+<tag>login smoke</tag>
+<status status="FAIL" start="2025-07-22T21:01:33.297990" elapsed="0.003131">Teardown failed:
+Keyword 'Close Browser' expected 0 arguments, got 1.</status>
 </test>
-<doc>** This test case verifies that the user can cancel login on the basic authentication page.</doc>
-<status status="FAIL" start="2025-06-20T20:19:23.667939" elapsed="0.708101"/>
+<doc>Automated test for login functionality</doc>
+<status status="FAIL" start="2025-07-22T21:01:33.231940" elapsed="0.393439"/>
 </suite>
 <statistics>
 <total>
 <stat pass="0" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">** smoke login</stat>
+<stat pass="0" fail="1" skip="0">login smoke</stat>
 </tag>
 <suite>
 <stat name="Basic Auth FAIL use case" id="s1" pass="0" fail="1" skip="0">Basic Auth FAIL use case</stat>

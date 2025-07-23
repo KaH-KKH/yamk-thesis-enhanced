@@ -1,0 +1,25 @@
+{
+  "id": "UC-LOGIN-001",
+  "title": "Login to the website",
+  "actors": [
+    "button"
+  ],
+  "preconditions": [
+    "The user has an account on the website",
+    "The user is signed in"
+  ],
+  "main_flow": [
+    "The user visits the website",
+    "The user clicks on the login button",
+    "The user is redirected to a login page",
+    "4. The user enters their username and password",
+    "5. The user clicks on the login button",
+    "6. The user is redirected to the home page",
+    "7. The user sees the text \"Not authorized\""
+  ],
+  "alternative_flows": null,
+  "postconditions": [
+    "The user is either logged in and redirected to the home page or the user is not authorized and sees the text \"Not authorized\""
+  ],
+  "notes": null
+}

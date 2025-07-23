@@ -1,0 +1,73 @@
+
+USE CASE: Signed In with Correct Credentials
+ID: UC-LOGIN-001
+
+ACTORS:
+- admin
+- user
+- you
+- User
+- Website (the-internet.herokuapp.com)
+- User
+- Website (the-internet.herokuapp.com)
+
+PRECONDITIONS:
+1. The website is accessible
+2. The user has valid credentials (admin username and password)
+3. ## Main Flow (numbered steps):
+4. ### Step 0: Visit the website
+5. ```
+6. ```
+7. ### Step 1: Check the header
+8. ```
+9. ```
+10. ### Step 2: Input username and password
+11. ```
+12. ```
+13. ### Step 3: Press the Sign In button
+14. ```
+15. ```
+16. ### Step 4: Check the two headers
+17. ```
+18. ```
+19. ### Step 5: Confirm successful login
+20. ```
+21. The website is accessible
+22. The user has valid credentials (admin username and password)
+23. ## Main Flow (numbered steps):
+24. ### Step 0: Visit the website
+25. ```
+26. ### Step 1: Check the header
+27. ```
+28. ### Step 2: Input username and password
+29. ```
+30. ### Step 3: Press the Sign In button
+31. ```
+32. ### Step 4: Check the two headers
+33. ```
+34. ### Step 5: Confirm successful login
+35. ```
+
+MAIN FLOW:
+
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+1. The browser page opens successfully
+2. Two headers are displayed: Basic Auth and Congratulations! You must have the proper credentials.
+3. ## Alternative Flow:
+4. If the user's credentials are incorrect, the website should display an error message and the user should try again.
+5. ```
+6. ```
+7. Output:
+8. ```
+9. The browser page opens successfully
+10. Two headers are displayed: Basic Auth and Congratulations! You must have the proper credentials.
+11. ## Alternative Flow:
+12. If the user's credentials are incorrect, the website should display an error message and the user should try again.
+13. ```
+
+NOTES:
+None

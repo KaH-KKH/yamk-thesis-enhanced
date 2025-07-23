@@ -1,0 +1,38 @@
+{
+  "id": "UC-LOGIN-001",
+  "title": "Log in to the Basic Authentication Site",
+  "actors": [
+    "button",
+    "Customer",
+    "Browser",
+    "Basic Authentication System",
+    "Authorization System"
+  ],
+  "preconditions": [
+    "Customer account exists",
+    "Customer has access to the Basic Authentication system",
+    "Browser has access to the internet",
+    "Basic Authentication System is enabled"
+  ],
+  "main_flow": [
+    "Customer opens the browser and navigates to the Basic Authentication Site",
+    "Browser fetches the HTML content of the site",
+    "Browser processes the HTML content and looks for the login form",
+    "4. Customer enters their credentials (Username and Password)",
+    "5. Browser sends a request to the Basic Authentication System to validate the credentials",
+    "6. Basic Authentication System validates the credentials",
+    "7. If the credentials are valid, the Authorization System redirects the browser to the desired page",
+    "8. If the credentials are not valid, the browser displays the \"Not Authorized\" message",
+    "## Alternative Flow:",
+    "If the customer does not have a customer account, the customer attempts to create a new account",
+    "The customer follows the account creation process",
+    "If the account is successfully created, the customer logs in as usual"
+  ],
+  "alternative_flows": null,
+  "postconditions": [
+    "Browser displays the desired page (e.g., https://the-internet.herokuapp.com/basic_auth)",
+    "\"Not Authorized\" message is not displayed",
+    "```"
+  ],
+  "notes": null
+}

@@ -1,0 +1,12 @@
+{
+  "id": "UC-001",
+  "title": "Generated Use Case",
+  "actors": [
+    "button"
+  ],
+  "preconditions": [],
+  "main_flow": [],
+  "alternative_flows": null,
+  "postconditions": [],
+  "notes": null
+}

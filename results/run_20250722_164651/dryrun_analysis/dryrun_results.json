@@ -1,0 +1,83 @@
+{
+  "timestamp": "2025-07-22T17:03:25.021860",
+  "summary": {
+    "total_models": 1,
+    "total_test_files": 2,
+    "total_successful": 0,
+    "total_failed": 2,
+    "overall_success_rate": 0.0,
+    "best_model": "phi2",
+    "worst_model": "phi2"
+  },
+  "by_model": {
+    "phi2": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [
+            "No keyword with name 'Custom Login Keyword' found"
+          ],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nSeveral failures occurred:\n\n1) No keyword with name 'Custom Login Keyword' found.\n\n2) No keyword with name 'Custom Login Keyword' found.\n\n3) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n4) No keyword with name 'Custom Login Keyword' found.\n\n5) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n6) No keyword with name 'Custom Login Keyword' found.\n\nAlso teardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [
+            "missing_keyword"
+          ],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Test case for logging in to the website           \n==============================================================================\nTest Login Functionality :: Test case for logging in to the website   | FAIL |\nSeveral failures occurred:\n\n1) Keyword 'Browser.Wait For Elements State' expected 1 to 4 arguments, got 0.\n\n2) Keyword 'Browser.Wait For Elements State' expected 1 to 4 arguments, got 0.\n\nAlso teardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Test case for logging in to the website   | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        }
+      },
+      "errors": [
+        "No keyword with name 'Custom Login Keyword' found"
+      ],
+      "warnings": [],
+      "execution_time": 1.322221,
+      "success_rate": 0.0
+    }
+  },
+  "error_analysis": {
+    "error_type_distribution": {
+      "missing_keyword": 1
+    },
+    "common_errors": {
+      "No keyword with name 'Custom Login Keyword' found": 1
+    },
+    "model_error_patterns": {
+      "phi2": {
+        "missing_keyword": 1
+      }
+    },
+    "top_errors": [
+      [
+        "No keyword with name 'Custom Login Keyword' found",
+        1
+      ]
+    ]
+  },
+  "comparative_analysis": {
+    "success_rates": {
+      "phi2": 0.0
+    },
+    "error_prone_models": [],
+    "most_stable_models": [
+      "phi2"
+    ],
+    "execution_efficiency": {
+      "phi2": {
+        "avg_time_per_file": 0.6611105,
+        "total_time": 1.322221
+      }
+    }
+  }
+}

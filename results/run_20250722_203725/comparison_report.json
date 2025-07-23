@@ -1,0 +1,254 @@
+{
+  "timestamp": "2025-07-22T20:55:18.764112",
+  "models": [
+    "stablelm_3b"
+  ],
+  "summary": {
+    "best_scores": {}
+  },
+  "detailed_metrics": {
+    "standard": {
+      "use_case_metrics": {
+        "stablelm_3b": {
+          "custom": {
+            "completeness": 1.0,
+            "avg_length": 260.0,
+            "avg_steps": 36.0
+          }
+        }
+      },
+      "test_case_metrics": {
+        "stablelm_3b": {
+          "syntax_validity": {
+            "valid_count": 2,
+            "total_count": 2,
+            "validity_rate": 1.0
+          },
+          "keyword_coverage": {
+            "keyword_counts": {
+              "New Browser": 3,
+              "New Page": 1,
+              "Go To": 2,
+              "Click": 14,
+              "Type Text": 6,
+              "Get Text": 0,
+              "Wait For Elements State": 3,
+              "Take Screenshot": 3
+            },
+            "total_keywords": 32,
+            "unique_keywords_used": 7,
+            "coverage_rate": 0.875
+          }
+        }
+      }
+    },
+    "extended": {}
+  },
+  "performance_comparison": {
+    "stablelm_3b": {
+      "use_case_generation": {
+        "total_time": 204.13697838783264,
+        "memory_used": 2767.8828125,
+        "avg_time_per_file": 102.06848919391632
+      },
+      "test_case_generation": {
+        "total_time": 69.9955222606659,
+        "memory_used": 22.91796875
+      },
+      "total_time": 274.13250064849854,
+      "total_memory": 2790.80078125,
+      "files_per_second": 0.009797343018374018
+    }
+  },
+  "recommendations": [
+    "No significant differences found between models."
+  ],
+  "llm_evaluator_info": {
+    "enabled": true,
+    "model": "mistral",
+    "reason": "Selected as neutral evaluator (not in evaluated models: ['stablelm_3b'])"
+  },
+  "dryrun_analysis": {
+    "timestamp": "2025-07-22T20:55:18.771004",
+    "summary": {
+      "total_models": 1,
+      "total_test_files": 2,
+      "total_successful": 0,
+      "total_failed": 2,
+      "overall_success_rate": 0.0,
+      "best_model": "stablelm_3b",
+      "worst_model": "stablelm_3b"
+    },
+    "by_model": {
+      "stablelm_3b": {
+        "total_files": 2,
+        "successful": 0,
+        "failed": 2,
+        "file_results": {
+          "Basic_Auth_PASS_use_case.robot": {
+            "file": "Basic_Auth_PASS_use_case.robot",
+            "success": false,
+            "errors": [
+              "No keyword with name 'Click Button: Sign Out' found",
+              "No keyword with name '[Test Teardown]' found",
+              "No keyword with name 'Assert Header: Basic Auth' found",
+              "No keyword with name 'Press Sign In button' found",
+              "No keyword with name 'Input username and password' found",
+              "No keyword with name 'If error message, Repeat Test Actions until successful' found",
+              "No keyword with name 'Check the header' found",
+              "No keyword with name 'Click Button: Sign In' found",
+              "No keyword with name 'Check the two headers' found",
+              "No keyword with name 'The browser page opens successfully' found",
+              "No keyword with name 'Test Actions:' found",
+              "No keyword with name 'Two headers are displayed: Basic Auth and Congratulations! You must have the proper credentials.' found",
+              "No keyword with name '[Test Alternative Flow]' found",
+              "No keyword with name '```' found",
+              "No keyword with name 'Go to URL: the-internet.herokuapp.com' found",
+              "No keyword with name 'Visit the website' found",
+              "No keyword with name '[Test PostConditions]' found"
+            ],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth PASS use case :: Describes how to test the sign in functionality...\n==============================================================================\nSign In with Correct Credentials :: Describes how to test the sign... | FAIL |\nSetup failed:\nSeveral failures occurred:\n\n1) No keyword with name 'Go to URL: the-internet.herokuapp.com' found.\n\n2) No keyword with name 'Click Button: Sign In' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?\n\n3) No keyword with name 'Click Button: Sign In' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?\n\n4) No keyword with name 'Click Button: Sign Out' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?\n\nAlso teardown failed:\nSeveral failures occurred:\n\n1) No keyword with name 'Click Button: Sign Out' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?\n\n2) No keyword with name 'Test Actions:' found.\n\n3) No keyword with name 'Visit the website' found.\n\n4) No keyword with name 'Check the header' found.\n\n5) No keyword with name 'Input username and password' found.\n\n6) No keyword with name 'Press Sign In button' found.\n\n7) No keyword with name 'Check the two headers' found.\n\n8) No keyword with name 'Assert Header: Basic Auth' found.\n\n    [ Message content over the limit has been removed. ]\n\n58) No keyword with name '[Test PostConditions]' found.\n\n59) No keyword with name 'The browser page opens successfully' found.\n\n60) No keyword with name 'Two headers are displayed: Basic Auth and Congratulations! You must have the proper credentials.' found.\n\n61) No keyword with name '[Test Alternative Flow]' found.\n\n62) No keyword with name 'If error message, Repeat Test Actions until successful' found.\n\n63) No keyword with name '[Test Teardown]' found.\n\n64) No keyword with name 'Click Button: Sign Out' found. Did you try using keyword 'Browser.Click' and forgot to use enough whitespace between keyword and arguments?\n\n65) No keyword with name '```' found.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Describes how to test the sign in func... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword"
+            ],
+            "return_code": 1
+          },
+          "Basic_Auth_FAIL_use_case.robot": {
+            "file": "Basic_Auth_FAIL_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          }
+        },
+        "errors": [
+          "No keyword with name 'Click Button: Sign Out' found",
+          "No keyword with name '[Test Teardown]' found",
+          "No keyword with name 'Assert Header: Basic Auth' found",
+          "No keyword with name 'Press Sign In button' found",
+          "No keyword with name 'Input username and password' found",
+          "No keyword with name 'If error message, Repeat Test Actions until successful' found",
+          "No keyword with name 'Check the header' found",
+          "No keyword with name 'Click Button: Sign In' found",
+          "No keyword with name 'Check the two headers' found",
+          "No keyword with name 'The browser page opens successfully' found",
+          "No keyword with name 'Test Actions:' found",
+          "No keyword with name 'Two headers are displayed: Basic Auth and Congratulations! You must have the proper credentials.' found",
+          "No keyword with name '[Test Alternative Flow]' found",
+          "No keyword with name '```' found",
+          "No keyword with name 'Go to URL: the-internet.herokuapp.com' found",
+          "No keyword with name 'Visit the website' found",
+          "No keyword with name '[Test PostConditions]' found"
+        ],
+        "warnings": [],
+        "execution_time": 1.544759,
+        "success_rate": 0.0
+      }
+    },
+    "error_analysis": {
+      "error_type_distribution": {
+        "missing_keyword": 17
+      },
+      "common_errors": {
+        "No keyword with name 'Click Button: Sign Out' found": 1,
+        "No keyword with name '[Test Teardown]' found": 1,
+        "No keyword with name 'Assert Header: Basic Auth' found": 1,
+        "No keyword with name 'Press Sign In button' found": 1,
+        "No keyword with name 'Input username and password' found": 1,
+        "No keyword with name 'If error message, Repeat Test Actions until successful' found": 1,
+        "No keyword with name 'Check the header' found": 1,
+        "No keyword with name 'Click Button: Sign In' found": 1,
+        "No keyword with name 'Check the two headers' found": 1,
+        "No keyword with name 'The browser page opens successfully' found": 1,
+        "No keyword with name 'Test Actions:' found": 1,
+        "No keyword with name 'Two headers are displayed: Basic Auth and Congratulations! You must have the proper credentials.' found": 1,
+        "No keyword with name '[Test Alternative Flow]' found": 1,
+        "No keyword with name '```' found": 1,
+        "No keyword with name 'Go to URL: the-internet.herokuapp.com' found": 1,
+        "No keyword with name 'Visit the website' found": 1,
+        "No keyword with name '[Test PostConditions]' found": 1
+      },
+      "model_error_patterns": {
+        "stablelm_3b": {
+          "missing_keyword": 17
+        }
+      },
+      "top_errors": [
+        [
+          "No keyword with name 'Click Button: Sign Out' found",
+          1
+        ],
+        [
+          "No keyword with name '[Test Teardown]' found",
+          1
+        ],
+        [
+          "No keyword with name 'Assert Header: Basic Auth' found",
+          1
+        ],
+        [
+          "No keyword with name 'Press Sign In button' found",
+          1
+        ],
+        [
+          "No keyword with name 'Input username and password' found",
+          1
+        ],
+        [
+          "No keyword with name 'If error message, Repeat Test Actions until successful' found",
+          1
+        ],
+        [
+          "No keyword with name 'Check the header' found",
+          1
+        ],
+        [
+          "No keyword with name 'Click Button: Sign In' found",
+          1
+        ],
+        [
+          "No keyword with name 'Check the two headers' found",
+          1
+        ],
+        [
+          "No keyword with name 'The browser page opens successfully' found",
+          1
+        ]
+      ]
+    },
+    "comparative_analysis": {
+      "success_rates": {
+        "stablelm_3b": 0.0
+      },
+      "error_prone_models": [],
+      "most_stable_models": [
+        "stablelm_3b"
+      ],
+      "execution_efficiency": {
+        "stablelm_3b": {
+          "avg_time_per_file": 0.7723795,
+          "total_time": 1.544759
+        }
+      }
+    }
+  }
+}

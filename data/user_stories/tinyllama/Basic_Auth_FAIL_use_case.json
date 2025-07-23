@@ -1,0 +1,34 @@
+{
+  "id": "UC-001",
+  "title": "Generated Use Case",
+  "actors": [
+    "button",
+    "User",
+    "System"
+  ],
+  "preconditions": [
+    "User is authenticated",
+    "System does not have access to the user's credentials"
+  ],
+  "main_flow": [
+    "User navigates to the site and enters their username and password.",
+    "System checks if credentials are valid.",
+    "If credentials are valid, system redirects the user to the home page.",
+    "4. If credentials are not valid, system displays an error message.",
+    "Alternative flows:",
+    "User navigates to the site and enters their username and wrong password.",
+    "System checks if credentials are valid.",
+    "If credentials are valid, system redirects the user to the login page.",
+    "4. If credentials are not valid, system displays an error message."
+  ],
+  "alternative_flows": null,
+  "postconditions": [
+    "User is redirected to the login page if credentials are not valid.",
+    "System is notified of successful login if credentials are valid.",
+    "Risk:",
+    "User may lose their login credentials if system is compromised.",
+    "User may not receive an error message if credentials are valid.",
+    "System may not check for valid credentials even if user tries to access a restricted page."
+  ],
+  "notes": null
+}

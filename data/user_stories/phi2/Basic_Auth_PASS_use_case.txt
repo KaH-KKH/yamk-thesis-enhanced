@@ -1,0 +1,30 @@
+
+USE CASE: Sign In to The Internet
+ID: UC-LOGIN-001
+
+ACTORS:
+- you
+- admin
+- user
+
+PRECONDITIONS:
+
+
+MAIN FLOW:
+1. User goes to the website https://the-internet.herokuapp.com/basic_auth.
+2. User checks the header: This site is asking you to sign in.
+3. User inputs username = admin to the field Username.
+4. 4. User inputs password = admin to the field Password.
+5. 5. User presses the button Sign in.
+6. 6. Browser page opens and there are two headers.
+7. 6.1. Basic Auth
+8. 6.2. Congratulations! You must have the proper credentials.
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+
+
+NOTES:
+None

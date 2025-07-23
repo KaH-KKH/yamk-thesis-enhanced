@@ -1,0 +1,28 @@
+
+USE CASE: Login to the website
+ID: UC-LOGIN-001
+
+ACTORS:
+- button
+
+PRECONDITIONS:
+1. The user has an account on the website
+2. The user is signed in
+
+MAIN FLOW:
+1. The user visits the website
+2. The user clicks on the login button
+3. The user is redirected to a login page
+4. 4. The user enters their username and password
+5. 5. The user clicks on the login button
+6. 6. The user is redirected to the home page
+7. 7. The user sees the text "Not authorized"
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+1. The user is either logged in and redirected to the home page or the user is not authorized and sees the text "Not authorized"
+
+NOTES:
+None

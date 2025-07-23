@@ -1,0 +1,41 @@
+
+USE CASE: Log in to the Basic Authentication Site
+ID: UC-LOGIN-001
+
+ACTORS:
+- button
+- Customer
+- Browser
+- Basic Authentication System
+- Authorization System
+
+PRECONDITIONS:
+1. Customer account exists
+2. Customer has access to the Basic Authentication system
+3. Browser has access to the internet
+4. Basic Authentication System is enabled
+
+MAIN FLOW:
+1. Customer opens the browser and navigates to the Basic Authentication Site
+2. Browser fetches the HTML content of the site
+3. Browser processes the HTML content and looks for the login form
+4. 4. Customer enters their credentials (Username and Password)
+5. 5. Browser sends a request to the Basic Authentication System to validate the credentials
+6. 6. Basic Authentication System validates the credentials
+7. 7. If the credentials are valid, the Authorization System redirects the browser to the desired page
+8. 8. If the credentials are not valid, the browser displays the "Not Authorized" message
+9. ## Alternative Flow:
+10. If the customer does not have a customer account, the customer attempts to create a new account
+11. The customer follows the account creation process
+12. If the account is successfully created, the customer logs in as usual
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+1. Browser displays the desired page (e.g., https://the-internet.herokuapp.com/basic_auth)
+2. "Not Authorized" message is not displayed
+3. ```
+
+NOTES:
+None

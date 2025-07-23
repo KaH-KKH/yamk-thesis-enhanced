@@ -1,0 +1,154 @@
+{
+  "timestamp": "2025-07-22T16:44:37.481979",
+  "models": [
+    "tinyllama"
+  ],
+  "summary": {
+    "best_scores": {}
+  },
+  "detailed_metrics": {
+    "standard": {
+      "use_case_metrics": {
+        "tinyllama": {
+          "custom": {
+            "completeness": 1.0,
+            "avg_length": 404.5,
+            "avg_steps": 86.5
+          }
+        }
+      },
+      "test_case_metrics": {
+        "tinyllama": {
+          "syntax_validity": {
+            "valid_count": 2,
+            "total_count": 2,
+            "validity_rate": 1.0
+          },
+          "keyword_coverage": {
+            "keyword_counts": {
+              "New Browser": 3,
+              "New Page": 1,
+              "Go To": 5,
+              "Click": 7,
+              "Type Text": 6,
+              "Get Text": 0,
+              "Wait For Elements State": 3,
+              "Take Screenshot": 3
+            },
+            "total_keywords": 28,
+            "unique_keywords_used": 7,
+            "coverage_rate": 0.875
+          }
+        }
+      }
+    },
+    "extended": {}
+  },
+  "performance_comparison": {
+    "tinyllama": {
+      "use_case_generation": {
+        "total_time": 112.22414469718933,
+        "memory_used": 1766.94140625,
+        "avg_time_per_file": 56.112072348594666
+      },
+      "test_case_generation": {
+        "total_time": 29.74221420288086,
+        "memory_used": 15.24609375
+      },
+      "total_time": 141.9663589000702,
+      "total_memory": 1782.1875,
+      "files_per_second": 0.017821476879120206
+    }
+  },
+  "recommendations": [
+    "No significant differences found between models."
+  ],
+  "llm_evaluator_info": {
+    "enabled": true,
+    "model": "mistral",
+    "reason": "Selected as neutral evaluator (not in evaluated models: ['tinyllama'])"
+  },
+  "dryrun_analysis": {
+    "timestamp": "2025-07-22T16:44:37.490498",
+    "summary": {
+      "total_models": 1,
+      "total_test_files": 2,
+      "total_successful": 0,
+      "total_failed": 2,
+      "overall_success_rate": 0.0,
+      "best_model": "tinyllama",
+      "worst_model": "tinyllama"
+    },
+    "by_model": {
+      "tinyllama": {
+        "total_files": 2,
+        "successful": 0,
+        "failed": 2,
+        "file_results": {
+          "Basic_Auth_PASS_use_case.robot": {
+            "file": "Basic_Auth_PASS_use_case.robot",
+            "success": false,
+            "errors": [
+              "No keyword with name 'Custom Login Keyword' found"
+            ],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nSeveral failures occurred:\n\n1) Keyword 'Browser.Select Options By' expected at least 2 arguments, got 0.\n\n2) No keyword with name 'Custom Login Keyword' found.\n\n3) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\n4) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\n5) No keyword with name 'Custom Login Keyword' found.\n\n6) No keyword with name 'Custom Login Keyword' found.\n\n7) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\n8) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\n9) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\n10) No keyword with name 'Custom Login Keyword' found.\n\n11) Keyword 'Browser.Get Element States' expected at least 1 non-named argument, got 0.\n\n12) No keyword with name 'Custom Login Keyword' found.\n\n13) No keyword with name 'Custom Login Keyword' found.\n\nAlso teardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [
+              "missing_keyword"
+            ],
+            "return_code": 1
+          },
+          "Basic_Auth_FAIL_use_case.robot": {
+            "file": "Basic_Auth_FAIL_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          }
+        },
+        "errors": [
+          "No keyword with name 'Custom Login Keyword' found"
+        ],
+        "warnings": [],
+        "execution_time": 1.7736930000000002,
+        "success_rate": 0.0
+      }
+    },
+    "error_analysis": {
+      "error_type_distribution": {
+        "missing_keyword": 1
+      },
+      "common_errors": {
+        "No keyword with name 'Custom Login Keyword' found": 1
+      },
+      "model_error_patterns": {
+        "tinyllama": {
+          "missing_keyword": 1
+        }
+      },
+      "top_errors": [
+        [
+          "No keyword with name 'Custom Login Keyword' found",
+          1
+        ]
+      ]
+    },
+    "comparative_analysis": {
+      "success_rates": {
+        "tinyllama": 0.0
+      },
+      "error_prone_models": [],
+      "most_stable_models": [
+        "tinyllama"
+      ],
+      "execution_efficiency": {
+        "tinyllama": {
+          "avg_time_per_file": 0.8868465000000001,
+          "total_time": 1.7736930000000002
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "UC-001",
+  "title": "Generated Use Case",
+  "actors": [
+    "you",
+    "user",
+    "admin"
+  ],
+  "preconditions": [],
+  "main_flow": [],
+  "alternative_flows": null,
+  "postconditions": [],
+  "notes": null
+}

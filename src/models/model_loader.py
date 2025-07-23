@@ -1,6 +1,6 @@
 """
-Model loader for open-source LLMs with 8-bit (4-bit) quantization
-KORJATTU VERSIO: Parannettu muistinhallinta ja virheenkäsittely
+Model loader for open-source LLMs and SLMs with flexible quantization support
+PÄIVITETTY VERSIO: Lisätty SLM-tuki (Small Language Models)
 """
 
 import torch
@@ -18,7 +18,7 @@ from ..utils.model_cache import ModelCache
 
 
 class ModelLoader:
-    """Load and manage open-source language models"""
+    """Load and manage open-source language models (both LLMs and SLMs)"""
     
     def __init__(self, config_path: str = "configs/config.yaml"):
         with open(config_path, 'r') as f:
@@ -62,8 +62,40 @@ class ModelLoader:
             return allocated, reserved
         return 0, 0
     
+    def _estimate_model_size(self, model_id: str) -> float:
+        """Estimate model size in billions of parameters based on model ID"""
+        # Common patterns for model sizes
+        size_patterns = {
+            '1.1b': 1.1, '1b': 1.0, '1.3b': 1.3, '1.4b': 1.4,
+            '2b': 2.0, '2.7b': 2.7, '3b': 3.0,
+            '7b': 7.0, '8b': 8.0, '13b': 13.0,
+            'tiny': 0.5, 'small': 1.0, 'base': 3.0, 'large': 7.0
+        }
+        
+        model_id_lower = model_id.lower()
+        
+        # Check for size in model ID
+        for pattern, size in size_patterns.items():
+            if pattern in model_id_lower:
+                return size
+        
+        # Default estimates based on known models
+        if 'tinyllama' in model_id_lower:
+            return 1.1
+        elif 'phi-2' in model_id_lower:
+            return 2.7
+        elif 'pythia' in model_id_lower and '1b' in model_id_lower:
+            return 1.0
+        elif 'opt' in model_id_lower and '1.3b' in model_id_lower:
+            return 1.3
+        elif 'stablelm' in model_id_lower and '3b' in model_id_lower:
+            return 3.0
+        
+        # Default to medium size if unknown
+        return 3.0
+    
     def load_model(self, model_name: str, force_reload: bool = False):
-        """Load a model by name with improved memory management"""
+        """Load a model by name with improved memory management and SLM support"""
         
         # KORJAUS: Optimoi cache käyttöä - pidä vain 1 malli kerrallaan muistissa
         cache = ModelCache()
@@ -100,25 +132,12 @@ class ModelLoader:
         
         logger.info(f"Loading model: {model_name} ({model_id})")
         
-        # KORJAUS: Valitse kvantisointitaso mallin koon mukaan
-        if "gemma-2b" in model_id.lower() or "gemma_2b" in model_name.lower():
-            # Pienempi malli voi käyttää 8-bit
-            current_quantization = self.quantization_config_8bit
-            logger.info("Using 8-bit quantization for small model")
-        else:
-            # Isommat mallit käyttävät 4-bit jos muisti on tiukalla
-            allocated, _ = self._get_gpu_memory_usage()
-            if allocated > 5.0:  # Jos yli 5GB käytössä, käytä 4-bit
-                logger.info("High memory usage detected, using 4-bit quantization")
-                current_quantization = self.quantization_config_4bit
-            else:
-                # Muuten käytä mallin config määritystä
-                if model_config.get('quantization') == '4bit':
-                    current_quantization = self.quantization_config_4bit
-                    logger.info("Using 4-bit quantization as configured")
-                else:
-                    current_quantization = self.quantization_config_8bit
-                    logger.info("Using 8-bit quantization as configured")
+        # PÄIVITYS: Tarkista quantization config-tiedostosta
+        quantization = model_config.get('quantization', 'none')
+        
+        # Estimate model size
+        estimated_size = self._estimate_model_size(model_id)
+        logger.info(f"Estimated model size: {estimated_size}B parameters")
         
         try:
             # Load tokenizer first (uses less memory)
@@ -130,17 +149,106 @@ class ModelLoader:
             if tokenizer.pad_token is None:
                 tokenizer.pad_token = tokenizer.eos_token
             
-            # Load model with appropriate settings
-            model = AutoModelForCausalLM.from_pretrained(
-                model_id,
-                quantization_config=current_quantization,
-                device_map="auto",  # KORJAUS: Anna automaattisesti jakaa GPU/CPU
-                trust_remote_code=True,
-                torch_dtype=torch.float16,
-                low_cpu_mem_usage=True,
-                max_memory={0: "22GB", "cpu": "30GB"},  # KORJAUS: Rajoita GPU muistia
-                offload_folder="offload",  # KORJAUS: Salli offloading tarvittaessa
-            )
+            # PÄIVITYS: Valitse latausstrategia quantization-asetuksen mukaan
+            if quantization == 'none':
+                # SLM-malleille ei quantizatiota
+                logger.info(f"Loading {model_name} without quantization (SLM mode)")
+                model = AutoModelForCausalLM.from_pretrained(
+                    model_id,
+                    device_map="auto",
+                    trust_remote_code=True,
+                    torch_dtype=torch.float16,
+                    low_cpu_mem_usage=True,
+                )
+                
+            elif quantization == '4bit':
+                # Käytä 4-bit quantization
+                logger.info(f"Loading {model_name} with 4-bit quantization")
+                model = AutoModelForCausalLM.from_pretrained(
+                    model_id,
+                    quantization_config=self.quantization_config_4bit,
+                    device_map="auto",
+                    trust_remote_code=True,
+                    torch_dtype=torch.float16,
+                    low_cpu_mem_usage=True,
+                    max_memory={0: "20GB", "cpu": "30GB"},
+                    offload_folder="offload",
+                )
+                
+            elif quantization == '8bit':
+                # Käytä 8-bit quantization
+                logger.info(f"Loading {model_name} with 8-bit quantization")
+                model = AutoModelForCausalLM.from_pretrained(
+                    model_id,
+                    quantization_config=self.quantization_config_8bit,
+                    device_map="auto",
+                    trust_remote_code=True,
+                    torch_dtype=torch.float16,
+                    low_cpu_mem_usage=True,
+                    max_memory={0: "22GB", "cpu": "30GB"},
+                    offload_folder="offload",
+                )
+                
+            else:
+                # Automaattinen valinta mallin koon mukaan
+                logger.info("Auto-selecting quantization based on model size")
+                
+                if estimated_size <= 2.0:
+                    # Pienet mallit (≤2B) - ei quantizatiota
+                    logger.info(f"Small model detected ({estimated_size}B), loading without quantization")
+                    model = AutoModelForCausalLM.from_pretrained(
+                        model_id,
+                        device_map="auto",
+                        trust_remote_code=True,
+                        torch_dtype=torch.float16,
+                        low_cpu_mem_usage=True,
+                    )
+                    
+                elif estimated_size <= 3.0:
+                    # Keskikokoiset mallit (2-3B) - 8-bit tai none riippuen muistista
+                    allocated, _ = self._get_gpu_memory_usage()
+                    if allocated > 10.0:  # Jos muisti tiukalla
+                        logger.info(f"Medium model with high memory usage, using 8-bit quantization")
+                        model = AutoModelForCausalLM.from_pretrained(
+                            model_id,
+                            quantization_config=self.quantization_config_8bit,
+                            device_map="auto",
+                            trust_remote_code=True,
+                            torch_dtype=torch.float16,
+                            low_cpu_mem_usage=True,
+                            max_memory={0: "22GB", "cpu": "30GB"},
+                            offload_folder="offload",
+                        )
+                    else:
+                        logger.info(f"Medium model with available memory, loading without quantization")
+                        model = AutoModelForCausalLM.from_pretrained(
+                            model_id,
+                            device_map="auto",
+                            trust_remote_code=True,
+                            torch_dtype=torch.float16,
+                            low_cpu_mem_usage=True,
+                        )
+                        
+                else:
+                    # Isot mallit (>3B) - käytä quantizatiota
+                    allocated, _ = self._get_gpu_memory_usage()
+                    if allocated > 5.0 or estimated_size >= 7.0:
+                        logger.info(f"Large model or high memory usage, using 4-bit quantization")
+                        current_quantization = self.quantization_config_4bit
+                    else:
+                        logger.info(f"Large model with available memory, using 8-bit quantization")
+                        current_quantization = self.quantization_config_8bit
+                    
+                    model = AutoModelForCausalLM.from_pretrained(
+                        model_id,
+                        quantization_config=current_quantization,
+                        device_map="auto",
+                        trust_remote_code=True,
+                        torch_dtype=torch.float16,
+                        low_cpu_mem_usage=True,
+                        max_memory={0: "22GB", "cpu": "30GB"},
+                        offload_folder="offload",
+                    )
             
             # Store loaded model and tokenizer
             self.loaded_models[model_name] = model
@@ -158,6 +266,12 @@ class ModelLoader:
             # Log model info
             total_params = sum(p.numel() for p in model.parameters())
             logger.info(f"Total parameters: {total_params:,}")
+            
+            # Log quantization status
+            if hasattr(model, 'config') and hasattr(model.config, 'quantization_config'):
+                logger.info(f"Quantization: {model.config.quantization_config}")
+            else:
+                logger.info("Quantization: None (full precision)")
             
             # Check if model is split across devices
             if hasattr(model, 'hf_device_map'):
@@ -364,6 +478,10 @@ class ModelLoader:
         
         info = self.models_config[model_name].copy()
         
+        # Add size estimation
+        model_id = info.get('model_id', '')
+        info['estimated_size_b'] = self._estimate_model_size(model_id)
+        
         if model_name in self.loaded_models:
             model = self.loaded_models[model_name]
             info.update({
@@ -381,7 +499,7 @@ class ModelLoader:
         """List all available models"""
         return list(self.models_config.keys())
     
-    def add_model(self, name: str, model_id: str, quantization: str = "4bit"):
+    def add_model(self, name: str, model_id: str, quantization: str = "auto"):
         """Add a new model to configuration"""
         new_model = {
             "name": name,
@@ -409,7 +527,7 @@ if __name__ == "__main__":
     print("Available models:", loader.list_available_models())
     
     # Load a model
-    model_name = "mistral"
+    model_name = "tinyllama"  # Try with an SLM
     model = loader.load_model(model_name)
     
     # Generate text

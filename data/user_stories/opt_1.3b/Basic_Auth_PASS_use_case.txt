@@ -1,0 +1,23 @@
+
+USE CASE: Generated Use Case
+ID: UC-001
+
+ACTORS:
+- user
+- you
+- admin
+
+PRECONDITIONS:
+
+
+MAIN FLOW:
+
+
+ALTERNATIVE FLOWS:
+None
+
+POSTCONDITIONS:
+
+
+NOTES:
+None

@@ -32,6 +32,22 @@ models:
       model_id: "Qwen/Qwen2-7B-Instruct"
       #quantization: "4bit"
       quantization: "8bit"
+    # LISÄÄ SLM-mallit tähän:
+    - name: "tinyllama"
+      model_id: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+      quantization: "none"  # SLM ei tarvitse quantizatiota
+    - name: "phi2"
+      model_id: "microsoft/phi-2"
+      quantization: "none"
+    - name: "pythia_1b"
+      model_id: "EleutherAI/pythia-1b-deduped"
+      quantization: "none"
+    - name: "opt_1.3b"
+      model_id: "facebook/opt-1.3b"
+      quantization: "none"
+    - name: "stablelm_3b"
+      model_id: "stabilityai/stablelm-zephyr-3b"
+      quantization: "4bit"  # 3B voi hyötyä kevyestä quantizatiosta
     # LISÄÄ TÄMÄ: Pienempi fallback malli evaluaattoriksi
     - name: "gemma_2b_it"
       model_id: "google/gemma-2b-it"
@@ -80,12 +96,12 @@ evaluation:
     max_files_per_model: 5  # Rajoita tiedostomäärää muistin säästämiseksi
     # Prioriteettijärjestys evaluaattorimalleille
     evaluator_models:
+      - "gemma_2b_it"  # Fallback
       - "mistral"
       - "gemma_7b_it_4bit"
       - "Falcon3-7B-Base"
       - "Meta-Llama-3-8B-Instruct"
-      - "Qwen2-7B-Instruct"
-      - "gemma_2b_it"  # Fallback
+      - "Qwen2-7B-Instruct"      
     criteria:
       use_case:
         - completeness

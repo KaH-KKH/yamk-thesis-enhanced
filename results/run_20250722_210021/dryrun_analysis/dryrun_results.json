@@ -1,0 +1,66 @@
+{
+  "timestamp": "2025-07-22T21:12:24.213400",
+  "summary": {
+    "total_models": 1,
+    "total_test_files": 2,
+    "total_successful": 0,
+    "total_failed": 2,
+    "overall_success_rate": 0.0,
+    "best_model": "opt_1.3b",
+    "worst_model": "opt_1.3b"
+  },
+  "by_model": {
+    "opt_1.3b": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        }
+      },
+      "errors": [],
+      "warnings": [],
+      "execution_time": 1.6864759999999999,
+      "success_rate": 0.0
+    }
+  },
+  "error_analysis": {
+    "error_type_distribution": {},
+    "common_errors": {},
+    "model_error_patterns": {
+      "opt_1.3b": {}
+    },
+    "top_errors": []
+  },
+  "comparative_analysis": {
+    "success_rates": {
+      "opt_1.3b": 0.0
+    },
+    "error_prone_models": [],
+    "most_stable_models": [
+      "opt_1.3b"
+    ],
+    "execution_efficiency": {
+      "opt_1.3b": {
+        "avg_time_per_file": 0.8432379999999999,
+        "total_time": 1.6864759999999999
+      }
+    }
+  }
+}
