@@ -1,25 +1,29 @@
 {
   "id": "UC-LOGIN-001",
-  "title": "Login to the website",
+  "title": "Login to The Internet Website",
   "actors": [
-    "button"
+    "button",
+    "User",
+    "The Internet Website"
   ],
   "preconditions": [
-    "The user has an account on the website",
-    "The user is signed in"
+    "The User has an account on The Internet Website.",
+    "The User has internet access."
   ],
   "main_flow": [
-    "The user visits the website",
-    "The user clicks on the login button",
-    "The user is redirected to a login page",
-    "4. The user enters their username and password",
-    "5. The user clicks on the login button",
-    "6. The user is redirected to the home page",
-    "7. The user sees the text \"Not authorized\""
+    "The User opens their web browser and navigates to the The Internet Website's login page.",
+    "The User enters their username in the username field and their password in the password field.",
+    "The User clicks on the 'Log In' button.",
+    "4. The Internet Website verifies the User's username and password.",
+    "5. If the verification is successful, the Internet Website displays the User's homepage.",
+    "6. If the verification is unsuccessful, the Internet Website displays an error message saying \"Not authorized.\"",
+    "Alternative Flows:",
+    "If the User enters an incorrect username or password, they are prompted to re-enter the correct username or password.",
+    "If the User does not have an account on The Internet Website, they are prompted to create an account."
   ],
   "alternative_flows": null,
   "postconditions": [
-    "The user is either logged in and redirected to the home page or the user is not authorized and sees the text \"Not authorized\""
+    "The User is either logged in to the website or an error message is displayed saying \"Not authorized.\""
   ],
   "notes": null
 }

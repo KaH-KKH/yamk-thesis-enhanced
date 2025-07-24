@@ -2,9 +2,9 @@
   "id": "UC-001",
   "title": "Generated Use Case",
   "actors": [
-    "user",
+    "admin",
     "you",
-    "admin"
+    "user"
   ],
   "preconditions": [],
   "main_flow": [],

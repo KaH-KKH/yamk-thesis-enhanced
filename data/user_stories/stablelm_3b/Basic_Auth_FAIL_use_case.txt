@@ -1,41 +1,36 @@
 
-USE CASE: Log in to the Basic Authentication Site
+USE CASE: Signing In to Basic Auth Website
 ID: UC-LOGIN-001
 
 ACTORS:
 - button
-- Customer
+- User
 - Browser
-- Basic Authentication System
-- Authorization System
 
 PRECONDITIONS:
-1. Customer account exists
-2. Customer has access to the Basic Authentication system
-3. Browser has access to the internet
-4. Basic Authentication System is enabled
+1. User is authenticated and has the URL for Basic Auth Website (https://the-internet.herokuapp.com/basic_auth)
+2. Browser supports JavaScript
+3. Main Flow (numbered steps):
+4. User opens the browser and navigates to the Basic Auth Website URL
+5. User verifies that the Browser supports JavaScript
+6. User presses the "Sign In" button on the Basic Auth Website
+7. 4. JavaScript code is executed on the page
+8. 5. User sees the "Not authorized" message
+9. Alternative Flow (if any):
+10. There are no alternative flows for this use case.
 
 MAIN FLOW:
-1. Customer opens the browser and navigates to the Basic Authentication Site
-2. Browser fetches the HTML content of the site
-3. Browser processes the HTML content and looks for the login form
-4. 4. Customer enters their credentials (Username and Password)
-5. 5. Browser sends a request to the Basic Authentication System to validate the credentials
-6. 6. Basic Authentication System validates the credentials
-7. 7. If the credentials are valid, the Authorization System redirects the browser to the desired page
-8. 8. If the credentials are not valid, the browser displays the "Not Authorized" message
-9. ## Alternative Flow:
-10. If the customer does not have a customer account, the customer attempts to create a new account
-11. The customer follows the account creation process
-12. If the account is successfully created, the customer logs in as usual
+
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. Browser displays the desired page (e.g., https://the-internet.herokuapp.com/basic_auth)
-2. "Not Authorized" message is not displayed
-3. ```
+1. User is redirected to the main website if the authentication is successful
+2. User sees an error message "Not authorized" if the authentication fails
+3. Browser cache is updated with the new URL if the authentication is successful
+4. Testability and Clarity:
+5. This use case focuses on the user's actions and the expected behavior, making it easy to test and understand.
 
 NOTES:
 None

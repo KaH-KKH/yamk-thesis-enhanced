@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Automated test for login functionality
 Library          Browser
-Test Tags        login smoke
+Test Tags        basic_auth website_test
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -16,7 +16,7 @@ ${TIMEOUT}       10s
 *** Test Cases ***
 Test Login Functionality
     [Documentation]    Automated test for login functionality
-    [Tags]    login smoke
+    [Tags]    basic_auth website_test
     
     New Browser    ${BROWSER}    headless=${HEADLESS}
     New Page    ${BASE_URL}/login

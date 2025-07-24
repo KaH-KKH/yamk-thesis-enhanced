@@ -18,21 +18,13 @@ Test Login Functionality
     [Documentation]    Automated test for login functionality
     [Tags]    login smoke
     
-    Log    Action: # Test Results:
-    Log    Action: #
-    Log    Action: # Test Case Name: Sign In to The Internet
-    Custom Login Keyword
-    Log    Action: # Test Results:
-    Log    Action: # Add the test steps here
-    Custom Login Keyword
-    Get Text
-    Custom Login Keyword
-    Get Text
-    Custom Login Keyword
-    Log    Action: # Run the test case
-    Log    Action: # pytest test_sign_in.py
-    Log    Action: """
-    Log    Action: # This is the end of the solution.
+    New Browser    ${BROWSER}    headless=${HEADLESS}
+    New Page    ${BASE_URL}/login
+    Type Text    id=username    tomsmith
+    Type Text    id=password    SuperSecretPassword!
+    Click    css=button[type='submit']
+    Wait For Elements State    text=You logged into a secure area!    visible
+    Take Screenshot
 
 *** Keywords ***
 Setup Browser

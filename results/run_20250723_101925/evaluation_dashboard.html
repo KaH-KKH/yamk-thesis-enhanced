@@ -1,0 +1,122 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>LLM Evaluation Dashboard</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                .header { background-color: #f0f0f0; padding: 20px; border-radius: 10px; }
+                .info-box { background-color: #e8f4f8; padding: 15px; border-radius: 5px; margin: 10px 0; }
+                .metric-card { 
+                    display: inline-block; 
+                    background-color: #fff; 
+                    border: 1px solid #ddd; 
+                    border-radius: 5px; 
+                    padding: 15px; 
+                    margin: 10px;
+                    width: 200px;
+                }
+                .winner { background-color: #d4edda; }
+                .section { margin-top: 30px; }
+                table { border-collapse: collapse; width: 100%; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f2f2f2; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1>LLM Evaluation Dashboard</h1>
+                <p>Generated: 2025-07-23 11:27:03</p>
+                <p>Models evaluated: tinyllama, phi2, pythia_1b, opt_1.3b, stablelm_3b</p>
+            </div>
+            
+            
+                <div class="info-box">
+                    <h3>LLM Evaluator Information</h3>
+                    <p><strong>Model:</strong> mistral</p>
+                    <p><strong>Selection reason:</strong> Selected as neutral evaluator (not in evaluated models: ['tinyllama', 'phi2', 'pythia_1b', 'opt_1.3b', 'stablelm_3b'])</p>
+                </div>
+            
+            
+            <div class="section">
+                <h2>Summary</h2>
+                <div class="metrics-container">
+        
+                    <div class="metric-card winner">
+                        <h3>Quality Perplexity</h3>
+                        <p><strong>Winner:</strong> tinyllama</p>
+                        <p><strong>Score:</strong> 6.5122</p>
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Detailed Results</h2>
+                <table>
+                    <tr>
+                        <th>Model</th>
+                        <th>UC Success Rate</th>
+                        <th>TC Success Rate</th>
+                        <th>Total Time (s)</th>
+                        <th>Memory (MB)</th>
+                    </tr>
+        
+                    <tr>
+                        <td>tinyllama</td>
+                        <td>2/2 (100.0%)</td>
+                        <td>3/3 (100.0%)</td>
+                        <td>88.35</td>
+                        <td>1421.40</td>
+                    </tr>
+            
+                    <tr>
+                        <td>phi2</td>
+                        <td>2/2 (100.0%)</td>
+                        <td>3/3 (100.0%)</td>
+                        <td>426.53</td>
+                        <td>9711.46</td>
+                    </tr>
+            
+                    <tr>
+                        <td>pythia_1b</td>
+                        <td>2/2 (100.0%)</td>
+                        <td>3/3 (100.0%)</td>
+                        <td>73.52</td>
+                        <td>23.32</td>
+                    </tr>
+            
+                    <tr>
+                        <td>opt_1.3b</td>
+                        <td>2/2 (100.0%)</td>
+                        <td>3/3 (100.0%)</td>
+                        <td>65.12</td>
+                        <td>71.10</td>
+                    </tr>
+            
+                    <tr>
+                        <td>stablelm_3b</td>
+                        <td>2/2 (100.0%)</td>
+                        <td>3/3 (100.0%)</td>
+                        <td>82.68</td>
+                        <td>47.38</td>
+                    </tr>
+            
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Recommendations</h2>
+                <ul>
+        <li>Overall recommendation: **tinyllama** (best in 1 metrics)</li><li>
+**Extended Metrics Insights:**</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>Visualizations</h2>
+                <p>See generated PNG files in the results directory.</p>
+            </div>
+        </body>
+        </html>
+        

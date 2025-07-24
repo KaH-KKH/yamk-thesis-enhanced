@@ -18,13 +18,36 @@ Test Login Functionality
     [Documentation]    Automated test for login functionality
     [Tags]    login smoke
     
-    New Browser    ${BROWSER}    headless=${HEADLESS}
-    New Page    ${BASE_URL}/login
-    Type Text    id=username    tomsmith
-    Type Text    id=password    SuperSecretPassword!
-    Click    css=button[type='submit']
-    Wait For Elements State    text=You logged into a secure area!    visible
-    Take Screenshot
+    Log    Action: Set up the environment
+    Custom Login Keyword
+    Custom Login Keyword
+    Custom Login Keyword
+    Custom Login Keyword
+    Click    text="i"
+    Log    Action: Fill in the required fields (e.g., Email, Password)
+    Custom Login Keyword
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Get Text
 
 *** Keywords ***
 Setup Browser

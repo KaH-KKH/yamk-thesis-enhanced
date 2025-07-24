@@ -1,111 +1,91 @@
 
-USE CASE: Login user to website
+USE CASE: Login Page with Custom Login Form
 ID: UC-LOGIN-002
 
 ACTORS:
 - admin
-- user
 - you
+- user
 
 PRECONDITIONS:
-1. Username: admin
-2. Password: admin
-3. Username: admin
-4. Password: admin
+1. Username and password input
+2. Username and password input
+3. Custom login form input
 
 MAIN FLOW:
-1. Go to https://the-internet.herokuapp.com/basic_auth
-2. Check the header: This site is asking you to sign in.
-3. Input username = admin to the field Username
-4. 4. Input password = admin to the field Password
-5. 5. Press button Sign in
-6. 6. Browser page opens and there is two headers
-7. 6.1. Basic Auth
-8. 6.2. Congratulations! You must have the proper credentials.
-9. Alternative flows (if any):
-10. Go to https://the-internet.herokuapp.com/basic_auth
-11. Check the header: This site is asking you to sign in.
-12. Input username = admin to the field Username
-13. 4. Input password = admin to the field Password
-14. 5. Press button Sign in
-15. 6. Browser page opens and there is two headers
-16. 6.1. Basic Auth
-17. 6.2. Congratulations! You must have the proper credentials.
-18. 6. Alternative flow:
-19. 6.1. User not found
-20. 6.2. Page is not found
-21. 7. Press button Login
-22. 8. Browser page opens and there is a login form
-23. 9. Input username = admin
-24. 10. Input password = admin
-25. 11. Press submit
-26. 12. Browser page opens and there is a thank you message
-27. Requirement:
-28. Go To    https://the-internet.herokuapp.com/basic_auth
-29. Check the header: This site is asking you to sign in.
-30. Input username = admin to the field Username
-31. 4. Input password = admin to the field Password
-32. 5. Press button Sign in
-33. 6. Browser page opens and there is two headers
-34. 6.1. Basic Auth
-35. 6.2. Congratulations! You must have the proper credentials.
-36. Generate a detailed use case with:
-37. ID (e.g., UC-LOGIN-002)
-38. Title
-39. Actors
-40. Preconditions
-41. Main flow (numbered steps)
-42. Alternative flows (if any)
-43. Postconditions
-44. Format the response as a structured use case.
-45. For example:
-46. Go to https://the-internet.herokuapp.com/basic_auth
-47. Check the header: This site is asking you to sign in.
-48. Input username = admin to the field Username
-49. 4. Input password = admin to the field Password
-50. 5. Press button Sign in
-51. 6. Browser page opens and there is two headers
-52. 6.1. Basic Auth
-53. 6.2. Congratulations! You must have the proper credentials.
-54. Alternative flows (if any):
-55. Go to https://the-internet.herokuapp.com/basic_auth
-56. Check the header: This site is asking you to sign in.
-57. Input username = admin to the field Username
-58. 4. Input password = admin to the field Password
-59. 5. Press button Sign in
-60. 6. Browser page opens and there is two headers
-61. 6.1. Basic Auth
-62. 6.2. Congratulations! You must have the proper credentials.
-63. 6. Alternative flow:
-64. 6.1. User not found
-65. 6.2. Page is not found
-66. 7. Press button Login
-67. 8. Browser page opens and there is a login form
-68. 9. Input username = admin
-69. 10. Input password = admin
-70. 11. Press submit
-71. 12. Browser page opens and there is a thank you message
-72. Requirement:
-73. Go To    https://the-internet.herokuapp.com/basic_auth
-74. Check the header: This site is asking you to sign in.
-75. Input username = admin to the field Username
-76. 4. Input password = admin to the field Password
-77. 5. Press button Sign in
-78. 6. Browser page opens and there is two headers
-79. 6.1. Basic Auth
-80. 6.2. Congratulations! You must have the proper credentials.
-81. Generate a detailed use case with:
-82. ID (e.g., UC-LOGIN-003)
-83. Title
-84. Actors
-85. Preconditions
-86. Main flow (numbered
+1. User inputs username and password
+2. Server sends an HTTP 200 response with a token in the header
+3. Browser sends a GET request to https://the-internet.herokuapp.com/basic_auth
+4. Server sends an HTTP 200 response with a token in the header
+5. Browser displays the login success message
+6. User inputs username and password
+7. Server sends an HTTP 200 response with a token in the header
+8. Browser sends a GET request to https://the-internet.herokuapp.com/basic_auth
+9. 4. Server sends an HTTP 200 response with a token in the header
+10. 5. Browser displays the login success message
+11. Alternative flow:
+12. User inputs username and password again
+13. Server sends an HTTP 200 response with a token in the header
+14. Browser displays the login success message
+15. User inputs username and password
+16. Server sends an HTTP 200 response with a token in the header
+17. Browser sends a GET request to https://the-internet.herokuapp.com/basic_auth
+18. 4. Server sends an HTTP 200 response with a token in the header
+19. 5. Browser displays the login form with username and password inputs
+20. 6. User inputs username and password
+21. 7. Server sends an HTTP 200 response with a token in the header
+22. 8. Browser displays the login form with username and password inputs
+23. 9. User inputs username and password again
+24. 10. Server sends an HTTP 200 response with a token in the header
+25. 11. Browser displays the login form with username and password inputs
+26. 12. User inputs username and password again
+27. 13. Server sends an HTTP 200 response with a token in the header
+28. 14. Browser displays the login form with username and password inputs
+29. 15. User inputs username and password again
+30. 16. Server sends an HTTP 200 response with a token in the header
+31. 17. Browser displays the login form with username and password inputs
+32. 18. User inputs username and password again
+33. 19. Server sends an HTTP 200 response with a token in the header
+34. 20. Browser displays the login form with username and password inputs
+35. Alternative flow:
+36. User inputs username and password again
+37. Server sends an HTTP 200 response with a token in the header
+38. Browser displays the login form with username and password inputs
+39. User inputs username and password again
+40. Server sends an HTTP 200 response with a token in the header
+41. Browser displays the login form with username and password inputs
+42. User inputs username and password again
+43. Server sends an HTTP 200 response with a token in the header
+44. Browser displays the login form with username and password inputs
+45. User inputs username and password again
+46. Server sends an HTTP 200 response with a token in the header
+47. Browser displays the login form with username and password inputs
+48. User inputs username and password again
+49. Server sends an HTTP 200 response with a token in the header
+50. Browser displays the login form with username and password inputs
+51. User inputs username and password again
+52. Server sends an HTTP 200 response with a token in the header
+53. Browser displays the login form with username and password inputs
+54. User inputs username and password again
+55. Server sends an HTTP 200 response with a token in the header
+56. Browser displays the login form with username and password inputs
+57. User inputs username and password again
+58. Server sends an HTTP 200 response with a token in the header
+59. Browser displays the login form with
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-
+1. User: The user making a login request
+2. Username: The user's username input
+3. Password: The user's password input
+4. Token: The token sent by the server after successful login
+5. Token in header: The token sent by the server in the response header
+6. Success message: The success message displayed by the browser after login
+7. Example:
+8. Browser displays the login success message
+9. Example:
 
 NOTES:
 None

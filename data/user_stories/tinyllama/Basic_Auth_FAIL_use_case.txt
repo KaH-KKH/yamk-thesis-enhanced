@@ -1,37 +1,79 @@
 
-USE CASE: Generated Use Case
-ID: UC-001
+USE CASE: This is the name of the use case.
+ID: This is the unique identifier for this use case.
 
 ACTORS:
 - button
 - User
-- System
+- Web Server
+- Database
+- Authentication Server
+- User
+- Web Server
+- Authentication Server
+- Database
 
 PRECONDITIONS:
-1. User is authenticated
-2. System does not have access to the user's credentials
+1. Username and password have not been set
+2. Username and password have not been changed
+3. Username and password have not been set
+4. Username and password have not been changed
 
 MAIN FLOW:
-1. User navigates to the site and enters their username and password.
-2. System checks if credentials are valid.
-3. If credentials are valid, system redirects the user to the home page.
-4. 4. If credentials are not valid, system displays an error message.
-5. Alternative flows:
-6. User navigates to the site and enters their username and wrong password.
-7. System checks if credentials are valid.
-8. If credentials are valid, system redirects the user to the login page.
-9. 4. If credentials are not valid, system displays an error message.
+1. User clicks "Sign in" button
+2. Web Server sends HTTP request with POST method
+3. Authentication Server validates user credentials and sends HTTP response with OK status code
+4. 4. Database stores user credentials and sends HTTP response with OK status code
+5. 5. Web Server sends HTTP response with URL for the user's home page
+6. Alternative flows: This section describes alternative flows for the use case.
+7. User clicks "Sign in" button
+8. Web Server sends HTTP request with POST method
+9. Authentication Server validates user credentials and sends HTTP response with OK status code
+10. Database stores user credentials and sends HTTP response with OK status code
+11. Web Server sends HTTP response with URL for the user's home page
+12. Alternative flows: This section describes alternative flows for the use case:
+13. User is
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User is redirected to the login page if credentials are not valid.
-2. System is notified of successful login if credentials are valid.
-3. Risk:
-4. User may lose their login credentials if system is compromised.
-5. User may not receive an error message if credentials are valid.
-6. System may not check for valid credentials even if user tries to access a restricted page.
+1. User is logged in and redirected to the home page
+2. Authentication server logs user out
+3. Testing:
+4. Write unit tests for the new use case. Use JUnit or similar test frameworks to automate testing. Ensure that the use case is working as expected, and that all test cases are passing.
+5. Example:
+6. Before each test, create a new user and log out of the authentication server. Then, create a new user and log in. Verify that the use case works as expected.
+7. Documentation:
+8. Document the new use case and its requirements in a user manual or user guide. Provide a clear explanation of how to use the use case, including any prerequisites or limitations.
+9. Example:
+10. User manual:
+11. [Title] - [User's Name]
+12. [Date]
+13. Introduction
+14. [How to use the use case]
+15. This user manual explains how to use the [use case name]. The use case is designed to help you [purpose]. This manual should provide all the information needed to successfully use this use case.
+16. Requirements
+17. Go To https://the-internet.herokuapp.com/basic_auth
+18. Check the header: This site is asking you to sign in.
+19. Press button Cancel
+20. 4. Browser page opens and there is text = Not authorized
+21. Step 1: ID (e.g., UC-LOGIN-001)
+22. Step 2: Title
+23. Step 3: Main flow (numbered steps)
+24. User clicks "Sign in" button
+25. Web Server sends HTTP request with POST method
+26. Authentication Server validates user credentials and sends HTTP response with OK status code
+27. Database stores user credentials and sends HTTP response with OK status code
+28. Web Server sends HTTP response with URL for the user's home page
+29. Step 4: Alternative flows (if any)
+30. Authentication Server logs user out
+31. Step 5: Postconditions
+32. User is logged in and redirected to the home page
+33. Authentication server logs user out
+34. Example:
+35. Step 1: ID (e.g., UC-LOGIN-001)
+36. Step 2: Title
 
 NOTES:
 None

@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation    Test case for logging in to the website
+Documentation    Description: Tests the functionality of logging in to the The Internet Website.
 Library          Browser
-Test Tags        Login Selenium Test
+Test Tags        Tags: Browser Library Web Browser HTTP HTML JavaScript DOM
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -14,25 +14,31 @@ ${HEADLESS}      false
 ${TIMEOUT}       10s
 
 *** Test Cases ***
-Test Login Functionality
-    [Documentation]    Test case for logging in to the website
-    [Tags]    Login Selenium Test
+Test Case: Login to The Internet Website
+    [Documentation]    Description: Tests the functionality of logging in to the The Internet Website.
+    [Tags]    Tags: Browser Library Web Browser HTTP HTML JavaScript DOM
     
-    Log    Action: # - Launch the browser
-    Go To    https://the-internet.herokuapp.com/the
-    Wait For Elements State
+    Go To    https://the-internet.herokuapp.com/The
+    Get Text
+    Get Text
     Type Text    id="username"    test value
-    Click    text="l"
-    Log    Action: # - Close the browser
-    Log    Action: # Expected results:
-    Log    Action: # - The user should be redirected to the home page
-    Log    Action: # - The text "Not authorized" should be displayed
-    Log    Action: # Actual results:
-    Log    Action: # - The user was redirected to the home page
-    Log    Action: # - The text "Not authorized" was displayed
-    Log    Action: # Status: PASSED
-    Log    Action: ```
-    Wait For Elements State
+    Type Text    id="password"    test value
+    Click    text="'"
+    Get Text
+    Get Text
+    Log    Action: Close web browser.
+    Log    Action: Add expected results:
+    Custom Login Keyword
+    Log    Action: The homepage displays the User's name.
+    Log    Action: Add actual results:
+    Custom Login Keyword
+    Log    Action: Actual result: The homepage displays the User's name.
+    Log    Action: Add comments:
+    Log    Action: Comments: All test steps passed successfully.
+    Log    Action: Answer: The correct Robot Framework test case is:
+    Custom Login Keyword
+    Custom Login Keyword
+    Log    Action: Comments: All test steps passed successfully.
 
 *** Keywords ***
 Setup Browser

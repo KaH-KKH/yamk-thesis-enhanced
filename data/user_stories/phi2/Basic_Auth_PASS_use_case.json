@@ -1,23 +1,29 @@
 {
   "id": "UC-LOGIN-001",
-  "title": "Sign In to The Internet",
+  "title": "User Login",
   "actors": [
-    "you",
     "admin",
+    "you",
     "user"
   ],
   "preconditions": [],
   "main_flow": [
-    "User goes to the website https://the-internet.herokuapp.com/basic_auth.",
-    "User checks the header: This site is asking you to sign in.",
-    "User inputs username = admin to the field Username.",
-    "4. User inputs password = admin to the field Password.",
-    "5. User presses the button Sign in.",
-    "6. Browser page opens and there are two headers.",
-    "6.1. Basic Auth",
-    "6.2. Congratulations! You must have the proper credentials."
+    "User clicks on the \"Sign in\" button.",
+    "The user enters their username and password in the respective fields.",
+    "The user clicks on the \"Sign in\" button.",
+    "4. The user is redirected to the Congratulations! page.",
+    "Alternative Flow:",
+    "If the username or password is incorrect, the user is prompted to enter the correct credentials.",
+    "User clicks on the \"Sign in\" button.",
+    "The user enters their username and password in the respective fields.",
+    "The user clicks on the \"Sign in\" button.",
+    "4. The user is redirected to the Congratulations! page.",
+    "Alternative Flow:",
+    "If the username or password is incorrect, the user is prompted to enter the correct credentials."
   ],
   "alternative_flows": null,
-  "postconditions": [],
+  "postconditions": [
+    "Answer:"
+  ],
   "notes": null
 }

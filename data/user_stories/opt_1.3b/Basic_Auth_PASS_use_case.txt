@@ -3,9 +3,9 @@ USE CASE: Generated Use Case
 ID: UC-001
 
 ACTORS:
-- user
-- you
 - admin
+- you
+- user
 
 PRECONDITIONS:
 

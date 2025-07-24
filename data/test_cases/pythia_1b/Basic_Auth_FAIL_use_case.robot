@@ -18,10 +18,109 @@ Test Login Functionality
     [Documentation]    Automated test for login functionality
     [Tags]    login smoke
     
-    New Browser    ${BROWSER}    headless=${HEADLESS}
-    New Page    ${BASE_URL}
-    Log    Executing test steps
-    Take Screenshot
+    Get Text
+    Get Text
+    Get Text
+    Get Text
+    Log    Action: Include tests:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
+    Get Text
+    Log    Action: Include steps that describe the expected results:
+    Log    Action: Step that describe the expected results
+    Get Text
 
 *** Keywords ***
 Setup Browser

@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation    Automated test for login functionality
+Documentation    description: Verification
 Library          Browser
-Test Tags        login smoke
+Test Tags        tags:
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -15,8 +15,8 @@ ${TIMEOUT}       10s
 
 *** Test Cases ***
 Test Login Functionality
-    [Documentation]    Automated test for login functionality
-    [Tags]    login smoke
+    [Documentation]    description: Verification
+    [Tags]    tags:
     
     New Browser    ${BROWSER}    headless=${HEADLESS}
     New Page    ${BASE_URL}
