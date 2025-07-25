@@ -1,0 +1,2637 @@
+{
+  "timestamp": "2025-07-25T14:27:20.302213",
+  "models": [
+    "mistral",
+    "gemma_7b_it_4bit",
+    "Falcon3-7B-Base",
+    "Meta-Llama-3-8B-Instruct",
+    "Qwen2-7B-Instruct"
+  ],
+  "summary": {
+    "best_scores": {
+      "quality_perplexity": {
+        "model": "Falcon3-7B-Base",
+        "value": 9.2964608669281
+      }
+    }
+  },
+  "detailed_metrics": {
+    "standard": {
+      "use_case_metrics": {
+        "mistral": {
+          "custom": {
+            "completeness": 1.0,
+            "avg_length": 188.5,
+            "avg_steps": 16.5
+          }
+        },
+        "gemma_7b_it_4bit": {
+          "custom": {
+            "completeness": 1.0,
+            "avg_length": 154.0,
+            "avg_steps": 15.0
+          }
+        },
+        "Falcon3-7B-Base": {
+          "custom": {
+            "completeness": 1.0,
+            "avg_length": 436.0,
+            "avg_steps": 58.0
+          }
+        },
+        "Meta-Llama-3-8B-Instruct": {
+          "custom": {
+            "completeness": 1.0,
+            "avg_length": 119.0,
+            "avg_steps": 8.5
+          }
+        },
+        "Qwen2-7B-Instruct": {
+          "custom": {
+            "completeness": 1.0,
+            "avg_length": 216.5,
+            "avg_steps": 15.5
+          }
+        }
+      },
+      "test_case_metrics": {
+        "mistral": {
+          "syntax_validity": {
+            "valid_count": 2,
+            "total_count": 2,
+            "validity_rate": 1.0
+          },
+          "keyword_coverage": {
+            "keyword_counts": {
+              "New Browser": 4,
+              "New Page": 2,
+              "Go To": 3,
+              "Click": 5,
+              "Type Text": 6,
+              "Get Text": 0,
+              "Wait For Elements State": 3,
+              "Take Screenshot": 4
+            },
+            "total_keywords": 27,
+            "unique_keywords_used": 7,
+            "coverage_rate": 0.875
+          }
+        },
+        "gemma_7b_it_4bit": {
+          "syntax_validity": {
+            "valid_count": 2,
+            "total_count": 2,
+            "validity_rate": 1.0
+          },
+          "keyword_coverage": {
+            "keyword_counts": {
+              "New Browser": 2,
+              "New Page": 0,
+              "Go To": 2,
+              "Click": 3,
+              "Type Text": 6,
+              "Get Text": 2,
+              "Wait For Elements State": 2,
+              "Take Screenshot": 2
+            },
+            "total_keywords": 19,
+            "unique_keywords_used": 7,
+            "coverage_rate": 0.875
+          }
+        },
+        "Falcon3-7B-Base": {
+          "syntax_validity": {
+            "valid_count": 2,
+            "total_count": 2,
+            "validity_rate": 1.0
+          },
+          "keyword_coverage": {
+            "keyword_counts": {
+              "New Browser": 3,
+              "New Page": 1,
+              "Go To": 2,
+              "Click": 3,
+              "Type Text": 4,
+              "Get Text": 2,
+              "Wait For Elements State": 2,
+              "Take Screenshot": 3
+            },
+            "total_keywords": 20,
+            "unique_keywords_used": 8,
+            "coverage_rate": 1.0
+          }
+        },
+        "Meta-Llama-3-8B-Instruct": {
+          "syntax_validity": {
+            "valid_count": 2,
+            "total_count": 2,
+            "validity_rate": 1.0
+          },
+          "keyword_coverage": {
+            "keyword_counts": {
+              "New Browser": 4,
+              "New Page": 2,
+              "Go To": 2,
+              "Click": 4,
+              "Type Text": 8,
+              "Get Text": 0,
+              "Wait For Elements State": 4,
+              "Take Screenshot": 4
+            },
+            "total_keywords": 28,
+            "unique_keywords_used": 7,
+            "coverage_rate": 0.875
+          }
+        },
+        "Qwen2-7B-Instruct": {
+          "syntax_validity": {
+            "valid_count": 2,
+            "total_count": 2,
+            "validity_rate": 1.0
+          },
+          "keyword_coverage": {
+            "keyword_counts": {
+              "New Browser": 4,
+              "New Page": 2,
+              "Go To": 2,
+              "Click": 4,
+              "Type Text": 8,
+              "Get Text": 0,
+              "Wait For Elements State": 4,
+              "Take Screenshot": 4
+            },
+            "total_keywords": 28,
+            "unique_keywords_used": 7,
+            "coverage_rate": 0.875
+          }
+        }
+      }
+    },
+    "extended": {
+      "quality": {
+        "mistral": {
+          "perplexity": {
+            "mean_perplexity": 21.733774185180664,
+            "min_perplexity": 17.905757904052734,
+            "max_perplexity": 25.561790466308594,
+            "std_perplexity": 3.8280162811279297
+          },
+          "diversity": {
+            "self_bleu": 32.32683700791787,
+            "distinct_1": 0.31875,
+            "distinct_2": 0.6317991631799164,
+            "distinct_3": 0.792016806722689,
+            "vocabulary_size": 153,
+            "token_type_ratio": 0.31875
+          },
+          "coherence": {
+            "mean_coherence": 0.18519407510757446,
+            "min_coherence": 0.1313614696264267,
+            "max_coherence": 0.23902669548988342,
+            "std_coherence": 0.05383261293172836
+          }
+        },
+        "gemma_7b_it_4bit": {
+          "perplexity": {
+            "mean_perplexity": 22.723668098449707,
+            "min_perplexity": 22.063081741333008,
+            "max_perplexity": 23.384254455566406,
+            "std_perplexity": 0.6605863571166992
+          },
+          "diversity": {
+            "self_bleu": 46.20843799954302,
+            "distinct_1": 0.3076923076923077,
+            "distinct_2": 0.6293333333333333,
+            "distinct_3": 0.774798927613941,
+            "vocabulary_size": 116,
+            "token_type_ratio": 0.3076923076923077
+          },
+          "coherence": {
+            "mean_coherence": 0.17395344376564026,
+            "min_coherence": 0.1633671224117279,
+            "max_coherence": 0.1845397800207138,
+            "std_coherence": 0.01058632880449295
+          }
+        },
+        "Falcon3-7B-Base": {
+          "perplexity": {
+            "mean_perplexity": 9.2964608669281,
+            "min_perplexity": 5.090870380401611,
+            "max_perplexity": 13.50205135345459,
+            "std_perplexity": 4.205590486526489
+          },
+          "diversity": {
+            "self_bleu": 9.905367937406076,
+            "distinct_1": 0.19237588652482268,
+            "distinct_2": 0.4493783303730018,
+            "distinct_3": 0.6370106761565836,
+            "vocabulary_size": 217,
+            "token_type_ratio": 0.19237588652482268
+          },
+          "coherence": {
+            "mean_coherence": 0.1666388362646103,
+            "min_coherence": 0.1644638478755951,
+            "max_coherence": 0.1688138246536255,
+            "std_coherence": 0.0021749883890151978
+          }
+        },
+        "Meta-Llama-3-8B-Instruct": {
+          "perplexity": {
+            "mean_perplexity": 22.99743938446045,
+            "min_perplexity": 22.830358505249023,
+            "max_perplexity": 23.164520263671875,
+            "std_perplexity": 0.16708087921142578
+          },
+          "diversity": {
+            "self_bleu": 18.280615760996376,
+            "distinct_1": 0.3344594594594595,
+            "distinct_2": 0.6530612244897959,
+            "distinct_3": 0.7945205479452054,
+            "vocabulary_size": 99,
+            "token_type_ratio": 0.3344594594594595
+          },
+          "coherence": {
+            "mean_coherence": 0.15398064255714417,
+            "min_coherence": 0.1160266101360321,
+            "max_coherence": 0.19193466007709503,
+            "std_coherence": 0.037954024970531464
+          }
+        },
+        "Qwen2-7B-Instruct": {
+          "perplexity": {
+            "mean_perplexity": 23.311321258544922,
+            "min_perplexity": 18.287139892578125,
+            "max_perplexity": 28.33550262451172,
+            "std_perplexity": 5.024181365966797
+          },
+          "diversity": {
+            "self_bleu": 23.93190819113186,
+            "distinct_1": 0.34946236559139787,
+            "distinct_2": 0.7122302158273381,
+            "distinct_3": 0.8574007220216606,
+            "vocabulary_size": 195,
+            "token_type_ratio": 0.34946236559139787
+          },
+          "coherence": {
+            "mean_coherence": 0.1837809681892395,
+            "min_coherence": 0.14145110547542572,
+            "max_coherence": 0.22611084580421448,
+            "std_coherence": 0.04232987016439438
+          }
+        }
+      },
+      "user_experience": {
+        "mistral": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 45.923411228457354,
+              "interpretation": "Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 9.529708648591848,
+              "interpretation": "Grade level: 9.5"
+            },
+            "gunning_fog": {
+              "score": 10.997818711343301,
+              "interpretation": "Years of education needed: 11.0"
+            },
+            "smog_index": {
+              "score": 10.759877503575307,
+              "interpretation": "Score: 10.76"
+            },
+            "automated_readability_index": {
+              "score": 10.311266934046348,
+              "interpretation": "Score: 10.31"
+            },
+            "coleman_liau_index": {
+              "score": 12.32164174623191,
+              "interpretation": "Score: 12.32"
+            },
+            "linsear_write_formula": {
+              "score": 5.368181818181818,
+              "interpretation": "Score: 5.37"
+            },
+            "dale_chall_readability_score": {
+              "score": 12.952516345403232,
+              "interpretation": "Score: 12.95"
+            },
+            "avg_sentence_length": 8.866666666666667,
+            "avg_word_length": 4.217541544937643,
+            "syllables_per_word": 1.2848694750730374,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.008347826086956521,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.010521739130434783,
+            "ambiguity_score": 0.21126234567901236,
+            "overall_clarity": 0.0033391304347826084
+          },
+          "actionability": {
+            "action_verb_density": 0.002,
+            "step_clarity": 0.5025641025641026,
+            "executable_steps": 0.5025641025641026,
+            "overall_actionability": 0.3357094017094017
+          },
+          "completeness": {
+            "completeness_score": 1.0,
+            "missing_elements": []
+          },
+          "usability": {
+            "navigation_ease": 1.0,
+            "information_findability": 0.4730782521282946,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.6477858708724488
+          },
+          "accessibility": {
+            "plain_language_score": 0.8550434782608696,
+            "technical_jargon_ratio": 0.008521739130434781,
+            "international_friendly": 1.0
+          }
+        },
+        "gemma_7b_it_4bit": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 61.75384814426563,
+              "interpretation": "Standard"
+            },
+            "flesch_kincaid_grade": {
+              "score": 7.144797707036796,
+              "interpretation": "Grade level: 7.1"
+            },
+            "gunning_fog": {
+              "score": 8.153463993312192,
+              "interpretation": "Years of education needed: 8.2"
+            },
+            "smog_index": {
+              "score": 9.005197340807012,
+              "interpretation": "Score: 9.01"
+            },
+            "automated_readability_index": {
+              "score": 6.996173077926823,
+              "interpretation": "Score: 7.00"
+            },
+            "coleman_liau_index": {
+              "score": 8.766600496277915,
+              "interpretation": "Score: 8.77"
+            },
+            "linsear_write_formula": {
+              "score": 5.186868686868687,
+              "interpretation": "Score: 5.19"
+            },
+            "dale_chall_readability_score": {
+              "score": 12.898458026034687,
+              "interpretation": "Score: 12.90"
+            },
+            "avg_sentence_length": 9.605263157894736,
+            "avg_word_length": 3.8606628816176105,
+            "syllables_per_word": 1.1848822152497633,
+            "overall_readability": "Moderate - Requires some effort"
+          },
+          "clarity": {
+            "specificity_score": 0.007898738454606893,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.01061612975895472,
+            "ambiguity_score": 0.21978986098422137,
+            "overall_clarity": 0.003159495381842757
+          },
+          "actionability": {
+            "action_verb_density": 0.01592419463843208,
+            "step_clarity": 0.3151515151515152,
+            "executable_steps": 0.3606060606060606,
+            "overall_actionability": 0.2305605901320026
+          },
+          "completeness": {
+            "completeness_score": 1.0,
+            "missing_elements": []
+          },
+          "usability": {
+            "navigation_ease": 1.0,
+            "information_findability": 0.8210111725351529,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.7907000636934223
+          },
+          "accessibility": {
+            "plain_language_score": 0.886446834872719,
+            "technical_jargon_ratio": 0.0025906735751295338,
+            "international_friendly": 1.0
+          }
+        },
+        "Falcon3-7B-Base": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 61.15464761575937,
+              "interpretation": "Standard"
+            },
+            "flesch_kincaid_grade": {
+              "score": 7.1155825913721635,
+              "interpretation": "Grade level: 7.1"
+            },
+            "gunning_fog": {
+              "score": 8.486193188610466,
+              "interpretation": "Years of education needed: 8.5"
+            },
+            "smog_index": {
+              "score": 9.134596290926993,
+              "interpretation": "Score: 9.13"
+            },
+            "automated_readability_index": {
+              "score": 6.9646972248520544,
+              "interpretation": "Score: 6.96"
+            },
+            "coleman_liau_index": {
+              "score": 8.115381082156965,
+              "interpretation": "Score: 8.12"
+            },
+            "linsear_write_formula": {
+              "score": 4.208333333333334,
+              "interpretation": "Score: 4.21"
+            },
+            "dale_chall_readability_score": {
+              "score": 12.860665531405091,
+              "interpretation": "Score: 12.86"
+            },
+            "avg_sentence_length": 6.668279716466739,
+            "avg_word_length": 3.6625206681810454,
+            "syllables_per_word": 1.1413997187582092,
+            "overall_readability": "Moderate - Requires some effort"
+          },
+          "clarity": {
+            "specificity_score": 0.0013054830287206266,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.0046243888762332,
+            "ambiguity_score": 0.16367329624157356,
+            "overall_clarity": 0.0005221932114882506
+          },
+          "actionability": {
+            "action_verb_density": 0.0026109660574412533,
+            "step_clarity": 0.3098060344827586,
+            "executable_steps": 0.3693426724137931,
+            "overall_actionability": 0.22725322431799766
+          },
+          "completeness": {
+            "completeness_score": 1.0,
+            "missing_elements": []
+          },
+          "usability": {
+            "navigation_ease": 1.0,
+            "information_findability": 0.7525278279995262,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.4690115946841065
+          },
+          "accessibility": {
+            "plain_language_score": 0.8781660153854242,
+            "technical_jargon_ratio": 0.0,
+            "international_friendly": 1.0
+          }
+        },
+        "Meta-Llama-3-8B-Instruct": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 61.36105978260872,
+              "interpretation": "Standard"
+            },
+            "flesch_kincaid_grade": {
+              "score": 7.619719202898553,
+              "interpretation": "Grade level: 7.6"
+            },
+            "gunning_fog": {
+              "score": 9.165579710144929,
+              "interpretation": "Years of education needed: 9.2"
+            },
+            "smog_index": {
+              "score": 9.776749994442552,
+              "interpretation": "Score: 9.78"
+            },
+            "automated_readability_index": {
+              "score": 7.8507325049051655,
+              "interpretation": "Score: 7.85"
+            },
+            "coleman_liau_index": {
+              "score": 8.88691123188406,
+              "interpretation": "Score: 8.89"
+            },
+            "linsear_write_formula": {
+              "score": 5.7375,
+              "interpretation": "Score: 5.74"
+            },
+            "dale_chall_readability_score": {
+              "score": 12.060665489130436,
+              "interpretation": "Score: 12.06"
+            },
+            "avg_sentence_length": 9.344444444444445,
+            "avg_word_length": 3.8814832249229716,
+            "syllables_per_word": 1.188762410133516,
+            "overall_readability": "Moderate - Requires some effort"
+          },
+          "clarity": {
+            "specificity_score": 0.0,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.0,
+            "ambiguity_score": 0.24570976051239213,
+            "overall_clarity": 0.0
+          },
+          "actionability": {
+            "action_verb_density": 0.002857142857142857,
+            "step_clarity": 0.38888888888888884,
+            "executable_steps": 0.4444444444444444,
+            "overall_actionability": 0.2787301587301587
+          },
+          "completeness": {
+            "completeness_score": 1.0,
+            "missing_elements": []
+          },
+          "usability": {
+            "navigation_ease": 1.0,
+            "information_findability": 0.6474880178021225,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.7141744665861512
+          },
+          "accessibility": {
+            "plain_language_score": 0.8992916174734357,
+            "technical_jargon_ratio": 0.002857142857142857,
+            "international_friendly": 1.0
+          }
+        },
+        "Qwen2-7B-Instruct": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 39.92725521052401,
+              "interpretation": "Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 10.865717316127524,
+              "interpretation": "Grade level: 10.9"
+            },
+            "gunning_fog": {
+              "score": 13.00960962774856,
+              "interpretation": "Years of education needed: 13.0"
+            },
+            "smog_index": {
+              "score": 12.19393784833151,
+              "interpretation": "Score: 12.19"
+            },
+            "automated_readability_index": {
+              "score": 11.518554701860154,
+              "interpretation": "Score: 11.52"
+            },
+            "coleman_liau_index": {
+              "score": 12.74365218161291,
+              "interpretation": "Score: 12.74"
+            },
+            "linsear_write_formula": {
+              "score": 7.075,
+              "interpretation": "Score: 7.08"
+            },
+            "dale_chall_readability_score": {
+              "score": 13.245064272210644,
+              "interpretation": "Score: 13.25"
+            },
+            "avg_sentence_length": 10.878151260504202,
+            "avg_word_length": 4.264432567769271,
+            "syllables_per_word": 1.3432399248880542,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.0016129032258064516,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.0032258064516129032,
+            "ambiguity_score": 0.2654746886072603,
+            "overall_clarity": 0.0006451612903225806
+          },
+          "actionability": {
+            "action_verb_density": 0.012903225806451613,
+            "step_clarity": 0.4147727272727273,
+            "executable_steps": 0.4460227272727273,
+            "overall_actionability": 0.2912328934506354
+          },
+          "completeness": {
+            "completeness_score": 1.0,
+            "missing_elements": []
+          },
+          "usability": {
+            "navigation_ease": 1.0,
+            "information_findability": 0.6534699150978222,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.5481745189964576
+          },
+          "accessibility": {
+            "plain_language_score": 0.8411290322580645,
+            "technical_jargon_ratio": 0.017338709677419354,
+            "international_friendly": 1.0
+          }
+        }
+      },
+      "robot_framework": {
+        "mistral": {
+          "overall_quality": {
+            "total_tests": 8,
+            "documentation_coverage": 0.25,
+            "tag_coverage": 0.25,
+            "verification_coverage": 0.5
+          },
+          "keyword_analysis": {
+            "total_keywords_used": 52,
+            "unique_keywords": 10,
+            "custom_keywords_defined": 3,
+            "keyword_reuse_ratio": 0.3,
+            "browser_keyword_usage": {
+              "interaction": 3
+            },
+            "most_used_keywords": {
+              "...": 21,
+              "New": 8,
+              "Type": 6,
+              "Take": 4,
+              "Click": 3,
+              "Wait": 3,
+              "Set": 2,
+              "Close": 2,
+              "Go": 2,
+              "Log": 1
+            }
+          },
+          "structure_analysis": {
+            "avg_test_length": 7.5,
+            "max_test_length": 29,
+            "min_test_length": 2,
+            "avg_complexity": 1.125,
+            "max_complexity": 2.0
+          },
+          "best_practices": {
+            "selector_usage": {
+              "id": 7,
+              "css": 7,
+              "xpath": 0,
+              "text": 1,
+              "data_test": 0,
+              "aria": 0
+            },
+            "best_selector_ratio": 0.4666666666666667,
+            "explicit_wait_usage": 3,
+            "implicit_wait_usage": 0,
+            "wait_strategy_score": 1.0,
+            "error_handling_present": false,
+            "screenshot_usage": 4,
+            "data_driven_testing": false,
+            "template_usage": 0,
+            "loop_usage": 0
+          },
+          "individual_files": {
+            "Basic_Auth_PASS_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 46,
+              "non_empty_lines": 39
+            },
+            "Basic_Auth_FAIL_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 67,
+              "non_empty_lines": 59
+            }
+          }
+        },
+        "gemma_7b_it_4bit": {
+          "overall_quality": {
+            "total_tests": 7,
+            "documentation_coverage": 0.14285714285714285,
+            "tag_coverage": 0.14285714285714285,
+            "verification_coverage": 0.2857142857142857
+          },
+          "keyword_analysis": {
+            "total_keywords_used": 38,
+            "unique_keywords": 11,
+            "custom_keywords_defined": 3,
+            "keyword_reuse_ratio": 0.2727272727272727,
+            "browser_keyword_usage": {
+              "interaction": 3
+            },
+            "most_used_keywords": {
+              "...": 10,
+              "Type": 6,
+              "New": 4,
+              "Click": 3,
+              "Log": 3,
+              "Get": 2,
+              "Set": 2,
+              "Take": 2,
+              "Close": 2,
+              "Go": 2
+            }
+          },
+          "structure_analysis": {
+            "avg_test_length": 4.714285714285714,
+            "max_test_length": 11,
+            "min_test_length": 2,
+            "avg_complexity": 1.1428571428571428,
+            "max_complexity": 2.0
+          },
+          "best_practices": {
+            "selector_usage": {
+              "id": 4,
+              "css": 4,
+              "xpath": 0,
+              "text": 1,
+              "data_test": 0,
+              "aria": 0
+            },
+            "best_selector_ratio": 0.4444444444444444,
+            "explicit_wait_usage": 2,
+            "implicit_wait_usage": 0,
+            "wait_strategy_score": 1.0,
+            "error_handling_present": false,
+            "screenshot_usage": 2,
+            "data_driven_testing": false,
+            "template_usage": 0,
+            "loop_usage": 0
+          },
+          "individual_files": {
+            "Basic_Auth_PASS_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 53,
+              "non_empty_lines": 45
+            },
+            "Basic_Auth_FAIL_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 49,
+              "non_empty_lines": 41
+            }
+          }
+        },
+        "Falcon3-7B-Base": {
+          "overall_quality": {
+            "total_tests": 7,
+            "documentation_coverage": 0.14285714285714285,
+            "tag_coverage": 0.14285714285714285,
+            "verification_coverage": 0.2857142857142857
+          },
+          "keyword_analysis": {
+            "total_keywords_used": 108,
+            "unique_keywords": 11,
+            "custom_keywords_defined": 3,
+            "keyword_reuse_ratio": 0.2727272727272727,
+            "browser_keyword_usage": {
+              "interaction": 3
+            },
+            "most_used_keywords": {
+              "...": 77,
+              "New": 6,
+              "Log": 5,
+              "Type": 4,
+              "Click": 3,
+              "Take": 3,
+              "Get": 2,
+              "Set": 2,
+              "Close": 2,
+              "Go": 2
+            }
+          },
+          "structure_analysis": {
+            "avg_test_length": 4.0,
+            "max_test_length": 6,
+            "min_test_length": 2,
+            "avg_complexity": 1.0,
+            "max_complexity": 1
+          },
+          "best_practices": {
+            "selector_usage": {
+              "id": 4,
+              "css": 4,
+              "xpath": 0,
+              "text": 1,
+              "data_test": 0,
+              "aria": 0
+            },
+            "best_selector_ratio": 0.4444444444444444,
+            "explicit_wait_usage": 2,
+            "implicit_wait_usage": 0,
+            "wait_strategy_score": 1.0,
+            "error_handling_present": false,
+            "screenshot_usage": 3,
+            "data_driven_testing": false,
+            "template_usage": 0,
+            "loop_usage": 0
+          },
+          "individual_files": {
+            "Basic_Auth_PASS_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 126,
+              "non_empty_lines": 118
+            },
+            "Basic_Auth_FAIL_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 43,
+              "non_empty_lines": 36
+            }
+          }
+        },
+        "Meta-Llama-3-8B-Instruct": {
+          "overall_quality": {
+            "total_tests": 8,
+            "documentation_coverage": 0.25,
+            "tag_coverage": 0.25,
+            "verification_coverage": 0.5
+          },
+          "keyword_analysis": {
+            "total_keywords_used": 34,
+            "unique_keywords": 8,
+            "custom_keywords_defined": 3,
+            "keyword_reuse_ratio": 0.375,
+            "browser_keyword_usage": {
+              "interaction": 4
+            },
+            "most_used_keywords": {
+              "New": 8,
+              "Type": 8,
+              "Click": 4,
+              "Wait": 4,
+              "Take": 4,
+              "Set": 2,
+              "Close": 2,
+              "Go": 2
+            }
+          },
+          "structure_analysis": {
+            "avg_test_length": 5.0,
+            "max_test_length": 9,
+            "min_test_length": 2,
+            "avg_complexity": 1.0,
+            "max_complexity": 1
+          },
+          "best_practices": {
+            "selector_usage": {
+              "id": 8,
+              "css": 6,
+              "xpath": 0,
+              "text": 2,
+              "data_test": 0,
+              "aria": 0
+            },
+            "best_selector_ratio": 0.5,
+            "explicit_wait_usage": 4,
+            "implicit_wait_usage": 0,
+            "wait_strategy_score": 1.0,
+            "error_handling_present": false,
+            "screenshot_usage": 4,
+            "data_driven_testing": false,
+            "template_usage": 0,
+            "loop_usage": 0
+          },
+          "individual_files": {
+            "Basic_Auth_PASS_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 46,
+              "non_empty_lines": 39
+            },
+            "Basic_Auth_FAIL_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 46,
+              "non_empty_lines": 39
+            }
+          }
+        },
+        "Qwen2-7B-Instruct": {
+          "overall_quality": {
+            "total_tests": 8,
+            "documentation_coverage": 0.25,
+            "tag_coverage": 0.25,
+            "verification_coverage": 0.5
+          },
+          "keyword_analysis": {
+            "total_keywords_used": 34,
+            "unique_keywords": 8,
+            "custom_keywords_defined": 3,
+            "keyword_reuse_ratio": 0.375,
+            "browser_keyword_usage": {
+              "interaction": 4
+            },
+            "most_used_keywords": {
+              "New": 8,
+              "Type": 8,
+              "Click": 4,
+              "Wait": 4,
+              "Take": 4,
+              "Set": 2,
+              "Close": 2,
+              "Go": 2
+            }
+          },
+          "structure_analysis": {
+            "avg_test_length": 5.0,
+            "max_test_length": 9,
+            "min_test_length": 2,
+            "avg_complexity": 1.0,
+            "max_complexity": 1
+          },
+          "best_practices": {
+            "selector_usage": {
+              "id": 8,
+              "css": 6,
+              "xpath": 0,
+              "text": 2,
+              "data_test": 0,
+              "aria": 0
+            },
+            "best_selector_ratio": 0.5,
+            "explicit_wait_usage": 4,
+            "implicit_wait_usage": 0,
+            "wait_strategy_score": 1.0,
+            "error_handling_present": false,
+            "screenshot_usage": 4,
+            "data_driven_testing": false,
+            "template_usage": 0,
+            "loop_usage": 0
+          },
+          "individual_files": {
+            "Basic_Auth_PASS_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 46,
+              "non_empty_lines": 39
+            },
+            "Basic_Auth_FAIL_use_case.robot": {
+              "syntax_valid": true,
+              "sections": [
+                "Settings",
+                "Variables",
+                "Keywords"
+              ],
+              "test_count": 1,
+              "keyword_count": 3,
+              "documentation_present": true,
+              "tags_present": true,
+              "setup_teardown": {
+                "test_setup": true,
+                "test_teardown": true,
+                "suite_setup": false,
+                "suite_teardown": false
+              },
+              "line_count": 46,
+              "non_empty_lines": 39
+            }
+          }
+        }
+      },
+      "test_case_ux": {
+        "mistral": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 15.307784125379186,
+              "interpretation": "Very Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 15.571057296932931,
+              "interpretation": "Grade level: 15.6"
+            },
+            "gunning_fog": {
+              "score": 15.656124031007753,
+              "interpretation": "Years of education needed: 15.7"
+            },
+            "smog_index": {
+              "score": 14.566708398027355,
+              "interpretation": "Score: 14.57"
+            },
+            "automated_readability_index": {
+              "score": 20.830705322726153,
+              "interpretation": "Score: 20.83"
+            },
+            "coleman_liau_index": {
+              "score": 21.93666329625885,
+              "interpretation": "Score: 21.94"
+            },
+            "linsear_write_formula": {
+              "score": 12.555555555555555,
+              "interpretation": "Score: 12.56"
+            },
+            "dale_chall_readability_score": {
+              "score": 14.68140252106505,
+              "interpretation": "Score: 14.68"
+            },
+            "avg_sentence_length": 77.56666666666666,
+            "avg_word_length": 4.495684114883432,
+            "syllables_per_word": 1.174857060544278,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.0038560411311053984,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.0,
+            "ambiguity_score": 0.4057724957555179,
+            "overall_clarity": 0.0015424164524421595
+          },
+          "actionability": {
+            "action_verb_density": 0.035236237922170024,
+            "instruction_quality": 0.875,
+            "overall_actionability": 0.455118118961085
+          },
+          "completeness": {
+            "completeness_score": 0.9,
+            "missing_elements": [
+              "error handling"
+            ]
+          },
+          "usability": {
+            "navigation_ease": 0.3333333333333333,
+            "information_findability": 0.281260157196466,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.40888888888888886
+          },
+          "accessibility": {
+            "plain_language_score": 0.8117188192536122,
+            "technical_jargon_ratio": 0.012892252459888308,
+            "international_friendly": 1.0
+          }
+        },
+        "gemma_7b_it_4bit": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 32.33446195785568,
+              "interpretation": "Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 12.925542038688665,
+              "interpretation": "Grade level: 12.9"
+            },
+            "gunning_fog": {
+              "score": 13.617982702094702,
+              "interpretation": "Years of education needed: 13.6"
+            },
+            "smog_index": {
+              "score": 13.42026822378136,
+              "interpretation": "Score: 13.42"
+            },
+            "automated_readability_index": {
+              "score": 17.12502193064667,
+              "interpretation": "Score: 17.13"
+            },
+            "coleman_liau_index": {
+              "score": 18.149109585367164,
+              "interpretation": "Score: 18.15"
+            },
+            "linsear_write_formula": {
+              "score": 11.5,
+              "interpretation": "Score: 11.50"
+            },
+            "dale_chall_readability_score": {
+              "score": 13.612252769826679,
+              "interpretation": "Score: 13.61"
+            },
+            "avg_sentence_length": 43.16666666666667,
+            "avg_word_length": 4.278061224489796,
+            "syllables_per_word": 1.1432823129251701,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.0,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.0,
+            "ambiguity_score": 0.40369958600427347,
+            "overall_clarity": 0.0
+          },
+          "actionability": {
+            "action_verb_density": 0.01913265306122449,
+            "instruction_quality": 0.75,
+            "overall_actionability": 0.38456632653061223
+          },
+          "completeness": {
+            "completeness_score": 0.8,
+            "missing_elements": [
+              "error handling"
+            ]
+          },
+          "usability": {
+            "navigation_ease": 0.3333333333333333,
+            "information_findability": 0.4630102040816326,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.33999999999999997
+          },
+          "accessibility": {
+            "plain_language_score": 0.8290816326530612,
+            "technical_jargon_ratio": 0.009566326530612245,
+            "international_friendly": 1.0
+          }
+        },
+        "Falcon3-7B-Base": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": -19.216272461814896,
+              "interpretation": "Very Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 21.38305400462072,
+              "interpretation": "Grade level: 21.4"
+            },
+            "gunning_fog": {
+              "score": 19.92590168142729,
+              "interpretation": "Years of education needed: 19.9"
+            },
+            "smog_index": {
+              "score": 15.807332483520819,
+              "interpretation": "Score: 15.81"
+            },
+            "automated_readability_index": {
+              "score": 27.619107094584557,
+              "interpretation": "Score: 27.62"
+            },
+            "coleman_liau_index": {
+              "score": 31.369912398921834,
+              "interpretation": "Score: 31.37"
+            },
+            "linsear_write_formula": {
+              "score": 21.4375,
+              "interpretation": "Score: 21.44"
+            },
+            "dale_chall_readability_score": {
+              "score": 15.34795842799384,
+              "interpretation": "Score: 15.35"
+            },
+            "avg_sentence_length": 163.85714285714286,
+            "avg_word_length": 4.5522592711584355,
+            "syllables_per_word": 1.0767337525243255,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.0011933174224343676,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.0,
+            "ambiguity_score": 0.3689795918367347,
+            "overall_clarity": 0.0004773269689737471
+          },
+          "actionability": {
+            "action_verb_density": 0.021003534055443362,
+            "instruction_quality": 0.75,
+            "overall_actionability": 0.38550176702772165
+          },
+          "completeness": {
+            "completeness_score": 0.8,
+            "missing_elements": [
+              "error handling"
+            ]
+          },
+          "usability": {
+            "navigation_ease": 0.3333333333333333,
+            "information_findability": 0.42742755951288175,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.4355555555555556
+          },
+          "accessibility": {
+            "plain_language_score": 0.7946403983844318,
+            "technical_jargon_ratio": 0.009001514595190014,
+            "international_friendly": 1.0
+          }
+        },
+        "Meta-Llama-3-8B-Instruct": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 11.061539384846228,
+              "interpretation": "Very Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 17.67163533740578,
+              "interpretation": "Grade level: 17.7"
+            },
+            "gunning_fog": {
+              "score": 18.08469545957918,
+              "interpretation": "Years of education needed: 18.1"
+            },
+            "smog_index": {
+              "score": 16.65035576111208,
+              "interpretation": "Score: 16.65"
+            },
+            "automated_readability_index": {
+              "score": 24.746926949723957,
+              "interpretation": "Score: 24.75"
+            },
+            "coleman_liau_index": {
+              "score": 22.28948237059265,
+              "interpretation": "Score: 22.29"
+            },
+            "linsear_write_formula": {
+              "score": 16.2,
+              "interpretation": "Score: 16.20"
+            },
+            "dale_chall_readability_score": {
+              "score": 15.202896710606224,
+              "interpretation": "Score: 15.20"
+            },
+            "avg_sentence_length": 65.46666666666667,
+            "avg_word_length": 4.363902470406588,
+            "syllables_per_word": 1.1487712300566135,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.0,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.0,
+            "ambiguity_score": 0.38400000000000006,
+            "overall_clarity": 0.0
+          },
+          "actionability": {
+            "action_verb_density": 0.024704065877509007,
+            "instruction_quality": 0.75,
+            "overall_actionability": 0.38735203293875453
+          },
+          "completeness": {
+            "completeness_score": 0.8,
+            "missing_elements": [
+              "error handling"
+            ]
+          },
+          "usability": {
+            "navigation_ease": 0.3333333333333333,
+            "information_findability": 0.11334491336421341,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.4444444444444444
+          },
+          "accessibility": {
+            "plain_language_score": 0.8032681420483788,
+            "technical_jargon_ratio": 0.012062532166752444,
+            "international_friendly": 1.0
+          }
+        },
+        "Qwen2-7B-Instruct": {
+          "readability": {
+            "flesch_reading_ease": {
+              "score": 4.879264635124315,
+              "interpretation": "Very Difficult"
+            },
+            "flesch_kincaid_grade": {
+              "score": 18.356489937755377,
+              "interpretation": "Grade level: 18.4"
+            },
+            "gunning_fog": {
+              "score": 18.902429449726966,
+              "interpretation": "Years of education needed: 18.9"
+            },
+            "smog_index": {
+              "score": 17.183253754661557,
+              "interpretation": "Score: 17.18"
+            },
+            "automated_readability_index": {
+              "score": 25.442116583859825,
+              "interpretation": "Score: 25.44"
+            },
+            "coleman_liau_index": {
+              "score": 23.67435445068164,
+              "interpretation": "Score: 23.67"
+            },
+            "linsear_write_formula": {
+              "score": 15.666666666666668,
+              "interpretation": "Score: 15.67"
+            },
+            "dale_chall_readability_score": {
+              "score": 15.511721754305572,
+              "interpretation": "Score: 15.51"
+            },
+            "avg_sentence_length": 63.666666666666664,
+            "avg_word_length": 4.4990517241379315,
+            "syllables_per_word": 1.1977413793103449,
+            "overall_readability": "Poor - Difficult to understand"
+          },
+          "clarity": {
+            "specificity_score": 0.0,
+            "vagueness_score": 0.0,
+            "structure_score": 0.0,
+            "conditional_clarity": 0.0,
+            "ambiguity_score": 0.38400000000000006,
+            "overall_clarity": 0.0
+          },
+          "actionability": {
+            "action_verb_density": 0.025241379310344828,
+            "instruction_quality": 0.75,
+            "overall_actionability": 0.38762068965517243
+          },
+          "completeness": {
+            "completeness_score": 0.8,
+            "missing_elements": [
+              "error handling"
+            ]
+          },
+          "usability": {
+            "navigation_ease": 0.3333333333333333,
+            "information_findability": 0.1167528735632184,
+            "consistency_score": 1.0,
+            "user_friendliness": 0.46444444444444444
+          },
+          "accessibility": {
+            "plain_language_score": 0.7845517241379311,
+            "technical_jargon_ratio": 0.02046551724137931,
+            "international_friendly": 1.0
+          }
+        }
+      },
+      "system_info": {
+        "mistral": {
+          "cpu": {
+            "physical_cores": 12,
+            "logical_cores": 24,
+            "max_frequency": 0.0,
+            "cpu_model": "13th Gen Intel(R) Core(TM) i7-13700HX"
+          },
+          "memory": {
+            "total_gb": 15.460460662841797,
+            "available_gb": 9.561943054199219,
+            "used_gb": 5.501457214355469,
+            "percent": 38.2
+          },
+          "gpu": [
+            {
+              "id": 0,
+              "name": "NVIDIA RTX 2000 Ada Generation Laptop GPU",
+              "utilization": 2.0,
+              "memory_used": 3191.0,
+              "memory_total": 8188.0,
+              "temperature": 54.0,
+              "driver_version": "538.92",
+              "compute_capability": "(8, 9)",
+              "pcie_link_width": 8,
+              "pcie_link_gen": 4
+            }
+          ]
+        },
+        "gemma_7b_it_4bit": {
+          "cpu": {
+            "physical_cores": 12,
+            "logical_cores": 24,
+            "max_frequency": 0.0,
+            "cpu_model": "13th Gen Intel(R) Core(TM) i7-13700HX"
+          },
+          "memory": {
+            "total_gb": 15.460460662841797,
+            "available_gb": 10.605445861816406,
+            "used_gb": 4.457988739013672,
+            "percent": 31.4
+          },
+          "gpu": [
+            {
+              "id": 0,
+              "name": "NVIDIA RTX 2000 Ada Generation Laptop GPU",
+              "utilization": 39.0,
+              "memory_used": 2974.0,
+              "memory_total": 8188.0,
+              "temperature": 56.0,
+              "driver_version": "538.92",
+              "compute_capability": "(8, 9)",
+              "pcie_link_width": 8,
+              "pcie_link_gen": 4
+            }
+          ]
+        },
+        "Falcon3-7B-Base": {
+          "cpu": {
+            "physical_cores": 12,
+            "logical_cores": 24,
+            "max_frequency": 0.0,
+            "cpu_model": "13th Gen Intel(R) Core(TM) i7-13700HX"
+          },
+          "memory": {
+            "total_gb": 15.460460662841797,
+            "available_gb": 10.695022583007812,
+            "used_gb": 4.368064880371094,
+            "percent": 30.8
+          },
+          "gpu": [
+            {
+              "id": 0,
+              "name": "NVIDIA RTX 2000 Ada Generation Laptop GPU",
+              "utilization": 0.0,
+              "memory_used": 3745.0,
+              "memory_total": 8188.0,
+              "temperature": 56.0,
+              "driver_version": "538.92",
+              "compute_capability": "(8, 9)",
+              "pcie_link_width": 8,
+              "pcie_link_gen": 4
+            }
+          ]
+        },
+        "Meta-Llama-3-8B-Instruct": {
+          "cpu": {
+            "physical_cores": 12,
+            "logical_cores": 24,
+            "max_frequency": 0.0,
+            "cpu_model": "13th Gen Intel(R) Core(TM) i7-13700HX"
+          },
+          "memory": {
+            "total_gb": 15.460460662841797,
+            "available_gb": 11.01129150390625,
+            "used_gb": 4.052143096923828,
+            "percent": 28.8
+          },
+          "gpu": [
+            {
+              "id": 0,
+              "name": "NVIDIA RTX 2000 Ada Generation Laptop GPU",
+              "utilization": 91.0,
+              "memory_used": 3005.0,
+              "memory_total": 8188.0,
+              "temperature": 56.0,
+              "driver_version": "538.92",
+              "compute_capability": "(8, 9)",
+              "pcie_link_width": 8,
+              "pcie_link_gen": 4
+            }
+          ]
+        },
+        "Qwen2-7B-Instruct": {
+          "cpu": {
+            "physical_cores": 12,
+            "logical_cores": 24,
+            "max_frequency": 0.0,
+            "cpu_model": "13th Gen Intel(R) Core(TM) i7-13700HX"
+          },
+          "memory": {
+            "total_gb": 15.460460662841797,
+            "available_gb": 11.243419647216797,
+            "used_gb": 3.8200035095214844,
+            "percent": 27.3
+          },
+          "gpu": [
+            {
+              "id": 0,
+              "name": "NVIDIA RTX 2000 Ada Generation Laptop GPU",
+              "utilization": 28.000000000000004,
+              "memory_used": 3468.0,
+              "memory_total": 8188.0,
+              "temperature": 56.0,
+              "driver_version": "538.92",
+              "compute_capability": "(8, 9)",
+              "pcie_link_width": 8,
+              "pcie_link_gen": 4
+            }
+          ]
+        }
+      }
+    }
+  },
+  "performance_comparison": {
+    "mistral": {
+      "use_case_generation_detailed": {
+        "total_time": 573.895870923996,
+        "cpu": {
+          "mean_percent": 4.252418300653595,
+          "max_percent": 8.9,
+          "min_percent": 0.0,
+          "std_percent": 0.7519108782398436
+        },
+        "memory": {
+          "mean_mb": 5614.997109885621,
+          "max_mb": 5726.69921875,
+          "min_mb": 4420.63671875,
+          "peak_mb": 1306.0625
+        },
+        "gpu": {
+          "mean_percent": 81.40261437908497,
+          "max_percent": 99,
+          "mean_memory_mb": 7705.833986928104,
+          "max_memory_mb": 7800.0,
+          "peak_memory_mb": 5250.0,
+          "mean_temperature": 58.03006535947713,
+          "max_temperature": 60.0,
+          "mean_power_watts": 28.545985620915033,
+          "max_power_watts": 31.64,
+          "total_energy_joules": 16382.423279298899
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.7475816993464,
+          "memory_efficiency": 64.53277987827582,
+          "gpu_efficiency": 18.597385620915034,
+          "performance_per_watt": 35.03119539397937
+        }
+      },
+      "test_case_generation_detailed": {
+        "total_time": 763.3458533287048,
+        "cpu": {
+          "mean_percent": 4.268705402650357,
+          "max_percent": 9.5,
+          "min_percent": 0.0,
+          "std_percent": 0.7381336189404727
+        },
+        "memory": {
+          "mean_mb": 5518.49934696738,
+          "max_mb": 5814.71484375,
+          "min_mb": 5471.1875,
+          "peak_mb": 343.52734375
+        },
+        "gpu": {
+          "mean_percent": 78.31498470948013,
+          "max_percent": 100,
+          "mean_memory_mb": 7476.92252803262,
+          "max_memory_mb": 7680.0,
+          "peak_memory_mb": 5130.0,
+          "mean_temperature": 59.32517838939857,
+          "max_temperature": 61.0,
+          "mean_power_watts": 29.38824159021407,
+          "max_power_watts": 33.243,
+          "total_energy_joules": 22433.392354512092
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.73129459734965,
+          "memory_efficiency": 65.14230955953775,
+          "gpu_efficiency": 21.68501529051987,
+          "performance_per_watt": 34.02721448747679
+        }
+      },
+      "use_case_generation": {
+        "total_time": 571.9410042762756,
+        "memory_used": 1409.5546875,
+        "avg_time_per_file": 285.9705021381378
+      },
+      "test_case_generation": {
+        "total_time": 761.9556703567505,
+        "memory_used": -512.08203125
+      },
+      "total_time": 1333.8966746330261,
+      "total_memory": 897.47265625,
+      "files_per_second": 0.0034968641608949962
+    },
+    "gemma_7b_it_4bit": {
+      "use_case_generation_detailed": {
+        "total_time": 418.21154594421387,
+        "cpu": {
+          "mean_percent": 4.247882136279927,
+          "max_percent": 14.6,
+          "min_percent": 0.0,
+          "std_percent": 0.939098608269065
+        },
+        "memory": {
+          "mean_mb": 4679.84300184162,
+          "max_mb": 5041.53515625,
+          "min_mb": 4638.15625,
+          "peak_mb": 403.37890625
+        },
+        "gpu": {
+          "mean_percent": 84.23388581952118,
+          "max_percent": 100,
+          "mean_memory_mb": 7649.226519337017,
+          "max_memory_mb": 7725.0,
+          "peak_memory_mb": 4811.0,
+          "mean_temperature": 59.0,
+          "max_temperature": 61.0,
+          "mean_power_watts": 29.772171270718232,
+          "max_power_watts": 32.341,
+          "total_energy_joules": 12451.065773242983
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.75211786372007,
+          "memory_efficiency": 70.43969593693909,
+          "gpu_efficiency": 15.766114180478823,
+          "performance_per_watt": 33.58841351902097
+        }
+      },
+      "test_case_generation_detailed": {
+        "total_time": 880.3382036685944,
+        "cpu": {
+          "mean_percent": 4.293239683933275,
+          "max_percent": 8.8,
+          "min_percent": 0.0,
+          "std_percent": 0.7293892868972385
+        },
+        "memory": {
+          "mean_mb": 4603.548943014706,
+          "max_mb": 4836.08984375,
+          "min_mb": 4550.546875,
+          "peak_mb": 285.54296875
+        },
+        "gpu": {
+          "mean_percent": 88.40825285338016,
+          "max_percent": 100,
+          "mean_memory_mb": 7599.363476733977,
+          "max_memory_mb": 7665.0,
+          "peak_memory_mb": 4917.0,
+          "mean_temperature": 59.30904302019315,
+          "max_temperature": 61.0,
+          "mean_power_watts": 30.17200877963126,
+          "max_power_watts": 32.401,
+          "total_energy_joules": 26561.572010133645
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.70676031606672,
+          "memory_efficiency": 70.92160859431695,
+          "gpu_efficiency": 11.591747146619838,
+          "performance_per_watt": 33.143302035464316
+        }
+      },
+      "use_case_generation": {
+        "total_time": 416.97580790519714,
+        "memory_used": -170.55859375,
+        "avg_time_per_file": 208.48790395259857
+      },
+      "test_case_generation": {
+        "total_time": 878.9105448722839,
+        "memory_used": -14.8984375
+      },
+      "total_time": 1295.886352777481,
+      "total_memory": -185.45703125,
+      "files_per_second": 0.004796441333245684
+    },
+    "Falcon3-7B-Base": {
+      "use_case_generation_detailed": {
+        "total_time": 889.8896026611328,
+        "cpu": {
+          "mean_percent": 4.272519754170324,
+          "max_percent": 9.0,
+          "min_percent": 0.0,
+          "std_percent": 0.6456104694251563
+        },
+        "memory": {
+          "mean_mb": 4660.426638635865,
+          "max_mb": 4788.0859375,
+          "min_mb": 4578.37109375,
+          "peak_mb": 209.71484375
+        },
+        "gpu": {
+          "mean_percent": 82.53116769095698,
+          "max_percent": 98,
+          "mean_memory_mb": 7271.633889376646,
+          "max_memory_mb": 7306.0,
+          "peak_memory_mb": 4571.0,
+          "mean_temperature": 59.31694468832309,
+          "max_temperature": 60.0,
+          "mean_power_watts": 30.259622475856013,
+          "max_power_watts": 31.512,
+          "total_energy_joules": 26927.723421715393
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.72748024582968,
+          "memory_efficiency": 70.56233970937656,
+          "gpu_efficiency": 17.468832309043023,
+          "performance_per_watt": 33.04733893484278
+        }
+      },
+      "test_case_generation_detailed": {
+        "total_time": 1892.4220988750458,
+        "cpu": {
+          "mean_percent": 4.336257796257796,
+          "max_percent": 10.4,
+          "min_percent": 0.4,
+          "std_percent": 0.6568678657085829
+        },
+        "memory": {
+          "mean_mb": 4429.3071368243245,
+          "max_mb": 4745.28125,
+          "min_mb": 4380.140625,
+          "peak_mb": 365.140625
+        },
+        "gpu": {
+          "mean_percent": 84.84740124740125,
+          "max_percent": 100,
+          "mean_memory_mb": 7649.75841995842,
+          "max_memory_mb": 7776.0,
+          "peak_memory_mb": 4942.0,
+          "mean_temperature": 60.16632016632017,
+          "max_temperature": 62.0,
+          "mean_power_watts": 30.574500623700622,
+          "max_power_watts": 33.223,
+          "total_energy_joules": 57859.86064235993
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.6637422037422,
+          "memory_efficiency": 72.02220978317257,
+          "gpu_efficiency": 15.152598752598749,
+          "performance_per_watt": 32.70699372354831
+        }
+      },
+      "use_case_generation": {
+        "total_time": 888.9960052967072,
+        "memory_used": 102.55859375,
+        "avg_time_per_file": 444.4980026483536
+      },
+      "test_case_generation": {
+        "total_time": 1889.5524101257324,
+        "memory_used": -231.640625
+      },
+      "total_time": 2778.5484154224396,
+      "total_memory": -129.08203125,
+      "files_per_second": 0.0022497288942625667
+    },
+    "Meta-Llama-3-8B-Instruct": {
+      "use_case_generation_detailed": {
+        "total_time": 217.10747003555298,
+        "cpu": {
+          "mean_percent": 4.171841155234658,
+          "max_percent": 8.8,
+          "min_percent": 0.0,
+          "std_percent": 0.9674118977056734
+        },
+        "memory": {
+          "mean_mb": 4316.334146547834,
+          "max_mb": 4588.7265625,
+          "min_mb": 4254.65234375,
+          "peak_mb": 334.07421875
+        },
+        "gpu": {
+          "mean_percent": 77.07220216606498,
+          "max_percent": 100,
+          "mean_memory_mb": 7356.2743682310465,
+          "max_memory_mb": 7526.0,
+          "peak_memory_mb": 4712.0,
+          "mean_temperature": 57.97111913357401,
+          "max_temperature": 60.0,
+          "mean_power_watts": 27.79287003610108,
+          "max_power_watts": 30.651,
+          "total_energy_joules": 6034.039698564833
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.82815884476534,
+          "memory_efficiency": 72.73580550468975,
+          "gpu_efficiency": 22.927797833935017,
+          "performance_per_watt": 35.98045105457144
+        }
+      },
+      "test_case_generation_detailed": {
+        "total_time": 546.6640672683716,
+        "cpu": {
+          "mean_percent": 4.301014492753624,
+          "max_percent": 9.7,
+          "min_percent": 0.0,
+          "std_percent": 0.8336833669395709
+        },
+        "memory": {
+          "mean_mb": 4153.310745018116,
+          "max_mb": 4396.61328125,
+          "min_mb": 4095.3203125,
+          "peak_mb": 301.29296875
+        },
+        "gpu": {
+          "mean_percent": 83.35652173913043,
+          "max_percent": 99,
+          "mean_memory_mb": 7484.286956521739,
+          "max_memory_mb": 7563.0,
+          "peak_memory_mb": 4781.0,
+          "mean_temperature": 58.789855072463766,
+          "max_temperature": 60.0,
+          "mean_power_watts": 29.4175231884058,
+          "max_power_watts": 30.88,
+          "total_energy_joules": 16081.502875135548
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.69898550724638,
+          "memory_efficiency": 73.76554545893961,
+          "gpu_efficiency": 16.64347826086957,
+          "performance_per_watt": 33.99334449727316
+        }
+      },
+      "use_case_generation": {
+        "total_time": 216.06311202049255,
+        "memory_used": -112.421875,
+        "avg_time_per_file": 108.03155601024628
+      },
+      "test_case_generation": {
+        "total_time": 545.372320652008,
+        "memory_used": -173.83984375
+      },
+      "total_time": 761.4354326725006,
+      "total_memory": -286.26171875,
+      "files_per_second": 0.009256554630252246
+    },
+    "Qwen2-7B-Instruct": {
+      "use_case_generation_detailed": {
+        "total_time": 387.09004402160645,
+        "cpu": {
+          "mean_percent": 4.227108433734941,
+          "max_percent": 9.7,
+          "min_percent": 0.8,
+          "std_percent": 0.7632682266624797
+        },
+        "memory": {
+          "mean_mb": 3962.3494917168673,
+          "max_mb": 4089.5625,
+          "min_mb": 3934.296875,
+          "peak_mb": 155.265625
+        },
+        "gpu": {
+          "mean_percent": 80.60441767068274,
+          "max_percent": 100,
+          "mean_memory_mb": 7542.524096385542,
+          "max_memory_mb": 7810.0,
+          "peak_memory_mb": 4878.0,
+          "mean_temperature": 59.8574297188755,
+          "max_temperature": 62.0,
+          "mean_power_watts": 29.88441967871486,
+          "max_power_watts": 43.293,
+          "total_energy_joules": 11567.961328993897
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.77289156626506,
+          "memory_efficiency": 74.97175530607055,
+          "gpu_efficiency": 19.395582329317264,
+          "performance_per_watt": 33.46225259686902
+        }
+      },
+      "test_case_generation_detailed": {
+        "total_time": 639.0189814567566,
+        "cpu": {
+          "mean_percent": 4.254500616522812,
+          "max_percent": 8.1,
+          "min_percent": 0.0,
+          "std_percent": 0.6781521574420225
+        },
+        "memory": {
+          "mean_mb": 3922.4679552635635,
+          "max_mb": 4100.515625,
+          "min_mb": 3905.0859375,
+          "peak_mb": 195.4296875
+        },
+        "gpu": {
+          "mean_percent": 84.05918618988903,
+          "max_percent": 100,
+          "mean_memory_mb": 7629.062885326757,
+          "max_memory_mb": 7707.0,
+          "peak_memory_mb": 4540.0,
+          "mean_temperature": 59.65721331689272,
+          "max_temperature": 61.0,
+          "mean_power_watts": 29.711294697903824,
+          "max_power_watts": 30.953,
+          "total_energy_joules": 18986.081275616034
+        },
+        "efficiency": {
+          "cpu_efficiency": 95.74549938347718,
+          "memory_efficiency": 75.22366767654916,
+          "gpu_efficiency": 15.940813810110967,
+          "performance_per_watt": 33.65723406427494
+        }
+      },
+      "use_case_generation": {
+        "total_time": 386.12625670433044,
+        "memory_used": -1.96484375,
+        "avg_time_per_file": 193.06312835216522
+      },
+      "test_case_generation": {
+        "total_time": 637.8231937885284,
+        "memory_used": -63.234375
+      },
+      "total_time": 1023.9494504928589,
+      "total_memory": -65.19921875,
+      "files_per_second": 0.0051796529380582
+    }
+  },
+  "recommendations": [
+    "Overall recommendation: **Falcon3-7B-Base** (best in 1 metrics)",
+    "\n**Extended Metrics Insights:**"
+  ],
+  "llm_evaluator_info": {
+    "enabled": true,
+    "model": "gemma_2b_it",
+    "reason": "Fallback model - all standard models are being evaluated"
+  },
+  "extended_analysis": {
+    "consistency": {},
+    "trade_offs": {
+      "mistral": {
+        "quality_score": 0,
+        "speed_quality_ratio": 0.0,
+        "memory_quality_ratio": 0.0,
+        "efficiency_score": 0.0
+      },
+      "gemma_7b_it_4bit": {
+        "quality_score": 0,
+        "speed_quality_ratio": 0.0,
+        "memory_quality_ratio": 0.0,
+        "efficiency_score": 0.0
+      },
+      "Falcon3-7B-Base": {
+        "quality_score": 0,
+        "speed_quality_ratio": 0.0,
+        "memory_quality_ratio": 0.0,
+        "efficiency_score": 0.0
+      },
+      "Meta-Llama-3-8B-Instruct": {
+        "quality_score": 0,
+        "speed_quality_ratio": 0.0,
+        "memory_quality_ratio": 0.0,
+        "efficiency_score": 0.0
+      },
+      "Qwen2-7B-Instruct": {
+        "quality_score": 0,
+        "speed_quality_ratio": 0.0,
+        "memory_quality_ratio": 0.0,
+        "efficiency_score": 0.0
+      }
+    },
+    "scalability": {
+      "mistral": {
+        "files_per_second": 0.0034968641608949962,
+        "memory_efficiency": 2.2284801504224103,
+        "time_complexity": "O(n²) - Quadratic"
+      },
+      "gemma_7b_it_4bit": {
+        "files_per_second": 0.004796441333245684,
+        "memory_efficiency": 1000.0,
+        "time_complexity": "O(n²) - Quadratic"
+      },
+      "Falcon3-7B-Base": {
+        "files_per_second": 0.0022497288942625667,
+        "memory_efficiency": 1000.0,
+        "time_complexity": "O(n²) - Quadratic"
+      },
+      "Meta-Llama-3-8B-Instruct": {
+        "files_per_second": 0.009256554630252246,
+        "memory_efficiency": 1000.0,
+        "time_complexity": "O(n²) - Quadratic"
+      },
+      "Qwen2-7B-Instruct": {
+        "files_per_second": 0.0051796529380582,
+        "memory_efficiency": 1000.0,
+        "time_complexity": "O(n²) - Quadratic"
+      }
+    },
+    "robustness": {
+      "mistral": {
+        "error_rate": 0.0,
+        "success_rate": 1.0,
+        "graceful_failure": false,
+        "reliability_score": 100.0
+      },
+      "gemma_7b_it_4bit": {
+        "error_rate": 0.0,
+        "success_rate": 1.0,
+        "graceful_failure": false,
+        "reliability_score": 100.0
+      },
+      "Falcon3-7B-Base": {
+        "error_rate": 0.0,
+        "success_rate": 1.0,
+        "graceful_failure": false,
+        "reliability_score": 100.0
+      },
+      "Meta-Llama-3-8B-Instruct": {
+        "error_rate": 0.0,
+        "success_rate": 1.0,
+        "graceful_failure": false,
+        "reliability_score": 100.0
+      },
+      "Qwen2-7B-Instruct": {
+        "error_rate": 0.0,
+        "success_rate": 1.0,
+        "graceful_failure": false,
+        "reliability_score": 100.0
+      }
+    },
+    "statistical_significance": {
+      "mistral_vs_gemma_7b_it_4bit": {
+        "model1": "mistral",
+        "model2": "gemma_7b_it_4bit",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "gemma_7b_it_4bit"
+      },
+      "mistral_vs_Falcon3-7B-Base": {
+        "model1": "mistral",
+        "model2": "Falcon3-7B-Base",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "Falcon3-7B-Base"
+      },
+      "mistral_vs_Meta-Llama-3-8B-Instruct": {
+        "model1": "mistral",
+        "model2": "Meta-Llama-3-8B-Instruct",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "Meta-Llama-3-8B-Instruct"
+      },
+      "mistral_vs_Qwen2-7B-Instruct": {
+        "model1": "mistral",
+        "model2": "Qwen2-7B-Instruct",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "Qwen2-7B-Instruct"
+      },
+      "gemma_7b_it_4bit_vs_Falcon3-7B-Base": {
+        "model1": "gemma_7b_it_4bit",
+        "model2": "Falcon3-7B-Base",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "Falcon3-7B-Base"
+      },
+      "gemma_7b_it_4bit_vs_Meta-Llama-3-8B-Instruct": {
+        "model1": "gemma_7b_it_4bit",
+        "model2": "Meta-Llama-3-8B-Instruct",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "Meta-Llama-3-8B-Instruct"
+      },
+      "gemma_7b_it_4bit_vs_Qwen2-7B-Instruct": {
+        "model1": "gemma_7b_it_4bit",
+        "model2": "Qwen2-7B-Instruct",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "Qwen2-7B-Instruct"
+      },
+      "Falcon3-7B-Base_vs_Meta-Llama-3-8B-Instruct": {
+        "model1": "Falcon3-7B-Base",
+        "model2": "Meta-Llama-3-8B-Instruct",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "Meta-Llama-3-8B-Instruct"
+      },
+      "Falcon3-7B-Base_vs_Qwen2-7B-Instruct": {
+        "model1": "Falcon3-7B-Base",
+        "model2": "Qwen2-7B-Instruct",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "Qwen2-7B-Instruct"
+      },
+      "Meta-Llama-3-8B-Instruct_vs_Qwen2-7B-Instruct": {
+        "model1": "Meta-Llama-3-8B-Instruct",
+        "model2": "Qwen2-7B-Instruct",
+        "score_difference": 0.0,
+        "effect_size": 0.0,
+        "effect_interpretation": "Negligible",
+        "winner": "Qwen2-7B-Instruct"
+      }
+    },
+    "ranking": [
+      {
+        "model": "Meta-Llama-3-8B-Instruct",
+        "composite_score": 0.5,
+        "scores": {
+          "completeness": 0.0,
+          "validity": 0.0,
+          "speed": 1.0,
+          "memory": 1.0
+        },
+        "rank": 1
+      },
+      {
+        "model": "Qwen2-7B-Instruct",
+        "composite_score": 0.4117119887004864,
+        "scores": {
+          "completeness": 0.0,
+          "validity": 0.0,
+          "speed": 0.6468479548019457,
+          "memory": 1.0
+        },
+        "rank": 2
+      },
+      {
+        "model": "gemma_7b_it_4bit",
+        "composite_score": 0.35797373520782017,
+        "scores": {
+          "completeness": 0.0,
+          "validity": 0.0,
+          "speed": 0.4318949408312806,
+          "memory": 1.0
+        },
+        "rank": 3
+      },
+      {
+        "model": "Falcon3-7B-Base",
+        "composite_score": 0.25,
+        "scores": {
+          "completeness": 0.0,
+          "validity": 0.0,
+          "speed": 0.0,
+          "memory": 1.0
+        },
+        "rank": 4
+      },
+      {
+        "model": "mistral",
+        "composite_score": 0.10220775329102864,
+        "scores": {
+          "completeness": 0.0,
+          "validity": 0.0,
+          "speed": 0.4088310131641146,
+          "memory": 0.0
+        },
+        "rank": 5
+      }
+    ],
+    "recommendations": [
+      "Recommended model: Meta-Llama-3-8B-Instruct (highest composite score)",
+      "Meta-Llama-3-8B-Instruct excels at: speed, memory",
+      "Meta-Llama-3-8B-Instruct needs improvement in: completeness, validity",
+      "Qwen2-7B-Instruct excels at: memory",
+      "Qwen2-7B-Instruct needs improvement in: completeness, validity",
+      "gemma_7b_it_4bit excels at: memory",
+      "gemma_7b_it_4bit needs improvement in: completeness, validity",
+      "Falcon3-7B-Base excels at: memory",
+      "Falcon3-7B-Base needs improvement in: completeness, validity, speed",
+      "mistral needs improvement in: completeness, validity, memory",
+      "Best quality/performance balance: mistral"
+    ]
+  },
+  "dryrun_analysis": {
+    "timestamp": "2025-07-25T14:27:20.339166",
+    "summary": {
+      "total_models": 5,
+      "total_test_files": 10,
+      "total_successful": 0,
+      "total_failed": 10,
+      "overall_success_rate": 0.0,
+      "best_model": "mistral",
+      "worst_model": "mistral"
+    },
+    "by_model": {
+      "mistral": {
+        "total_files": 2,
+        "successful": 0,
+        "failed": 2,
+        "file_results": {
+          "Basic_Auth_PASS_use_case.robot": {
+            "file": "Basic_Auth_PASS_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          },
+          "Basic_Auth_FAIL_use_case.robot": {
+            "file": "Basic_Auth_FAIL_use_case.robot",
+            "success": false,
+            "errors": [
+              "No keyword with name 'Go To Page' found",
+              "No keyword with name 'Test Unauthorized Access:' found",
+              "No keyword with name '```' found",
+              "No keyword with name '[Documentation]' found",
+              "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found",
+              "No keyword with name 'Verify user cannot access protected content without credentials' found",
+              "No keyword with name 'Maximize Browser Window' found",
+              "No keyword with name 'Test Steps ***' found",
+              "No keyword with name 'new_window=yes' found",
+              "No keyword with name 'Element Should Contain' found",
+              "No keyword with name 'Teardown ***' found",
+              "No keyword with name 'Not authorized' found",
+              "No keyword with name '[Assert]' found",
+              "No keyword with name 'This test case uses the Browser library and follows the guidelines provided. It also includes proper setup and teardown steps, clear test actions, and appropriate waits and selectors.' found",
+              "No keyword with name '10 seconds' found",
+              "No keyword with name 'id=content' found",
+              "No keyword with name '[Wait]' found"
+            ],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nSetup failed:\nSeveral failures occurred:\n\n1) No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found.\n\n2) No keyword with name 'new_window=yes' found.\n\n3) No keyword with name 'Maximize Browser Window' found.\n\n4) No keyword with name 'Teardown ***' found.\n\nAlso teardown failed:\nSeveral failures occurred:\n\n1) Keyword 'Close Browser' expected 0 arguments, got 1.\n\n2) No keyword with name 'Test Steps ***' found.\n\n3) No keyword with name 'Test Unauthorized Access:' found.\n\n4) No keyword with name '[Documentation]' found.\n\n5) No keyword with name 'Verify user cannot access protected content without credentials' found.\n\n6) No keyword with name 'Go To Page' found. Did you try using keyword 'Browser.Go To' and forgot to use enough whitespace between keyword and arguments?\n\n7) No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found.\n\n8) No keyword with name '[Wait]' found.\n\n    [ Message content over the limit has been removed. ]\n\n22) No keyword with name '[Wait]' found.\n\n23) No keyword with name '10 seconds' found.\n\n24) Keyword name cannot be empty.\n\n25) No keyword with name '[Assert]' found.\n\n26) No keyword with name 'Element Should Contain' found.\n\n27) No keyword with name 'id=content' found.\n\n28) No keyword with name 'Not authorized' found.\n\n29) No keyword with name '```' found.\n\n30) No keyword with name 'This test case uses the Browser library and follows the guidelines provided. It also includes proper setup and teardown steps, clear test actions, and appropriate waits and selectors.' found.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword"
+            ],
+            "return_code": 1
+          }
+        },
+        "errors": [
+          "No keyword with name 'Go To Page' found",
+          "No keyword with name 'Test Unauthorized Access:' found",
+          "No keyword with name '```' found",
+          "No keyword with name '[Documentation]' found",
+          "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found",
+          "No keyword with name 'Verify user cannot access protected content without credentials' found",
+          "No keyword with name 'Maximize Browser Window' found",
+          "No keyword with name 'Test Steps ***' found",
+          "No keyword with name 'new_window=yes' found",
+          "No keyword with name 'Element Should Contain' found",
+          "No keyword with name 'Teardown ***' found",
+          "No keyword with name 'Not authorized' found",
+          "No keyword with name '[Assert]' found",
+          "No keyword with name 'This test case uses the Browser library and follows the guidelines provided. It also includes proper setup and teardown steps, clear test actions, and appropriate waits and selectors.' found",
+          "No keyword with name '10 seconds' found",
+          "No keyword with name 'id=content' found",
+          "No keyword with name '[Wait]' found"
+        ],
+        "warnings": [],
+        "execution_time": 1.129681,
+        "success_rate": 0.0
+      },
+      "gemma_7b_it_4bit": {
+        "total_files": 2,
+        "successful": 0,
+        "failed": 2,
+        "file_results": {
+          "Basic_Auth_PASS_use_case.robot": {
+            "file": "Basic_Auth_PASS_use_case.robot",
+            "success": false,
+            "errors": [
+              "Suite 'Basic Auth PASS use case' contains no tests or tasks.",
+              "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'."
+            ],
+            "warnings": [],
+            "output": "[ ERROR ] Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.\n[ ERROR ] Suite 'Basic Auth PASS use case' contains no tests or tasks.\n\nTry --help for usage information.\n",
+            "error_types": [
+              "other",
+              "other"
+            ],
+            "return_code": 252
+          },
+          "Basic_Auth_FAIL_use_case.robot": {
+            "file": "Basic_Auth_FAIL_use_case.robot",
+            "success": false,
+            "errors": [
+              "No keyword with name 'Close the browser' found",
+              "No keyword with name '```' found",
+              "No keyword with name 'Open the internet website \"the-internet.herokuapp.com/basic_auth\"' found",
+              "No keyword with name 'Please note that this is an example and may need to be modified based on the specific requirements of the use case.**' found"
+            ],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nUser cancels login and opens a different page :: Automated test fo... | FAIL |\nSetup failed:\nNo keyword with name 'Open the internet website \"the-internet.herokuapp.com/basic_auth\"' found.\n\nAlso teardown failed:\nSeveral failures occurred:\n\n1) No keyword with name 'Close the browser' found. Did you mean:\n    Browser.Close Browser\n    Close Browser\n\n2) No keyword with name '```' found.\n\n3) No keyword with name 'Please note that this is an example and may need to be modified based on the specific requirements of the use case.**' found.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword",
+              "missing_keyword"
+            ],
+            "return_code": 1
+          }
+        },
+        "errors": [
+          "Suite 'Basic Auth PASS use case' contains no tests or tasks.",
+          "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.",
+          "No keyword with name 'Close the browser' found",
+          "No keyword with name '```' found",
+          "No keyword with name 'Open the internet website \"the-internet.herokuapp.com/basic_auth\"' found",
+          "No keyword with name 'Please note that this is an example and may need to be modified based on the specific requirements of the use case.**' found"
+        ],
+        "warnings": [],
+        "execution_time": 0.6271960000000001,
+        "success_rate": 0.0
+      },
+      "Falcon3-7B-Base": {
+        "total_files": 2,
+        "successful": 0,
+        "failed": 2,
+        "file_results": {
+          "Basic_Auth_PASS_use_case.robot": {
+            "file": "Basic_Auth_PASS_use_case.robot",
+            "success": false,
+            "errors": [
+              "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Falcon3-7B-Base/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** Access Basic Auth Page'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.",
+              "Suite 'Basic Auth PASS use case' contains no tests or tasks."
+            ],
+            "warnings": [],
+            "output": "[ ERROR ] Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Falcon3-7B-Base/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** Access Basic Auth Page'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.\n[ ERROR ] Suite 'Basic Auth PASS use case' contains no tests or tasks.\n\nTry --help for usage information.\n",
+            "error_types": [
+              "other",
+              "other"
+            ],
+            "return_code": 252
+          },
+          "Basic_Auth_FAIL_use_case.robot": {
+            "file": "Basic_Auth_FAIL_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          }
+        },
+        "errors": [
+          "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Falcon3-7B-Base/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** Access Basic Auth Page'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.",
+          "Suite 'Basic Auth PASS use case' contains no tests or tasks."
+        ],
+        "warnings": [],
+        "execution_time": 0.648346,
+        "success_rate": 0.0
+      },
+      "Meta-Llama-3-8B-Instruct": {
+        "total_files": 2,
+        "successful": 0,
+        "failed": 2,
+        "file_results": {
+          "Basic_Auth_PASS_use_case.robot": {
+            "file": "Basic_Auth_PASS_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          },
+          "Basic_Auth_FAIL_use_case.robot": {
+            "file": "Basic_Auth_FAIL_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth FAIL use case :: This test case verifies the functionality of th...\n==============================================================================\nTest Login Functionality :: This test case verifies the functional... | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: This test case verifies the functional... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          }
+        },
+        "errors": [],
+        "warnings": [],
+        "execution_time": 1.045912,
+        "success_rate": 0.0
+      },
+      "Qwen2-7B-Instruct": {
+        "total_files": 2,
+        "successful": 0,
+        "failed": 2,
+        "file_results": {
+          "Basic_Auth_PASS_use_case.robot": {
+            "file": "Basic_Auth_PASS_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          },
+          "Basic_Auth_FAIL_use_case.robot": {
+            "file": "Basic_Auth_FAIL_use_case.robot",
+            "success": false,
+            "errors": [],
+            "warnings": [],
+            "output": "==============================================================================\nBasic Auth FAIL use case :: This test case verifies unauthorized access att...\n==============================================================================\nTest Login Functionality :: This test case verifies unauthorized a... | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: This test case verifies unauthorized a... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+            "error_types": [],
+            "return_code": 1
+          }
+        },
+        "errors": [],
+        "warnings": [],
+        "execution_time": 1.0476260000000002,
+        "success_rate": 0.0
+      }
+    },
+    "error_analysis": {
+      "error_type_distribution": {
+        "missing_keyword": 21,
+        "other": 4
+      },
+      "common_errors": {
+        "No keyword with name 'Go To Page' found": 1,
+        "No keyword with name 'Test Unauthorized Access:' found": 1,
+        "No keyword with name '```' found": 2,
+        "No keyword with name '[Documentation]' found": 1,
+        "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found": 1,
+        "No keyword with name 'Verify user cannot access protected content without credentials' found": 1,
+        "No keyword with name 'Maximize Browser Window' found": 1,
+        "No keyword with name 'Test Steps ***' found": 1,
+        "No keyword with name 'new_window=yes' found": 1,
+        "No keyword with name 'Element Should Contain' found": 1,
+        "No keyword with name 'Teardown ***' found": 1,
+        "No keyword with name 'Not authorized' found": 1,
+        "No keyword with name '[Assert]' found": 1,
+        "No keyword with name 'This test case uses the Browser library and follows the guidelines provided. It also includes proper setup and teardown steps, clear test actions, and appropriate waits and selectors.' found": 1,
+        "No keyword with name '10 seconds' found": 1,
+        "No keyword with name 'id=content' found": 1,
+        "No keyword with name '[Wait]' found": 1,
+        "Suite 'Basic Auth PASS use case' contains no tests or tasks.": 2,
+        "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.": 1,
+        "No keyword with name 'Close the browser' found": 1,
+        "No keyword with name 'Open the internet website \"the-internet.herokuapp.com/basic_auth\"' found": 1,
+        "No keyword with name 'Please note that this is an example and may need to be modified based on the specific requirements of the use case.**' found": 1,
+        "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Falcon3-7B-Base/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** Access Basic Auth Page'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.": 1
+      },
+      "model_error_patterns": {
+        "mistral": {
+          "missing_keyword": 17
+        },
+        "gemma_7b_it_4bit": {
+          "other": 2,
+          "missing_keyword": 4
+        },
+        "Falcon3-7B-Base": {
+          "other": 2
+        },
+        "Meta-Llama-3-8B-Instruct": {},
+        "Qwen2-7B-Instruct": {}
+      },
+      "top_errors": [
+        [
+          "No keyword with name '```' found",
+          2
+        ],
+        [
+          "Suite 'Basic Auth PASS use case' contains no tests or tasks.",
+          2
+        ],
+        [
+          "No keyword with name 'Go To Page' found",
+          1
+        ],
+        [
+          "No keyword with name 'Test Unauthorized Access:' found",
+          1
+        ],
+        [
+          "No keyword with name '[Documentation]' found",
+          1
+        ],
+        [
+          "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found",
+          1
+        ],
+        [
+          "No keyword with name 'Verify user cannot access protected content without credentials' found",
+          1
+        ],
+        [
+          "No keyword with name 'Maximize Browser Window' found",
+          1
+        ],
+        [
+          "No keyword with name 'Test Steps ***' found",
+          1
+        ],
+        [
+          "No keyword with name 'new_window=yes' found",
+          1
+        ]
+      ]
+    },
+    "comparative_analysis": {
+      "success_rates": {
+        "mistral": 0.0,
+        "gemma_7b_it_4bit": 0.0,
+        "Falcon3-7B-Base": 0.0,
+        "Meta-Llama-3-8B-Instruct": 0.0,
+        "Qwen2-7B-Instruct": 0.0
+      },
+      "error_prone_models": [
+        "mistral",
+        "gemma_7b_it_4bit"
+      ],
+      "most_stable_models": [
+        "Meta-Llama-3-8B-Instruct",
+        "Qwen2-7B-Instruct"
+      ],
+      "execution_efficiency": {
+        "mistral": {
+          "avg_time_per_file": 0.5648405,
+          "total_time": 1.129681
+        },
+        "gemma_7b_it_4bit": {
+          "avg_time_per_file": 0.31359800000000004,
+          "total_time": 0.6271960000000001
+        },
+        "Falcon3-7B-Base": {
+          "avg_time_per_file": 0.324173,
+          "total_time": 0.648346
+        },
+        "Meta-Llama-3-8B-Instruct": {
+          "avg_time_per_file": 0.522956,
+          "total_time": 1.045912
+        },
+        "Qwen2-7B-Instruct": {
+          "avg_time_per_file": 0.5238130000000001,
+          "total_time": 1.0476260000000002
+        }
+      }
+    }
+  }
+}

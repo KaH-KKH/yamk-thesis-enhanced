@@ -3,32 +3,34 @@ USE CASE: ** Login to the website with valid credentials
 ID: ** UC-LOGIN-001
 
 ACTORS:
-- admin
-- user
 - you
+- user
+- admin
 - User
 
 PRECONDITIONS:
-1. The user has internet access.
-2. The user has a valid username and password.
+1. User has internet connection
+2. User knows username and password for the website
 
 MAIN FLOW:
-1. The user opens the website:  the-internet.herokuapp.com/basic_auth.
-2. The user checks the header: "This site is asking you to sign in."
-3. The user inputs the username "admin" into the field "Username."
-4. 4. The user inputs the password "admin" into the field "Password."
-5. 5. The user presses the button "Sign in."
-6. 6. The browser page opens and two headers are displayed: "Basic Auth" and "Congratulations! You must have the proper credentials."
-7. **Alternative Flows:**
-8. If the user enters an invalid username or password, an error message will be displayed.
-9. If the user forgets their password, they can click on the "Forgot password" link to reset their password.
+1. User opens the website:  the-internet.herokuapp.com/basic_auth
+2. User sees a message indicating the site requires authentication
+3. User inputs username "admin" into the Username field
+4. 4. User inputs password "admin" into the Password field
+5. 5. User clicks the Sign in button
+6. 6. User is redirected to a new page with two headers
+7. Basic Auth
+8. Congratulations! You must have the proper credentials.
+9. **Alternative Flows:**
+10. If the user enters invalid credentials, the system will display an error message.
+11. If the user forgets their password, they can click on the "Forgot password" link to reset their password.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. The user is logged into the website.
-2. The user can access the website's features and functionality.
+1. User is logged into the website
+2. User can access the website features
 
 NOTES:
 None

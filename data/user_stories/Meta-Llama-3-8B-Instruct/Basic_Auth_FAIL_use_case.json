@@ -1,25 +1,24 @@
 {
-  "id": "UC-001",
-  "title": "** Cancel Basic Authentication",
+  "id": "UC-BASICAUTH-001",
+  "title": "Cancel Basic Authentication",
   "actors": [
     "button"
   ],
   "preconditions": [
-    "The user has navigated to the basic authentication page.",
-    "The user has not yet entered any authentication credentials."
+    "The user is on the \"Basic Auth\" page of the \"The Internet\" website.",
+    "The header of the page contains the message \"This site is asking you to sign in.\""
   ],
   "main_flow": [
-    "The user presses the Cancel button on the basic authentication page.",
-    "The system prompts the user to sign in.",
-    "The user is redirected to the original page without entering any authentication credentials.",
-    "4. The browser page opens, and the text \"Not authorized\" is displayed.",
-    "**Alternative Flows:** None"
+    "The user clicks the \"Cancel\" button on the \"Basic Auth\" page.",
+    "The browser page is redirected to a new page with the text \"Not authorized\".",
+    "Alternative Flows:",
+    "None"
   ],
   "alternative_flows": null,
   "postconditions": [
-    "The user is not authenticated.",
-    "The browser page displays the text \"Not authorized\".",
-    "The user is not redirected to any other page."
+    "The user is redirected to a new page with the text \"Not authorized\".",
+    "The browser page does not contain the original \"Basic Auth\" page anymore.",
+    "Note: This use case is focused on the \"Cancel\" button and its effects on the page. It does not cover the entire login process or any other possible scenarios."
   ],
   "notes": null
 }

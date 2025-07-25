@@ -1,32 +1,27 @@
 {
   "id": "UC-001",
-  "title": "Verify basic authentication process and access denied scenario",
+  "title": "Verify unauthorized access attempt on basic authentication page",
   "actors": [
     "button",
-    "User: The person attempting to access the protected content."
+    "User"
   ],
   "preconditions": [
-    "The user has a web browser capable of accessing internet resources.",
-    "The internet connection is stable and functional.",
-    "The URL \"https://the-internet.herokuapp.com/basic_auth\" is accessible online."
+    "The user has an active internet connection",
+    "The system is configured to use basic authentication on the URL specified in the requirement"
   ],
   "main_flow": [
-    "User initiates action**: The user opens their web browser and navigates to the URL \"https://the-internet.herokuapp.com/basic_auth\".",
-    "System requests credentials**: The website displays an authentication prompt asking for login credentials.",
-    "User presses cancel**: Instead of entering the credentials, the user clicks on the 'Cancel' button to bypass authentication.",
-    "4. **Access denied**: The browser page updates and shows the text \"Not authorized\".",
-    "Alternative Flows:",
-    "If user inputs valid credentials**:",
-    "System accepts credentials**: If the user enters valid credentials (username and password), the system processes them.",
-    "User gains access**: The user is redirected to the intended page or content if authentication is successful.",
-    "If user inputs incorrect credentials**:",
-    "System rejects credentials**: The website might display an error message indicating that the provided credentials are incorrect.",
-    "User is prompted again**: The user may be allowed to re-enter the credentials after the error message is displayed."
+    "Actor**: User navigates to the URL \"https://the-internet.herokuapp.com/basic_auth\" using their web browser.",
+    "Action**: The user's browser loads the webpage and displays a login prompt requesting username and password.",
+    "Decision**: The user does not enter any credentials and presses the \"Cancel\" button instead of providing them.",
+    "4. **Result**: The webpage remains loaded, but the user interface changes to display the text \"Not authorized\".",
+    "Alternative Flows (not applicable as no variations based on user input are described):",
+    "No alternative flows since the flow is deterministic based on the preconditions and actions."
   ],
   "alternative_flows": null,
   "postconditions": [
-    "After the user cancels the authentication prompt, the browser should show the text \"Not authorized\", indicating that the user does not have access to the protected content.",
-    "Any alternative flows involving correct or incorrect credentials should result in either successful access or appropriate error messages being displayed, respectively."
+    "The user is aware that they need to provide valid credentials to access the content protected by basic authentication.",
+    "The webpage correctly identifies that the user has attempted access without proper credentials and denies access by displaying the \"Not authorized\" message.",
+    "No unauthorized data is accessed or processed as a result of this interaction."
   ],
   "notes": null
 }

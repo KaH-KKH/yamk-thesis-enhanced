@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-07-25T14:27:20.339166",
+  "summary": {
+    "total_models": 5,
+    "total_test_files": 10,
+    "total_successful": 0,
+    "total_failed": 10,
+    "overall_success_rate": 0.0,
+    "best_model": "mistral",
+    "worst_model": "mistral"
+  },
+  "by_model": {
+    "mistral": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [
+            "No keyword with name 'Go To Page' found",
+            "No keyword with name 'Test Unauthorized Access:' found",
+            "No keyword with name '```' found",
+            "No keyword with name '[Documentation]' found",
+            "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found",
+            "No keyword with name 'Verify user cannot access protected content without credentials' found",
+            "No keyword with name 'Maximize Browser Window' found",
+            "No keyword with name 'Test Steps ***' found",
+            "No keyword with name 'new_window=yes' found",
+            "No keyword with name 'Element Should Contain' found",
+            "No keyword with name 'Teardown ***' found",
+            "No keyword with name 'Not authorized' found",
+            "No keyword with name '[Assert]' found",
+            "No keyword with name 'This test case uses the Browser library and follows the guidelines provided. It also includes proper setup and teardown steps, clear test actions, and appropriate waits and selectors.' found",
+            "No keyword with name '10 seconds' found",
+            "No keyword with name 'id=content' found",
+            "No keyword with name '[Wait]' found"
+          ],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nSetup failed:\nSeveral failures occurred:\n\n1) No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found.\n\n2) No keyword with name 'new_window=yes' found.\n\n3) No keyword with name 'Maximize Browser Window' found.\n\n4) No keyword with name 'Teardown ***' found.\n\nAlso teardown failed:\nSeveral failures occurred:\n\n1) Keyword 'Close Browser' expected 0 arguments, got 1.\n\n2) No keyword with name 'Test Steps ***' found.\n\n3) No keyword with name 'Test Unauthorized Access:' found.\n\n4) No keyword with name '[Documentation]' found.\n\n5) No keyword with name 'Verify user cannot access protected content without credentials' found.\n\n6) No keyword with name 'Go To Page' found. Did you try using keyword 'Browser.Go To' and forgot to use enough whitespace between keyword and arguments?\n\n7) No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found.\n\n8) No keyword with name '[Wait]' found.\n\n    [ Message content over the limit has been removed. ]\n\n22) No keyword with name '[Wait]' found.\n\n23) No keyword with name '10 seconds' found.\n\n24) Keyword name cannot be empty.\n\n25) No keyword with name '[Assert]' found.\n\n26) No keyword with name 'Element Should Contain' found.\n\n27) No keyword with name 'id=content' found.\n\n28) No keyword with name 'Not authorized' found.\n\n29) No keyword with name '```' found.\n\n30) No keyword with name 'This test case uses the Browser library and follows the guidelines provided. It also includes proper setup and teardown steps, clear test actions, and appropriate waits and selectors.' found.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword"
+          ],
+          "return_code": 1
+        }
+      },
+      "errors": [
+        "No keyword with name 'Go To Page' found",
+        "No keyword with name 'Test Unauthorized Access:' found",
+        "No keyword with name '```' found",
+        "No keyword with name '[Documentation]' found",
+        "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found",
+        "No keyword with name 'Verify user cannot access protected content without credentials' found",
+        "No keyword with name 'Maximize Browser Window' found",
+        "No keyword with name 'Test Steps ***' found",
+        "No keyword with name 'new_window=yes' found",
+        "No keyword with name 'Element Should Contain' found",
+        "No keyword with name 'Teardown ***' found",
+        "No keyword with name 'Not authorized' found",
+        "No keyword with name '[Assert]' found",
+        "No keyword with name 'This test case uses the Browser library and follows the guidelines provided. It also includes proper setup and teardown steps, clear test actions, and appropriate waits and selectors.' found",
+        "No keyword with name '10 seconds' found",
+        "No keyword with name 'id=content' found",
+        "No keyword with name '[Wait]' found"
+      ],
+      "warnings": [],
+      "execution_time": 1.129681,
+      "success_rate": 0.0
+    },
+    "gemma_7b_it_4bit": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [
+            "Suite 'Basic Auth PASS use case' contains no tests or tasks.",
+            "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'."
+          ],
+          "warnings": [],
+          "output": "[ ERROR ] Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.\n[ ERROR ] Suite 'Basic Auth PASS use case' contains no tests or tasks.\n\nTry --help for usage information.\n",
+          "error_types": [
+            "other",
+            "other"
+          ],
+          "return_code": 252
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [
+            "No keyword with name 'Close the browser' found",
+            "No keyword with name '```' found",
+            "No keyword with name 'Open the internet website \"the-internet.herokuapp.com/basic_auth\"' found",
+            "No keyword with name 'Please note that this is an example and may need to be modified based on the specific requirements of the use case.**' found"
+          ],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nUser cancels login and opens a different page :: Automated test fo... | FAIL |\nSetup failed:\nNo keyword with name 'Open the internet website \"the-internet.herokuapp.com/basic_auth\"' found.\n\nAlso teardown failed:\nSeveral failures occurred:\n\n1) No keyword with name 'Close the browser' found. Did you mean:\n    Browser.Close Browser\n    Close Browser\n\n2) No keyword with name '```' found.\n\n3) No keyword with name 'Please note that this is an example and may need to be modified based on the specific requirements of the use case.**' found.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword",
+            "missing_keyword"
+          ],
+          "return_code": 1
+        }
+      },
+      "errors": [
+        "Suite 'Basic Auth PASS use case' contains no tests or tasks.",
+        "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.",
+        "No keyword with name 'Close the browser' found",
+        "No keyword with name '```' found",
+        "No keyword with name 'Open the internet website \"the-internet.herokuapp.com/basic_auth\"' found",
+        "No keyword with name 'Please note that this is an example and may need to be modified based on the specific requirements of the use case.**' found"
+      ],
+      "warnings": [],
+      "execution_time": 0.6271960000000001,
+      "success_rate": 0.0
+    },
+    "Falcon3-7B-Base": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [
+            "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Falcon3-7B-Base/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** Access Basic Auth Page'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.",
+            "Suite 'Basic Auth PASS use case' contains no tests or tasks."
+          ],
+          "warnings": [],
+          "output": "[ ERROR ] Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Falcon3-7B-Base/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** Access Basic Auth Page'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.\n[ ERROR ] Suite 'Basic Auth PASS use case' contains no tests or tasks.\n\nTry --help for usage information.\n",
+          "error_types": [
+            "other",
+            "other"
+          ],
+          "return_code": 252
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        }
+      },
+      "errors": [
+        "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Falcon3-7B-Base/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** Access Basic Auth Page'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.",
+        "Suite 'Basic Auth PASS use case' contains no tests or tasks."
+      ],
+      "warnings": [],
+      "execution_time": 0.648346,
+      "success_rate": 0.0
+    },
+    "Meta-Llama-3-8B-Instruct": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: This test case verifies the functionality of th...\n==============================================================================\nTest Login Functionality :: This test case verifies the functional... | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: This test case verifies the functional... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        }
+      },
+      "errors": [],
+      "warnings": [],
+      "execution_time": 1.045912,
+      "success_rate": 0.0
+    },
+    "Qwen2-7B-Instruct": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: This test case verifies unauthorized access att...\n==============================================================================\nTest Login Functionality :: This test case verifies unauthorized a... | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: This test case verifies unauthorized a... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        }
+      },
+      "errors": [],
+      "warnings": [],
+      "execution_time": 1.0476260000000002,
+      "success_rate": 0.0
+    }
+  },
+  "error_analysis": {
+    "error_type_distribution": {
+      "missing_keyword": 21,
+      "other": 4
+    },
+    "common_errors": {
+      "No keyword with name 'Go To Page' found": 1,
+      "No keyword with name 'Test Unauthorized Access:' found": 1,
+      "No keyword with name '```' found": 2,
+      "No keyword with name '[Documentation]' found": 1,
+      "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found": 1,
+      "No keyword with name 'Verify user cannot access protected content without credentials' found": 1,
+      "No keyword with name 'Maximize Browser Window' found": 1,
+      "No keyword with name 'Test Steps ***' found": 1,
+      "No keyword with name 'new_window=yes' found": 1,
+      "No keyword with name 'Element Should Contain' found": 1,
+      "No keyword with name 'Teardown ***' found": 1,
+      "No keyword with name 'Not authorized' found": 1,
+      "No keyword with name '[Assert]' found": 1,
+      "No keyword with name 'This test case uses the Browser library and follows the guidelines provided. It also includes proper setup and teardown steps, clear test actions, and appropriate waits and selectors.' found": 1,
+      "No keyword with name '10 seconds' found": 1,
+      "No keyword with name 'id=content' found": 1,
+      "No keyword with name '[Wait]' found": 1,
+      "Suite 'Basic Auth PASS use case' contains no tests or tasks.": 2,
+      "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/gemma_7b_it_4bit/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '**'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.": 1,
+      "No keyword with name 'Close the browser' found": 1,
+      "No keyword with name 'Open the internet website \"the-internet.herokuapp.com/basic_auth\"' found": 1,
+      "No keyword with name 'Please note that this is an example and may need to be modified based on the specific requirements of the use case.**' found": 1,
+      "Error in file '/home/kkhalttunen/yamk_thesis_enhanced/data/test_cases/Falcon3-7B-Base/Basic_Auth_PASS_use_case.robot' on line 17: Unrecognized section header '** Access Basic Auth Page'. Valid sections: 'Settings', 'Variables', 'Test Cases', 'Tasks', 'Keywords' and 'Comments'.": 1
+    },
+    "model_error_patterns": {
+      "mistral": {
+        "missing_keyword": 17
+      },
+      "gemma_7b_it_4bit": {
+        "other": 2,
+        "missing_keyword": 4
+      },
+      "Falcon3-7B-Base": {
+        "other": 2
+      },
+      "Meta-Llama-3-8B-Instruct": {},
+      "Qwen2-7B-Instruct": {}
+    },
+    "top_errors": [
+      [
+        "No keyword with name '```' found",
+        2
+      ],
+      [
+        "Suite 'Basic Auth PASS use case' contains no tests or tasks.",
+        2
+      ],
+      [
+        "No keyword with name 'Go To Page' found",
+        1
+      ],
+      [
+        "No keyword with name 'Test Unauthorized Access:' found",
+        1
+      ],
+      [
+        "No keyword with name '[Documentation]' found",
+        1
+      ],
+      [
+        "No keyword with name 'https://the-internet.herokuapp.com/basic_auth' found",
+        1
+      ],
+      [
+        "No keyword with name 'Verify user cannot access protected content without credentials' found",
+        1
+      ],
+      [
+        "No keyword with name 'Maximize Browser Window' found",
+        1
+      ],
+      [
+        "No keyword with name 'Test Steps ***' found",
+        1
+      ],
+      [
+        "No keyword with name 'new_window=yes' found",
+        1
+      ]
+    ]
+  },
+  "comparative_analysis": {
+    "success_rates": {
+      "mistral": 0.0,
+      "gemma_7b_it_4bit": 0.0,
+      "Falcon3-7B-Base": 0.0,
+      "Meta-Llama-3-8B-Instruct": 0.0,
+      "Qwen2-7B-Instruct": 0.0
+    },
+    "error_prone_models": [
+      "mistral",
+      "gemma_7b_it_4bit"
+    ],
+    "most_stable_models": [
+      "Meta-Llama-3-8B-Instruct",
+      "Qwen2-7B-Instruct"
+    ],
+    "execution_efficiency": {
+      "mistral": {
+        "avg_time_per_file": 0.5648405,
+        "total_time": 1.129681
+      },
+      "gemma_7b_it_4bit": {
+        "avg_time_per_file": 0.31359800000000004,
+        "total_time": 0.6271960000000001
+      },
+      "Falcon3-7B-Base": {
+        "avg_time_per_file": 0.324173,
+        "total_time": 0.648346
+      },
+      "Meta-Llama-3-8B-Instruct": {
+        "avg_time_per_file": 0.522956,
+        "total_time": 1.045912
+      },
+      "Qwen2-7B-Instruct": {
+        "avg_time_per_file": 0.5238130000000001,
+        "total_time": 1.0476260000000002
+      }
+    }
+  }
+}

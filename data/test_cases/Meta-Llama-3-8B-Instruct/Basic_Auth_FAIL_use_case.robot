@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation    Tests the cancel button functionality on the basic authentication page
+Documentation    This test case verifies the functionality of the "Cancel" button on the "Basic Auth" page.
 Library          Browser
-Test Tags        basic-authentication cancel-button
+Test Tags        Cancel Button Basic Auth Redirect
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -15,26 +15,16 @@ ${TIMEOUT}       10s
 
 *** Test Cases ***
 Test Login Functionality
-    [Documentation]    Tests the cancel button functionality on the basic authentication page
-    [Tags]    basic-authentication cancel-button
-    [Setup]    Run Keywords
-    ...    Open Browser    https://the-internet.herokuapp.com/basic_auth    chrome
-    ...    Maximize Browser Window
+    [Documentation]    This test case verifies the functionality of the "Cancel" button on the "Basic Auth" page.
+    [Tags]    Cancel Button Basic Auth Redirect
     
-    Click    text="B"
-    Wait For Elements State
-    Get Text
-    
-    [Teardown]    Run Keywords
-    ...    Close Browser
-    ...    Keywords Used:
-    ...    Open Browser
-    ...    Maximize Browser Window
-    ...    Click Button
-    ...    Wait Until Page Contains
-    ...    Verify Page Contains
-    ...    Close Browser
-    ...    Note: You can run this test case using Robot Framework, and it should pass if the cancel button functionality is working correctly. If the test case fails, it indicates that there is an issue with the cancel button functionality. You can modify the test case as needed to better test the functionality.
+    New Browser    ${BROWSER}    headless=${HEADLESS}
+    New Page    ${BASE_URL}/login
+    Type Text    id=username    tomsmith
+    Type Text    id=password    SuperSecretPassword!
+    Click    css=button[type='submit']
+    Wait For Elements State    text=You logged into a secure area!    visible
+    Take Screenshot
 
 *** Keywords ***
 Setup Browser

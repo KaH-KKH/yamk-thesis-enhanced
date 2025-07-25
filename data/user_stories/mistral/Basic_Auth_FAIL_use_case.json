@@ -1,27 +1,31 @@
 {
-  "id": "UC-001",
-  "title": "Unauthorized Access to Basic Auth Page",
+  "id": "** UC-ACCESS-UNAUTHORIZED-001",
+  "title": "** Unauthorized Access to Protected Page",
   "actors": [
     "button",
     "User"
   ],
   "preconditions": [
-    "User is on the Basic Auth page (https://the-internet.herokuapp.com/basic_auth)",
-    "User has not provided valid credentials for authorization"
+    "User is on the website: https://the-internet.herokuapp.com/basic_auth",
+    "User does not provide valid credentials for authentication"
   ],
   "main_flow": [
     "User navigates to the URL: https://the-internet.herokuapp.com/basic_auth",
-    "System checks if user has provided valid credentials for authorization",
-    "User presses the Cancel button instead of entering credentials",
-    "4. System displays the \"Not authorized\" message and the page remains unchanged",
-    "Alternative flows (if any):",
-    "N/A"
+    "System displays a dialog box requesting username and password for authentication.",
+    "User clicks the Cancel button instead of entering credentials.",
+    "4. System responds with an error message \"Not authorized\" and displays the text on the page."
   ],
   "alternative_flows": null,
   "postconditions": [
-    "User remains on the Basic Auth page",
-    "\"Not authorized\" message is displayed",
-    "User is unable to access protected resources without proper authorization."
+    "User remains on the same page.",
+    "The error message \"Not authorized\" remains visible on the page.",
+    "User cannot access the protected content on the page.",
+    "**Alternative flows:**",
+    "If user enters valid credentials, they will be granted access to the protected page.",
+    "If user enters incorrect credentials multiple times, the system may lock the account temporarily or permanently.",
+    "If the connection is lost during authentication, the user will be prompted to re-enter their credentials.",
+    "---",
+    "This use case follows the standard format and covers the given requirement while maintaining clarity and testability."
   ],
   "notes": null
 }

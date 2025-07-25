@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation    ** This test case verifies that the user can cancel login on the basic authentication page.
+Documentation    Automated test for login functionality
 Library          Browser
-Test Tags        ** smoke login
+Test Tags        smoke regression
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -14,23 +14,20 @@ ${HEADLESS}      false
 ${TIMEOUT}       10s
 
 *** Test Cases ***
-Test Login Functionality
-    [Documentation]    ** This test case verifies that the user can cancel login on the basic authentication page.
-    [Tags]    ** smoke login
+User cancels login and opens a different page
+    [Documentation]    Automated test for login functionality
+    [Tags]    smoke regression
     [Setup]    Run Keywords
-    ...    Open the browser
-    ...    Navigate to the basic authentication page
+    ...    Open the internet website "the-internet.herokuapp.com/basic_auth"
     
-    Get Text
-    Log    Action: Press the "Cancel" button
-    Get Text
-    Get Text
+    Log    Action: The website prompts the user to sign in and displays a message "This site is asking you to sign in".
+    Log    Action: Press the "Cancel" button.
+    Log    Action: The browser opens a new page with the text "Not authorized".
     
     [Teardown]    Run Keywords
     ...    Close the browser
-    ...    Expected Results:**
-    ...    The user is not logged in to the website.
-    ...    The user has seen the text "Not authorized" on the page.
+    ...    ```
+    ...    Please note that this is an example and may need to be modified based on the specific requirements of the use case.**
 
 *** Keywords ***
 Setup Browser

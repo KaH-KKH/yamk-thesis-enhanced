@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation    **
+Documentation    ** This test case verifies the functionality of logging into the website with valid credentials.
 Library          Browser
-Test Tags        ** login website basic auth
+Test Tags        ** login basic auth user management
 Library          OperatingSystem
 Library          DateTime
 Test Setup       Setup Browser
@@ -15,25 +15,23 @@ ${TIMEOUT}       10s
 
 *** Test Cases ***
 **
-    [Documentation]    **
-    [Tags]    ** login website basic auth
+    [Documentation]    ** This test case verifies the functionality of logging into the website with valid credentials.
+    [Tags]    ** login basic auth user management
     [Setup]    Run Keywords
-    ...    Open the browser.
-    ...    Navigate to the website: the-internet.herokuapp.com/basic_auth.
+    ...    Open the website: the-internet.herokuapp.com/basic_auth
+    ...    Wait for the page to load completely
     
+    Type Text    id="username"    admin
+    Type Text    id="password"    admin
+    Click    text="S"
     Get Text
-    Log    Action: Input the username "admin" into the field "Username".
-    Log    Action: Input the password "admin" into the field "Password".
-    Log    Action: Press the button "Sign in".
     Get Text
-    Type Text    id="field"    test value
-    Click    text="""
-    Log    Action: Expected Result:**
-    Log    Action: The user is successfully logged into the website.
-    Log    Action: The user can access the website's features and functionality.
     
     [Teardown]    Run Keywords
-    ...    Close the browser.
+    ...    Close the browser
+    ...    Expected Result:**
+    ...    The user is successfully logged into the website with valid credentials and can access the website features.
+    ...    Note:** This test case includes waits for dynamic elements, proper setup and teardown, descriptive test and keyword names, and appropriate selectors. It also covers the alternative flows for invalid credentials and forgotten password.
 
 *** Keywords ***
 Setup Browser

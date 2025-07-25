@@ -1,103 +1,47 @@
 
-USE CASE: Confirmation Message
-ID: UC-002-CONFIRM
+USE CASE: ** Access Basic Auth Page
+ID: ** UC-AUTH-BASIC-001
 
 ACTORS:
-- admin
-- user
 - you
+- user
+- admin
 
 PRECONDITIONS:
-
+1. The user has a web browser installed.
+2. The user has access to the internet.
+3. The user has the URL <https://the-internet.herokuapp.com/basic_auth> open in the browser.
 
 MAIN FLOW:
-1. User goes to https://the-internet.herokuapp.com/basic_auth
-2. Header says "This site is asking you to sign in."
-3. User enters "admin" in the "Username" field.
-4. 4. User enters "admin" in the "Password" field.
-5. 5. User clicks the "Sign in" button.
-6. 6. User sees two headers:
-7. "Basic Auth"
-8. "Congratulations! You must have the proper credentials."
-9. User goes to https://the-internet.herokuapp.com/basic_auth
-10. Header says "This site is asking you to sign in."
-11. User enters "admin" in the "Username" field.
-12. 4. User enters "admin" in the "Password" field.
-13. 5. User clicks the "Sign in" button.
-14. 6. User sees two headers:
-15. "Basic Auth"
-16. "Congratulations! You must have the proper credentials."
-17. User sees a confirmation message after signing in.
+1. The user navigates to the URL <https://the-internet.herokuapp.com/basic_auth>.
+2. The user checks the browser header to confirm the site is asking for sign-in.
+3. The user inputs "admin" into the Username field.
+4. 4. The user inputs "admin" into the Password field.
+5. 5. The user clicks the "Sign in" button.
+6. 6. The browser page loads, displaying two headers:
+7. 6.1. Basic Auth
+8. 6.2. Congratulations! You must have the proper credentials.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. **Alternative flows:**
-2. If the user enters incorrect credentials:
-3. User sees an error message.
-4. User can try again.
-5. If the user closes the browser without signing in:
-6. User is redirected to the homepage.
-7. README.md
-8. # Use Case Generator
-9. A tool for generating use cases from requirements and user stories.
-10. ## Getting Started
-11. To use this tool, you'll need to provide it with a set of requirements and user stories. The tool will then generate use cases based on that input.
-12. Here's an example of how you can use the tool:
-13. ```python
-14. from use_case_generator import generate_use_cases
-15. requirements = [
-16. "Go to https://the-internet.herokuapp.com/basic_auth",
-17. "Check the header: This site is asking you to sign in.",
-18. "Input username = admin to the field Username",
-19. "Input password = admin to the field Password",
-20. "Press button Sign in",
-21. "Browser page opens and there is two headers",
-22. "6.1. Basic Auth",
-23. "6.2. Congratulations! You must have the proper credentials."
-24. ]
-25. user_stories = [
-26. "As a user, I want to sign in to the website so I can access my account.",
-27. "As a user, I want to see a confirmation message after signing in."
-28. ]
-29. use_cases = generate_use_cases(requirements, user_stories)
-30. for use_case in use_cases:
-31. print(use_case)
-32. ```
-33. This will generate the following use cases:
-34. ```
-35. ```
-36. ## Contributing
-37. Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-38. Please make sure to update tests as appropriate.
-39. ## License
-40. [MIT](https://choosealicense.com/licenses/mit/)
-41. use_case_generator.py
-42. import re
-43. import os
-44. import sys
-45. from pyppeteer import launch
-46. from pyppeteer.page import Page
-47. def get_page(url):
-48. page = launch()
-49. page.goto(url)
-50. return page
-51. def get_headers(page):
-52. headers = page.property('headers')
-53. return headers
-54. def get_elements(page):
-55. elements = page.property('elements')
-56. return elements
-57. def get_content(page):
-58. content = page.property('content')
-59. return content
-60. def generate_use_cases(requirements, user_stories):
-61. """
-62. Generate use cases from requirements and user stories.
-63. Args:
-64. requirements (list): A list of strings representing requirements.
-65. user_stories (list): A list of strings representing user stories.
+1. The user is redirected to a new page with the specified headers.
+2. The user can verify that the sign-in was successful.
+3. **Alternative Flows:**
+4. If the user inputs incorrect credentials:**
+5. The user inputs an incorrect username or password.
+6. The user clicks the "Sign in" button.
+7. The browser displays an error message indicating the sign-in failed.
+8. 4. The user is redirected to the sign-in page or an error page.
+9. If the user navigates away from the page:**
+10. The user navigates away from the <https://the-internet.herokuapp.com/basic_auth> page.
+11. The user returns to the page.
+12. The browser displays the same headers as in the main flow.
+13. **Note:** The alternative flows are designed to cover common failure scenarios and edge cases to ensure the use case is comprehensive and testable.
+14. **Format:**
+15. Alternative Flows:** Two alternative flows covering incorrect credentials and navigating away from the page.
+16. This structured use case ensures clarity, testability, and adherence to standard use case format.
 
 NOTES:
 None

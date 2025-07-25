@@ -1,28 +1,27 @@
 {
   "id": "** UC-LOGIN-001",
-  "title": "** Cancel Login on Basic Authentication Page",
+  "title": "** User cancels login and opens a different page",
   "actors": [
     "button",
     "User"
   ],
   "preconditions": [
-    "User is on the internet.",
-    "User has not previously authenticated on the website."
+    "User is on the internet",
+    "User has not previously logged in to the site"
   ],
   "main_flow": [
-    "User navigates to the basic authentication page:  https://the-internet.herokuapp.com/basic_auth",
-    "User sees the header message \"This site is asking you to sign in.\"",
+    "User visits the website \"the-internet.herokuapp.com/basic_auth\".",
+    "The website prompts the user to sign in and displays a message \"This site is asking you to sign in\".",
     "User presses the \"Cancel\" button.",
-    "4. User is redirected to the browser's home page.",
-    "5. User sees text \"Not authorized\" on the page.",
+    "4. The browser opens a new page with the text \"Not authorized\".",
     "**Alternative Flows:**",
-    "If the user has already authenticated on the website, they will not be prompted to sign in again.",
-    "If the user enters invalid credentials, they will be presented with an error message."
+    "If the user enters invalid credentials, the system will display an error message.",
+    "If the user forgets their password, they can click on the \"Forgot password\" link to reset their password."
   ],
   "alternative_flows": null,
   "postconditions": [
-    "User is not logged in to the website.",
-    "User has seen the text \"Not authorized\" on the page."
+    "The user has not logged into the site",
+    "The user is on a page displaying the text \"Not authorized\""
   ],
   "notes": null
 }

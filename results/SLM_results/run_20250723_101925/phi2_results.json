@@ -1,0 +1,587 @@
+{
+  "model": "phi2",
+  "timestamp": "2025-07-23T10:34:56.689133",
+  "use_case_generation": {
+    "generation_report": {
+      "total_files": 2,
+      "successful": 2,
+      "failed": 0,
+      "results": [
+        {
+          "requirement": "Basic_Auth_PASS.txt",
+          "use_case": "Basic_Auth_PASS_use_case.json",
+          "status": "success"
+        },
+        {
+          "requirement": "Basic_Auth_FAIL.txt",
+          "use_case": "Basic_Auth_FAIL_use_case.json",
+          "status": "success"
+        }
+      ]
+    },
+    "performance": {
+      "total_time": 173.92627668380737,
+      "memory_used": 4408.26953125,
+      "avg_time_per_file": 86.96313834190369
+    }
+  },
+  "test_case_generation": {
+    "generation_report": {
+      "model": "phi2",
+      "timestamp": "2025-07-23T10:42:02.759692",
+      "total_files": 3,
+      "successful": 3,
+      "failed": 0,
+      "results": [
+        {
+          "use_case": "Basic_Auth_PASS_use_case.txt",
+          "test_case": "Basic_Auth_PASS_use_case.robot",
+          "status": "success"
+        },
+        {
+          "use_case": "Basic_Auth_FAIL_use_case.txt",
+          "test_case": "Basic_Auth_FAIL_use_case.robot",
+          "status": "success"
+        },
+        {
+          "use_case": "Basic_Auth_PASS_use_case.json",
+          "test_case": "Basic_Auth_PASS_use_case.robot",
+          "status": "success"
+        }
+      ]
+    },
+    "test_validation": {
+      "executable": 0,
+      "failed": 2,
+      "errors": [
+        {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "error": ""
+        },
+        {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "error": ""
+        }
+      ],
+      "executability_rate": 0.0
+    },
+    "performance": {
+      "total_time": 252.60571908950806,
+      "memory_used": 5303.19140625
+    }
+  },
+  "metrics": {
+    "standard": {
+      "use_case_metrics": {
+        "custom": {
+          "completeness": 1.0,
+          "avg_length": 165.5,
+          "avg_steps": 15.0
+        }
+      },
+      "test_case_metrics": {
+        "syntax_validity": {
+          "valid_count": 2,
+          "total_count": 2,
+          "validity_rate": 1.0
+        },
+        "keyword_coverage": {
+          "keyword_counts": {
+            "New Browser": 3,
+            "New Page": 1,
+            "Go To": 3,
+            "Click": 4,
+            "Type Text": 8,
+            "Get Text": 4,
+            "Wait For Elements State": 3,
+            "Take Screenshot": 3
+          },
+          "total_keywords": 29,
+          "unique_keywords_used": 8,
+          "coverage_rate": 1.0
+        }
+      }
+    },
+    "extended": {
+      "quality": {
+        "perplexity": {
+          "mean_perplexity": 10.092716217041016,
+          "min_perplexity": 9.327465057373047,
+          "max_perplexity": 10.857967376708984,
+          "std_perplexity": 0.7652511596679688
+        },
+        "diversity": {
+          "self_bleu": 21.881173675748364,
+          "distinct_1": 0.24688279301745636,
+          "distinct_2": 0.518796992481203,
+          "distinct_3": 0.672544080604534,
+          "vocabulary_size": 99,
+          "token_type_ratio": 0.24688279301745636
+        },
+        "coherence": {
+          "mean_coherence": 0.1762961447238922,
+          "min_coherence": 0.16995090246200562,
+          "max_coherence": 0.18264137208461761,
+          "std_coherence": 0.006345234811306
+        }
+      },
+      "user_experience": {
+        "readability": {
+          "flesch_reading_ease": {
+            "score": 59.75404250792916,
+            "interpretation": "Fairly Difficult"
+          },
+          "flesch_kincaid_grade": {
+            "score": 7.6161402490910515,
+            "interpretation": "Grade level: 7.6"
+          },
+          "gunning_fog": {
+            "score": 10.077898971145665,
+            "interpretation": "Years of education needed: 10.1"
+          },
+          "smog_index": {
+            "score": 10.246390556953543,
+            "interpretation": "Score: 10.25"
+          },
+          "automated_readability_index": {
+            "score": 7.1717197630225815,
+            "interpretation": "Score: 7.17"
+          },
+          "coleman_liau_index": {
+            "score": 8.549690570124545,
+            "interpretation": "Score: 8.55"
+          },
+          "linsear_write_formula": {
+            "score": 5.661111111111111,
+            "interpretation": "Score: 5.66"
+          },
+          "dale_chall_readability_score": {
+            "score": 12.068527964724996,
+            "interpretation": "Score: 12.07"
+          },
+          "avg_sentence_length": 7.763227513227513,
+          "avg_word_length": 3.841592328278323,
+          "syllables_per_word": 1.2230151650312222,
+          "overall_readability": "Moderate - Requires some effort"
+        },
+        "clarity": {
+          "specificity_score": 0.0,
+          "vagueness_score": 0.0,
+          "structure_score": 0.0,
+          "conditional_clarity": 0.014578288942695722,
+          "ambiguity_score": 0.20307177701998674,
+          "overall_clarity": 0.0
+        },
+        "actionability": {
+          "action_verb_density": 0.01517100484261501,
+          "step_clarity": 0.5993589743589745,
+          "executable_steps": 0.641025641025641,
+          "overall_actionability": 0.41851854007574346
+        },
+        "completeness": {
+          "completeness_score": 1.0,
+          "missing_elements": []
+        },
+        "usability": {
+          "navigation_ease": 1.0,
+          "information_findability": 0.7819580731489741,
+          "consistency_score": 1.0,
+          "user_friendliness": 0.7501072153030262
+        },
+        "accessibility": {
+          "plain_language_score": 0.8372679580306699,
+          "technical_jargon_ratio": 0.0,
+          "international_friendly": 1.0
+        }
+      },
+      "robot_framework": {
+        "overall_quality": {
+          "total_tests": 8,
+          "documentation_coverage": 0.25,
+          "tag_coverage": 0.25,
+          "verification_coverage": 0.5
+        },
+        "keyword_analysis": {
+          "total_keywords_used": 48,
+          "unique_keywords": 11,
+          "custom_keywords_defined": 3,
+          "keyword_reuse_ratio": 0.2727272727272727,
+          "browser_keyword_usage": {
+            "interaction": 4
+          },
+          "most_used_keywords": {
+            "Log": 9,
+            "Type": 8,
+            "New": 6,
+            "Click": 4,
+            "Get": 4,
+            "Custom": 4,
+            "Wait": 3,
+            "Take": 3,
+            "Go": 3,
+            "Set": 2
+          }
+        },
+        "structure_analysis": {
+          "avg_test_length": 6.75,
+          "max_test_length": 23,
+          "min_test_length": 2,
+          "avg_complexity": 1.0,
+          "max_complexity": 1
+        },
+        "best_practices": {
+          "selector_usage": {
+            "id": 6,
+            "css": 5,
+            "xpath": 0,
+            "text": 2,
+            "data_test": 0,
+            "aria": 0
+          },
+          "best_selector_ratio": 0.46153846153846156,
+          "explicit_wait_usage": 3,
+          "implicit_wait_usage": 0,
+          "wait_strategy_score": 1.0,
+          "error_handling_present": false,
+          "screenshot_usage": 3,
+          "data_driven_testing": false,
+          "template_usage": 0,
+          "loop_usage": 0
+        },
+        "individual_files": {
+          "Basic_Auth_PASS_use_case.robot": {
+            "syntax_valid": true,
+            "sections": [
+              "Settings",
+              "Variables",
+              "Keywords"
+            ],
+            "test_count": 1,
+            "keyword_count": 3,
+            "documentation_present": true,
+            "tags_present": true,
+            "setup_teardown": {
+              "test_setup": true,
+              "test_teardown": true,
+              "suite_setup": false,
+              "suite_teardown": false
+            },
+            "line_count": 46,
+            "non_empty_lines": 39
+          },
+          "Basic_Auth_FAIL_use_case.robot": {
+            "syntax_valid": true,
+            "sections": [
+              "Settings",
+              "Variables",
+              "Keywords"
+            ],
+            "test_count": 1,
+            "keyword_count": 3,
+            "documentation_present": true,
+            "tags_present": true,
+            "setup_teardown": {
+              "test_setup": true,
+              "test_teardown": true,
+              "suite_setup": false,
+              "suite_teardown": false
+            },
+            "line_count": 60,
+            "non_empty_lines": 53
+          }
+        }
+      },
+      "test_case_ux": {
+        "readability": {
+          "flesch_reading_ease": {
+            "score": 16.46492917085962,
+            "interpretation": "Very Difficult"
+          },
+          "flesch_kincaid_grade": {
+            "score": 16.753427889127902,
+            "interpretation": "Grade level: 16.8"
+          },
+          "gunning_fog": {
+            "score": 16.96386519813757,
+            "interpretation": "Years of education needed: 17.0"
+          },
+          "smog_index": {
+            "score": 15.869771646490063,
+            "interpretation": "Score: 15.87"
+          },
+          "automated_readability_index": {
+            "score": 22.98761530578818,
+            "interpretation": "Score: 22.99"
+          },
+          "coleman_liau_index": {
+            "score": 20.675911445110188,
+            "interpretation": "Score: 20.68"
+          },
+          "linsear_write_formula": {
+            "score": 16.6,
+            "interpretation": "Score: 16.60"
+          },
+          "dale_chall_readability_score": {
+            "score": 15.142908827915594,
+            "interpretation": "Score: 15.14"
+          },
+          "avg_sentence_length": 60.979166666666664,
+          "avg_word_length": 4.351908866995074,
+          "syllables_per_word": 1.17497947454844,
+          "overall_readability": "Poor - Difficult to understand"
+        },
+        "clarity": {
+          "specificity_score": 0.0,
+          "vagueness_score": 0.0,
+          "structure_score": 0.0,
+          "conditional_clarity": 0.0,
+          "ambiguity_score": 0.405,
+          "overall_clarity": 0.0
+        },
+        "actionability": {
+          "action_verb_density": 0.028445861103061916,
+          "instruction_quality": 0.75,
+          "overall_actionability": 0.38922293055153095
+        },
+        "completeness": {
+          "completeness_score": 0.8,
+          "missing_elements": [
+            "error handling"
+          ]
+        },
+        "usability": {
+          "navigation_ease": 0.3333333333333333,
+          "information_findability": 0.2752402685212016,
+          "consistency_score": 1.0,
+          "user_friendliness": 0.40888888888888886
+        },
+        "accessibility": {
+          "plain_language_score": 0.8209214720370908,
+          "technical_jargon_ratio": 0.014868878585917126,
+          "international_friendly": 1.0
+        }
+      },
+      "system_info": {
+        "cpu": {
+          "physical_cores": 12,
+          "logical_cores": 24,
+          "max_frequency": 0.0,
+          "cpu_model": "13th Gen Intel(R) Core(TM) i7-13700HX"
+        },
+        "memory": {
+          "total_gb": 15.460460662841797,
+          "available_gb": 6.7965545654296875,
+          "used_gb": 8.268379211425781,
+          "percent": 56.0
+        },
+        "gpu": [
+          {
+            "id": 0,
+            "name": "NVIDIA RTX 2000 Ada Generation Laptop GPU",
+            "utilization": 80.0,
+            "memory_used": 3297.0,
+            "memory_total": 8188.0,
+            "temperature": 56.0,
+            "driver_version": "538.92",
+            "compute_capability": "(8, 9)",
+            "pcie_link_width": 8,
+            "pcie_link_gen": 4
+          }
+        ]
+      }
+    }
+  },
+  "performance": {
+    "use_case_generation_detailed": {
+      "total_time": 174.75726413726807,
+      "cpu": {
+        "mean_percent": 3.914979757085021,
+        "max_percent": 7.8,
+        "min_percent": 0.0,
+        "std_percent": 0.7094919631285971
+      },
+      "memory": {
+        "mean_mb": 9292.773658906883,
+        "max_mb": 9344.71484375,
+        "min_mb": 9271.18359375,
+        "peak_mb": 73.53125
+      },
+      "gpu": {
+        "mean_percent": 80.38461538461539,
+        "max_percent": 100,
+        "mean_memory_mb": 7526.388663967611,
+        "max_memory_mb": 7638.0,
+        "peak_memory_mb": 4399.0,
+        "mean_temperature": 57.86234817813765,
+        "max_temperature": 61.0,
+        "mean_power_watts": 30.235400809716598,
+        "max_power_watts": 33.395,
+        "total_energy_joules": 5283.855925599812
+      },
+      "efficiency": {
+        "cpu_efficiency": 96.08502024291498,
+        "memory_efficiency": 41.30204478261532,
+        "gpu_efficiency": 19.615384615384613,
+        "performance_per_watt": 33.073813252663584
+      }
+    },
+    "test_case_generation_detailed": {
+      "total_time": 253.49989223480225,
+      "cpu": {
+        "mean_percent": 3.935376044568245,
+        "max_percent": 5.8,
+        "min_percent": 0.0,
+        "std_percent": 0.65141954320129
+      },
+      "memory": {
+        "mean_mb": 8501.956019324512,
+        "max_mb": 9286.64453125,
+        "min_mb": 8462.33984375,
+        "peak_mb": 824.3046875
+      },
+      "gpu": {
+        "mean_percent": 81.1142061281337,
+        "max_percent": 98,
+        "mean_memory_mb": 7589.571030640668,
+        "max_memory_mb": 7643.0,
+        "peak_memory_mb": 4445.0,
+        "mean_temperature": 58.289693593314766,
+        "max_temperature": 61.0,
+        "mean_power_watts": 30.538320334261844,
+        "max_power_watts": 35.531,
+        "total_energy_joules": 7741.460913767247
+      },
+      "efficiency": {
+        "cpu_efficiency": 96.06462395543176,
+        "memory_efficiency": 46.29725720219599,
+        "gpu_efficiency": 18.885793871866298,
+        "performance_per_watt": 32.745743349809274
+      }
+    },
+    "use_case_generation": {
+      "total_time": 173.92627668380737,
+      "memory_used": 4408.26953125,
+      "avg_time_per_file": 86.96313834190369
+    },
+    "test_case_generation": {
+      "total_time": 252.60571908950806,
+      "memory_used": 5303.19140625
+    },
+    "total_time": 426.53199577331543,
+    "total_memory": 9711.4609375,
+    "files_per_second": 0.011499125020861216
+  },
+  "llm_evaluation": {
+    "evaluator_info": {
+      "enabled": true,
+      "model": "mistral",
+      "reason": "Selected as neutral evaluator (not in evaluated models: ['tinyllama', 'phi2', 'pythia_1b', 'opt_1.3b', 'stablelm_3b'])"
+    },
+    "use_case_evaluations": [
+      {
+        "file": "Basic_Auth_PASS_use_case.txt",
+        "evaluation": {
+          "completeness": 10,
+          "clarity": 10,
+          "testability": 10,
+          "technical_accuracy": 10,
+          "structure": 10,
+          "overall_score": 10,
+          "strengths": [
+            "All necessary sections are present",
+            "Clear and unambiguous instructions",
+            "Easily testable",
+            "Technically accurate and feasible",
+            "Well-organized and consistent format"
+          ],
+          "weaknesses": [],
+          "suggestions": [],
+          "evaluated_model": "phi2",
+          "content_type": "use_case"
+        }
+      },
+      {
+        "file": "Basic_Auth_FAIL_use_case.txt",
+        "evaluation": {
+          "completeness": 10,
+          "clarity": 10,
+          "testability": 10,
+          "technical_accuracy": 10,
+          "structure": 10,
+          "overall_score": 10,
+          "strengths": [
+            "All necessary sections are present",
+            "The use case is clear and unambiguous",
+            "The use case can be easily converted to test cases",
+            "The technical details are correct and feasible",
+            "The format is consistent and well-organized"
+          ],
+          "weaknesses": [],
+          "suggestions": [],
+          "evaluated_model": "phi2",
+          "content_type": "use_case"
+        }
+      }
+    ],
+    "test_case_evaluations": [
+      {
+        "file": "Basic_Auth_PASS_use_case.robot",
+        "evaluation": {
+          "syntax_correctness": 10,
+          "test_coverage": 6,
+          "best_practices": 8,
+          "maintainability": 8,
+          "executability": 10,
+          "overall_score": 8.2,
+          "strengths": [
+            "Correct syntax",
+            "Properly set up the test environment",
+            "Uses the Browser library for web testing",
+            "Uses the OperatingSystem library for taking a screenshot"
+          ],
+          "weaknesses": [
+            "Limited test coverage as it only tests the login functionality",
+            "Does not handle errors or exceptions properly",
+            "Could benefit from more descriptive test names"
+          ],
+          "suggestions": [
+            "Consider adding more test cases to cover other functionality",
+            "Implement error handling and exception testing",
+            "Use more descriptive test names"
+          ],
+          "evaluated_model": "phi2",
+          "content_type": "test_case"
+        }
+      },
+      {
+        "file": "Basic_Auth_FAIL_use_case.robot",
+        "evaluation": {
+          "syntax_correctness": 10,
+          "test_coverage": 5,
+          "best_practices": 6,
+          "maintainability": 7,
+          "executability": 8,
+          "overall_score": 7.2,
+          "strengths": [
+            "Correct syntax",
+            "Proper use of libraries and tags"
+          ],
+          "weaknesses": [
+            "Lack of clear test objectives and expected results",
+            "Redundant and repeated code"
+          ],
+          "suggestions": [
+            "Add clear test objectives and expected results",
+            "Refactor redundant code"
+          ],
+          "evaluated_model": "phi2",
+          "content_type": "test_case"
+        }
+      }
+    ],
+    "summary": {
+      "avg_use_case_score": 10.0,
+      "avg_test_case_score": 7.699999999999999
+    }
+  }
+}

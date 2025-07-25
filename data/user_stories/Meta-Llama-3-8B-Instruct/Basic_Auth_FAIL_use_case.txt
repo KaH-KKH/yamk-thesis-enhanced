@@ -1,28 +1,27 @@
 
-USE CASE: ** Cancel Basic Authentication
-ID: UC-001
+USE CASE: Cancel Basic Authentication
+ID: UC-BASICAUTH-001
 
 ACTORS:
 - button
 
 PRECONDITIONS:
-1. The user has navigated to the basic authentication page.
-2. The user has not yet entered any authentication credentials.
+1. The user is on the "Basic Auth" page of the "The Internet" website.
+2. The header of the page contains the message "This site is asking you to sign in."
 
 MAIN FLOW:
-1. The user presses the Cancel button on the basic authentication page.
-2. The system prompts the user to sign in.
-3. The user is redirected to the original page without entering any authentication credentials.
-4. 4. The browser page opens, and the text "Not authorized" is displayed.
-5. **Alternative Flows:** None
+1. The user clicks the "Cancel" button on the "Basic Auth" page.
+2. The browser page is redirected to a new page with the text "Not authorized".
+3. Alternative Flows:
+4. None
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. The user is not authenticated.
-2. The browser page displays the text "Not authorized".
-3. The user is not redirected to any other page.
+1. The user is redirected to a new page with the text "Not authorized".
+2. The browser page does not contain the original "Basic Auth" page anymore.
+3. Note: This use case is focused on the "Cancel" button and its effects on the page. It does not cover the entire login process or any other possible scenarios.
 
 NOTES:
 None

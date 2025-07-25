@@ -1,5 +1,5 @@
 
-USE CASE: ** Cancel Login on Basic Authentication Page
+USE CASE: ** User cancels login and opens a different page
 ID: ** UC-LOGIN-001
 
 ACTORS:
@@ -7,25 +7,24 @@ ACTORS:
 - User
 
 PRECONDITIONS:
-1. User is on the internet.
-2. User has not previously authenticated on the website.
+1. User is on the internet
+2. User has not previously logged in to the site
 
 MAIN FLOW:
-1. User navigates to the basic authentication page:  https://the-internet.herokuapp.com/basic_auth
-2. User sees the header message "This site is asking you to sign in."
+1. User visits the website "the-internet.herokuapp.com/basic_auth".
+2. The website prompts the user to sign in and displays a message "This site is asking you to sign in".
 3. User presses the "Cancel" button.
-4. 4. User is redirected to the browser's home page.
-5. 5. User sees text "Not authorized" on the page.
-6. **Alternative Flows:**
-7. If the user has already authenticated on the website, they will not be prompted to sign in again.
-8. If the user enters invalid credentials, they will be presented with an error message.
+4. 4. The browser opens a new page with the text "Not authorized".
+5. **Alternative Flows:**
+6. If the user enters invalid credentials, the system will display an error message.
+7. If the user forgets their password, they can click on the "Forgot password" link to reset their password.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User is not logged in to the website.
-2. User has seen the text "Not authorized" on the page.
+1. The user has not logged into the site
+2. The user is on a page displaying the text "Not authorized"
 
 NOTES:
 None

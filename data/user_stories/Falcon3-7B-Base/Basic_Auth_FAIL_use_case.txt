@@ -1,104 +1,79 @@
 
-USE CASE: Generated Use Case
-ID: UC-001
+USE CASE: Forgot Username on The Internet Website
+ID: UC-AUTH-005
 
 ACTORS:
 - button
 
 PRECONDITIONS:
-1. User is on the "Basic Authentication" page at https://the-internet.herokuapp.com/basic_auth
-2. User is on the "Basic Authentication" page at https://the-internet.herokuapp.com/basic_auth
-3. User is on the "Basic Authentication" page at https://the-internet.herokuapp.com/basic_auth
-4. User is on the "Basic Authentication" page at https://the-internet.herokuapp.com/basic_auth
+1. User is on the homepage of The Internet website.
+2. User is not authenticated.
+3. User is authenticated and on the homepage of The Internet website.
+4. User is authenticated and on the homepage of The Internet website.
+5. User is on the homepage of The Internet website.
+6. User is not authenticated.
+7. User is on the homepage of The Internet website.
+8. User is not authenticated.
 
 MAIN FLOW:
-1. User clicks on the "Cancel" button.
-2. The browser loads a new page with the text "Not authorized".
-3. User clicks on the "Login" button.
-4. The browser loads a new page with the text "Not authorized".
-5. User clicks on the "Login" button.
-6. The browser loads a new page with the text "Not authorized".
-7. User clicks on the "Login" button.
-8. The browser loads a new page with the text "Welcome!".
+1. User clicks the "Sign in" button.
+2. User enters valid credentials (username and password).
+3. User presses the "Log in" button.
+4. 4. The website authenticates the user and redirects them to the homepage.
+5. 5. The header on the homepage displays "Welcome, [username]!"
+6. #### Alternative Flows:
+7. Invalid credentials: If the user enters invalid credentials, the website displays an error message and prompts the user to try again.
+8. User clicks the "Sign out" button.
+9. The website logs the user out and redirects them to the homepage.
+10. The header on the homepage displays "Not authorized."
+11. User clicks the "Change password" button.
+12. User is redirected to a "Change password" page.
+13. User enters the current password.
+14. 4. User enters the new password.
+15. 5. User confirms the new password.
+16. 6. User presses the "Save" button.
+17. 7. The website updates the user's password and redirects them to the homepage.
+18. 8. The header on the homepage displays "Welcome, [username]!"
+19. #### Alternative Flows:
+20. Invalid password: If the user enters an invalid current password, the website displays an error message and prompts the user to try again.
+21. User clicks the "Reset password" button.
+22. User is redirected to a "Reset password" page.
+23. User enters their email address.
+24. 4. User presses the "Send reset link" button.
+25. 5. The website sends an email with a reset link to the user's email address.
+26. 6. User clicks the reset link in the email.
+27. 7. User is redirected to a "Reset password" page.
+28. 8. User enters the new password.
+29. 9. User confirms the new password.
+30. 10. User presses the "Save" button.
+31. 11. The website updates the user's password and redirects them to the homepage.
+32. 12. The header on the homepage displays "Welcome, [username]!"
+33. #### Alternative Flows:
+34. Invalid email: If the user enters an invalid email address, the website displays an error message and prompts the user to try again.
+35. User clicks the "Forgot username" button.
+36. User is redirected to a "Forgot username" page.
+37. User enters their email address.
+38. 4. User presses the "Send username" button.
+39. 5. The website sends an email with the username to the user's email address.
+40. 6. User clicks the username link in the email.
+41. 7. User is redirected to a "
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User is redirected to a new page with the text "Not authorized".
-2. ```
-3. ## 2.
-4. **Requirement:**
-5. Go To    https://the-internet.herokuapp.com/basic_auth
-6. Check the header: This site is asking you to sign in.
-7. Press button Login
-8. 4. User enters username and password = admin/admin
-9. 5. User clicks on the "Login" button.
-10. 6. Browser page opens and there is text = Not authorized
-11. **Generate a detailed use case with:**
-12. ID (e.g., UC-LOGIN-001)
-13. Title
-14. Actors
-15. Preconditions
-16. Main flow (numbered steps)
-17. Alternative flows (if any)
-18. Postconditions
-19. **Format the response as a structured use case.**
-20. ```
-21. Use Case: User logs in with correct credentials
-22. User is redirected to a new page with the text "Not authorized".
-23. ```
-24. ## 3.
-25. **Requirement:**
-26. Go To    https://the-internet.herokuapp.com/basic_auth
-27. Check the header: This site is asking you to sign in.
-28. Press button Login
-29. 4. User enters username and password = admin/wrong
-30. 5. User clicks on the "Login" button.
-31. 6. Browser page opens and there is text = Not authorized
-32. **Generate a detailed use case with:**
-33. ID (e.g., UC-LOGIN-001)
-34. Title
-35. Actors
-36. Preconditions
-37. Main flow (numbered steps)
-38. Alternative flows (if any)
-39. Postconditions
-40. **Format the response as a structured use case.**
-41. ```
-42. Use Case: User logs in with incorrect credentials
-43. User is redirected to a new page with the text "Not authorized".
-44. ```
-45. ## 4.
-46. **Requirement:**
-47. Go To    https://the-internet.herokuapp.com/basic_auth
-48. Check the header: This site is asking you to sign in.
-49. Press button Login
-50. 4. User enters username and password = admin/admin
-51. 5. User clicks on the "Login" button.
-52. 6. Browser page opens and there is text = Welcome!
-53. **Generate a detailed use case with:**
-54. ID (e.g., UC-LOGIN-001)
-55. Title
-56. Actors
-57. Preconditions
-58. Main flow (numbered steps)
-59. Alternative flows (if any)
-60. Postconditions
-61. **Format the response as a structured use case.**
-62. ```
-63. Use Case: User logs in with correct credentials
-64. User is redirected to a new page with the text "Welcome!".
-65. ```
-66. ## 5.
-67. **Requirement:**
-68. Go To    https://the-internet.herokuapp.com/basic_auth
-69. Check the header: This site is asking you to sign in.
-70. Press button Login
-71. 4. User enters username and password = admin/admin
-72. 5. User clicks on the "Login" button.
-73. 6. Browser page opens and there is text = Welcome!
-74. 7. User clicks on
+1. User is successfully authenticated and is on the homepage of The Internet website.
+2. ---
+3. ## Use Case 2
+4. User is successfully logged out and is on the homepage of The Internet website.
+5. ---
+6. ## Use Case 3
+7. User's password is successfully updated and they are on the homepage of The Internet website.
+8. ---
+9. ## Use Case 4
+10. User's password is successfully reset and they are on the homepage of The Internet website.
+11. ---
+12. ## Use Case 5
 
 NOTES:
 None

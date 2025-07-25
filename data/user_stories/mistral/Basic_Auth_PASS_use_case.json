@@ -1,35 +1,30 @@
 {
   "id": "** UC-LOGIN-001",
-  "title": "** Basic Auth Login Use Case",
+  "title": "** Basic Authentication",
   "actors": [
-    "user",
     "you",
-    "admin",
-    "User"
+    "user",
+    "admin"
   ],
   "preconditions": [
-    "User is on the Basic Auth page (<https://the-internet.herokuapp.com/basic_auth>)",
-    "User has the correct credentials (admin/admin)"
+    "User is on the Basic Auth webpage (<https://the-internet.herokuapp.com/basic_auth>)",
+    "User has the required credentials: username = admin, password = admin"
   ],
   "main_flow": [
-    "User navigates to the Basic Auth page (<https://the-internet.herokuapp.com/basic_auth>)",
-    "User enters the correct username \"admin\" in the Username field",
-    "User enters the correct password \"admin\" in the Password field",
-    "4. User clicks the \"Sign in\" button",
-    "5. System checks the entered credentials against the expected values",
-    "6. If the entered credentials are correct, the system grants access and displays the \"Congratulations! You must have the proper credentials.\" page with the two headers \"Basic Auth\" and \"Congratulations!\"",
+    "User enters the URL <https://the-internet.herokuapp.com/basic_auth> into the web browser address bar.",
+    "The browser loads the Basic Auth webpage.",
+    "User locates and enters the value \"admin\" into the Username field.",
+    "4. User locates and enters the value \"admin\" into the Password field.",
+    "5. User clicks the Sign in button.",
+    "6. The system verifies the entered credentials.",
+    "7. If credentials are correct, the system displays the two headers: \"Basic Auth\" and \"Congratulations! You must have the proper credentials.\"",
     "**Alternative flows:**",
-    "Invalid credentials:**",
-    "a. User enters incorrect username or password",
-    "b. System denies access and keeps the user on the login page with an error message \"Bad Username or Password\"",
-    "Incorrect URL:**",
-    "a. User navigates to an incorrect URL",
-    "b. System displays an error message \"Page not found\""
+    "If the Username or Password is incorrect, the system displays an error message and the user is prompted to enter the correct credentials."
   ],
   "alternative_flows": null,
   "postconditions": [
-    "User is authenticated and on the \"Congratulations! You must have the proper credentials.\" page",
-    "User can interact with the elements on the page, such as click on the headers or use the browser's Back button."
+    "The user is logged in and sees the two headers: \"Basic Auth\" and \"Congratulations! You must have the proper credentials.\"",
+    "The user can now access the protected content on the Basic Auth webpage."
   ],
   "notes": null
 }

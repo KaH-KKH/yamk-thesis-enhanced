@@ -1,38 +1,33 @@
 
-USE CASE: ** Basic Auth Login Use Case
+USE CASE: ** Basic Authentication
 ID: ** UC-LOGIN-001
 
 ACTORS:
-- user
 - you
+- user
 - admin
-- User
 
 PRECONDITIONS:
-1. User is on the Basic Auth page (<https://the-internet.herokuapp.com/basic_auth>)
-2. User has the correct credentials (admin/admin)
+1. User is on the Basic Auth webpage (<https://the-internet.herokuapp.com/basic_auth>)
+2. User has the required credentials: username = admin, password = admin
 
 MAIN FLOW:
-1. User navigates to the Basic Auth page (<https://the-internet.herokuapp.com/basic_auth>)
-2. User enters the correct username "admin" in the Username field
-3. User enters the correct password "admin" in the Password field
-4. 4. User clicks the "Sign in" button
-5. 5. System checks the entered credentials against the expected values
-6. 6. If the entered credentials are correct, the system grants access and displays the "Congratulations! You must have the proper credentials." page with the two headers "Basic Auth" and "Congratulations!"
-7. **Alternative flows:**
-8. Invalid credentials:**
-9. a. User enters incorrect username or password
-10. b. System denies access and keeps the user on the login page with an error message "Bad Username or Password"
-11. Incorrect URL:**
-12. a. User navigates to an incorrect URL
-13. b. System displays an error message "Page not found"
+1. User enters the URL <https://the-internet.herokuapp.com/basic_auth> into the web browser address bar.
+2. The browser loads the Basic Auth webpage.
+3. User locates and enters the value "admin" into the Username field.
+4. 4. User locates and enters the value "admin" into the Password field.
+5. 5. User clicks the Sign in button.
+6. 6. The system verifies the entered credentials.
+7. 7. If credentials are correct, the system displays the two headers: "Basic Auth" and "Congratulations! You must have the proper credentials."
+8. **Alternative flows:**
+9. If the Username or Password is incorrect, the system displays an error message and the user is prompted to enter the correct credentials.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User is authenticated and on the "Congratulations! You must have the proper credentials." page
-2. User can interact with the elements on the page, such as click on the headers or use the browser's Back button.
+1. The user is logged in and sees the two headers: "Basic Auth" and "Congratulations! You must have the proper credentials."
+2. The user can now access the protected content on the Basic Auth webpage.
 
 NOTES:
 None

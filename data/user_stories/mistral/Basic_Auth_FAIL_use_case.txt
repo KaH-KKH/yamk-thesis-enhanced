@@ -1,30 +1,34 @@
 
-USE CASE: Unauthorized Access to Basic Auth Page
-ID: UC-001
+USE CASE: ** Unauthorized Access to Protected Page
+ID: ** UC-ACCESS-UNAUTHORIZED-001
 
 ACTORS:
 - button
 - User
 
 PRECONDITIONS:
-1. User is on the Basic Auth page (https://the-internet.herokuapp.com/basic_auth)
-2. User has not provided valid credentials for authorization
+1. User is on the website: https://the-internet.herokuapp.com/basic_auth
+2. User does not provide valid credentials for authentication
 
 MAIN FLOW:
 1. User navigates to the URL: https://the-internet.herokuapp.com/basic_auth
-2. System checks if user has provided valid credentials for authorization
-3. User presses the Cancel button instead of entering credentials
-4. 4. System displays the "Not authorized" message and the page remains unchanged
-5. Alternative flows (if any):
-6. N/A
+2. System displays a dialog box requesting username and password for authentication.
+3. User clicks the Cancel button instead of entering credentials.
+4. 4. System responds with an error message "Not authorized" and displays the text on the page.
 
 ALTERNATIVE FLOWS:
 None
 
 POSTCONDITIONS:
-1. User remains on the Basic Auth page
-2. "Not authorized" message is displayed
-3. User is unable to access protected resources without proper authorization.
+1. User remains on the same page.
+2. The error message "Not authorized" remains visible on the page.
+3. User cannot access the protected content on the page.
+4. **Alternative flows:**
+5. If user enters valid credentials, they will be granted access to the protected page.
+6. If user enters incorrect credentials multiple times, the system may lock the account temporarily or permanently.
+7. If the connection is lost during authentication, the user will be prompted to re-enter their credentials.
+8. ---
+9. This use case follows the standard format and covers the given requirement while maintaining clarity and testability.
 
 NOTES:
 None

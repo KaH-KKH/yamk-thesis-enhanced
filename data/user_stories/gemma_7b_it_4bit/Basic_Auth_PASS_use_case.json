@@ -2,30 +2,32 @@
   "id": "** UC-LOGIN-001",
   "title": "** Login to the website with valid credentials",
   "actors": [
-    "admin",
-    "user",
     "you",
+    "user",
+    "admin",
     "User"
   ],
   "preconditions": [
-    "The user has internet access.",
-    "The user has a valid username and password."
+    "User has internet connection",
+    "User knows username and password for the website"
   ],
   "main_flow": [
-    "The user opens the website:  the-internet.herokuapp.com/basic_auth.",
-    "The user checks the header: \"This site is asking you to sign in.\"",
-    "The user inputs the username \"admin\" into the field \"Username.\"",
-    "4. The user inputs the password \"admin\" into the field \"Password.\"",
-    "5. The user presses the button \"Sign in.\"",
-    "6. The browser page opens and two headers are displayed: \"Basic Auth\" and \"Congratulations! You must have the proper credentials.\"",
+    "User opens the website:  the-internet.herokuapp.com/basic_auth",
+    "User sees a message indicating the site requires authentication",
+    "User inputs username \"admin\" into the Username field",
+    "4. User inputs password \"admin\" into the Password field",
+    "5. User clicks the Sign in button",
+    "6. User is redirected to a new page with two headers",
+    "Basic Auth",
+    "Congratulations! You must have the proper credentials.",
     "**Alternative Flows:**",
-    "If the user enters an invalid username or password, an error message will be displayed.",
+    "If the user enters invalid credentials, the system will display an error message.",
     "If the user forgets their password, they can click on the \"Forgot password\" link to reset their password."
   ],
   "alternative_flows": null,
   "postconditions": [
-    "The user is logged into the website.",
-    "The user can access the website's features and functionality."
+    "User is logged into the website",
+    "User can access the website features"
   ],
   "notes": null
 }

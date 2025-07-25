@@ -1,0 +1,235 @@
+{
+  "timestamp": "2025-07-23T11:26:56.416160",
+  "summary": {
+    "total_models": 5,
+    "total_test_files": 10,
+    "total_successful": 0,
+    "total_failed": 10,
+    "overall_success_rate": 0.0,
+    "best_model": "tinyllama",
+    "worst_model": "tinyllama"
+  },
+  "by_model": {
+    "tinyllama": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [
+            "No keyword with name 'Custom Login Keyword' found"
+          ],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nSeveral failures occurred:\n\n1) No keyword with name 'Custom Login Keyword' found.\n\n2) No keyword with name 'Custom Login Keyword' found.\n\n3) No keyword with name 'Custom Login Keyword' found.\n\n4) No keyword with name 'Custom Login Keyword' found.\n\n5) No keyword with name 'Custom Login Keyword' found.\n\n6) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n7) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n8) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n9) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n    [ Message content over the limit has been removed. ]\n\n18) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n19) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n20) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n21) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n22) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n23) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n24) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n25) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n26) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n27) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\nAlso teardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [
+            "missing_keyword"
+          ],
+          "return_code": 1
+        }
+      },
+      "errors": [
+        "No keyword with name 'Custom Login Keyword' found"
+      ],
+      "warnings": [],
+      "execution_time": 1.140077,
+      "success_rate": 0.0
+    },
+    "phi2": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [
+            "No keyword with name 'Custom Login Keyword' found"
+          ],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Description: Tests the functionality of logging...\n==============================================================================\nTest Case: Login to The Internet Website :: Description: Tests the... | FAIL |\nSeveral failures occurred:\n\n1) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n2) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n3) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n4) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n5) No keyword with name 'Custom Login Keyword' found.\n\n6) No keyword with name 'Custom Login Keyword' found.\n\n7) No keyword with name 'Custom Login Keyword' found.\n\n8) No keyword with name 'Custom Login Keyword' found.\n\nAlso teardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Description: Tests the functionality o... | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [
+            "missing_keyword"
+          ],
+          "return_code": 1
+        }
+      },
+      "errors": [
+        "No keyword with name 'Custom Login Keyword' found"
+      ],
+      "warnings": [],
+      "execution_time": 1.134852,
+      "success_rate": 0.0
+    },
+    "pythia_1b": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: description: Verification                         \n==============================================================================\nTest Login Functionality :: description: Verification                 | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: description: Verification                 | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nSeveral failures occurred:\n\n1) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n2) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n3) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n4) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n5) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n6) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n7) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n8) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n9) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n    [ Message content over the limit has been removed. ]\n\n44) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n45) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n46) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n47) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n48) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n49) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n50) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n51) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n52) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\n53) Keyword 'Browser.Get Text' expected 1 to 4 arguments, got 0.\n\nAlso teardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        }
+      },
+      "errors": [],
+      "warnings": [],
+      "execution_time": 1.099915,
+      "success_rate": 0.0
+    },
+    "opt_1.3b": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        }
+      },
+      "errors": [],
+      "warnings": [],
+      "execution_time": 1.104883,
+      "success_rate": 0.0
+    },
+    "stablelm_3b": {
+      "total_files": 2,
+      "successful": 0,
+      "failed": 2,
+      "file_results": {
+        "Basic_Auth_PASS_use_case.robot": {
+          "file": "Basic_Auth_PASS_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth PASS use case :: Automated test for login functionality            \n==============================================================================\nBasic Auth Test :: Automated test for login functionality             | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth PASS use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        },
+        "Basic_Auth_FAIL_use_case.robot": {
+          "file": "Basic_Auth_FAIL_use_case.robot",
+          "success": false,
+          "errors": [],
+          "warnings": [],
+          "output": "==============================================================================\nBasic Auth FAIL use case :: Automated test for login functionality            \n==============================================================================\nTest Login Functionality :: Automated test for login functionality    | FAIL |\nTeardown failed:\nKeyword 'Close Browser' expected 0 arguments, got 1.\n------------------------------------------------------------------------------\nBasic Auth FAIL use case :: Automated test for login functionality    | FAIL |\n1 test, 0 passed, 1 failed\n==============================================================================\nOutput:  NONE\n",
+          "error_types": [],
+          "return_code": 1
+        }
+      },
+      "errors": [],
+      "warnings": [],
+      "execution_time": 1.210886,
+      "success_rate": 0.0
+    }
+  },
+  "error_analysis": {
+    "error_type_distribution": {
+      "missing_keyword": 2
+    },
+    "common_errors": {
+      "No keyword with name 'Custom Login Keyword' found": 2
+    },
+    "model_error_patterns": {
+      "tinyllama": {
+        "missing_keyword": 1
+      },
+      "phi2": {
+        "missing_keyword": 1
+      },
+      "pythia_1b": {},
+      "opt_1.3b": {},
+      "stablelm_3b": {}
+    },
+    "top_errors": [
+      [
+        "No keyword with name 'Custom Login Keyword' found",
+        2
+      ]
+    ]
+  },
+  "comparative_analysis": {
+    "success_rates": {
+      "tinyllama": 0.0,
+      "phi2": 0.0,
+      "pythia_1b": 0.0,
+      "opt_1.3b": 0.0,
+      "stablelm_3b": 0.0
+    },
+    "error_prone_models": [
+      "tinyllama",
+      "phi2"
+    ],
+    "most_stable_models": [
+      "opt_1.3b",
+      "stablelm_3b"
+    ],
+    "execution_efficiency": {
+      "tinyllama": {
+        "avg_time_per_file": 0.5700385,
+        "total_time": 1.140077
+      },
+      "phi2": {
+        "avg_time_per_file": 0.567426,
+        "total_time": 1.134852
+      },
+      "pythia_1b": {
+        "avg_time_per_file": 0.5499575,
+        "total_time": 1.099915
+      },
+      "opt_1.3b": {
+        "avg_time_per_file": 0.5524415,
+        "total_time": 1.104883
+      },
+      "stablelm_3b": {
+        "avg_time_per_file": 0.605443,
+        "total_time": 1.210886
+      }
+    }
+  }
+}

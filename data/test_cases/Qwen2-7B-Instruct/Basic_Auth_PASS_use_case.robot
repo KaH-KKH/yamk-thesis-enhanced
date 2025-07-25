@@ -14,7 +14,7 @@ ${HEADLESS}      false
 ${TIMEOUT}       10s
 
 *** Test Cases ***
-Verify Error Handling for Network Disconnection failed with error: ${error}"
+Test Login Functionality
     [Documentation]    Automated test for login functionality
     [Tags]    login smoke
     
